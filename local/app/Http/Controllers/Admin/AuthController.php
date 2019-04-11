@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function CheckLogin(Request $request){
     	$username = $request->input('username');
     	$password = $request->input('password');
-    	$remember = $request->input('remember',false);
+        $remember = $request->input('remember',false);
     	if (\Auth::guard('admin')->attempt(['username' => $username, 'password' => $password],$remember)) {
             return 1;
         }else{
