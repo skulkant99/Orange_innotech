@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/admin/login', 'Admin\AuthController@login');
-Route::post('/admin/CheckLogin', 'Admin\AuthController@CheckLogin');
+Route::get('/blackoffice/login', 'Blackoffice\AuthController@login');
+Route::post('/blackoffice/CheckLogin', 'Blackoffice\AuthController@CheckLogin');
 
 Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
