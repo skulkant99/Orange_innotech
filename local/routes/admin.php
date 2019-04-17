@@ -73,6 +73,8 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
     Route::post('/AdminUser/{id}', 'Admin\AdminUserController@update');
     Route::post('/AdminUser/Delete/{id}', 'Admin\AdminUserController@destroy');
 
+    Route::get('/content','Admin\ContentController@index');
+
 
       ##ROUTEFORINSTALL##
 });

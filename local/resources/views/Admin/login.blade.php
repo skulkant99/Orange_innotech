@@ -28,7 +28,7 @@
     <link href="{{asset('assets/admin/vendors/sweetalert/css/sweetalert2.min.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-
+   
 <body>
 
     <div class="wrapper wrapper-full-page">

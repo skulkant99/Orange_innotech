@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{asset('assets/admin/img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{ isset($title_page)? $title_page.' |':'' }} WorkByThai</title>
+    <title>{{ isset($title_page)? $title_page.'':'' }} </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
     <meta name="viewport" content="width=device-width">

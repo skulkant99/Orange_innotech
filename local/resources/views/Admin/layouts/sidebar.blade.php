@@ -1,9 +1,20 @@
-        <div class="sidebar">
-            {{-- <div class="logo">
+        <style>
+            .sidebar:after, .sidebar:before {
+                background-color: #1f262f;
+            }
+            .navbar-default {
+                background-color: #1f262f;
+                border-bottom: 2px solid #0044cc;
+            }
+           
+        </style>
+    
+       <div class="sidebar">
+            <div class="logo">
                 <a href="#" class="simple-text">
-                    <img class="card-img-top" src="{{asset('uploads/logo.png')}}" alt="Card image cap" style="width:70%;">
+                    <img class="card-img-top" src="{{asset('assets/admin/img/logo.png')}}" alt="Card image cap" style="width:70%;">
                 </a>
-            </div> --}}
+            </div>
             <div class="logo logo-mini">
                 <a href="#" class="simple-text">
                     Work
