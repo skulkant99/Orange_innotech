@@ -4,16 +4,18 @@
 <head>
     <meta charset="utf-8">
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/admin/img/apple-icon.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('assets/admin/img/favicon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/admin/img/favicon.ico')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{ isset($title_page)? $title_page.'':'' }} </title>
+    <title>{{ isset($title_page)? 'Innotech | '.$title_page :'' }} </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
     <meta name="viewport" content="width=device-width">
 
     <!-- Bootstrap core CSS     -->
     <link href="{{asset('assets/admin/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/admin/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+
     @yield('css_top')
     <!--  Material Dashboard CSS    -->
     <link href="{{asset('assets/admin/css/inspire.css')}}" rel="stylesheet">
@@ -50,7 +52,7 @@
                     <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarsItems" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> {{$title or ''}} </a>
+                    <a class="navbar-brand" href="#"> {{$title}} </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarItems">
                     <ul class="nav navbar-nav ml-auto">

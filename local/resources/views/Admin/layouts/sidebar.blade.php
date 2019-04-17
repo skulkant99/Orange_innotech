@@ -17,7 +17,7 @@
             </div>
             <div class="logo logo-mini">
                 <a href="#" class="simple-text">
-                    Work
+                    innotech
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -27,7 +27,7 @@
                             @if(sizeof($menu->SubMenu)>0)
                                 <li class="d-flex flex-column {{ (isset($main_menu)&&$menu->link==$main_menu)? 'active':'' }}">
                                     <a data-toggle="collapse" href="#menu_{{$menu->id}}" class="{{ (isset($main_menu)&&$menu->link==$main_menu)? '':'collapsed' }} nav-link" aria-expanded="false">
-                                        <i class="{{$menu->icon or 'nav-icon ti-panel'}}"></i>
+                                        <i class="{{$menu->icon}}"></i>
                                         <p>
                                             {{$menu->name}}
                                             <i class="fa fa-sort-desc submenu-toggle"></i>
@@ -48,7 +48,7 @@
                             @else
                                 <li class="d-flex flex-column {{ (isset($main_menu)&&$menu->link==$main_menu)? 'active':'' }}">
                                     <a class="nav-link" href="{{url('admin/'.$menu->link)}}">
-                                        <i class="{{$menu->icon or 'nav-icon ti-panel'}}"></i>
+                                        <i class="{{$menu->icon}}"></i>
                                         <p>{{$menu->name}}</p>
                                     </a>
                                 </li>

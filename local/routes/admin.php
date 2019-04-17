@@ -75,6 +75,16 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
 
     Route::get('/content','Admin\ContentController@index');
 
+    Route::get('/introduction','Admin\HomeController@introduction');
+    Route::get('/introduction/list_introduction','Admin\HomeController@list_introduction');
+    Route::post('/introduction','Admin\HomeController@store_intro');
+    Route::get('/introduction/{id}','Admin\HomeController@edit_intro');
+    Route::post('/introduction/{id}','Admin\HomeController@update');
+    Route::post('/introduction/Delete/{id}','Admin\HomeController@destroy');
+
+    Route::get('/banner','Admin\BannerController@index');
+    Route::get('/banner/Lists','Admin\BannerController@Lists');
+
 
       ##ROUTEFORINSTALL##
 });
