@@ -84,7 +84,34 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
 
     Route::get('/banner','Admin\BannerController@index');
     Route::get('/banner/Lists','Admin\BannerController@Lists');
+    Route::post('/banner','Admin\BannerController@store');
+    Route::get('/banner/show/{id}','Admin\BannerController@show');
+    Route::post('/banner/{id}','Admin\BannerController@update');
+    Route::post('/banner/Delete/{id}','Admin\BannerController@destroy');
+
+    Route::get('/category','Admin\CategoryController@index');
+    Route::get('/category/Lists','Admin\CategoryController@Lists');
+    Route::post('/category','Admin\CategoryController@store');
+    Route::get('/category/show/{id}','Admin\CategoryController@show');
+    Route::post('/category/{id}','Admin\CategoryController@update');
+    Route::post('/category/Delete/{id}','Admin\CategoryController@destroy');
+
+    Route::get('/information','Admin\InformationController@index');
+    Route::get('/information/Lists','Admin\InformationController@Lists');
+    Route::post('/information','Admin\InformationController@store');
+    Route::get('/information/show/{id}','Admin\InformationController@show');
+    Route::post('/information/{id}','Admin\InformationController@update');
+    Route::post('/information/Delete/{id}','Admin\InformationController@destroy');
+
+    Route::get('/contact','Admin\ContactController@index');
+    Route::get('/contact/Lists','Admin\ContactController@Lists');
+    Route::post('/contact','Admin\ContactController@store');
+    Route::get('/contact/show/{id}','Admin\ContactController@show');
+    Route::post('/contact/{id}','Admin\ContactController@update');
+    Route::post('/contact/Delete/{id}','Admin\ContactController@destroy');
 
 
       ##ROUTEFORINSTALL##
 });
+//OrakUploader
+Route::any('/upload_file', 'OrakController@upload_file');

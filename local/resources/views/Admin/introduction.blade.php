@@ -22,7 +22,7 @@
                             </div>
                             <div class="material-datatables">
                                 <div class="table-responsive">
-                                    <table id="TableList" class="table table-striped table-bordered" style="width:100%">
+                                    <table id="TableList" class="table" style="width:100%">
                                         <thead>
                                             <tr>
                                             <th>#</th>
@@ -92,7 +92,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
-        
+                            
                         <div class="form-group">
                             <label for="add_detail">ชื่อ</label>
                             <textarea id="edit_name" name="name" class="form-control"></textarea>
@@ -307,7 +307,7 @@
             }).then(function() {
                 $.ajax({
                     method : "POST",
-                    url : url_gb+"/admin/introduction/Delete/"+id,
+                    url : url_gb+"/admin/information/Delete/"+id,
                     data : {ID : id}
                 }).done(function(rec){
                     if(rec.status==1){

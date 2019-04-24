@@ -121,7 +121,7 @@ input.ct-primary + span.switch-left, input.ct-primary + span + label + span.swit
 }
 
 .sidebar .logo .simple-text, .sidebar .mini-logo .simple-text {
-    color: #001d42;
+    color: #0044cc;
     font-weight: 700;
 }
 
@@ -154,6 +154,24 @@ input.ct-primary + span.switch-left, input.ct-primary + span + label + span.swit
     background-image: none;
     border-color: #0258a2;
 }
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
 
 .navbar-default {
     background-color: #ffffff;
@@ -179,7 +197,7 @@ a {
 }
 
 .main-panel > .footer {
-    border-top: 2px solid rgb(255, 0, 0);
+    border-top: 2px solid #0044cc;
 }
 
 .navbar-inverse .navbar-brand {
@@ -199,7 +217,7 @@ a {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1) !important;
     border-top-style: solid !important;
     border-width: 3px !important;
-    border-color: #ef0000 !important;
+    border-color: #0044cc !important;
 }
 
 

@@ -127,13 +127,16 @@
 			<div class="col-lg-10 col-xl-9">
 				<div class="mainmenu">
 					<ul>
-						<li data-page="home"><a href="#">กองทุน</a></li>
+						<?php foreach ($category as $_category) {
+							echo '<li data-page=""><a href="#">'.$_category->name.'</a></li>';
+						} ?>
+						<!-- <li data-page="home"><a href="#">กองทุน</a></li>
 						<li data-page="#"><a href="#">มูลค่าหน่วยลงทุน</a></li>
 						<li data-page="#"><a href="#">ผลการดำเนินงาน</a></li>
 						<li data-page="#"><a href="#">ทำรายการ </a></li>
 						<li data-page="#"><a href="#">ข้อมูลข่าวสาร</a></li>
 						<li data-page="#"><a href="#">เกี่ยวกับเรา </a></li>
-						<li data-page="#"><a href="#">ติดต่อเรา </a></li>
+						<li data-page="#"><a href="#">ติดต่อเรา </a></li> -->
 						<li>
 							<div class="langselect">
 								<a href="#"><img src="images/home.png"></a>
@@ -185,7 +188,12 @@
 				<li class="click_second_nav" rel="7">
 					<div class="mmmbg-7"><a href="#">Brands</a> </div> <span class="arrr"><i class="fas fa-angle-right"></i></span> </li>
 -->
-				<li>
+				<?php foreach ($category as $_category) {
+					echo '<li>
+							<div class="mmmbg-0"><a href="#">'.$_category->name.'</a></div>
+						</li>';
+				} ?>
+				<!-- <li>
 					<div class="mmmbg-0"><a href="#"> กองทุน</a></div>
 				</li>
 				<li>
@@ -205,7 +213,7 @@
 				</li>
 				<li>
 					<div class="mmmbg-0"><a href="#">   ติดต่อเรา</a></div>
-				</li>
+				</li> -->
 			</ul>
 			
 			 

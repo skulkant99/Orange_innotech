@@ -54,7 +54,26 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+        'uploads' => [
+            'driver' => 'local',
+            'root'   => public_path('../../uploads'),
+        ],
+        'models' => [
+            'driver' => 'local',
+            'root'   => app_path() . '/Models',
+        ],
+        'controllers' => [
+            'driver' => 'local',
+            'root'   => app_path() . '/Http/Controllers',
+        ],
+        'views' => [
+            'driver' => 'local',
+            'root'   => resource_path() . '/views',
+        ],
+        'routes' => [
+            'driver' => 'local',
+            'root'   => base_path() . '/routes',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

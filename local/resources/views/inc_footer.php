@@ -154,7 +154,14 @@
 			<div class="col-lg-4  wow fadeInRight" data-wow-duration="1.1s" data-wow-delay="0.3s">
 				<div class="footermenugroup2">
 					<h1>Contact us</h1>
-					<li><img src="images/icon-tel.png"> 02 624 6333</li>
+						<?php foreach ($contact as $_contact) {
+							if(isset($_contact->photo) && $_contact->photo){
+								echo '<li>
+									<a href="#"><img src="'.asset('uploads/Contact/'.$_contact->photo).'">	'.$_contact->name.'</a>
+									</li>';
+							}							 
+						} ?>
+					<!-- <li><img src="images/icon-tel.png"> 02 624 6333</li>
 					<li>
 						<a href="#"><img src="images/icon-www.png"> www.innotechasset.com</a>
 					</li>
@@ -166,7 +173,7 @@
 					</li>
 					<li>
 						<a href="#"><img src="images/icon-line.png"> Innotechasset</a>
-					</li>
+					</li> -->
 				</div>
 			</div>
 		</div>
@@ -183,21 +190,22 @@
                             <div class="accordion-panel">
                                 <ul class="listmenu-footer">
                                    <li><a href="#">หน้าหลัก</a></li>
-						<li><a href="#">กองทุนรวม</a></li>
-						<li><a href="#">กองทุนส่วนบุคคล</a></li>
-						<li><a href="#">มูลค่าหน่วยลงทุน</a></li>
-						<li><a href="#">ผลการดำเนินงาน</a></li>
-						<li><a href="#">ทำรายการ</a></li>
-						<li><a href="#">เกี่ยวกับเรา</a></li>
-						<li><a href="#">ติดต่อเรา</a></li>
-                               	<li><a href="#">ข้อมูลเศรษฐกิจและภาวะตลาดการเงิน</a></li>
-						<li><a href="#">เรื่องน่ารู้เกี่ยวกับการลงทุน</a></li>
-						<li><a href="#">เอกสารเผยแพร่และประกาศบริษัท</a></li>
-						<li><a href="#">รายงานกองทุน</a></li>
-						<li><a href="#">ธรรมาภิบาลการลงทุน (I-Code)</a></li>
-						<li><a href="#">ปฏิทินกิจกรรม</a></li>
-						<li><a href="#">ดาวน์โหลดแบบฟอร์ม</a></li>
-						<li><a href="#">ติดตามสถานะตราสารหนี้ผิดนัดชำระของกองทุน</a></li>
+										<li><a href="#">กองทุนรวม</a></li>
+										<li><a href="#">กองทุนส่วนบุคคล</a></li>
+										<li><a href="#">มูลค่าหน่วยลงทุน</a></li>
+										<li><a href="#">ผลการดำเนินงาน</a></li>
+										<li><a href="#">ทำรายการ</a></li>
+										<li><a href="#">เกี่ยวกับเรา</a></li>
+										<li><a href="#">ติดต่อเรา</a></li>
+
+                               		<li><a href="#">ข้อมูลเศรษฐกิจและภาวะตลาดการเงิน</a></li>
+										<li><a href="#">เรื่องน่ารู้เกี่ยวกับการลงทุน</a></li>
+										<li><a href="#">เอกสารเผยแพร่และประกาศบริษัท</a></li>
+										<li><a href="#">รายงานกองทุน</a></li>
+										<li><a href="#">ธรรมาภิบาลการลงทุน (I-Code)</a></li>
+										<li><a href="#">ปฏิทินกิจกรรม</a></li>
+										<li><a href="#">ดาวน์โหลดแบบฟอร์ม</a></li>
+										<li><a href="#">ติดตามสถานะตราสารหนี้ผิดนัดชำระของกองทุน</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -205,19 +213,28 @@
                             <h3 class="accordion-thumb">Contact info</h3>
                             <div class="accordion-panel">
                                 <ul class="listmenu-footer">
-                                   <li><img src="images/icon-tel.png"> 02 624 6333</li>
-					<li>
-						<a href="#"><img src="images/icon-www.png"> www.innotechasset.com</a>
-					</li>
-					<li>
-						<a href="#"><img src="images/icon-mail.png"> marketing@innotechasset.com</a>
-					</li>
-					<li>
-						<a href="#"><img src="images/icon-fb.png"> Innotechasset</a>
-					</li>
-					<li>
-						<a href="#"><img src="images/icon-line.png"> Innotechasset</a>
-					</li>
+									<?php foreach ($contact as $_contact) {
+										if(isset($_contact->photo) && $_contact->photo){
+											echo '<li>
+													<a href="#"><img src="'.asset('uploads/Contact/'.$_contact->photo).'">'.$_contact->name.'</a>
+												</li>'; 
+										}
+									} ?>
+                                    <!-- <li>
+										<img src="images/icon-tel.png"> 02 624 6333
+									</li> -->
+									<!-- <li>
+										<a href="#"><img src="images/icon-www.png"> www.innotechasset.com</a>
+									</li>
+									<li>
+										<a href="#"><img src="images/icon-mail.png"> marketing@innotechasset.com</a>
+									</li>
+									<li>
+										<a href="#"><img src="images/icon-fb.png"> Innotechasset</a>
+									</li>
+									<li>
+										<a href="#"><img src="images/icon-line.png"> Innotechasset</a>
+									</li> -->
                                 </ul>
                             </div>
                         </li>
