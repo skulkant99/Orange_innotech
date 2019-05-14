@@ -166,9 +166,9 @@
             },
             "columns": [
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-                {"data" : "photo"},
-                {"data" : "title"},
-                {"data" : "detail"},
+                {"data" : "photo","width": "20%"},
+                {"data" : "title_th"},
+                {"data" : "detail_th"},
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }

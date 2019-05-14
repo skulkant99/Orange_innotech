@@ -44,6 +44,7 @@
                                             <th>#</th>
                                             <th>photo</th>
                                             <th>photo_mobile</th>
+                                            <th>ข้อความ</th>
                                             <th>ลำดับ</th>
                                             <th>สถานะ</th>
                                             <th></th>
@@ -82,6 +83,11 @@
                         <div id="orak_add_photo_mobile">
                             <div id="add_photo_mobile" orakuploader="on"></div>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_content">ข้อความ</label>
+                        <textarea id="add_content" name="content" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -134,6 +140,10 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="edit_content">ข้อความ</label>
+                            <textarea id="edit_content" name="content" class="form-control"></textarea>
+                        </div>
                        
                         <div class="form-group">
                                 <label for="edit_status">สถานะ</label>
@@ -175,6 +185,7 @@
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
                 {"data" : "photo"},
                 {"data" : "photo_mobile"},
+                {"data" : "content","width": "40%" },
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -260,7 +271,7 @@
 
                     }
                 });
-
+                CKEDITOR.instances['edit_content'].setData(rec.content);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('#edit_status').val(rec.status);
                 $('#edit_banner_type').val(rec.banner_status);
@@ -508,6 +519,8 @@
 
             }
         });
+        CKEDITOR.replace('add_content');
+        CKEDITOR.replace('edit_content');
         $('#add_status').select2();
         $('#edit_status').select2();
         $('#add_banner_type').select2();

@@ -26,7 +26,8 @@
                                         <thead>
                                             <tr>
                                             <th>#</th>
-                                            <th>ชื่อ</th>
+                                            <th>ชื่อ(th)</th>
+                                            <th>ชื่อ(en)</th>
                                             <th>ลำดับ</th>
                                             <th>สถานะ</th>
                                             <th></th>
@@ -47,6 +48,7 @@
         <div class="modal-dialog" role="document"  style="max-width:70%;max-height:70%;">
             <div class="modal-content">
                 <form id="FormAdd">
+                    <input type="hidden" name="type" id="add_type" value="I">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">เพิ่ม {{$title_page}}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -54,9 +56,15 @@
                     <div class="modal-body">
     
                     <div class="form-group">
-                        <label for="add_detail">ชื่อ</label>
-                        <textarea id="add_name" name="name" class="form-control"></textarea>
+                        <label for="add_detail">ชื่อ(th)</label>
+                        <textarea id="add_name_th" name="name_th" class="form-control"></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label for="add_detail">ชื่อ(en)</label>
+                        <textarea id="add_name_en" name="name_en" class="form-control"></textarea>
+                    </div>
+
                     <div class="row">
                           <div class="form-group col-md-6">
                               <label for="add_sort_id">ลำดับ</label>
@@ -94,9 +102,15 @@
                         <div class="modal-body">
                             
                         <div class="form-group">
-                            <label for="add_detail">ชื่อ</label>
-                            <textarea id="edit_name" name="name" class="form-control"></textarea>
+                            <label for="add_detail">ชื่อ(th)</label>
+                            <textarea id="edit_name_th" name="name_th" class="form-control"></textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="add_detail">ชื่อ(en)</label>
+                            <textarea id="edit_name_en" name="name_en" class="form-control"></textarea>
+                        </div>
+
                         <div class="row">
                               <div class="form-group col-md-6">
                                   <label for="add_sort_id">ลำดับ</label>
@@ -137,7 +151,8 @@
             },
             "columns": [
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-                {"data" : "name"},
+                {"data" : "name_th"},
+                {"data" : "name_en"},
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -156,7 +171,8 @@
                 url : url_gb+"/admin/introduction/"+id,
                 dataType : 'json'
             }).done(function(rec){
-                CKEDITOR.instances['edit_name'].setData(rec.name);
+                CKEDITOR.instances['edit_name_th'].setData(rec.name_th);
+                CKEDITOR.instances['edit_name_en'].setData(rec.name_en);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('.select2').select2();
@@ -323,8 +339,12 @@
                 //console.log(e);
             });
         });
-        CKEDITOR.replace('add_name');
-        CKEDITOR.replace('edit_name');
+        CKEDITOR.replace('add_name_th');
+        CKEDITOR.replace('edit_name_th');
+
+        CKEDITOR.replace('add_name_en');
+        CKEDITOR.replace('edit_name_en');
+
         $('#add_status').select2();
         $('#edit_status').select2();
     </script>

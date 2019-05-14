@@ -26,7 +26,8 @@
                                         <thead>
                                             <tr>
                                             <th>#</th>
-                                            <th>ชื่อ</th>
+                                            <th>ชื่อ(th)</th>
+                                            <th>ชื่อ(en)</th>
                                             <th>ลำดับ</th>
                                             <th>สถานะ</th>
                                             <th></th>
@@ -44,7 +45,7 @@
 @endsection
 @section('modal')
 <div class="modal" id="ModalAdd"  role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document"  style="max-width:30%;max-height:30%;">
+        <div class="modal-dialog" role="document"  style="max-width:50%;max-height:50%;">
             <div class="modal-content">
                 <form id="FormAdd">
                     <div class="modal-header">
@@ -54,8 +55,18 @@
                     <div class="modal-body">
     
                     <div class="form-group">
-                        <label for="add_detail">ชื่อ</label>
-                        <input id="add_name" name="name" class="form-control" placeholder="ชื่อ">
+                        <label for="add_detail">ชื่อ(th)</label>
+                        <input id="add_name_th" name="name_th" class="form-control" placeholder="ชื่อ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_detail">ชื่อ(en)</label>
+                        <input id="add_name_en" name="name_en" class="form-control" placeholder="ชื่อ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_detail">ลิงค์</label>
+                        <input id="add_name" name="link" class="form-control" placeholder="ลิงค์">
                     </div>
                
                     <div class="form-group">
@@ -82,7 +93,7 @@
     </div>
 
     <div class="modal" id="ModalEdit"  role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document"  style="max-width:30%;max-height:30%;">
+            <div class="modal-dialog" role="document"  style="max-width:50%;max-height:50%;">
                 <div class="modal-content">
                     <input type="hidden" name="edit_id" id="edit_id">
                     <form id="FormEdit">
@@ -93,8 +104,18 @@
                         <div class="modal-body">
         
                         <div class="form-group">
-                            <label for="add_detail">ชื่อ</label>
-                            <input id="edit_name" name="name" class="form-control" placeholder="ชื่อ">
+                            <label for="add_detail">ชื่อ(th)</label>
+                            <input id="edit_name_th" name="name_th" class="form-control" placeholder="ชื่อ">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="add_detail">ชื่อ(en)</label>
+                            <input id="edit_name_en" name="name_en" class="form-control" placeholder="ชื่อ">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="add_detail">ลิงค์</label>
+                            <input id="edit_link" name="link" class="form-control" placeholder="ลิงค์">
                         </div>
                    
                         <div class="form-group">
@@ -135,7 +156,8 @@
             },
             "columns": [
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-                {"data" : "name"},
+                {"data" : "name_th"},
+                {"data" : "name_en"},
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -154,7 +176,9 @@
                 url : url_gb+"/admin/category/show/"+id,
                 dataType : 'json'
             }).done(function(rec){
-                $('#edit_name').val(rec.name);
+                $('#edit_name_th').val(rec.name_th);
+                $('#edit_name_en').val(rec.name_en);
+                $('#edit_link').val(rec.link);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('.select2').select2();

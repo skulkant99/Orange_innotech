@@ -15,12 +15,23 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $data['main_menu'] = 'contact';
+        $data['main_menu'] = 'contactAll';
     	$data['sub_menu'] = 'contact';
-    	$data['title'] = 'contact';
-    	$data['title_page'] = 'contact';
+    	$data['title'] = 'contact us';
+    	$data['title_page'] = 'contact us';
     	$data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
     	return view('Admin.contact',$data);
+    }
+    public function address()
+    {
+        $data['main_menu'] = 'contactAll';
+    	$data['sub_menu'] = 'address';
+    	$data['title'] = 'contact address';
+    	$data['title_page'] = 'contact address';
+        $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
+        $data['address'] = \App\Models\Contact::where('type','=','A')->select('contacts.*')->first();
+        $data['location'] = \App\Models\Contact::where('type','=','L')->select('contacts.*')->first();
+    	return view('Admin.contact_address',$data);
     }
 
     /**
@@ -189,7 +200,38 @@ class ContactController extends Controller
     }
     public function Lists()
     {
-        $result = \App\Models\Contact::select();
+        $result = \App\Models\Contact::where('type','=','S')->select();
+        return \Datatables::of($result)
+        ->addIndexColumn()
+        ->editColumn('status',function($rec){
+            if($rec->status == 1){
+                return $status = '<span class="label label-success">เปิดใช้งาน</span>';
+            }else {
+                return $status = '<span class="label label-danger">ปิดใช้งาน</span>';
+            }
+        })
+        ->editColumn('photo',function($rec){
+            if($rec->photo == null){
+                return $photo = ' <img src="'.asset('uploads/Contact/nophoto.png').'" class="image-full image-btn" width="50%" height="50%" alt="vchinese"/>';
+            }else {
+                return $photo = ' <img src="'.asset('uploads/Contact/'.$rec->photo).'" class="image-full image-btn" width="50%" height="50%" alt="vchinese"/>';
+            }
+        })
+        ->addColumn('action',function($rec){
+            $str='
+                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
+                    <i class="ace-icon fa fa-edit bigger-120"></i>
+                </button>
+                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
+                    <i class="ace-icon fa fa-trash bigger-120"></i>
+                </button>
+            ';
+            return $str;
+        })->make(true);  
+    }
+    public function ListsContactAddress()
+    {
+        $result = \App\Models\Contact::where('type','=','A')->select();
         return \Datatables::of($result)
         ->addIndexColumn()
         ->editColumn('status',function($rec){

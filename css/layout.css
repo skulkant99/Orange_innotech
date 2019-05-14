@@ -26,6 +26,13 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'kanit_extralightregular';
+	src: url('../fonts/kanit-extralight-webfont.woff2') format('woff2'), url('../fonts/kanit-extralight-webfont.woff') format('woff'), url('../fonts/kanit-extralight-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 *:focus,
 *:active {
 	outline: 0 !important;
@@ -33,7 +40,7 @@
 }
 
 body {
-	font-family: 'Kanit', sans-serif;
+	font-family: 'kanit_extralightregular', sans-serif;
 	animation: fade-in 1s, bg-move 10s linear infinite;
 	-webkit-animation: fade-in 1s, bg-move 10s linear infinite;
 	font-size: 1em;
@@ -130,6 +137,7 @@ h4 {
 .topbg {
 	background-color: #379494;
 	height: 50px;
+	font-family: 'kanit_lightregular';
 }
 
 .langselect img {
@@ -149,6 +157,7 @@ h4 {
 	float: right;
 	margin: 40px 0px;
 	font-size: 1.2em;
+	font-family: 'kanit_lightregular';
 	text-align: right;
 }
 
@@ -187,7 +196,7 @@ h4 {
 
 .bluetxt {
 	color: #379494;
-	font-weight: bold;
+	font-family: 'kanitbold';
 }
 
 
@@ -275,6 +284,7 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon1:hover {
 	background-position: 160px 0;
 }
@@ -369,9 +379,11 @@ input#search-bar:focus:-ms-placeholder {
 .listicon8:hover {
 	background-position: 160px 0;
 }
+
 .listicon1_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon1_mobile {
 	background-image: url(../images/icon-hover-sm-1.png);
 	width: 75px;
@@ -380,9 +392,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon2_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon2_mobile {
 	background-image: url(../images/icon-hover-sm-2.png);
 	width: 75px;
@@ -391,9 +405,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon3_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon3_mobile {
 	background-image: url(../images/icon-hover-sm-3.png);
 	width: 75px;
@@ -402,9 +418,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon4_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon4_mobile {
 	background-image: url(../images/icon-hover-sm-4.png);
 	width: 75px;
@@ -413,9 +431,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon5_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon5_mobile {
 	background-image: url(../images/icon-hover-sm-5.png);
 	width: 75px;
@@ -424,9 +444,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon6_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon6_mobile {
 	background-image: url(../images/icon-hover-sm-6.png);
 	width: 75px;
@@ -435,9 +457,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon7_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon7_mobile {
 	background-image: url(../images/icon-hover-sm-7.png);
 	width: 75px;
@@ -446,9 +470,11 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .listicon8_mobile:hover {
 	background-position: 75px 0;
 }
+
 .listicon8_mobile {
 	background-image: url(../images/icon-hover-sm-8.png);
 	width: 75px;
@@ -457,6 +483,7 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .bg_section2 {
 	margin-top: 70px;
 	background-color: #e0e0e0;
@@ -480,6 +507,7 @@ input#search-bar:focus:-ms-placeholder {
 	color: #ffffff;
 	padding: 10px;
 	font-size: 2em;
+	font-family: 'kanit_mediumregular';
 }
 
 .pic_nav > img {
@@ -604,34 +632,660 @@ input#search-bar:focus:-ms-placeholder {
 	border-bottom: 4px solid #eb6b2f;
 	padding-bottom: 5px;
 }
-.sub-popup h1{
+
+.sub-popup h1 {
 	text-align: center;
 }
-.sub-popup p{
+
+.sub-popup p {
 	text-align: left;
 }
-.modal-header{
-    background-color: #389394;
+
+.modal-header {
+	background-color: #389394;
 }
-.modal-header h5{
+
+.modal-header h5 {
 	margin: 0 auto;
 	display: table;
 }
-.modal-header h5 > img{
+
+.modal-header h5 > img {
 	width: 200px;
 }
-.btn-info{
-    background-color: #389394;
+
+.btn-info {
+	background-color: #389394;
 	border-radius: 0px;
 	border: none;
 	padding: 5px 30px;
 }
-.btn_popup{
+
+.btn_popup {
 	text-align: center;
 }
-.mttopmb{
+
+.mttopmb {
 	margin-top: 50px;
 	margin-bottom: 50px;
+}
+
+.breadcrumb {
+	margin-bottom: 0px;
+	padding: 1% 6%;
+	font-family: 'Kanit';
+}
+
+.breadcrumb-item.active {
+	color: #379494;
+}
+
+
+/*--PARALLAX---*/
+
+.wrap_parallax .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.wrap_parallax .parallax {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+main {
+	position: relative;
+	min-height: 85vh;
+}
+
+
+/*---------------- NEWS ------------------*/
+
+.bannertop_news {
+	background-image: url(../images/news_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.bannertxt_top {
+	color: white;
+	text-align: center;
+	width: 50%;
+	margin-top: 5em;
+}
+
+.bannertxt_top h5 {
+	color: #97d8d8;
+	letter-spacing: 3px;
+}
+
+.bannertxt_top h1 {
+	font-size: 2.5em;
+	font-family: 'kanit_extralightregular';
+}
+
+.boldtext {
+	font-family: 'kanitbold';
+	letter-spacing: 2px;
+}
+
+.pagination-container {
+	margin: 10px auto;
+	text-align: center;
+}
+
+.pagination_bot {
+	margin: 0 auto;
+	display: table;
+}
+
+.pagination {
+	position: relative;
+}
+
+.pagination a {
+	position: relative;
+	display: inline-block;
+	color: #2c3e50;
+	text-decoration: none;
+	font-size: 0.8rem;
+	padding: 8px 15px 10px;
+}
+
+.pagination a:before {
+	z-index: -1;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	content: "";
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	border: #b0b0b0 solid 1px;
+	border-radius: 10px;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	transition: all 0.2s;
+}
+
+.pagination a:hover,
+.pagination a .pagination-active {
+	color: #b0b0b0;
+}
+
+.pagination a:hover:before,
+.pagination a .pagination-active:before {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.pagination .pagination-active {
+	color: #b0b0b0;
+}
+
+.pagination .pagination-active:before {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.pagination-older:hover,
+.pagination-newer:hover {
+	background-color: #b0b0b0;
+	transition: ease .5s;
+}
+
+.pagination-older,
+.pagination-newer {
+	background-color: #efefef;
+	border-radius: 10px;
+}
+
+.pagination-older i,
+.pagination-newer i {
+	color: white;
+	font-size: 1.5em;
+}
+
+
+/*------------ DOWNLOAD DOC ---------------*/
+
+.bannertop_loaddoc {
+	background-image: url(../images/download_document_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.downloaddetail {
+	margin-top: 40px;
+	font-size: 1.2em;
+}
+
+.downloaddetail h2 {
+	color: #379494;
+	font-family: 'Kanit';
+	font-size: 1.2em;
+}
+
+.downloadbtn {
+	color: #eb6b2f;
+	font-size: 0.8em;
+	font-family: 'Kanit';
+	float: right;
+}
+
+.downloadbtn i {
+	color: #379494;
+}
+
+.box_download_doc {
+	margin-top: 20px
+}
+
+.box_download_doc {
+	border: 1px solid #eeeeee;
+	padding: 5px;
+	border-bottom: 3px solid #379494;
+}
+
+.numberlist {
+	font-size: 3.5em;
+	color: #cccccc;
+	font-family: 'kanit_lightregular';
+	margin-left: 20px;
+	width: 7%;
+	display: inline-block;
+}
+
+.detail_doc {
+	width: 80%;
+	font-size: 1.2em;
+	display: inline-block;
+	font-family: 'Kanit';
+}
+
+.btn_download {
+	text-align: right;
+	margin-top: -50px;
+	margin-bottom: 30px;
+	margin-right: 30px;
+}
+
+
+/*------------------ CONTACT -------------*/
+
+.bannertop_contact {
+	background-image: url(../images/contact_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.contactaddress {
+	margin-top: 55px;
+}
+
+.contactaddress h1 {
+	font-family: 'Kanit';
+	margin-top: 30px;
+}
+
+.contactaddress p {
+	margin-top: 20px;
+	font-size: 1.1em;
+}
+
+.title_head3 {
+	font-size: 1.1em;
+	letter-spacing: 5px;
+}
+
+.title_head3:before {
+	position: absolute;
+	background: linear-gradient(to left, #eb6b30 50px, #eb6b30 50px);
+	height: 3px;
+	content: '';
+	top: 40px;
+	width: 40px;
+	margin-left: 0px;
+}
+
+.title_head2:before {
+	position: absolute;
+	background: linear-gradient(to left, #eb6b30 50px, #eb6b30 50px);
+	height: 3px;
+	content: '';
+	top: 65px;
+	width: 55px;
+	margin-left: 0px;
+}
+
+.bggray {
+	background-color: #f1f1f1;
+	width: 100%;
+	padding: 50px 0px;
+}
+
+.contactform {
+	font-family: 'Kanit';
+	margin-top: 20px;
+}
+
+.contactform label {
+	margin-top: 10px;
+	font-size: 1.1em;
+}
+
+.contactform .form-control {
+	border: none;
+}
+
+.title_head2 {
+	font-size: 2.5em;
+	color: #1d1d1b;
+	letter-spacing: 1px;
+}
+
+.contact_info {
+	margin-top: 30px;
+}
+
+.contact_info li {
+	padding-top: 20px;
+	font-family: 'Kanit';
+	font-size: 1.1em;
+}
+
+.box_career {
+	background-color: #e4e4e4;
+	display: block;
+	margin-bottom: 40px;
+}
+
+.box_career a:hover {
+	color: white;
+}
+
+.box_career:hover {
+	background-color: #379494;
+	display: block;
+}
+
+.text_job {
+	text-align: center;
+	display: block;
+	padding: 40px;
+	font-size: 1.1em;
+	font-family: 'Kanit';
+}
+
+.viewcareer {
+	color: #379494;
+	position: absolute;
+	right: 40px;
+	top: 30px;
+	display: block;
+}
+
+.viewcareer:hover {
+	color: white;
+	display: block;
+}
+
+.btnapply {
+	background-color: #f1f1f1;
+	width: 100%;
+	display: block;
+	color: #379494;
+	font-family: 'Kanit';
+	text-align: center;
+	font-size: 1.1em;
+	padding: 10px 0px;
+}
+
+
+/*--------------- FUNDS ------------------*/
+
+.bannertop_performance {
+	background-image: url(../images/funds_performance_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.search_funds label {
+	font-family: 'Kanit';
+	font-size: 1.1em;
+}
+
+.search_funds .form-control {
+	border-radius: 50px;
+	border: none;
+}
+
+.boxbox {
+	-webkit-appearance: none;
+	background-color: white;
+	background-image: url(../images/calendar.png);
+	background-position: calc(100% - 10px);
+	padding-right: 20px;
+	background-size: 20px;
+	background-repeat: no-repeat;
+}
+
+.btn-success {
+	background-color: #eb6b2f;
+	border-radius: 50px;
+	border: none;
+	padding: 9px 50px;
+	margin-top: 30px;
+}
+
+.btn-success:hover {
+	background-color: #379494;
+}
+
+.box_search {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.sec_title {
+	margin: 30px 0px;
+}
+
+.detail_content h2,
+.sec_title h2 {
+	font-family: 'Kanit';
+}
+
+.sec_title h4 {
+	font-size: 1.5em;
+}
+
+.funds_table_perf thead {
+	background-color: #eb6b2f;
+	color: white;
+	font-size: 1.1em;
+}
+
+.funds_table_perf thead th {
+	border-bottom: none;
+}
+
+.funds_table_perf {
+	background-color: #379494;
+	color: white;
+	text-align: center;
+}
+
+.funds_table_perf .table-bordered th,
+.funds_table_perf .table-bordered td {
+	border: 1px solid white;
+}
+
+.list_warn {
+	margin: 30px 0px;
+}
+
+.list_warn li {
+	line-height: 35px;
+}
+
+.list_warn li i {
+	color: #eb6b2f;
+}
+
+.bannertop_funds {
+	background-image: url(../images/funds_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.select_nav .form-control {
+	border-radius: 50px;
+	margin-top: 15px;
+}
+
+.bg_orange {
+	background-color: #eb6b2f;
+}
+
+.bg_orange a {
+	color: white;
+	display: block;
+}
+
+.funds_table thead {
+	background-color: #379494;
+	color: white;
+	font-size: 1.1em;
+}
+
+.funds_table thead th {
+	border-bottom: none;
+}
+
+.funds_table {
+	text-align: center;
+}
+
+.funds_table.table-bordered th,
+.funds_table.table-bordered td {
+	border-left: none;
+	border-right: none;
+}
+
+.alignfull {
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	max-width: 1000%;
+	width: auto;
+	position: relative;
+}
+
+.bannertop_funds_detail {
+	background-image: url(../images/funds_price_detail_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.detail_content h2 {
+	font-family: 'kanitbold';
+}
+
+.detail_content li {
+	font-size: 1.2em;
+}
+
+.detail_content li i {
+	color: #379494;
+}
+
+.pic_icon {
+	width: 3%;
+	float: left;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.pic_icon > img {
+	width: 100%;
+}
+
+.righttext {
+	display: inline-block;
+	width: 80%;
+}
+
+.risk_lower {
+	background-color: #d7e4bc;
+}
+
+.risk_low {
+	background-color: #92cf4e;
+}
+
+.risk_mid {
+	background-color: #ffc100;
+}
+
+.risk_high {
+	background-color: #ea0027;
+	color: white;
+}
+
+.bgblue {
+	background-color: #379494;
+	color: white;
+	font-family: 'Kanit';
+}
+
+.list_download_ep {
+	margin-top: 20px;
+}
+
+.list_download_ep a {
+	margin-right: 20px;
+}
+
+
+/*--------------- STATUS -----------------*/
+
+.bannertop_status {
+	background-image: url(../images/status_banner_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+
+/*--------------- PRIVATE -----------------*/
+
+.bannertop_private {
+	background-image: url(../images/private_funds_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.detail_private h2 {
+	font-family: 'Kanit';
+}
+
+.detail_private {
+	font-size: 1.1em;
+	line-height: 35px;
+}
+
+.orangetxt {
+	color: #eb6b2f;
+	font-family: 'Kanit';
+}
+
+.detail_private h2::before {
+	content: " ";
+	height: 20px;
+	border-left: 5px solid #379494;
+	margin-right: 10px;
+}
+.color_each,
+.benefit_info {
+	margin-top: 40px;
+}
+.color_each,
+.benefit_info > img,
+.detail_private a > img {
+	margin: 0 auto;
+	text-align: center;
+	display: table;
+	margin-bottom: 30px;
+}
+
+.benefit_info h3{
+	font-style: italic;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.lighttxt{
+		font-family: 'kanit_lightregular';
+
 }
 /*--------------- RESPONSIVE -------------*/
 
@@ -649,6 +1303,9 @@ input#search-bar:focus:-ms-placeholder {
 }
 
 @media (max-width: 1199px) {
+	.bannertxt_top {
+		width: 100%;
+	}
 	.mainmenu {
 		font-size: 1em;
 		margin: 25px 0px;
@@ -679,10 +1336,20 @@ input#search-bar:focus:-ms-placeholder {
 	.text_detail li {
 		font-size: 1em;
 	}
+	.numberlist {
+		width: 8%;
+	}
 }
 
 @media (max-width: 991px) {
-	.mttopmb{
+	.title_head1,
+	.title_head2 {
+		font-size: 2em;
+	}
+	.title_head2:before {
+		top: 55px;
+	}
+	.mttopmb {
 		margin: 20px 0px;
 	}
 	.btn-secondary,
@@ -694,7 +1361,7 @@ input#search-bar:focus:-ms-placeholder {
 	.inno_details {
 		font-size: 1em;
 	}
-	.text_icon{
+	.text_icon {
 		font-size: 0.9em;
 	}
 	.listicon1,
@@ -713,21 +1380,55 @@ input#search-bar:focus:-ms-placeholder {
 	.graph > img {
 		width: 100%;
 	}
-	.head_nav,
-	.title_head1 {
+	.head_nav {
 		font-size: 1.2em;
 	}
-	
+	.numberlist {
+		width: 10%;
+	}
 }
 
 @media (max-width: 767px) {
-	.text_detail h2{
+	.search_funds label {
+		margin-top: 20px;
+	}
+	.funds_table_perf {
+		font-size: 0.9em;
+	}
+	.detail_doc {
+		margin-left: 10px;
+		margin-bottom: 10px;
+		width: 100%;
+	}
+	.numberlist {
+		width: 20%;
+		margin-left: 5px;
+	}
+	.btn_download {
+		margin-top: 0px;
+		text-align: left;
+		margin-left: 10px;
+	}
+	.title_head2 {
+		margin-top: 15px;
+		font-size: 2em;
+	}
+	.bannertxt_top h1 {
+		font-size: 2em;
+	}
+	.bannertxt_top {
+		margin-top: 3em;
+		width: 100%;
+	}
+	.sec_title h2,
+	.downloaddetail h2,
+	.text_detail h2 {
 		font-size: 1.1em;
 	}
-	.btn_center{
+	.btn_center {
 		margin-bottom: 30px;
 	}
-	.bg_section3{
+	.bg_section3 {
 		padding: 0px;
 	}
 	.sideright_top {
@@ -747,10 +1448,16 @@ input#search-bar:focus:-ms-placeholder {
 	.langselect img {
 		width: 25px;
 	}
+	.downloaddetail {
+		font-size: 1em;
+	}
 	.langselect {
 		position: absolute;
 		top: 5px;
 		right: 20px;
+	}
+	.title_head1 {
+		font-size: 1.6em;
 	}
 }
 

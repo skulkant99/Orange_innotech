@@ -102,7 +102,7 @@ class BannerController extends Controller
                         }
                         Storage::disk("uploads")->copy("Banner/".$result->photo,"temp/".$result->photo);
                     }
-                }if($result->photo_moile){
+                }if($result->photo_mobile){
                     if(Storage::disk("uploads")->exists("Banner/".$result->photo_mobile)){
                         if(Storage::disk("uploads")->exists("temp/".$result->photo_mobile)){
                             Storage::disk("uploads")->delete("temp/".$result->photo_mobile);

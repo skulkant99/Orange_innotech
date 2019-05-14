@@ -82,6 +82,9 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
     Route::post('/introduction/{id}','Admin\HomeController@update');
     Route::post('/introduction/Delete/{id}','Admin\HomeController@destroy');
 
+    Route::get('/premonition','Admin\HomeController@premonition');
+    Route::get('/premonition/list_premonition','Admin\HomeController@list_premonition');
+
     Route::get('/banner','Admin\BannerController@index');
     Route::get('/banner/Lists','Admin\BannerController@Lists');
     Route::post('/banner','Admin\BannerController@store');
@@ -104,12 +107,27 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
     Route::post('/information/Delete/{id}','Admin\InformationController@destroy');
 
     Route::get('/contact','Admin\ContactController@index');
+    Route::get('/address','Admin\ContactController@Address');
     Route::get('/contact/Lists','Admin\ContactController@Lists');
     Route::post('/contact','Admin\ContactController@store');
     Route::get('/contact/show/{id}','Admin\ContactController@show');
     Route::post('/contact/{id}','Admin\ContactController@update');
     Route::post('/contact/Delete/{id}','Admin\ContactController@destroy');
 
+
+      Route::get('/Test', 'Admin\TestController@index');
+        Route::get('/Test/Lists', 'Admin\TestController@Lists');
+        Route::post('/Test', 'Admin\TestController@store');
+        Route::get('/Test/{id}', 'Admin\TestController@show');
+        Route::post('/Test/{id}', 'Admin\TestController@update');
+        Route::post('/Test/Delete/{id}', 'Admin\TestController@destroy');
+
+      Route::get('/FileForm', 'Admin\FileFormController@index');
+        Route::get('/FileForm/Lists', 'Admin\FileFormController@Lists');
+        Route::post('/FileForm', 'Admin\FileFormController@store');
+        Route::get('/FileForm/{id}', 'Admin\FileFormController@show');
+        Route::post('/FileForm/{id}', 'Admin\FileFormController@update');
+        Route::post('/FileForm/Delete/{id}', 'Admin\FileFormController@destroy');
 
       ##ROUTEFORINSTALL##
 });

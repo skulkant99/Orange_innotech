@@ -33,6 +33,15 @@ class HomeController extends Controller
     	$data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
     	return view('Admin.introduction',$data);
     }
+    public function premonition()
+    {
+        $data['main_menu'] = 'content';
+    	$data['sub_menu'] = 'premonition';
+    	$data['title'] = 'premonition';
+    	$data['title_page'] = 'premonition';
+    	$data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
+    	return view('Admin.premonition',$data);
+    }
     public function store_intro(Request $request)
     {
         $input_all = $request->all();
@@ -112,7 +121,33 @@ class HomeController extends Controller
     }
     public function list_introduction()
     {
-        $result = \App\Models\Introduction::select();
+        $result = \App\Models\Introduction::where('type','=','I')
+            ->select('introductions.*');
+        return \Datatables::of($result)
+        ->addIndexColumn()
+        ->editColumn('status',function($rec){
+            if($rec->status == 1){
+                return $status = '<span class="label label-success">เปิดใช้งาน</span>';
+            }else {
+                return $status = '<span class="label label-danger">ปิดใช้งาน</span>';
+            }
+        })
+        ->addColumn('action',function($rec){
+            $str='
+                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
+                    <i class="ace-icon fa fa-edit bigger-120"></i>
+                </button>
+                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
+                    <i class="ace-icon fa fa-trash bigger-120"></i>
+                </button>
+            ';
+            return $str;
+        })->make(true);
+    }
+    public function list_premonition()
+    {
+        $result = \App\Models\Introduction::where('type','=','W')
+            ->select('introductions.*');
         return \Datatables::of($result)
         ->addIndexColumn()
         ->editColumn('status',function($rec){

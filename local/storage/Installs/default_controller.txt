@@ -17,6 +17,7 @@ class DefaultController extends Controller
     {
         $data['main_menu'] = '##MAINMENU##';
         $data['sub_menu'] = '##SUBMENU##';
+        $data['title'] = '##TITLEPAGE##';
         $data['title_page'] = '##TITLEPAGE##';
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
         ControllerIndex
