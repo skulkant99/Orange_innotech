@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	@include('inc_header')
+	@include('inc_header')<?php $pageName="statusupdate"; ?>
 </head>
 
 <body>
@@ -41,8 +41,7 @@
 											<div class="col">
 												<div class="bannertxt_top">
 													<h5>INNOTECH</h5>
-													<h1>ติดตามสถานะตราสารหนี้ผิดนัดชำระ <br>
-ของกองทุน</h1> </div>
+													<h1>ติดตามสถานะตราสารหนี้ผิดนัดชำระ <br>ของกองทุน</h1> </div>
 											</div>
 										</div>
 									</div>

@@ -103,6 +103,7 @@ oz-selection {
 	overflow: hidden;
 }
 
+ol,
 ul {
 	margin: 0 !important;
 	padding: 0 !important;
@@ -148,14 +149,16 @@ h4 {
 	margin: 20px 0px;
 	text-align: center;
 }
-
+.mainlogo a > img{
+	width: 250px;
+}
 .navmenu {
 	padding: 0px 50px;
 }
 
 .mainmenu {
 	float: right;
-	margin: 40px 0px;
+	margin: 50px 0px;
 	font-size: 1.2em;
 	font-family: 'kanit_lightregular';
 	text-align: right;
@@ -164,11 +167,16 @@ h4 {
 .mainmenu ul li {
 	display: inline-block;
 	padding-right: 20px;
+	text-align: left;
+}
+
+.langcrop {
+	margin-top: -5px;
 }
 
 .sideright_top li {
 	display: inline-block;
-	margin-right: 20px;
+	/*	margin-right: 20px;*/
 }
 
 .sideright_top {
@@ -198,8 +206,18 @@ h4 {
 	color: #379494;
 	font-family: 'kanitbold';
 }
-
-
+.companymenu{
+	display: block;
+	margin-top: 20px;
+}
+.companymenu li{
+	display: inline-block;
+	float:left;
+	padding-right: 0px;
+}
+.companymenu li a > img{
+	width:80%;
+}
 /*-------SEARCH BAR --------*/
 
 .search-container {
@@ -269,6 +287,10 @@ input#search-bar:focus:-ms-placeholder {
 	max-width: 1500px;
 }
 
+.graphset {
+	border: 1px solid #eeeeee;
+}
+
 .text_icon {
 	margin: 0 auto;
 	display: table;
@@ -278,106 +300,106 @@ input#search-bar:focus:-ms-placeholder {
 
 .listicon1 {
 	background-image: url(../images/icon-hover1.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 20px;
 }
 
 .listicon1:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon2 {
 	background-image: url(../images/icon-hover2.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 20px;
 }
 
 .listicon2:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon3 {
 	background-image: url(../images/icon-hover3.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 20px;
 }
 
 .listicon3:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon4 {
 	background-image: url(../images/icon-hover4.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 20px;
 }
 
 .listicon4:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon5 {
 	background-image: url(../images/icon-hover5.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 50px;
 }
 
 .listicon5:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon6 {
 	background-image: url(../images/icon-hover6.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 50px;
 }
 
 .listicon6:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon7 {
 	background-image: url(../images/icon-hover7.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 50px;
 }
 
 .listicon7:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon8 {
 	background-image: url(../images/icon-hover8.png);
-	width: 160px;
-	height: 156px;
+	width: 127px;
+	height: 122px;
 	cursor: pointer;
 	margin: 0 auto;
 	margin-top: 50px;
 }
 
 .listicon8:hover {
-	background-position: 160px 0;
+	background-position: 127px 0;
 }
 
 .listicon1_mobile:hover {
@@ -523,8 +545,41 @@ input#search-bar:focus:-ms-placeholder {
 	font-size: 1.4em;
 }
 
+.threelevels {
+	font-size: 1.2em;
+}
+
 .greentext {
 	color: #39b54a;
+}
+
+.lightgreentxt td {
+	color: #379494;
+}
+
+.yellowtext i,
+.greentext i {
+	font-size: 1.4em;
+	vertical-align: bottom;
+}
+
+.redtext i {
+	font-size: 1.4em;
+	vertical-align: baseline;
+}
+
+.redtext {
+	color: #e70404;
+}
+
+.yellowtext {
+	color: #c5981f;
+}
+
+.select_set {
+	width: 30%;
+	background-color: #379494;
+	color: white;
 }
 
 .btn_first {
@@ -534,6 +589,7 @@ input#search-bar:focus:-ms-placeholder {
 	padding-top: 10px;
 }
 
+.btn_regis,
 .btn_center {
 	margin: 0 auto;
 	display: table;
@@ -553,6 +609,24 @@ input#search-bar:focus:-ms-placeholder {
 .btn-primary {
 	background-color: #eb6b30;
 	border: none;
+}
+.btn-light{
+	background-color: #eb6b30;
+		border: none;
+	font-size: 1.2em;
+	padding: 10px 50px;
+	margin-left: 10px;
+	color: white;
+}
+.btn-danger {
+	background-color: #379494;
+	border: none;
+	font-size: 1.2em;
+	padding: 10px 50px;
+}
+
+.btn-danger:hover {
+	background-color: #eb6b30;
 }
 
 .hov-menu-sty2 figure {
@@ -611,12 +685,16 @@ input#search-bar:focus:-ms-placeholder {
 }
 
 .readmore {
-	font-size: 1.5em;
+	font-size: 1.1em;
 	color: #a2a1a1;
 	font-weight: bold;
 	display: block;
 	text-align: right;
 	padding: 10px;
+	font-family: 'kanit';
+}
+.readmore:hover{
+	color:  #379494;
 }
 
 .text_detail {
@@ -628,7 +706,7 @@ input#search-bar:focus:-ms-placeholder {
 	line-height: 40px;
 }
 
-.mainmenu > ul li.active > a {
+.mainmenu nav > ul li.active > a {
 	border-bottom: 4px solid #eb6b2f;
 	padding-bottom: 5px;
 }
@@ -671,8 +749,8 @@ input#search-bar:focus:-ms-placeholder {
 }
 
 .breadcrumb {
-	margin-bottom: 0px;
-	padding: 1% 6%;
+	margin-bottom: 0px !important;
+	padding: 1% 6% !important;
 	font-family: 'Kanit';
 }
 
@@ -682,6 +760,15 @@ input#search-bar:focus:-ms-placeholder {
 
 
 /*--PARALLAX---*/
+
+.wrap_parallax {
+	position: relative;
+	height: 40vh;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .wrap_parallax .overlay {
 	position: absolute;
@@ -702,11 +789,40 @@ main {
 	min-height: 85vh;
 }
 
+.bannertop_report {
+	background-image: url(../images/report_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+.bannertop_trans {
+	background-image: url(../images/trans_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
 
 /*---------------- NEWS ------------------*/
+.bannertop_knowledge {
+	background-image: url(../images/knowledge_banner_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+.bannertop_eco {
+	background-image: url(../images/economic_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
 
 .bannertop_news {
-	background-image: url(../images/news_banner.png);
+	background-image: url(../images/news_banner_03_02.png);
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -812,6 +928,101 @@ main {
 	font-size: 1.5em;
 }
 
+.title_news_inside h2 {
+	font-family: 'Kanit';
+}
+
+.title_news_inside {
+	padding: 1% 6%;
+}
+
+.news_detail_inside > img {
+	margin: 0 auto;
+	display: table;
+}
+
+.news_detail_inside {
+	line-height: 40px;
+}
+
+.bannertop_calendar {
+	background-image: url(../images/calendar_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+
+/*------------ ABOUT ----------------------*/
+
+.bannertop_abt {
+	background-image: url(../images/about_banner_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.topbar-menu {
+	margin: 30px;
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.topbar-menu ul li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.content_abt {
+	font-size: 1.2em;
+	position: relative;
+}
+
+.number_bg {
+	color: #f1f1f1;
+	font-size: 12em;
+	position: absolute;
+	top: -90px;
+	z-index: -7;
+	left: -50px;
+}
+
+.posre {
+	position: relative;
+}
+
+.bgnumber li::before {
+	display: inline-block;
+	content: counter(step-counter);
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	height: 30px;
+	width: 30px;
+	background-color: #379494;
+	text-align: center;
+	color: white;
+}
+
+.bgnumber li {
+	counter-increment: step-counter;
+	padding-top: 10px;
+}
+
+.bigfont {
+	font-size: 1.2em;
+}
+
+.clickviewmore {
+	position: absolute;
+	right: 50px;
+	color: #7b7b7b;
+	font-family: 'Kanit';
+	font-size: 0.8em;
+	top: 30px;
+}
+
 
 /*------------ DOWNLOAD DOC ---------------*/
 
@@ -882,7 +1093,7 @@ main {
 /*------------------ CONTACT -------------*/
 
 .bannertop_contact {
-	background-image: url(../images/contact_banner.png);
+	background-image: url(../images/contact_banner_new_02.png);
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -908,7 +1119,7 @@ main {
 	letter-spacing: 5px;
 }
 
-.title_head3:before {
+.title_head3::before {
 	position: absolute;
 	background: linear-gradient(to left, #eb6b30 50px, #eb6b30 50px);
 	height: 3px;
@@ -918,7 +1129,7 @@ main {
 	margin-left: 0px;
 }
 
-.title_head2:before {
+.title_head2::before {
 	position: absolute;
 	background: linear-gradient(to left, #eb6b30 50px, #eb6b30 50px);
 	height: 3px;
@@ -972,11 +1183,18 @@ main {
 
 .box_career a:hover {
 	color: white;
+	display: block;
 }
 
 .box_career:hover {
 	background-color: #379494;
 	display: block;
+	color: white;
+}
+
+.box_career .viewcareer i:hover {
+	display: block;
+	color: white;
 }
 
 .text_job {
@@ -987,16 +1205,11 @@ main {
 	font-family: 'Kanit';
 }
 
-.viewcareer {
+.viewcareer i {
 	color: #379494;
 	position: absolute;
 	right: 40px;
 	top: 30px;
-	display: block;
-}
-
-.viewcareer:hover {
-	color: white;
 	display: block;
 }
 
@@ -1009,6 +1222,28 @@ main {
 	text-align: center;
 	font-size: 1.1em;
 	padding: 10px 0px;
+}
+
+.jobdetail_box_title {
+	background-color: #379494;
+	color: white;
+}
+
+.jobdetail_box_title h2 {
+	padding: 20px;
+}
+
+.jobdetail_box h4 {
+	font-family: 'Kanit';
+}
+
+.jobdetail_box h2 {
+	padding: 20px 5px;
+	font-family: 'Kanit';
+}
+
+.jobdetail_box p {
+	padding: 1% 3%;
 }
 
 
@@ -1223,6 +1458,17 @@ main {
 }
 
 
+/*--------------- FAQ --------------------*/
+
+.bannertop_faq {
+	background-image: url(../images/faq_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+
 /*--------------- STATUS -----------------*/
 
 .bannertop_status {
@@ -1237,7 +1483,7 @@ main {
 /*--------------- PRIVATE -----------------*/
 
 .bannertop_private {
-	background-image: url(../images/private_funds_02.png);
+	background-image: url(../images/private_banner.png);
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -1264,10 +1510,12 @@ main {
 	border-left: 5px solid #379494;
 	margin-right: 10px;
 }
+
 .color_each,
 .benefit_info {
 	margin-top: 40px;
 }
+
 .color_each,
 .benefit_info > img,
 .detail_private a > img {
@@ -1277,19 +1525,177 @@ main {
 	margin-bottom: 30px;
 }
 
-.benefit_info h3{
+.benefit_info h3 {
 	font-style: italic;
 	text-align: center;
 	margin-bottom: 20px;
 }
 
-.lighttxt{
-		font-family: 'kanit_lightregular';
+.lighttxt {
+	font-family: 'kanit_lightregular';
+}
 
+.langselect a > img {
+	width: 35px;
+}
+
+
+/*-------- ACCOUNT -------------*/
+
+.bannertop_acc {
+	background-image: url(../images/account_02.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
+
+.listset_tab1 {
+	margin-left: 10px !important;
+}
+
+.listset_tab {
+	margin-left: 10px !important;
+	margin-bottom: 10px !important;
+	font-family: 'Kanit';
+}
+
+.listset_tab1 li,
+.listset_tab li {
+	display: inline-block;
+	font-size: 0.8em;
+	border-right: 1px solid #eeeeee;
+	padding-right: 5px;
+}
+
+.listset_tab1 li:last-child,
+.listset_tab li:last-child {
+	border: none;
+}
+
+.listset_tab a.active {
+	color: white;
+	font-family: 'Kanit';
+	background-color: #eb6b30;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+.listset_tab1 a.active {
+	color: black;
+	font-family: 'Kanit';
+	color: #379494;
+}
+
+.timeset {
+	color: dimgray;
+	font-size: 0.7em;
+	padding-top: 10px;
+	margin-left: 10px;
+}
+
+.set_table {
+	font-size: 0.9em;
+	font-family: 'Kanit';
+}
+
+.set_table th {
+	padding: 0.4rem;
+	vertical-align: middle;
+}
+
+.set_table thead th {
+	border-top: none;
+	border-bottom: none;
+	background-color: #379494;
+	color: white;
+}
+
+.my-custom-scrollbar {
+	position: relative;
+	height: 200px;
+	overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+	display: block;
+}
+
+.bg_ca {
+	background-color: #379595;
+	padding: 20px;
+	color: white;
+}
+
+.bg_ca h2 {
+	font-size: 5em;
+	font-family: 'Kanit';
+	border-right: 1px solid white;
+	text-align: center;
+}
+
+.box_right_calen {
+	border: 1px solid #eeeeee;
+	padding: 16px;
+}
+.month_yr{
+	font-size: 1.5em;
+	margin-top: 10px;
+	display: block;
+}
+.bg_member {
+	background-color: #eb6b30;
+	color: white;
+	padding: 5px;
+	font-size: 0.9em;
+	text-align: center;
+	font-family: 'Kanit';
+}
+.box_right_calen i{
+	color: #379494;
+}
+.box_right_calen h3{
+	font-family: 'Kanit';
+}
+.box_calendar{
+	margin-top: 20px;
 }
 /*--------------- RESPONSIVE -------------*/
 
+.back_nav {
+	text-align: center;
+	font-size: 0.9em;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+	margin-top: 0px;
+	padding-top: 15px;
+	border-bottom: 1px solid #eeeeee;
+	text-transform: uppercase;
+	background-color: #393e46;
+	color: white;
+}
+
+.arrr {
+	float: right;
+	margin-right: 0px;
+	margin-top: -20px;
+}
+
+.backicon {
+	margin-right: 10px;
+}
+
+@media (max-width: 1600px) {
+	.container {
+		max-width: 1350px;
+	}
+}
+
 @media (max-width: 1500px) {
+	.container {
+		max-width: 100%;
+	}
 	.mainmenu {
 		font-size: 1.1em;
 		margin: 40px 0px;
@@ -1302,7 +1708,16 @@ main {
 	}
 }
 
+@media (max-width: 1400px) {
+	.container {
+		max-width: 1280px;
+	}
+}
+
 @media (max-width: 1199px) {
+	.langcrop {
+		padding-top: 10px;
+	}
 	.bannertxt_top {
 		width: 100%;
 	}
@@ -1314,7 +1729,7 @@ main {
 		width: 30px;
 	}
 	.mainmenu ul li {
-		padding-right: 5px;
+		padding-right: 10px;
 	}
 	.head_nav,
 	.title_head1 {
@@ -1389,6 +1804,49 @@ main {
 }
 
 @media (max-width: 767px) {
+	.funds_table thead th ,
+	.funds_table_perf thead th{
+		min-width: 200px;
+	}
+	.graphset {
+		margin-top: 30px;
+	}
+	.blocktext {
+		display: block;
+		font-size: 1.9em;
+		letter-spacing: 1px;
+	}
+	.smtext {
+		letter-spacing: 0px;
+		font-size: 0.9em !important;
+	}
+	.langselect a > img {
+		width: 25px;
+	}
+	.select_set {
+		width: 100%;
+	}
+	.clickviewmore {
+		position: relative;
+		display: inline-block;
+		font-size: 0.7em;
+		right: 0;
+		top: 0;
+	}
+	.number_bg {
+		position: relative;
+		margin-left: 5px;
+		font-size: 5em;
+		top: 0;
+		left: 0;
+	}
+	.pic_icon {
+		width: 15%;
+	}
+	.list_download_ep a {
+		margin-right: 0px;
+		margin-top: 10px;
+	}
 	.search_funds label {
 		margin-top: 20px;
 	}
@@ -1448,6 +1906,7 @@ main {
 	.langselect img {
 		width: 25px;
 	}
+	.bigfont,
 	.downloaddetail {
 		font-size: 1em;
 	}

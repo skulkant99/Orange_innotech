@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	@include('inc_header') 
+	@include('inc_header')<?php $pageName="news"; ?>
 </head>
 
 <body>
@@ -68,11 +68,11 @@
 									<div class="pic_nav">
 										<div class="hov-menu-sty2">
 											<figure>
-												<a href="{{$_information->id}}"><img src="{{asset('uploads/Information/'.$_information->photo)}}" class="img-fluid"> </a>
+												<a href="{{url('newsinside/'.$_information->id)}}"><img src="{{asset('uploads/Information/'.$_information->photo)}}" class="img-fluid"> </a>
 											</figure>
 										</div>
 									</div>
-								<div class="inno_details"><?php echo '<p>'.$_information->detail_th.'</p>' ?></div> <a href="{{$_information->id}}" class="readmore">เพิ่มเติม</a> </div>
+								<div class="inno_details"><?php echo '<p>'.$_information->title_th.'</p>' ?></div> <a href="{{url('newsinside/'.$_information->id)}}" class="readmore">เพิ่มเติม</a> </div>
 							</div>
 					@endforeach
 				

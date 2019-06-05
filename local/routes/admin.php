@@ -129,6 +129,34 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::post('/FileForm/{id}', 'Admin\FileFormController@update');
         Route::post('/FileForm/Delete/{id}', 'Admin\FileFormController@destroy');
 
+      Route::get('/Year', 'Admin\YearController@index');
+        Route::get('/Year/Lists', 'Admin\YearController@Lists');
+        Route::post('/Year', 'Admin\YearController@store');
+        Route::get('/Year/{id}', 'Admin\YearController@show');
+        Route::post('/Year/{id}', 'Admin\YearController@update');
+        Route::post('/Year/Delete/{id}', 'Admin\YearController@destroy');
+
+      Route::get('/FileType', 'Admin\FileTypeController@index');
+        Route::get('/FileType/Lists', 'Admin\FileTypeController@Lists');
+        Route::post('/FileType', 'Admin\FileTypeController@store');
+        Route::get('/FileType/{id}', 'Admin\FileTypeController@show');
+        Route::post('/FileType/{id}', 'Admin\FileTypeController@update');
+        Route::post('/FileType/Delete/{id}', 'Admin\FileTypeController@destroy');
+
+      Route::get('/FileType/FundType/{id}', 'Admin\FundTypeController@index');
+        Route::get('/FundType/Lists', 'Admin\FundTypeController@Lists');
+        Route::post('/FundType', 'Admin\FundTypeController@store');
+        Route::get('/FundType/{id}', 'Admin\FundTypeController@show');
+        Route::post('/FundType/{id}', 'Admin\FundTypeController@update');
+        Route::post('/FundType/Delete/{id}', 'Admin\FundTypeController@destroy');
+
+      Route::get('/FileType/FundType/FileReport/{id}', 'Admin\FileReportController@index');
+        Route::get('/FileReport/Lists', 'Admin\FileReportController@Lists');
+        Route::post('/FileReport', 'Admin\FileReportController@store');
+        Route::get('/FileReport/{id}', 'Admin\FileReportController@show');
+        Route::post('/FileReport/{id}', 'Admin\FileReportController@update');
+        Route::post('/FileReport/Delete/{id}', 'Admin\FileReportController@destroy');
+
       ##ROUTEFORINSTALL##
 });
 //OrakUploader

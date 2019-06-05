@@ -156,6 +156,7 @@ class DefaultController extends Controller
     public function Lists(){
         $result = \App\Models\DefaultModel::select();
         return \Datatables::of($result)
+        ->addIndexColumn()
         ##EDITCOLUMNDATATABLE##
         ->addColumn('action',function($rec){
             $str='

@@ -21,4 +21,20 @@ class NewsController extends Controller
       
         return view('news',$data);
     }
+    public function detail($id)
+    {
+        $data['banner'] = \App\Models\Banner::select('banners.*')->get();
+        $data['category'] = \App\Models\Category::where('status','=','1')
+            ->select('categories.*')
+            ->orderBy('sort_id','ASC')
+            ->get();
+        $data['contact'] = \App\Models\Contact::where('status','=','1')
+            ->select('contacts.*')
+            ->get();
+        $data['information_detail'] = \App\Models\Information::where('id','=',$id)
+            ->select('informations.*')
+            ->get();
+      
+        return view('news_inside',$data);
+    }
 }

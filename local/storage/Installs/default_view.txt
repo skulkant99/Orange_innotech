@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="content">
                         <h4 class="title">
-                            {{$title_page or '' }}
+                            {{$title_page}}
                             <button class="btn btn-success btn-add pull-right" >
                                 + เพิ่มข้อมูล
                             </button>
@@ -39,7 +39,7 @@
         <div class="modal-content">
             <form id="FormAdd">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">เพิ่ม {{$title_page or 'ข้อมูลใหม่'}}</h4>
+                    <h4 class="modal-title" id="myModalLabel">เพิ่ม {{$title_page}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -59,7 +59,7 @@
             <input type="hidden" name="edit_id" id="edit_id">
             <form id="FormEdit">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล {{$title_page or 'ข้อมูลใหม่'}}</h4>
+                    <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล {{$title_page}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -87,6 +87,7 @@
             }
         },
         "columns": [
+            {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
             ##COLUMNSDATATABLE##
             { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
         ]

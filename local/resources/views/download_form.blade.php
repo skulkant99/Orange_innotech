@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	@include('inc_header')
+	@include('inc_header')<?php $pageName="downloadform"; ?>
 </head>
 
 <body>
@@ -14,6 +14,22 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+		}
+		.page-item.active .page-link {
+			z-index: 1;
+			color: #fff;
+			background-color: #379595;
+			border-color: #379595;
+		}
+		.page-link {
+			position: relative;
+			display: block;
+			padding: 0.4rem 0.75rem;
+			margin-left: -1px;
+			line-height: 1.25;
+			color: #007bff;
+			background-color: #fff;
+			border: 1px solid #dee2e6;
 		}
 	</style>
 	@include('inc_topmenu')

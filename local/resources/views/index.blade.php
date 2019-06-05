@@ -7,6 +7,7 @@
 
 <body>
 	<style>
+
 		.inno_update.owl-theme .owl-dots .owl-dot.active span,
 		.inno_update.owl-theme .owl-dots .owl-dot:hover span {
 			background: #379595;
@@ -20,43 +21,49 @@
 			width: 20px;
 			height: 20px;
 		}
-		
+		/*
 		::-webkit-scrollbar {
 			width: 2px;
 		}
 		
-		.wrap_parallax {
-			position: relative;
-			height: 100vh;
-			overflow: hidden;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+*/
+		
+		.display-slide {
+			display: none;
 		}
 		
-		.wrap_parallax .overlay {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+		.set_list {
+			margin-top: -3px;
 		}
 		
-		.wrap_parallax .parallax {
-			position: relative;
-			width: 100%;
-			height: 100%;
+		.set_list li {
+			display: inline-block;
+			font-size: 1.5em;
+			font-family: 'Kanit';
+			background-color: #379494;
+			padding: 5px 15px;
+			width: 33.4%;
+			text-align: center;
+		}
+		.set_list li a{
+			color: white;
+		}
+		.set_list li.active {
+			border-top: 3px solid #379494;
+			padding: 5px 15px;
+			display: inline-block;
+			background-color: transparent;
 		}
 		
-		main {
-			position: relative;
-			min-height: 85vh;
+		.set_list li.active a {
+			color: #379494;
 		}
 		/*----Slideshow----------*/
 		
 		.flex-control-nav {
 			bottom: 10px;
 			z-index: 9;
+			display: block;
 		}
 		
 		.flex-control-paging li a.flex-active {
@@ -80,6 +87,10 @@
 			width: 100%;
 		}
 		
+		flexslider-caption .flex-direction-nav {
+			display: block;
+		}
+		
 		.wrap_slidecaption {
 			padding: 20px;
 			position: absolute;
@@ -87,6 +98,15 @@
 			width: 50%;
 			height: 100px;
 			left: 10%;
+		}
+		
+		.wrap_parallax {
+			position: relative;
+			height: 115vh;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		
 		.slidecaption {
@@ -219,6 +239,7 @@
 			line-height: 36px;
 			display: inline-block;
 			text-transform: uppercase;
+			font-family: 'kanit_mediumregular';
 		}
 		
 		.wrap_slidecaption h3 {
@@ -227,63 +248,67 @@
 			font-size: 1.8em;
 			font-weight: normal;
 		}
+		
 		@media (max-width: 1600px) {
-			.wrap_slidecaption h2{
+			.wrap_slidecaption h2 {
 				font-size: 2em;
 			}
-			.wrap_slidecaption h3{
+			.wrap_slidecaption h3 {
 				font-size: 1.2em;
 			}
-			
 		}
+		
 		@media (max-width: 1199px) {
-			.wrap_slidecaption h2{
+			.wrap_slidecaption h2 {
 				font-size: 1.5em;
 			}
-			.wrap_slidecaption h3{
+			.wrap_slidecaption h3 {
 				font-size: 1.2em;
 			}
-			.wrap_parallax{
+			.wrap_parallax {
 				height: 60vh;
 			}
-			.wrap_slidecaption{
+			.wrap_slidecaption {
 				width: 60%;
 			}
 		}
+		
 		@media (max-width: 991px) {
-			.wrap_parallax{
+			.wrap_parallax {
 				height: 50vh;
 				z-index: 1;
 			}
-				.wrap_slidecaption h2{
+			.wrap_slidecaption h2 {
 				font-size: 1.3em;
 			}
-			.wrap_slidecaption h3{
+			.wrap_slidecaption h3 {
 				font-size: 1em;
 			}
-			.wrap_slidecaption{
+			.wrap_slidecaption {
 				top: 20%;
 			}
 		}
+		
 		@media (max-width: 767px) {
-			.wrap_parallax{
+/*
+			.wrap_parallax {
 				height: 30vh;
 			}
-			.wrap_slidecaption{
+*/
+			.wrap_slidecaption {
 				width: 100%;
 				top: 25%;
 				left: 0;
 			}
-			.wrap_slidecaption h2{
+			.wrap_slidecaption h2 {
 				font-size: 0.9em;
 			}
-			.wrap_slidecaption h3{
+			.wrap_slidecaption h3 {
 				font-size: 0.6em;
 				padding-top: 0px;
 			}
+			
 		}
-	
-
 	</style>
 	@include('inc_topmenu')
 		<section class="wrap_parallax">
@@ -328,9 +353,9 @@
 			<div class="container-fluid">
 				<div class="row wow fadeInUp">
 					<div class="col">
-					<div class="mttopmb">
-						<div class="title_head1"> <span class="bluetxt">INNOTECH</span> &nbsp; INNOVATION &nbsp;|&nbsp; TECHNOLOGY &nbsp;|&nbsp; WEALTH </div>
-					</div>
+						<div class="mttopmb">
+							<div class="title_head1 smtext"> <span class="bluetxt blocktext">INNOTECH</span> &nbsp; INNOVATION &nbsp;|&nbsp; TECHNOLOGY &nbsp;|&nbsp; WEALTH </div>
+						</div>
 					</div>
 				</div>
 				<div class="container">
@@ -339,22 +364,24 @@
 							<div class="row">
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 									<div class="listicon1 d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon1_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div>
-									<span class="text_icon">ข้อมูลเศรษฐกิจ <br>	และภาวะตลาดการเงิน</span> </div>
+									<div class="listicon1_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ข้อมูลเศรษฐกิจ <br>
+					และภาวะตลาดการเงิน</span> </div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
 									<div class="listicon2  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon2_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div>
-									  <span class="text_icon">เรื่องน่ารู้เกี่ยว <br> กับการลงทุน</span> </div>
+									<div class="listicon2_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">เรื่องน่ารู้เกี่ยว <br>
+กับการลงทุน</span> </div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
 									<div class="listicon3  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon3_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">เอกสารเผยแพร่ <br>และประกาศบริษัท</span> </div>
+									<div class="listicon3_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">เอกสารเผยแพร่ <br>
+และประกาศบริษัท</span> </div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
 									<div class="listicon4  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
 									<div class="listicon4_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">รายงานกองทุน</span> </div>
 								<div class="w-100"></div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
 									<div class="listicon5  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon5_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ธรรมภิบาลการลงทุน <br>(I-Code)</span> </div>
+									<div class="listicon5_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ธรรมภิบาลการลงทุน <br>
+(I-Code)</span> </div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.6s">
 									<div class="listicon6  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
 									<div class="listicon6_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ปฏิทินกิจกรรม</span> </div>
@@ -363,11 +390,364 @@
 									<div class="listicon7_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ดาวน์โหลดแบบฟอร์ม</span> </div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.8s">
 									<div class="listicon8  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon8_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ติดตามสถานะตราสารหนี้ <br>ผิดนัดชำระของกองทุน</span> </div>
+									<div class="listicon8_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ติดตามสถานะตราสารหนี้ <br>
+ผิดนัดชำระของกองทุน</span> </div>
 							</div>
 						</div>
 						<div class="col-lg-3 wow fadeInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
-							<div class="graph"> <img src="images/graph1.png" class="img-fluid"> </div>
+							<div class="graphset">
+								<div class="row">
+									<div class="col">
+										<div class="set_list select-display-slide">
+											<li class="active" rel="1"> <a href="javascript:void(0)">SET</a> </li>
+											<li rel="2" style="margin-left:-7px;"> <a href="javascript:void(0)">  MAI</a> </li>
+											<li rel="3" style="margin-left:-7px;"> <a href="javascript:void(0)">  TFEX</a> </li>
+										</div>
+									</div>
+								</div>
+								<div class="display-slide" rel="1" style="display:block;">
+									<div class="row">
+										<div class="col">
+											<div class="timeset"> 04/04/62 | 12:35:21 </div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<ul class="listset_tab1">
+												<li><a href="#" class="active">สรุปภาวะตลาด</a></li>
+												<li><a href="#">สรุปการซื้อขายสิ้นวัน</a></li>
+												<li><a href="#">ข้อมูลสถิติ</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<ul class="listset_tab">
+												<li><a href="#" class="active">SET</a></li>
+												<li><a href="#">SET50</a></li>
+												<li><a href="#">SET100</a></li>
+												<li><a href="#">sSET</a></li>
+												<li><a href="#">SETHD</a></li>
+												<li><a href="#">SETCLMV</a></li>
+												<li><a href="#">SETTHSI</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="graphset_inc">
+									<canvas id="graph" width="250" height="170"> 
+</canvas> 
+									
+									  </div>
+									<div class="graphset_inc2">
+									<div class="table-wrapper-scroll-y my-custom-scrollbar">
+										<table class="table set_table">
+											<thead>
+												<tr>
+													<th scope="col"></th>
+													<th scope="col">Last</th>
+													<th scope="col">Change</th>
+												</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<th scope="col">SET</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SET50</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SET100</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">sSET</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETHD</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETCLMV</th>
+												<td><span class="redtext">1,333.65</span></td>
+												<td><span class="redtext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETTHSI</th>
+												<td><span class="redtext">1,333.65</span></td>
+												<td><span class="redtext">+0.43</span></td>
+											</tr>
+										  <tr>
+										  	<td  colspan="2">Mkt Status</td>
+										  	<td>Open(I)</td>
+										  </tr>
+										    <tr>
+										  	<td  colspan="2">Volumn(000)</td>
+										  	<td>5,445,434</td>
+										  </tr>
+										    <tr>
+										  	<td  colspan="2">Value (M)</td>
+										  	<td>12,444,12</td>
+										  </tr>
+										  <tr class="threelevels">
+										  	<td class="redtext"><i class="fas fa-sort-down"></i><br> 587 <br> Losers</td>
+										  	<td class="yellowtext"><i class="fas fa-sort fa-rotate-90"> </i><br> 553 <br> Unchanges</td>
+										  	<td class="greentext"><i class="fas fa-sort-up"></i> <br> 587 <br> Gainers</td>
+										  </tr>
+										  <tr class="threelevels">
+										  	<td colspan="3">ราคาดัชนีผลตอบแทนรวม (TRI)</td>
+										  </tr>
+										  <tr>
+										  	<td colspan="3">
+										  	<span style="color:dimgray;">07/04/2019</span>
+										  	</td>
+										  </tr>
+										  <tr>
+										  <th scope="col">SET TRI</th>
+										  	<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+										  </tr>
+											  </tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+								<div class="display-slide" rel="2">
+									<div class="row">
+										<div class="col">
+											<div class="timeset"> 04/04/62 | 12:35:21 </div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<ul class="listset_tab1">
+												<li><a href="#" class="active">สรุปภาวะตลาด</a></li>
+												<li><a href="#">สรุปการซื้อขายสิ้นวัน</a></li>
+												<li><a href="#">ข้อมูลสถิติ</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<ul class="listset_tab">
+												<li><a href="#" class="active">SET</a></li>
+												<li><a href="#">SET50</a></li>
+												<li><a href="#">SET100</a></li>
+												<li><a href="#">sSET</a></li>
+												<li><a href="#">SETHD</a></li>
+												<li><a href="#">SETCLMV</a></li>
+												<li><a href="#">SETTHSI</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="graphset_inc">
+									<canvas id="graph" width="250" height="170"> </canvas> 
+									
+									  </div>
+									<div class="graphset_inc2">
+									<div class="table-wrapper-scroll-y my-custom-scrollbar">
+										<table class="table set_table">
+											<thead>
+												<tr>
+													<th scope="col"></th>
+													<th scope="col">Last</th>
+													<th scope="col">Change</th>
+												</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<th scope="col">SET</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SET50</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SET100</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">sSET</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETHD</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETCLMV</th>
+												<td><span class="redtext">1,333.65</span></td>
+												<td><span class="redtext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETTHSI</th>
+												<td><span class="redtext">1,333.65</span></td>
+												<td><span class="redtext">+0.43</span></td>
+											</tr>
+										  <tr>
+										  	<td  colspan="2">Mkt Status</td>
+										  	<td>Open(I)</td>
+										  </tr>
+										    <tr>
+										  	<td  colspan="2">Volumn(000)</td>
+										  	<td>5,445,434</td>
+										  </tr>
+										    <tr>
+										  	<td  colspan="2">Value (M)</td>
+										  	<td>12,444,12</td>
+										  </tr>
+										  <tr class="threelevels">
+										  	<td class="redtext"><i class="fas fa-sort-down"></i><br> 587 <br> Losers</td>
+										  	<td class="yellowtext"><i class="fas fa-sort fa-rotate-90"> </i><br> 553 <br> Unchanges</td>
+										  	<td class="greentext"><i class="fas fa-sort-up"></i> <br> 587 <br> Gainers</td>
+										  </tr>
+										  <tr class="threelevels">
+										  	<td colspan="3">ราคาดัชนีผลตอบแทนรวม (TRI)</td>
+										  </tr>
+										  <tr>
+										  	<td colspan="3">
+										  	<span style="color:dimgray;">07/04/2019</span>
+										  	</td>
+										  </tr>
+										  <tr>
+										  <th scope="col">SET TRI</th>
+										  	<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+										  </tr>
+											  </tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+								<div class="display-slide" rel="3">
+									<div class="row">
+										<div class="col">
+											<div class="timeset"> 04/04/62 | 12:35:21 </div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<ul class="listset_tab1">
+												<li><a href="#" class="active">สรุปภาวะตลาด</a></li>
+												<li><a href="#">สรุปการซื้อขายสิ้นวัน</a></li>
+												<li><a href="#">ข้อมูลสถิติ</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<ul class="listset_tab">
+												<li><a href="#" class="active">SET</a></li>
+												<li><a href="#">SET50</a></li>
+												<li><a href="#">SET100</a></li>
+												<li><a href="#">sSET</a></li>
+												<li><a href="#">SETHD</a></li>
+												<li><a href="#">SETCLMV</a></li>
+												<li><a href="#">SETTHSI</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="graphset_inc">
+									<canvas id="graph" width="250" height="170"> 
+</canvas> 
+									
+									  </div>
+									<div class="graphset_inc2">
+									<div class="table-wrapper-scroll-y my-custom-scrollbar">
+										<table class="table set_table">
+											<thead>
+												<tr>
+													<th scope="col"></th>
+													<th scope="col">Last</th>
+													<th scope="col">Change</th>
+												</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<th scope="col">SET</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SET50</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SET100</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">sSET</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETHD</th>
+												<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETCLMV</th>
+												<td><span class="redtext">1,333.65</span></td>
+												<td><span class="redtext">+0.43</span></td>
+											</tr>
+										  <tr>
+												<th scope="col">SETTHSI</th>
+												<td><span class="redtext">1,333.65</span></td>
+												<td><span class="redtext">+0.43</span></td>
+											</tr>
+										  <tr>
+										  	<td  colspan="2">Mkt Status</td>
+										  	<td>Open(I)</td>
+										  </tr>
+										    <tr>
+										  	<td  colspan="2">Volumn(000)</td>
+										  	<td>5,445,434</td>
+										  </tr>
+										    <tr>
+										  	<td  colspan="2">Value (M)</td>
+										  	<td>12,444,12</td>
+										  </tr>
+										  <tr class="threelevels">
+										  	<td class="redtext"><i class="fas fa-sort-down"></i><br> 587 <br> Losers</td>
+										  	<td class="yellowtext"><i class="fas fa-sort fa-rotate-90"> </i><br> 553 <br> Unchanges</td>
+										  	<td class="greentext"><i class="fas fa-sort-up"></i> <br> 587 <br> Gainers</td>
+										  </tr>
+										  <tr class="threelevels">
+										  	<td colspan="3">ราคาดัชนีผลตอบแทนรวม (TRI)</td>
+										  </tr>
+										  <tr>
+										  	<td colspan="3">
+										  	<span style="color:dimgray;">07/04/2019</span>
+										  	</td>
+										  </tr>
+										  <tr>
+										  <th scope="col">SET TRI</th>
+										  	<td><span class="greentext">1,333.65</span></td>
+												<td><span class="greentext">+0.43</span></td>
+										  </tr>
+											  </tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+						
+							</div>
 						</div>
 					</div>
 				</div>
@@ -601,16 +981,156 @@
 					<div class="row">
 						<div class="col wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
 							<div class="title_head1 d-none d-sm-none d-md-block d-lg-block d-xl-block"> ผลการดำเนินงาน <span class="bluetxt">FUND PERFORMANCE</span></div>
-							<div class="title_head1 d-block d-sm-block d-md-none d-lg-none d-xl-none"> ผลการดำเนินงาน <br> <span class="bluetxt">FUND PERFORMANCE</span></div>
+							<div class="title_head1 d-block d-sm-block d-md-none d-lg-none d-xl-none"> ผลการดำเนินงาน
+								<br> <span class="bluetxt">FUND PERFORMANCE</span></div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="bg_section3  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 				<div class="container">
+				
 					<div class="row  wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.3s">
 						<div class="col">
-							<div class="graph"> <img src="images/graph2.png" class="img-fluid"> </div>
+						<label class="mt-3">เลือกกองทุน</label>
+						 <select id="selectbasic" name="selectbasic" class="form-control select_set">
+      <option value="1">Option one</option>
+      <option value="2">Option two</option>
+    </select>
+							<script src="//www.chartjs.org/dist/master/Chart.min.js"></script>
+							<canvas id="myChart"  height="100"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [5, 10, 9, 15, 13, 17],
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+			borderColor: 'rgba(255, 159, 64,1 )',
+            borderWidth: 2,
+			lineTension :0.000001,
+        },{
+            label: '# of Votes',
+            data: [7, 13, 14, 17, 15, 22],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 2,
+			lineTension :0.000001,
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+							
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col wow fadeInUp" data-wow-duration="1.1s" data-wow-delay="0.35s">
+							<table class="table table-responsive-lg">
+							<thead>
+								<tr>
+									<th scope="col">NAV as of</th>
+									<th scope="col">YTD</th>
+									<th scope="col">3M</th>
+									<th scope="col">6M</th>
+									<th scope="col">1Y</th>
+									<th scope="col">3Y</th>
+									<th scope="col">5Y</th>
+									<th scope="col">10Y</th>
+									<th scope="col">Since Inception</th>
+								</tr>
+							</thead>
+							<tbody>
+							<tr class="lightgreentxt">
+								<th scope="col">EP-LTF</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+							<tr class="lightgreentxt">
+								<th scope="col">SET Index (SET)</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+							<tr class="lightgreentxt">
+								<th scope="col">SET Total Return Index (SET TRI)</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+							<tr class="lightgreentxt">
+								<th scope="col">SET EP-LTF</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+							<tr class="lightgreentxt">
+								<th scope="col">SD SET</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+							<tr class="lightgreentxt">
+								<th scope="col">SD SET TRI</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+							<tr class="lightgreentxt">
+								<th scope="col">INformation Ratio (Vs SET)</th>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+								<td>2.22%</td>
+							</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 					<div class="row">
@@ -647,7 +1167,7 @@
 													</figure>
 												</div>
 											</div>
-											<div class="inno_details"><?php echo '<p>'.$_information->detail_th.'</p>' ?></div> 
+											<div class="inno_details"><?php echo '<p>'.$_information->title_th.'</p>' ?></div> 
 											<a href="{{url('news/'.$_information->id)}}" class="readmore">เพิ่มเติม</a> 
 										</div>
 									</div>
@@ -747,94 +1267,187 @@
 
 		
 		@include('inc_footer')
-			<script type="text/javascript">
-				$(window).load(function () {
-					$('.flexslider-caption').flexslider({
-						animation: "fade"
-						, animationSpeed: 1500
-						, slideshow: true
-						, controlNav: false, //Boolean: Create navigation for paging control of each slide? Note: Leave true for manualControls usage
-						directionNav: false, //animationLoop: false,
-						start: function (slider) {
-							$('.slidecaption').removeClass('actioncaption');
-							$('.flex-active-slide').find('.slidecaption').addClass('actioncaption');
-							$('.slider').removeClass('loading');
-							$(".slides li").each(function (index) {
-								if ($(this).children('div').hasClass('vdo')) {
-									$(this).addClass('hasvdo');
-								}
-							});
-						}
-						, after: function (slider) {
-							$('.slidecaption').removeClass('actioncaption');
-							$('.flex-active-slide').find('.slidecaption').addClass('actioncaption');
-							$(".slides li").each(function (index) {
-								if ($(this).children('div').hasClass('vdo')) {
-									$(this).addClass('hasvdo');
-								}
-							});
-						}
-					});
+		<script type="text/javascript">
+			$(window).load(function () {
+				$('.flexslider-caption').flexslider({
+					animation: "fade"
+					, animationSpeed: 1500
+					, slideshow: true
+					, controlNav: true, //Boolean: Create navigation for paging control of each slide? Note: Leave true for manualControls usage
+					directionNav: false, //animationLoop: false,
+					start: function (slider) {
+						$('.slidecaption').removeClass('actioncaption');
+						$('.flex-active-slide').find('.slidecaption').addClass('actioncaption');
+						$('.slider').removeClass('loading');
+						$(".slides li").each(function (index) {
+							if ($(this).children('div').hasClass('vdo')) {
+								$(this).addClass('hasvdo');
+							}
+						});
+					}
+					, after: function (slider) {
+						$('.slidecaption').removeClass('actioncaption');
+						$('.flex-active-slide').find('.slidecaption').addClass('actioncaption');
+						$(".slides li").each(function (index) {
+							if ($(this).children('div').hasClass('vdo')) {
+								$(this).addClass('hasvdo');
+							}
+						});
+					}
 				});
-			</script>
-			<script>
-				// for heading
-				$(window).scroll(function () {
-					const a = $(this).scrollTop()
-						, b = 800;
-					$("h1").css({
-						backgroundPosition: "center " + a / 2 + "px"
-					});
-					$(".parallax").css({
-						top: a / 1.6 + "px"
-						, opacity: 2 - a / b
-					});
+			});
+		</script>
+		<script>
+			// for heading
+			$(window).scroll(function () {
+				const a = $(this).scrollTop()
+					, b = 800;
+				$("h1").css({
+					backgroundPosition: "center " + a / 2 + "px"
 				});
-			</script>
-			<script type="text/javascript">
-				$(document).ready(function () {
-					$('.inno_update').owlCarousel({
-						loop: false
-						, margin: 20
-						, autoplay: false
-						, autoplayTimeout: 4000
-						, autoplayHoverPause: false
-						, smartSpeed: 2000
-						, nav: false
-						, dots: true
-						, navClass: ['owl-prev', 'owl-next']
-						, responsive: {
-							0: {
-								items: 1
-								, slideBy: 1
-								, margin: 10
-								, loop: false
-								, dots: true
-							}
-							, 640: {
-								items: 3
-								, slideBy: 1
-								, loop: false
-							}
-							, 1024: {
-								items: 4
-								, slideBy: 1
-							}
-							, 1200: {
-								items: 4
-								, slideBy: 1
-							}
+				$(".parallax").css({
+					top: a / 1.6 + "px"
+					, opacity: 2 - a / b
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('.inno_update').owlCarousel({
+					loop: false
+					, margin: 20
+					, autoplay: false
+					, autoplayTimeout: 4000
+					, autoplayHoverPause: false
+					, smartSpeed: 2000
+					, nav: false
+					, dots: true
+					, navClass: ['owl-prev', 'owl-next']
+					, responsive: {
+						0: {
+							items: 1
+							, slideBy: 1
+							, margin: 10
+							, loop: false
+							, dots: true
 						}
-					})
-				});
-			</script>
-						<script>
-				$(window).ready(function () {
-					setTimeout(function () {
-						$('#modal-subscribe').modal("show")
-					}, 2500)
+						, 640: {
+							items: 3
+							, slideBy: 1
+							, loop: false
+						}
+						, 1024: {
+							items: 4
+							, slideBy: 1
+						}
+						, 1200: {
+							items: 4
+							, slideBy: 1
+						}
+					}
 				})
-			</script>
+			});
+		</script>
+		<script>
+			$(window).ready(function () {
+				setTimeout(function () {
+					$('#modal-subscribe').modal("show")
+				}, 2500)
+			})
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$(".select-display-slide > li").click(function () {
+					var rel = $(this).attr("rel");
+					console.log(rel);
+					$('.display-slide').hide();
+					$('.display-slide[rel=' + rel + ']').fadeIn();
+					$(".select-display-slide > li").removeClass("active");
+					$(this).addClass("active");
+				});
+			});
+		</script>
+		<script>
+						var graph;
+					var xPadding = 30;
+					var yPadding = 30;
+					var data = {
+							values: [{
+									X: "Jan",
+									Y: 12
+							}, {
+									X: "Feb",
+									Y: 28
+							}, {
+									X: "Mar",
+									Y: 18
+							}, {
+									X: "Apr",
+									Y: 34
+							}, {
+									X: "May",
+									Y: 40
+							}, ]
+					};
+					 // Returns the max Y value in our data list
+					function getMaxY() {
+							var max = 0;
+							for (var i = 0; i < data.values.length; i++) {
+									if (data.values[i].Y > max) {
+											max = data.values[i].Y;
+									}
+							}
+							max += 10 - max % 10;
+							return max;
+					}
+					 // Return the x pixel for a graph point
+					function getXPixel(val) {
+							return ((graph.width() - xPadding) / data.values.length) * val + (xPadding * 1.5);
+					}
+					 // Return the y pixel for a graph point
+					function getYPixel(val) {
+							return graph.height() - (((graph.height() - yPadding) / getMaxY()) * val) - yPadding;
+					}
+					$(document).ready(function () {
+							graph = $('#graph');
+							var c = graph[0].getContext('2d');
+							c.lineWidth = 2;
+							c.strokeStyle = '#eb6b30';
+							c.font = 'italic 8pt sans-serif';
+							c.textAlign = "center";
+							// Draw the axises
+							c.beginPath();
+							c.moveTo(xPadding, 0);
+							c.lineTo(xPadding, graph.height() - yPadding);
+							c.lineTo(graph.width(), graph.height() - yPadding);
+							c.stroke();
+							// Draw the X value texts
+							for (var i = 0; i < data.values.length; i++) {
+									c.fillText(data.values[i].X, getXPixel(i), graph.height() - yPadding + 20);
+							}
+							// Draw the Y value texts
+							c.textAlign = "right"
+							c.textBaseline = "middle";
+							for (var i = 0; i < getMaxY(); i += 10) {
+									c.fillText(i, xPadding - 10, getYPixel(i));
+							}
+							c.strokeStyle = '#379494';
+							// Draw the line graph
+							c.beginPath();
+							c.moveTo(getXPixel(0), getYPixel(data.values[0].Y));
+							for (var i = 1; i < data.values.length; i++) {
+									c.lineTo(getXPixel(i), getYPixel(data.values[i].Y));
+							}
+							c.stroke();
+							// Draw the dots
+							c.fillStyle = '#333';
+							for (var i = 0; i < data.values.length; i++) {
+									c.beginPath();
+									c.arc(getXPixel(i), getYPixel(data.values[i].Y), 4, 0, Math.PI * 2, true);
+									c.fill();
+							}
+					});
+</script>
 </body>
 
 </html>

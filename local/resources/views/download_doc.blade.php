@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	@include('inc_header')
+	@include('inc_header')<?php $pageName="download_doc"; ?>
 </head>
 
 <body>
@@ -15,6 +15,22 @@
 			justify-content: center;
 			align-items: center;
 		}
+		.page-item.active .page-link {
+			z-index: 1;
+			color: #fff;
+			background-color: #379595;
+			border-color: #379595;
+		}
+		.page-link {
+			position: relative;
+			display: block;
+			padding: 0.4rem 0.75rem;
+			margin-left: -1px;
+			line-height: 1.25;
+			color: #007bff;
+			background-color: #fff;
+			border: 1px solid #dee2e6;
+		}
 	</style>
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
@@ -22,7 +38,7 @@
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">หน้าหลัก</a></li>
 							<li class="breadcrumb-item active" aria-current="page">เอกสารเผยแพร่และประกาศบริษัท</li>
 						</ol>
 					</nav>
@@ -62,18 +78,23 @@
 			<div class="wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.1s">
 				<div class="row">
 					<div class="col">
-						<div class="box_download_doc">
-							<div class="numberlist">
-								01
-							</div>
-							<div class="detail_doc">
-								รายงานรอบ 6 เดือนและรายงานรอบปี
-							</div>
-							<div class="btn_download">
-								<a href="{{url('/downloadinside')}}" class="btn btn-primary">ดูรายละเอียด</a> 
-							</div>
-						</div>
-						<div class="box_download_doc">
+						@for($i = 1; $i <= count($file_type); $i++)
+							@foreach ($file_type as $_file_type)
+								<div class="box_download_doc">
+									<div class="numberlist">
+										{{$i++}}
+									</div>
+									<div class="detail_doc">
+										{{$_file_type->name}}
+									</div>
+									<div class="btn_download">
+										<a href="{{url('downloadinside/'.$_file_type->id)}}" class="btn btn-primary">ดูรายละเอียด</a> 
+									</div>
+								</div>
+							@endforeach
+						@endfor
+						
+						{{-- <div class="box_download_doc">
 							<div class="numberlist">
 								02
 							</div>
@@ -83,8 +104,8 @@
 							<div class="btn_download">
 								<a href="{{url('/downloadinside')}}" class="btn btn-primary">ดูรายละเอียด</a> 
 							</div>
-						</div>
-						<div class="box_download_doc">
+						</div> --}}
+						{{-- <div class="box_download_doc">
 							<div class="numberlist">
 								03
 							</div>
@@ -94,8 +115,8 @@
 							<div class="btn_download">
 								<a href="{{url('/downloadinside')}}" class="btn btn-primary">ดูรายละเอียด</a> 
 							</div>
-						</div>
-						<div class="box_download_doc">
+						</div> --}}
+						{{-- <div class="box_download_doc">
 							<div class="numberlist">
 								04
 							</div>
@@ -105,7 +126,7 @@
 							<div class="btn_download">
 								<a href="{{url('/downloadinside')}}" class="btn btn-primary">ดูรายละเอียด</a> 
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -113,13 +134,16 @@
 				<div class="col">
 					<div class="pagination_bot">
 						<nav class="pagination-container">
-							<div class="pagination"> <a class="pagination-newer" href="#"><i class="fas fa-angle-left"></i></a> <span class="pagination-inner">
+							<div class="pagination"> 
+									{{ $file_type->links() }}
+								{{-- <a class="pagination-newer" href="#"><i class="fas fa-angle-left"></i></a> <span class="pagination-inner">
 											<a href="#">1</a>
 											<a class="pagination-active" href="#">2</a>
 											<a href="#">3</a>
 											<a href="#">4</a>
 											<a href="#">5</a>
-										</span> <a class="pagination-older" href="#"><i class="fas fa-angle-right"></i></a> </div>
+										</span> <a class="pagination-older" href="#"><i class="fas fa-angle-right"></i></a>  --}}
+								</div>
 						</nav>
 					</div>
 				</div>

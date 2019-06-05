@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('OwlCarousel/dist/assets/owl.theme.default.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('WOW-master/css/libs/animate.css')}}" />
 	<link rel="stylesheet" type="text/css" href="{{asset('WOW-master/css/site.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-ui.css')}}">
 
     <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -35,6 +36,26 @@
 	<script src="{{asset('woocommerce-FlexSlider-0690ec2/demo/js/modernizr.js')}}"></script>
 	<script src="{{asset('OwlCarousel/dist/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('WOW-master/dist/wow.js')}}"></script>
+    
+    
+    <!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="{{asset('fancybox/lib/jquery.mousewheel-3.0.6.pack.js')}}"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="{{asset('fancybox/source/jquery.fancybox.js?v=2.1.5')}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{asset('fancybox/source/jquery.fancybox.css?v=2.1.5')}}" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="{{asset('fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5')}}" />
+	<script type="text/javascript" src="{{asset('fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5')}}"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="{{asset('fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7')}}" />
+	<script type="text/javascript" src="{{('fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7')}}"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="{{asset('fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6')}}"></script>
+
 	
 	<script>
 		wow = new WOW({

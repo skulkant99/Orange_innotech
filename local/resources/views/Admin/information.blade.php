@@ -64,12 +64,12 @@
 
                     <div class="form-group">
                         <label for="add_title">หัวเรื่อง</label>
-                        <input id="add_title" name="title" class="form-control" placeholder="หัวเรื่อง">
+                        <input id="add_title" name="title_th" class="form-control" placeholder="หัวเรื่อง">
                     </div>
                     
                     <div class="form-group">
                             <label for="add_detail">รายละเอียด</label>
-                            <textarea id="add_detail" name="detail" class="form-control"></textarea>
+                            <textarea id="add_detail" name="detail_th" class="form-control"></textarea>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -117,12 +117,12 @@
                         
                         <div class="form-group">
                             <label for="edit_title">หัวเรื่อง</label>
-                            <input id="edit_title" name="title" class="form-control" placeholder="หัวเรื่อง">
+                            <input id="edit_title" name="title_th" class="form-control" placeholder="หัวเรื่อง">
                         </div>
                         
                         <div class="form-group">
                                 <label for="edit_detail">รายละเอียด</label>
-                                <textarea id="edit_detail" name="detail" class="form-control"></textarea>
+                                <textarea id="edit_detail" name="detail_th" class="form-control"></textarea>
                         </div>
                         
                         <div class="row">
@@ -223,8 +223,8 @@
                     }
                 });
 
-                $('#edit_title').val(rec.title);
-                CKEDITOR.instances['edit_detail'].setData(rec.detail);
+                $('#edit_title').val(rec.title_th);
+                CKEDITOR.instances['edit_detail'].setData(rec.detail_th);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('.select2').select2();
