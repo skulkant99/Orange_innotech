@@ -68,8 +68,8 @@
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-							<li class="breadcrumb-item active" aria-current="page">มูลค่าหน่วยลงทุน</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.nav')}}</li>
 						</ol>
 					</nav>
 				</div>

@@ -44,7 +44,7 @@
                                             <th>#</th>
                                             <th>photo</th>
                                             <th>photo_mobile</th>
-                                            <th>ข้อความ</th>
+                                            {{-- <th>ข้อความ</th> --}}
                                             <th>ลำดับ</th>
                                             <th>สถานะ</th>
                                             <th></th>
@@ -85,9 +85,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="add_content">ข้อความ</label>
                         <textarea id="add_content" name="content" class="form-control"></textarea>
+                    </div> --}}
+                    
+                    <div class="form-group">
+                        <label for="add_sort_id">ลำดับ</label>
+                        <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="ลำดับ">
                     </div>
 
                     <div class="form-group">
@@ -97,11 +102,6 @@
                             <option value="1">ใช้งาน</option>
                             <option value="2">ไม่ใช้งาน</option>
                         </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="add_sort_id">ลำดับ</label>
-                        <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="ลำดับ">
                     </div>
                     
                     </div>
@@ -140,24 +140,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="edit_content">ข้อความ</label>
                             <textarea id="edit_content" name="content" class="form-control"></textarea>
-                        </div>
-                       
-                        <div class="form-group">
-                                <label for="edit_status">สถานะ</label>
-                                <select  class="form-control number-only select2" name="status" id="edit_status" tabindex="-1" data-placeholder="เลือก สถานะ">
-                                    <option value="">เลือก</option>
-                                    <option value="1">ใช้งาน</option>
-                                    <option value="2">ไม่ใช้งาน</option>
-                                </select>
-                            </div>
-                      
+                        </div> --}}
+ 
                         <div class="form-group">
                             <label for="add_sort_id">ลำดับ</label>
                             <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="ลำดับ">
                         </div>
+
+                        <div class="form-group">
+                            <label for="edit_status">สถานะ</label>
+                            <select  class="form-control number-only select2" name="status" id="edit_status" tabindex="-1" data-placeholder="เลือก สถานะ">
+                                <option value="">เลือก</option>
+                                <option value="1">ใช้งาน</option>
+                                <option value="2">ไม่ใช้งาน</option>
+                            </select>
+                        </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -185,7 +186,7 @@
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
                 {"data" : "photo"},
                 {"data" : "photo_mobile"},
-                {"data" : "content","width": "40%" },
+                // {"data" : "content","width": "40%" },
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -519,8 +520,8 @@
 
             }
         });
-        CKEDITOR.replace('add_content');
-        CKEDITOR.replace('edit_content');
+        // CKEDITOR.replace('add_content');
+        // CKEDITOR.replace('edit_content');
         $('#add_status').select2();
         $('#edit_status').select2();
         $('#add_banner_type').select2();

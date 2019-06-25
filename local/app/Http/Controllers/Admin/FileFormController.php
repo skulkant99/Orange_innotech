@@ -15,10 +15,10 @@ class FileFormController extends Controller
      */
     public function index()
     {
-        $data['main_menu'] = 'document';
+        $data['main_menu'] = 'GroupMenu';
         $data['sub_menu'] = 'FileForm';
         $data['title'] = 'FileForm';
-        $data['title_page'] = 'FileForm';
+        $data['title_page'] = 'ดาวน์โหลดแบบฟอร์ม';
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
         
         return view('Admin.file_form',$data);
@@ -52,7 +52,7 @@ class FileFormController extends Controller
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name_th' => 'required',
              'file' => 'required',
              
         ]);
@@ -118,7 +118,7 @@ class FileFormController extends Controller
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name_th' => 'required',
              'file' => 'required',
              
         ]);
@@ -178,9 +178,9 @@ class FileFormController extends Controller
         })
         ->editColumn('status',function($rec){
             if($rec->status == 1){
-                return $status = '<span class="label label-success">เปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-success">เปิดใช้งาน</span>';
             }else {
-                return $status = '<span class="label label-danger">ปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-danger">ปิดใช้งาน</span>';
             }
         })
         ->editColumn('file',function($rec){
@@ -189,12 +189,8 @@ class FileFormController extends Controller
         
         ->addColumn('action',function($rec){
             $str='
-                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
-                    <i class="ace-icon fa fa-edit bigger-120"></i>
-                </button>
-                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
-                    <i class="ace-icon fa fa-trash bigger-120"></i>
-                </button>
+            <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+            <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
             ';
             return $str;
         })->make(true);

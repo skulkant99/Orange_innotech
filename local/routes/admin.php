@@ -157,6 +157,87 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::post('/FileReport/{id}', 'Admin\FileReportController@update');
         Route::post('/FileReport/Delete/{id}', 'Admin\FileReportController@destroy');
 
+      Route::get('/Economics', 'Admin\EconomicsController@index');
+        Route::get('/Economics/Lists', 'Admin\EconomicsController@Lists');
+        Route::post('/Economics', 'Admin\EconomicsController@store');
+        Route::get('/Economics/{id}', 'Admin\EconomicsController@show');
+        Route::post('/Economics/{id}', 'Admin\EconomicsController@update');
+        Route::post('/Economics/Delete/{id}', 'Admin\EconomicsController@destroy');
+
+
+      Route::get('/News', 'Admin\NewsController@index');
+        Route::get('/News/Lists', 'Admin\NewsController@Lists');
+        Route::post('/News', 'Admin\NewsController@store');
+        Route::get('/News/{id}', 'Admin\NewsController@show');
+        Route::post('/News/{id}', 'Admin\NewsController@update');
+        Route::post('/News/Delete/{id}', 'Admin\NewsController@destroy');
+
+      Route::get('/Debt', 'Admin\DebtController@index');
+        Route::get('/Debt/Lists', 'Admin\DebtController@Lists');
+        Route::post('/Debt', 'Admin\DebtController@store');
+        Route::get('/Debt/{id}', 'Admin\DebtController@show');
+        Route::post('/Debt/{id}', 'Admin\DebtController@update');
+        Route::post('/Debt/Delete/{id}', 'Admin\DebtController@destroy');
+
+
+      Route::get('/GroupMenu', 'Admin\MenuGroupController@index');
+        Route::get('/GroupMenu/Lists', 'Admin\MenuGroupController@Lists');
+        Route::post('/GroupMenu', 'Admin\MenuGroupController@store');
+        Route::get('/GroupMenu/{id}', 'Admin\MenuGroupController@show');
+        Route::post('/GroupMenu/{id}', 'Admin\MenuGroupController@update');
+        Route::post('/GroupMenu/Delete/{id}', 'Admin\MenuGroupController@destroy');
+
+      Route::get('/Calendar', 'Admin\CalendarController@index');
+        Route::get('/Calendar/Lists', 'Admin\CalendarController@Lists');
+        Route::post('/Calendar', 'Admin\CalendarController@store');
+        Route::get('/Calendar/{id}', 'Admin\CalendarController@show');
+        Route::post('/Calendar/{id}', 'Admin\CalendarController@update');
+        Route::post('/Calendar/Delete/{id}', 'Admin\CalendarController@destroy');
+
+      Route::get('/FundInformation', 'Admin\FundInformationController@index');
+      Route::get('/Mutual', 'Admin\FundInformationController@mutual');
+      Route::get('/About', 'Admin\FundInformationController@about');
+        Route::get('/FundInformation/Lists', 'Admin\FundInformationController@Lists');
+        Route::post('/FundInformation', 'Admin\FundInformationController@store');
+        Route::get('/FundInformation/{id}', 'Admin\FundInformationController@show');
+        Route::post('/FundInformation/{id}', 'Admin\FundInformationController@update');
+        Route::post('/FundInformation/Delete/{id}', 'Admin\FundInformationController@destroy');
+
+      Route::get('/Transaction', 'Admin\TransactionController@index');
+        Route::get('/Transaction/Lists', 'Admin\TransactionController@Lists');
+        Route::post('/Transaction', 'Admin\TransactionController@store');
+        Route::get('/Transaction/{id}', 'Admin\TransactionController@show');
+        Route::post('/Transaction/{id}', 'Admin\TransactionController@update');
+        Route::post('/Transaction/Delete/{id}', 'Admin\TransactionController@destroy');
+
+      Route::get('/Question', 'Admin\QuestionController@index');
+        Route::get('/Question/Lists', 'Admin\QuestionController@Lists');
+        Route::post('/Question', 'Admin\QuestionController@store');
+        Route::get('/Question/{id}', 'Admin\QuestionController@show');
+        Route::post('/Question/{id}', 'Admin\QuestionController@update');
+        Route::post('/Question/Delete/{id}', 'Admin\QuestionController@destroy');
+
+      Route::get('/Question/Answer/{id}', 'Admin\AnswerController@index');
+        Route::get('/Answer/Lists', 'Admin\AnswerController@Lists');
+        Route::post('/Answer', 'Admin\AnswerController@store');
+        Route::get('/Answer/{id}', 'Admin\AnswerController@show');
+        Route::post('/Answer/{id}', 'Admin\AnswerController@update');
+        Route::post('/Answer/Delete/{id}', 'Admin\AnswerController@destroy');
+
+      Route::get('/Career', 'Admin\CareerController@index');
+        Route::get('/Career/Lists', 'Admin\CareerController@Lists');
+        Route::post('/Career', 'Admin\CareerController@store');
+        Route::get('/Career/{id}', 'Admin\CareerController@show');
+        Route::post('/Career/{id}', 'Admin\CareerController@update');
+        Route::post('/Career/Delete/{id}', 'Admin\CareerController@destroy');
+
+      Route::get('/Performance', 'Admin\PerformanceController@index');
+        Route::get('/Performance/Lists', 'Admin\PerformanceController@Lists');
+        Route::post('/Performance', 'Admin\PerformanceController@store');
+        Route::get('/Performance/{id}', 'Admin\PerformanceController@show');
+        Route::post('/Performance/{id}', 'Admin\PerformanceController@update');
+        Route::post('/Performance/Delete/{id}', 'Admin\PerformanceController@destroy');
+
       ##ROUTEFORINSTALL##
 });
 //OrakUploader

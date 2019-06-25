@@ -26,6 +26,7 @@ class HomeController extends Controller
             ->where('type','=','W')
             ->select('introductions.*')
             ->get();
+        $data['menu_group'] = \App\Models\Menu::select()->get();
         return view('index',$data);
     }
 }

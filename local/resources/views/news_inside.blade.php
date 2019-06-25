@@ -6,16 +6,26 @@
 </head>
 
 <body>
+		@php
+			$lang = "";
+			if (session()->get('locale') == null){
+				$lang = "th";
+			}elseif (session()->get('locale') == "th") {
+				$lang = "th";
+			}elseif(session()->get('locale') == "en"){
+				$lang = "en";
+			}		
+		@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก </a></li>
-							<li class="breadcrumb-item"><a href="#"> ข่าวสาร กิจกรรม  </a></li>
-							@foreach ($information_detail as $_information_detail)
-								<li class="breadcrumb-item active" aria-current="page">{{$_information_detail->title_th}}</li>	
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}} </a></li>
+							<li class="breadcrumb-item"><a href="{{url('news')}}"> {{trans('messages.news')}}  </a></li>
+							@foreach ($information_detail as $k_information_detail => $v_information_detail)
+								<li class="breadcrumb-item active" aria-current="page">{{$information_detail[$k_information_detail]['title_'.$lang]}}</li>	
 							@endforeach
 						</ol>
 					</nav>
@@ -44,11 +54,16 @@
 			<div class="container">
 					<div class="row">
 				<div class="col">
-					@foreach ($information_detail as $_information_detail)
+					@foreach ($information_detail as $k_information_detail => $v_information_detail)
 					<div class="news_detail_inside">
-						<img src="{{asset('uploads/Information/'.$_information_detail->photo)}}" class="img-fluid">
+						@php
+							$photo = json_decode($v_information_detail->photo, true)
+						@endphp
+						@if (isset($photo) && $photo)
+							<img src="{{asset('uploads/Information/'.$photo[1])}}" class="img-fluid">	
+						@endif
 						<br><br>
-						<p>{!!($_information_detail->detail_th)!!}</p>
+						<p>{!!($information_detail[$k_information_detail]['detail_'.$lang])!!}</p>
 					</div>
 					@endforeach
 				</div>

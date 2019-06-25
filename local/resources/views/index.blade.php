@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
      @include('inc_header') <?php $pageName="home"; ?>
 </head>
@@ -310,7 +309,18 @@
 			
 		}
 	</style>
+		@php
+			$lang = "";
+			if (session()->get('locale') == null){
+				$lang = "th";
+			}elseif (session()->get('locale') == "th") {
+				$lang = "th";
+			}elseif(session()->get('locale') == "en"){
+				$lang = "en";
+			}		
+		@endphp
 	@include('inc_topmenu')
+
 		<section class="wrap_parallax">
 			<div class="overlay">
 				<div class="parallax">
@@ -321,12 +331,15 @@
 									<ul class="slides">
 							
 									@foreach ($banner as $_banner) 
+										@if (isset($_banner->photo) && $_banner->photo)
 										<li><img src="{{asset('uploads/Banner/'.$_banner->photo)}}" class="img-fluid d-none d-sm-none d-md-none d-lg-block d-xl-block">
-										<img src="{{asset('uploads/Banner/'.$_banner->photo_mobile)}}" class="img-fluid d-block d-sm-block d-md-block d-lg-none d-xl-none">
-											<a href="#">
-												{{$_banner->content}}
-											</a>
-										</li>
+											<img src="{{asset('uploads/Banner/'.$_banner->photo_mobile)}}" class="img-fluid d-block d-sm-block d-md-block d-lg-none d-xl-none">
+												<a href="#">
+													{{$_banner->content}}
+												</a>
+											</li>
+										@endif
+										
 									@endforeach
 											<!-- <li> <img  src="images/banner2.png" class="img-fluid d-none d-sm-none d-md-none d-lg-block d-xl-block">
 												<img src="images/bannermobile2.png" class="img-fluid d-block d-sm-block d-md-block d-lg-none d-xl-none">
@@ -358,44 +371,57 @@
 						</div>
 					</div>
 				</div>
+			
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-9">
 							<div class="row">
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-									<div class="listicon1 d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon1_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ข้อมูลเศรษฐกิจ <br>
-					และภาวะตลาดการเงิน</span> </div>
+									<a href={{url('economic')}}><div class="listicon1 d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon1_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.economic')}}</span> </a>
+								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-									<div class="listicon2  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon2_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">เรื่องน่ารู้เกี่ยว <br>
-กับการลงทุน</span> </div>
+									<a href={{url('knowledge')}}><div class="listicon2  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon2_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.knowledge')}}</span> </a>
+								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-									<div class="listicon3  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon3_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">เอกสารเผยแพร่ <br>
-และประกาศบริษัท</span> </div>
+									<a href={{url('downloadreport')}}><div class="listicon3  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon3_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.report')}}</span> </a>
+								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-									<div class="listicon4  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon4_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">รายงานกองทุน</span> </div>
+									<a href={{url('reportfunds')}}><div class="listicon4  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon4_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.reportfunds')}}</span> </a>
+								</div>
 								<div class="w-100"></div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-									<div class="listicon5  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon5_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ธรรมภิบาลการลงทุน <br>
-(I-Code)</span> </div>
+									<a href={{url('/')}}><div class="listicon5  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon5_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.investment')}}</span> </a>
+								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.6s">
-									<div class="listicon6  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon6_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ปฏิทินกิจกรรม</span> </div>
+									<a href={{url('calendar')}}><div class="listicon6  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon6_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.calendar')}}</span> </a>
+								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.7s">
-									<div class="listicon7  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon7_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ดาวน์โหลดแบบฟอร์ม</span> </div>
+									<a href={{url('downloadform')}}><div class="listicon7  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon7_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.downloadform')}}</span> </a>
+								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.8s">
-									<div class="listicon8  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
-									<div class="listicon8_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> <span class="text_icon">ติดตามสถานะตราสารหนี้ <br>
-ผิดนัดชำระของกองทุน</span> </div>
+									<a href={{url('statusupdate')}}><div class="listicon8  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<div class="listicon8_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
+									<span class="text_icon">{{trans('messages.statusupdate')}}</span> </a>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 wow fadeInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
-							<div class="graphset">
+								<iframe frameborder=0 scrolling=no width="200" height="260" src="https://weblink.settrade.com/banner/banner3.jsp"></iframe>
+							{{-- <div class="graphset">
 								<div class="row">
 									<div class="col">
 										<div class="set_list select-display-slide">
@@ -434,9 +460,7 @@
 										</div>
 									</div>
 									<div class="graphset_inc">
-									<canvas id="graph" width="250" height="170"> 
-</canvas> 
-									
+									<canvas id="graph" width="250" height="170"> </canvas> 
 									  </div>
 									<div class="graphset_inc2">
 									<div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -747,7 +771,7 @@
 									</div>
 								</div>
 						
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -765,16 +789,50 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
+								<div class="box_nav">
+								<div class="head_nav"> S-EQRMF </div>
+								<div class="pic_nav">
+									<div class="hov-menu-sty">
+										<figure>
+											<a href="#"><img src="{{asset('images/S-EQRMF.png')}}" class="img-fluid"> </a>
+										</figure>
+									</div>
+								</div>
+								<div class="detail_nav"> กองทุนรวมเพื่อการเลี้ยงชีพ (RMF)
+									<br> ณ วันที่ xx/xx/xxxx </div>
+								<div class="table_nav">
+									<table class="table table-bordered tablenavstyle">
+										<thead>
+											<tr>
+												<td>มูลค่าหน่วยลงทุน</td>
+												<th>10.500</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
+												<td><span class="greentext">+0.15</span></td>
+											</tr>
+											<tr>
+												<td>+1.50%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="btn_first"> <a href="{{url('/funds_seqrmf')}}" target="_blank" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
+							</div>
+					</div>
+						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
 							<div class="box_nav">
 								<div class="head_nav"> EP-LTF </div>
 								<div class="pic_nav">
 									<div class="hov-menu-sty">
 										<figure>
-											<a href="#"><img src="images/mockup-webinontech_05.png" class="img-fluid"> </a>
+											<a href="#"><img src="{{asset('images/EP_LTF.png')}}" class="img-fluid"> </a>
 										</figure>
 									</div>
 								</div>
-								<div class="detail_nav"> กองทุนเปิดอิควิตี้โปร หุ้นระยะยาว
+								<div class="detail_nav"> กองทุนรวมหุ้นระยะยาว (LTF)
 									<br> ณ วันที่ xx/xx/xxxx </div>
 								<div class="table_nav">
 									<table class="table table-bordered tablenavstyle">
@@ -795,77 +853,43 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="btn_first"> <a href="#" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-							<div class="box_nav">
-								<div class="head_nav"> S-EQRMF </div>
-								<div class="pic_nav">
-									<div class="hov-menu-sty">
-										<figure>
-											<a href="#"><img src="images/mockup-webinontech_07.png" class="img-fluid"> </a>
-										</figure>
-									</div>
-								</div>
-								<div class="detail_nav"> กองทุนเปิดอิควิตี้โปร หุ้นระยะยาว
-									<br> ณ วันที่ xx/xx/xxxx </div>
-								<div class="table_nav">
-									<table class="table table-bordered tablenavstyle">
-										<thead>
-											<tr>
-												<td>มูลค่าหน่วยลงทุน</td>
-												<th>10.500</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">+0.15</span></td>
-											</tr>
-											<tr>
-												<td>+1.50%</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="btn_first"> <a href="#" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
+								<div class="btn_first"> <a href="{{url('/funds_seqrmf')}}" class="btn btn-primary" target="_blank">ดูข้อมูลเพิ่มเติม</a> </div>
 							</div>
 						</div>
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
 							<div class="box_nav">
-								<div class="head_nav"> EP-AI </div>
+								<div class="head_nav"> &nbsp; </div>
 								<div class="pic_nav">
 									<div class="hov-menu-sty">
 										<figure>
-											<a href="#"><img src="images/mockup-webinontech_14.png" class="img-fluid"> </a>
+											<a href="#"><img src="{{asset('images/Ep_LTF3.png')}}" class="img-fluid"> </a>
 										</figure>
 									</div>
 								</div>
-								<div class="detail_nav"> กองทุนเปิดอิควิตี้โปร หุ้นระยะยาว
-									<br> ณ วันที่ xx/xx/xxxx </div>
+								<div class="detail_nav"> &nbsp;<br>&nbsp;</div>
 								<div class="table_nav">
 									<table class="table table-bordered tablenavstyle">
 										<thead>
 											<tr>
 												<td>มูลค่าหน่วยลงทุน</td>
-												<th>10.500</th>
+												<th>0</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">+0.15</span></td>
+												<td><span class="greentext">0</span></td>
 											</tr>
 											<tr>
-												<td>+1.50%</td>
+												<td>0</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
-								<div class="btn_first"> <a href="#" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
+								<div class="btn_first"> <a href="{{url('/funds_seqrmf')}}" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
 							</div>
 						</div>
+<!--
 						<div class="col-md-6 col-lg-4 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
 							<div class="box_nav">
 								<div class="head_nav"> EP-LTF </div>
@@ -968,6 +992,8 @@
 								<div class="btn_first"> <a href="#" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
 							</div>
 						</div>
+						
+-->
 					</div>
 					<div class="row wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.5s">
 						<div class="col">
@@ -994,44 +1020,44 @@
 						<div class="col">
 						<label class="mt-3">เลือกกองทุน</label>
 						 <select id="selectbasic" name="selectbasic" class="form-control select_set">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-							<script src="//www.chartjs.org/dist/master/Chart.min.js"></script>
-							<canvas id="myChart"  height="100"></canvas>
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [5, 10, 9, 15, 13, 17],
-            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-			borderColor: 'rgba(255, 159, 64,1 )',
-            borderWidth: 2,
-			lineTension :0.000001,
-        },{
-            label: '# of Votes',
-            data: [7, 13, 14, 17, 15, 22],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 2,
-			lineTension :0.000001,
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
+							<option value="1">Option one</option>
+							<option value="2">Option two</option>
+						</select>
+						<script src="//www.chartjs.org/dist/master/Chart.min.js"></script>
+						<canvas id="myChart"  height="100"></canvas>
+						<script>
+								var ctx = document.getElementById('myChart').getContext('2d');
+								var myChart = new Chart(ctx, {
+									type: 'line',
+									data: {
+										labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+										datasets: [{
+											label: '# of Votes',
+											data: [5, 10, 9, 15, 13, 17],
+											backgroundColor: 'rgba(255, 159, 64, 0.2)',
+											borderColor: 'rgba(255, 159, 64,1 )',
+											borderWidth: 2,
+											lineTension :0.000001,
+										},{
+											label: '# of Votes',
+											data: [7, 13, 14, 17, 15, 22],
+											backgroundColor: 'rgba(255, 99, 132, 0.2)',
+											borderColor: 'rgba(255, 99, 132, 1)',
+											borderWidth: 2,
+											lineTension :0.000001,
+										}]
+									},
+									options: {
+										scales: {
+											yAxes: [{
+												ticks: {
+													beginAtZero: true
+												}
+											}]
+										}
+									}
+								});
+						</script>
 							
 						</div>
 					</div>
@@ -1136,10 +1162,10 @@ var myChart = new Chart(ctx, {
 					<div class="row">
 						<div class="col  wow fadeInUp" data-wow-duration="1.1s" data-wow-delay="0.4s">
 							<div class="text_detail">
-								<h2>คำเตือน</h2>
-								<?php foreach ($warning as $_warning) {
-									echo '<li>'.$_warning->name_th.'</li>'; 
-								} ?>
+								<h2>{{trans('messages.warning')}}</h2>
+								@foreach ($warning as $k_warning => $v_warning)
+								 <li>{!!($warning[$k_warning]['name_'.$lang])!!}</li>
+								@endforeach
 							</div>
 						</div>
 					</div>
@@ -1156,24 +1182,30 @@ var myChart = new Chart(ctx, {
 				<div class="row mt-3 mb-5">
 					<div class="col  wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.1s">
 						<div class="inno_update owl-carousel owl-theme">
-							@foreach($information as $_information) 
-								@if(isset($_information->photo) && $_information->photo)
+							@foreach($information as $_information => $value_information) 
+							
 									<div class="item">
 										<div class="box_nav">
 											<div class="pic_nav">
 												<div class="hov-menu-sty2">
 													<figure>
-														<a href="{{$_information->id}}"><img src="{{asset('uploads/Information/'.$_information->photo)}}" class="img-fluid"> </a>
+														@php
+															$photo = json_decode($value_information->photo, true)
+														@endphp
+														@if(isset($photo) && $photo)
+															<a href="{{url('newsinside/'.$value_information->id)}}"><img src="{{asset('uploads/Information/'.$photo[0])}}" class="img-fluid"> </a>
+														@endif
 													</figure>
 												</div>
 											</div>
-											<div class="inno_details"><?php echo '<p>'.$_information->title_th.'</p>' ?></div> 
-											<a href="{{url('news/'.$_information->id)}}" class="readmore">เพิ่มเติม</a> 
+									
+											<div class="inno_details">{{($information[$_information]['title_'.$lang])}}</div> 
+											<a href="{{url('newsinside/'.$value_information->id)}}" class="readmore">{{trans('messages.read_more')}}</a> 
 										</div>
 									</div>
-								@endif
+								
 							@endforeach
-							
+						
 							<!-- <div class="item">
 								<div class="box_nav">
 									<div class="pic_nav">
@@ -1254,7 +1286,7 @@ var myChart = new Chart(ctx, {
 					    <div class="btn_popup">
 					    
 						    <button type="button" class="btn btn-info" data-dismiss="modal">ปฎิเสธ</button>
-        <button type="button" class="btn btn-info" data-dismiss="modal">ยอมรับ</button>
+        					<button type="button" class="btn btn-info" data-dismiss="modal">ยอมรับ</button>
 			
 					    </div>
 					</div>

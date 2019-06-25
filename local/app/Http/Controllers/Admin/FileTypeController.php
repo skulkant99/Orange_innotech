@@ -15,10 +15,10 @@ class FileTypeController extends Controller
      */
     public function index()
     {
-        $data['main_menu'] = 'document';
+        $data['main_menu'] = 'GroupMenu';
         $data['sub_menu'] = 'FileType';
         $data['title'] = 'FileType';
-        $data['title_page'] = 'FileType';
+        $data['title_page'] = 'เอกสารเผยแพร่และประกาศบริษัท';
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
         
         return view('Admin.file_type',$data);
@@ -53,7 +53,7 @@ class FileTypeController extends Controller
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name_th' => 'required',
              
         ]);
         if (!$validator->fails()) {
@@ -118,7 +118,7 @@ class FileTypeController extends Controller
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name_th' => 'required',
              
         ]);
         if (!$validator->fails()) {
@@ -176,18 +176,21 @@ class FileTypeController extends Controller
                 return $rec->sort_id;
             }
         })
+        ->editColumn('status',function($rec){
+            if($rec->status == 1){
+                return $status = '<span class="badge badge-success">เปิดใช้งาน</span>';
+            }else {
+                return $status = '<span class="badge badge-danger">ปิดใช้งาน</span>';
+            }
+        })
         
         ->addColumn('action',function($rec){
             $str='
-                <a href="'.url('admin/FileType/FundType/'.$rec->id).'" data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-success btn-condensed btn-select btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="เพิ่มหัวข้อกองทุน">
-                    <i class="ace-icon fa fa-plus bigger-120"></i>
+                <a href="'.url('admin/FileType/FundType/'.$rec->id).'"  class="btn btn-simple btn-success btn-icon plus  btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="เพิ่มหัวข้อกองทุน">
+                    <i class="ti-plus"></i>
                 </a>
-                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
-                    <i class="ace-icon fa fa-edit bigger-120"></i>
-                </button>
-                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
-                    <i class="ace-icon fa fa-trash bigger-120"></i>
-                </button>
+                <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+                <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
             ';
             return $str;
         })->make(true);

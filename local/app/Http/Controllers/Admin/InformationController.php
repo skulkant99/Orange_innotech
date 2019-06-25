@@ -42,14 +42,19 @@ class InformationController extends Controller
     public function store(Request $request)
     {
         $input_all = $request->all();  
+        $file_name = [];
 
-        if(isset($input_all['photo'])&&isset($input_all['photo'][0])){
-            $input_all['photo'] = $input_all['photo'][0];
-            if(Storage::disk("uploads")->exists("temp/".$input_all['photo'])&&!Storage::disk("uploads")->exists("Information/".$input_all['photo'])){
-                Storage::disk("uploads")->copy("temp/".$input_all['photo'],"Information/".$input_all['photo']);
-                Storage::disk("uploads")->delete("temp/".$input_all['photo']);
+        if(isset($input_all['photo'])){
+            foreach($input_all['photo'] as $key=>$val){
+                //$input_all['photo'] = $input_all['photo'][$key];
+                if(Storage::disk("uploads")->exists("temp/".$input_all['photo'][$key])&&!Storage::disk("uploads")->exists("Information/".$input_all['photo'][$key])){
+                    Storage::disk("uploads")->copy("temp/".$input_all['photo'][$key],"Information/".$input_all['photo'][$key]);
+                    Storage::disk("uploads")->delete("temp/".$input_all['photo'][$key]);
+                    $file_name[] = $input_all['photo'][$key];
+                }
             }
         }
+        $input_all['photo'] = json_encode($file_name);
 
         $input_all['created_at'] = date('Y-m-d H:i:s');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
@@ -86,16 +91,23 @@ class InformationController extends Controller
     public function show($id)
     {
         $result = \App\Models\Information::find($id);
+          
             if($result){
                 if($result->photo){
-                    if(Storage::disk("uploads")->exists("Information/".$result->photo)){
-                        if(Storage::disk("uploads")->exists("temp/".$result->photo)){
-                            Storage::disk("uploads")->delete("temp/".$result->photo);
+                    $photos = json_decode($result->photo);
+                    if(sizeof($photos) > 0){
+                        foreach($photos as $photo){
+                            if(Storage::disk("uploads")->exists("Information/".$photo)){
+                                if(Storage::disk("uploads")->exists("temp/".$photo)){
+                                    Storage::disk("uploads")->delete("temp/".$photo);
+                                }
+                                Storage::disk("uploads")->copy("Information/".$photo,"temp/".$photo);
+                            }
                         }
-                        Storage::disk("uploads")->copy("Information/".$result->photo,"temp/".$result->photo);
                     }
                 }
             }
+        
     
         return json_encode($result);
     }
@@ -122,22 +134,24 @@ class InformationController extends Controller
     {
         $input_all = $request->all();
 
-        if(isset($input_all['photo'])&&isset($input_all['photo'][0])){
-            $input_all['photo'] = $input_all['photo'][0];
-            if(Storage::disk("uploads")->exists("temp/".$input_all['photo'])){
-                if(Storage::disk("uploads")->exists("Information/".$input_all['photo'])){
-                    Storage::disk("uploads")->delete("Information/".$input_all['photo']);
+        $file_name = [];
+        if(isset($input_all['photo'])){
+            //$input_all['photo'] = $input_all['photo'][0];
+            //unset($input_all['org_photo']);
+            foreach($input_all['photo'] as $key=>$val){
+                if(Storage::disk("uploads")->exists("temp/".$input_all['photo'][$key])&&!Storage::disk("uploads")->exists("Information/".$input_all['photo'][$key])){
+                    Storage::disk("uploads")->copy("temp/".$input_all['photo'][$key],"Information/".$input_all['photo'][$key]);
+                    Storage::disk("uploads")->delete("temp/".$input_all['photo'][$key]);
                 }
-                Storage::disk("uploads")->copy("temp/".$input_all['photo'],"Information/".$input_all['photo']);
-
+                $file_name[] = $input_all['photo'][$key];
             }
-        }else{
-            $input_all['photo'] = null;
         }
         if(isset($input_all['org_photo'])){
             Storage::disk("uploads")->delete("temp/".$input_all['org_photo']);
         }
         unset($input_all['org_photo']);
+        $input_all['photo'] = json_encode($file_name);
+
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
@@ -192,26 +206,26 @@ class InformationController extends Controller
         ->addIndexColumn()
         ->editColumn('status',function($rec){
             if($rec->status == 1){
-                return $status = '<span class="label label-success">เปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-success">เปิดใช้งาน</span>';
             }else {
-                return $status = '<span class="label label-danger">ปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-danger">ปิดใช้งาน</span>';
             }
         })
+        
         ->editColumn('photo',function($rec){
             if($rec->photo == null){
                 return $photo = ' <img src="'.asset('uploads/Information/nophoto.png').'" class="image-full image-btn" width="50%" height="50%" alt="innothect"/>';
             }else {
-                return $photo = ' <img src="'.asset('uploads/Information/'.$rec->photo).'" class="image-full image-btn" width="50%" height="50%" alt="innothect"/>';
+                foreach(json_decode($rec->photo) as $rec->photo){
+                    return $photo = ' <img src="'.asset('uploads/Information/'.$rec->photo).'" class="image-full image-btn" width="50%" height="50%" alt="innothect"/>';
+                    break;
+                }
             }
-        })
+        }) 
         ->addColumn('action',function($rec){
             $str='
-                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
-                    <i class="ace-icon fa fa-edit bigger-120"></i>
-                </button>
-                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
-                    <i class="ace-icon fa fa-trash bigger-120"></i>
-                </button>
+            <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+            <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
             ';
             return $str;
         })->make(true);  

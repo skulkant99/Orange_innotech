@@ -23,9 +23,9 @@
                                     <thead>
                                         <tr>
                                         <th>#</th>
-                                        <th>name</th>
-                                        <th>sort_id</th>
-                                        <th>status</th>
+                                        <th>ชื่อ</th>
+                                        <th>ลำดับ</th>
+                                        <th>สถานะ</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -52,18 +52,23 @@
                 <div class="modal-body">
                     
                 <div class="form-group">
-                    <label for="add_name">name</label>
-                    <input type="text" class="form-control" name="name" id="add_name" required="" placeholder="name">
+                    <label for="add_name">ชื่อ(TH)</label>
+                    <input type="text" class="form-control" name="name_th" id="add_name_th" required="" placeholder="name_th">
+                </div>
+
+                <div class="form-group">
+                    <label for="add_name">ชื่อ(EN)</label>
+                    <input type="text" class="form-control" name="name_en" id="add_name_en" required="" placeholder="name_en">
                 </div>
         
                 <div class="form-group">
-                    <label for="add_sort_id">sort_id</label>
+                    <label for="add_sort_id">ลำดับ</label>
                     <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="sort_id">
                 </div>
         
                 <div class="form-check">
                     <label for="add_status" class="checkbox form-check-label">
-                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> status
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> เปิดใช้งาน
                     </label>
                 </div>
         
@@ -88,18 +93,23 @@
                 <div class="modal-body">
                     
                 <div class="form-group">
-                    <label for="edit_name">name</label>
-                    <input type="text" class="form-control" name="name" id="edit_name" required="" placeholder="name">
+                    <label for="edit_name">ชื่อ(TH)</label>
+                    <input type="text" class="form-control" name="name_th" id="edit_name_th" required="" placeholder="name_th">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit_name">ชื่อ(EN)</label>
+                    <input type="text" class="form-control" name="name_en" id="edit_name_en" required="" placeholder="name_en">
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_sort_id">sort_id</label>
+                    <label for="edit_sort_id">ลำดับ</label>
                     <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="sort_id">
                 </div>
         
                 <div class="form-check">
                     <label for="edit_status" class="checkbox form-check-label">
-                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> status
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> เปิดใช้งาน
                     </label>
                 </div>
         
@@ -128,7 +138,7 @@
         },
         "columns": [
             {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-            {"data" : "name"},
+            {"data" : "name_th"},
             {"data" : "sort_id"},
             {"data" : "status"},
             { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -147,7 +157,8 @@
             url : url_gb+"/admin/FundType/"+id,
             dataType : 'json'
         }).done(function(rec){
-            $('#edit_name').val(rec.name);
+            $('#edit_name_th').val(rec.name_th);
+            $('#edit_name_en').val(rec.name_en);
             $('#edit_sort_id').val(rec.sort_id);
             if(rec.status=='1'){
                 $('#edit_status').prop('checked','checked').closest('label').addClass('checked');
@@ -169,13 +180,13 @@
         focusInvalid: false,
         rules: {
             
-            name: {
+            name_th: {
                 required: true,
             },
         },
         messages: {
             
-            name: {
+            name_th: {
                 required: "กรุณาระบุ",
             },
         },
@@ -231,13 +242,13 @@
         focusInvalid: false,
         rules: {
             
-            name: {
+            name_th: {
                 required: true,
             },
         },
         messages: {
             
-            name: {
+            name_th: {
                 required: "กรุณาระบุ",
             },
         },

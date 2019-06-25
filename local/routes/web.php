@@ -14,30 +14,24 @@
 // Route::get('/', function () {
 //     return view('index');
 // });
+
 Route::get('/','HomeController@index');
+
+Route::get('lang/{locale}', 'LocaleController@lang');
 
 Route::get('/news','NewsController@index');
 Route::get('/newsinside/{id}','NewsController@detail');
 
 Route::get('/contact','ContactController@index');
+Route::post('AddContact','ContactController@store');
 
 Route::get('/downloadform','FileFormController@index');
 
 Route::get('/downloadreport','FileReportController@report');
 Route::get('/downloadinside/{id}','FileReportController@detail');
 
+Route::get('/privatefunds', 'FundInformationController@index');
 
-
-Route::get('/privatefunds', function () {
-    $data['category'] = \App\Models\Category::where('status','=','1')
-            ->select('categories.*')
-            ->orderBy('sort_id','ASC')
-            ->get();
-    $data['contact'] = \App\Models\Contact::where('status','=','1')
-            ->select('contacts.*')
-            ->get();
-    return view('private_fund',$data);
-});
 Route::get('/mutualfunds', function () {
         $data['category'] = \App\Models\Category::where('status','=','1')
                 ->select('categories.*')
@@ -48,16 +42,7 @@ Route::get('/mutualfunds', function () {
                 ->get();
         return view('mutual_funds',$data);
 });
-Route::get('/fundsepltf', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('funds_epltf',$data);
-});
+Route::get('/fundsepltf', 'FundInformationController@fundsepltf');
 Route::get('/fundsprice', function () {
     $data['category'] = \App\Models\Category::where('status','=','1')
             ->select('categories.*')
@@ -69,16 +54,6 @@ Route::get('/fundsprice', function () {
     return view('funds_price',$data);
 });
 Route::get('/funds_perf', function () {
-    $data['category'] = \App\Models\Category::where('status','=','1')
-            ->select('categories.*')
-            ->orderBy('sort_id','ASC')
-            ->get();
-    $data['contact'] = \App\Models\Contact::where('status','=','1')
-            ->select('contacts.*')
-            ->get();
-    return view('funds_performance',$data);
-});
-Route::get('/transaction', function () {
         $data['category'] = \App\Models\Category::where('status','=','1')
                 ->select('categories.*')
                 ->orderBy('sort_id','ASC')
@@ -86,38 +61,14 @@ Route::get('/transaction', function () {
         $data['contact'] = \App\Models\Contact::where('status','=','1')
                 ->select('contacts.*')
                 ->get();
-        return view('transaction',$data);
+        return view('funds_performance',$data);
 });
-Route::get('/economic', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('economic',$data);
-});
-Route::get('/knowledge', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('knowledge',$data);
-});
-Route::get('/about', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('about',$data);
-});
+Route::get('/funds_seqrmf','FundInformationController@fundsseqrmf');
+Route::get('/transaction', 'TransactionController@index');
+Route::get('/economic','EconomicsController@index');
+Route::get('/knowledge','KnowledgeController@index');
+Route::get('/knowledge/inside/{id}','KnowledgeController@detail');
+Route::get('/about', 'AboutController@index');
 Route::get('/reportfunds', function () {
         $data['category'] = \App\Models\Category::where('status','=','1')
                 ->select('categories.*')
@@ -128,34 +79,7 @@ Route::get('/reportfunds', function () {
                 ->get();
         return view('report_funds',$data);
 });
-Route::get('/calendar', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('calendar',$data);
-});
-Route::get('/statusupdate', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('status_update',$data);
-});
-Route::get('/faq', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('faq',$data);
-});
+Route::get('/calendar', 'CalendarController@index');
+Route::get('/statusupdate','DebtController@index');
+Route::get('/faq', 'QuestionController@index');
 

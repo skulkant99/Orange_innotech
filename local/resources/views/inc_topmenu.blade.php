@@ -1,3 +1,4 @@
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"></html>
 <link rel="stylesheet" href="{{asset('side-shopping-cart/css/style.css')}}">
 <script src="{{asset('side-shopping-cart/js/modernizr.js')}}"></script>
 <script src="{{asset('side-shopping-cart/js/main.js')}}"></script>
@@ -220,20 +221,21 @@
 	}
 </style>
 
+
 <div class="topbg">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
 				<div class="sideright_top">
-					<li><a href="#">ลงทะเบียน | เข้าสู่ระบบ</a></li>
+					<li><a href="#">{{trans('messages.register')}} | {{trans('messages.login')}}</a></li>
 					<li>
 						<div class="search-container d-none d-sm-none d-md-none d-lg-block d-xl-block">
-							<input type="text" id="search-bar" placeholder="Search.."> <a href="#"><i class="fa fa-search search-icon"></i></a> </div>
+							<input type="text" id="search-bar" placeholder="{{trans('messages.search')}}.."> <a href="#"><i class="fa fa-search search-icon"></i></a> </div>
 					</li>
 					<li><div class="langselect d-block d-sm-block d-md-block d-lg-none d-xl-none">
-								<a href="#"><img src="{{asset('images/icon_home.png')}}"></a>
-								<a href="#"><img src="{{asset('images/th.png')}}"></a>
-								<a href="#"><img src="{{asset('images/en.png')}}"></a>
+								<a href="{{url('/')}}"><img src="{{asset('images/icon_home.png')}}"></a>
+								<a href="{{url('lang/th')}}"><img src="{{asset('images/th.png')}}"></a>
+								<a href="{{url('lang/en')}}"><img src="{{asset('images/en.png')}}"></a>
 							</div></li>
 				</div>
 			</div>
@@ -254,25 +256,25 @@
 					<div class="mainmenu">
 						<nav>
 							<ul class='menutop' id='mainmenu'>
-							<li data-page="home"><a href="{{url('/')}}">หน้าหลัก</a></li>
-								<li class='menutop' data-page="funds"><a href='#' title='funds'>กองทุน</a>
+							<li data-page="home"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+								<li class='menutop' data-page="funds"><a href='#' title='funds'>{{trans('messages.fund')}}</a>
 									<ul class="dropdownmain">
-										<li><a href="{{url('/privatefunds')}}">กองทุนส่วบุคคล</a></li>
-										<li><a href="{{url('/')}}">กองทุนรวม</a></li>
+										<li><a href="{{url('/privatefunds')}}">{{trans('messages.privatefunds')}}</a></li>
+										<li><a href="{{url('/mutualfunds')}}">{{trans('messages.mutualfunds')}}</a></li>
 										
 									</ul>
 								</li>
-								<li data-page="fundsprice"><a href="{{url('/fundsprice')}}">มูลค่าหน่วยลงทุน</a></li>
-								<li data-page="funds_perf"><a href="{{url('/funds_perf')}}">ผลการดำเนินงาน</a></li>
-								<li data-page="trans"><a href="{{url('/transaction')}}">ทำรายการ </a></li>
-								<li data-page="news"><a href="{{url('/news')}}">ข้อมูลข่าวสาร</a></li>
-								<li data-page="abt"><a href="{{url('/about')}}">เกี่ยวกับเรา </a></li>
-								<li data-page="contact"><a href="{{url('/contact')}}">ติดต่อเรา </a></li>
+								<li data-page="fundsprice"><a href="{{url('/fundsprice')}}">{{trans('messages.nav')}}</a></li>
+								<li data-page="funds_perf"><a href="{{url('/funds_perf')}}">{{trans('messages.performance')}}</a></li>
+								<li data-page="trans"><a href="{{url('/transaction')}}">{{trans('messages.tran')}} </a></li>
+								<li data-page="news"><a href="{{url('/news')}}">{{trans('messages.news')}}</a></li>
+								<li data-page="abt"><a href="{{url('/about')}}">{{trans('messages.about')}} </a></li>
+								<li data-page="contact"><a href="{{url('/contact')}}">{{trans('messages.contact')}}</a></li>
 								<li class="langcrop">
 									<div class="langselect">
 										<a href="{{url('/')}}"><img src="{{asset('images/home.png')}}"></a>
-										<a href="#"><img src="{{asset('images/th.png')}}"></a>
-										<a href="#"><img src="{{asset('images/en.png')}}"></a>
+										<a href="{{url('lang/th')}}"><img src="{{asset('images/th.png')}}"></a>
+										<a href="{{url('lang/en')}}"><img src="{{asset('images/en.png')}}"></a>
 									</div>
 								</li>
 							</ul>
@@ -300,28 +302,28 @@
 			<div class="menu-m padd">
 				<ul class="menumobile">
 					<li>
-						<div class="mmmbg-0"><a href="{{url('/')}}"> หน้าแรก</a></div>
+						<div class="mmmbg-0"><a href="{{url('/')}}"> {{trans('messages.home')}}</a></div>
 					</li>
 					<li class="click_second_nav" rel="1">
-						<div class="mmmbg-1"><a href="#"> กองทุน
+						<div class="mmmbg-1"><a href="#"> {{trans('messages.fund')}}
                </a></div> <span class="arrr"><i class="fas fa-angle-right"></i></span> </li>
 					<li>
-						<div class="mmmbg-0"><a href="{{url('/fundsprice')}}"> มูลค่าหน่วยลงทุน</a></div>
+						<div class="mmmbg-0"><a href="{{url('/fundsprice')}}"> {{trans('messages.nav')}}</a></div>
 					</li>
 					<li>
-						<div class="mmmbg-0"><a href="{{url('/funds_perf')}}"> ผลการดำเนินงาน</a></div>
+						<div class="mmmbg-0"><a href="{{url('/funds_perf')}}"> {{trans('messages.performance')}}</a></div>
 					</li>
 					<li>
-						<div class="mmmbg-0"><a href="transaction.php">  ทำรายการ</a></div>
+						<div class="mmmbg-0"><a href="{{url('/transaction')}}">  {{trans('messages.tran')}}</a></div>
 					</li>
 					<li>
-						<div class="mmmbg-0"><a href="{{url('/news')}}">  ข้อมูลข่าวสาร</a></div>
+						<div class="mmmbg-0"><a href="{{url('/news')}}">  {{trans('messages.news')}}</a></div>
 					</li>
 					<li>
-						<div class="mmmbg-0"><a href="{{url('/about')}}">  เกี่ยวกับเรา</a></div>
+						<div class="mmmbg-0"><a href="{{url('/about')}}">  {{trans('messages.about')}}</a></div>
 					</li>
 					<li>
-						<div class="mmmbg-0"><a href="{{url('/contact')}}">   ติดต่อเรา</a></div>
+						<div class="mmmbg-0"><a href="{{url('/contact')}}">   {{trans('messages.contact')}}</a></div>
 					</li>
 				</ul>
 			</div>
@@ -334,8 +336,8 @@
          </span> กลับ </div>
 				</div>
 				<ul class="menumobile">
-					<li><a href="{{url('/privatefunds')}}">กองทุนส่วบุคคล</a></li>
-										<li><a href="{{url('/')}}">กองทุนรวม</a></li>
+					<li><a href="{{url('/privatefunds')}}">{{trans('messages.privatefunds')}}</a></li>
+					<li><a href="{{url('/mutualfunds')}}">{{trans('messages.mutualfunds')}}</a></li>
 				</ul>
 			</div>
 		</nav>

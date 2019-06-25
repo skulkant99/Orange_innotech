@@ -13,8 +13,11 @@
     <meta name="viewport" content="width=device-width">
 
     <!-- Bootstrap core CSS     -->
+
     <link href="{{asset('assets/admin/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/admin/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+
+
 
     @yield('css_top')
     <!--  Material Dashboard CSS    -->
@@ -34,7 +37,9 @@
     <link rel="stylesheet" href="{{asset('assets/global/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/global/plugins/bootstrap-daterangepicker-master/daterangepicker.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/global/plugins/select2/css/select2.css')}}" />
-    <link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet"> --}}
+   
+ 
     @yield('css_bottom')
 </head>
 
@@ -56,7 +61,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarItems">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="dropdown">
+                        {{-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle nav-link" id="notificationList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-bell nav-icon"></i>
                                 <span class="notification">6</span>
@@ -79,19 +84,19 @@
                                 <i class="ti-layout-grid3-alt nav-icon"></i>
                                 <p class="hidden-lg-up">Apps</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="#pablo" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                 <i class="ti-user nav-icon"></i>
                                 <p class="hidden-lg-up">Profile</p>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#pablo" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                 <i class="ti-settings nav-icon"></i>
                                 <p class="hidden-lg-up">Settings</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="separator hidden-lg-up"></li>
                     </ul>
                 </div>
@@ -135,6 +140,9 @@
     <script src="{{asset('assets/admin/vendors/charts/flot/jquery.flot.categories.js')}}"></script>
     <script src="{{asset('assets/admin/vendors/charts/chartjs/Chart.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/admin/vendors/jquery.sparkline.min.js')}}"></script>
+
+    <!--datepicker thai -->
+  
 
     <!--  Plugin for the Wizard -->
     <script src="{{asset('assets/admin/vendors/jquery.bootstrap-wizard.js')}}"></script>

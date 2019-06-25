@@ -6,15 +6,27 @@
 </head>
 
 <body>
+		@php
+			$lang = "";
+			if (session()->get('locale') == null){
+				$lang = "th";
+			}elseif (session()->get('locale') == "th") {
+				$lang = "th";
+			}elseif(session()->get('locale') == "en"){
+				$lang = "en";
+			}		
+		@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก </a></li>
-							<li class="breadcrumb-item"><a href="#"> เรื่องน่ารู้เกี่ยวกับการลงทุน   </a></li>
-							<li class="breadcrumb-item active" aria-current="page">ข่าวประชาสัมพันธ์ บริษัท เนชั่น มัลติมีเดีย กรุ๊ป จำกัด (มหาชน) หรือ NMG</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/knowledge')}}"> {{trans('messages.knowledge')}} </a></li>
+							@foreach ($knowledge_detail as $k_knowledge_detail => $v_knowledge_detail)
+								<li class="breadcrumb-item active" aria-current="page">{{$knowledge_detail[$k_knowledge_detail]['title_'.$lang]}}</li>	
+							@endforeach
 						</ol>
 					</nav>
 				</div>
@@ -23,38 +35,39 @@
 		<div class="container-fluid">
 			<div class="row mt-5">
 				<div class="col">
-					<div class="title_news_inside">
-						<h2>ข่าวประชาสัมพันธ์ บริษัท เนชั่น มัลติมีเดีย กรุ๊ป จำกัด (มหาชน) หรือ NMG</h2>
-						<p>17/10/2016</p>
-						<hr> </div>
+					@foreach ($knowledge_detail as $k_knowledge_detail => $v_knowledge_detail)
+						<div class="title_news_inside">
+							<h2>{{$knowledge_detail[$k_knowledge_detail]['title_'.$lang]}}</h2>
+							@php
+									$date_create = substr($v_knowledge_detail->updated_at,0,-8);
+									$date_create_edit = explode('-', $date_create);
+									$month = $date_create_edit[1];
+									$day   = $date_create_edit[2];
+									$year  = $date_create_edit[0]; 
+							@endphp
+							<p>{{$day.'/'.$month.'/'.$year}}</p>
+							<hr> 
+						</div>
+					@endforeach
 				</div>
 			</div>
 			<div class="container">
 					<div class="row">
 				<div class="col">
-					<div class="news_detail_inside">
-						<img src="images/news_inside_03.png" class="img-fluid">
-						<br><br>
-						<p>
-							ประธานกรรมการ บริษัท เนชั่น มัลติมีเดีย กรุ๊ป จำกัด (มหาชน) มารุต อรรถไกวัลวที บอกว่า จากการประชุมคณะกรรมการวานนี้ (19 ธ.ค.) ที่ประชุมมีมติสำคัญเกี่ยวกับการจำหน่ายสินทรัพย์ของบริษัทเพื่อปรับโครงสร้างธุรกิจ
-<br><br>
-โดยจะจำหน่ายสินทรัพย์ในบริษัทและอสังหาริมทรัพย์ 5 สินทรัพย์ คือ <br>
-<br>
-1. ขายหุ้นสามัญ บริษัท เนชั่นยู จำกัด 30,599,999 หุ้น หรือ 90% ของหุ้นทั้งหมด
-<br>
-2. ขายหุ้น แบงคอก บิสสิเนส บรอดแคสติ้ง จำกัด หรือ BBB บริษัทย่อยผู้ถือใบอนุญาตดำเนินธุรกิจช่องทีวีดิจิทัล นาว 26 จำนวน 149,900,002 หุ้น
-<br>
-3. ขายหุ้นบริษัท ดับบลิวพีเอส (ประเทศไทย) จำกัด WPS บริษัทย่อยประกอบธุรกิจด้านการพิมพ์ 42,250,000 หุ้น หรือ 84.5% ของหุ้นทั้งหมด
-<br>
-4. ขายหุ้น บริษัท เอ็นเอ็มแอล จำกัด บริษัทย่อยทำธุรกิจด้านการบริการขนส่ง หรือ NML จำนวน 4,999,998 หุ้น หรือ 99%
-<br>
-5. ที่ดินและสิ่งปลูกสร้างของบริษัท ที่เดิมใช้เป็นที่ตั้งสำนักงานสาขาของบริษัท และที่ดินเปล่า 5 แห่ง
-<br>
-โดยการจำหน่ายสินทรัพย์ในแต่ละธุรกิจ จะไม่ส่งผลกระทบต่อการดำเนินงานในอนาคตของกลุ่มบริษัท โดยเฉพาะธุรกิจมหาวิทยาลัย การพิมพ์ และการบริการขนส่ง ที่ไม่ใช่ธุรกิจหลัก
-<br>
-ส่วนการจำหน่ายสินทรัพย์ ทีวีช่องนาว 26 เพื่อเป็นการลดภาระด้านเงินทุนและรายจ่ายของบริษัทให้อยู่ในระดับที่เหมาะสม พร้อมดำเนินธุรกิจหลักให้แข็งแกร่งต่อไปในอนาคต
-						</p>
-					</div>
+					@foreach ($knowledge_detail as $k_knowledge_detail => $v_knowledge_detail)
+						<div class="news_detail_inside">
+								@php
+									$photo = json_decode($v_knowledge_detail->photo, true)
+								@endphp
+								@if (isset($photo) && $photo)
+									<img src="{{asset('uploads/News/'.$photo[1])}}" class="img-fluid">	
+								@endif
+							<br><br>
+							<p>
+								{!!($knowledge_detail[$k_knowledge_detail]['detail_'.$lang])!!}
+							</p>
+						</div>
+					@endforeach
 				</div>
 			</div>
 		

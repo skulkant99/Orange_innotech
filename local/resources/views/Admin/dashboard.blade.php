@@ -119,8 +119,8 @@
                                               <tr>
                                                   <td>
                                                       <label class="checkbox">
-                            <input type="checkbox" value="" data-toggle="checkbox">
-                          </label>
+                                                        <input type="checkbox" value="" data-toggle="checkbox">
+                                                    </label>
                                                   </td>
                                                   <td>abcd.com</td>
                                                   <td><span class="badge badge-success">Active</span></td>

@@ -130,29 +130,29 @@
 		 <div class="col-lg-3  wow fadeInLeft" data-wow-duration="1.1s" data-wow-delay="0.1s">
 			 <div class="footermenugroup">
 				 <ul>
-					 <li><a href="{{url('/')}}">หน้าหลัก</a></li>
-				 	 <li><a href="{{url('/mutualfunds')}}">กองทุนรวม</a></li>
-				 	 <li><a href="{{url('/privatefunds')}}">กองทุนส่วนบุคคล</a></li>
-				 	 <li><a href="{{url('/fundsprice')}}">มูลค่าหน่วยลงทุน</a></li>
-				 	 <li><a href="{{url('/funds_perf')}}">ผลการดำเนินงาน</a></li>
-					 <li><a href="{{url('/transaction')}}">ทำรายการ</a></li>
-					 <li><a href="{{url('/about')}}">เกี่ยวกับเรา</a></li>
-				 	 <li><a href="{{url('/contact')}}">ติดต่อเรา</a></li>
+					 <li><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+				 	 <li><a href="{{url('/mutualfunds')}}">{{trans('messages.privatefunds')}}</a></li>
+				 	 <li><a href="{{url('/privatefunds')}}">{{trans('messages.mutualfunds')}}</a></li>
+				 	 <li><a href="{{url('/fundsprice')}}">{{trans('messages.nav')}}</a></li>
+				 	 <li><a href="{{url('/funds_perf')}}">{{trans('messages.performance')}}</a></li>
+					 <li><a href="{{url('/transaction')}}">{{trans('messages.tran')}} </a></li>
+					 <li><a href="{{url('/about')}}">{{trans('messages.about')}}</a></li>
+				 	 <li><a href="{{url('/contact')}}">{{trans('messages.contact')}}</a></li>
 				 </ul>
 			 </div>
 		 </div>
 		 <div class="col-lg-5  wow fadeInUp" data-wow-duration="1.1s" data-wow-delay="0.2s">
 			 <div class="footermenugroup">
 				 <ul>
-				 	<li><a href="{{url('/economic')}}">ข้อมูลเศรษฐกิจและภาวะตลาดการเงิน</a></li>
-					 <li><a href="{{url('/knowledge')}}">เรื่องน่ารู้เกี่ยวกับการลงทุน</a></li>
-				 	 <li><a href="{{url('/downloadreport')}}">เอกสารเผยแพร่และประกาศบริษัท</a></li>
-					 <li><a href="{{url('/reportfunds')}}">รายงานกองทุน</a></li>
-					 <li><a href="#">ธรรมาภิบาลการลงทุน (I-Code)</a></li>
-					 <li><a href="{{url('/calendar')}}">ปฏิทินกิจกรรม</a></li>
-					 <li><a href="{{url('/downloadform')}}">ดาวน์โหลดแบบฟอร์ม</a></li>
-					 <li><a href="{{url('/statusupdate')}}">ติดตามสถานะตราสารหนี้ผิดนัดชำระของกองทุน</a></li>
-					 <li><a href="{{url('/faq')}}">คำถามที่พบ-บ่อย</a></li>
+				 	<li><a href="{{url('/economic')}}">{{trans('messages.economic')}}</a></li>
+					 <li><a href="{{url('/knowledge')}}">{{trans('messages.knowledge')}}</a></li>
+				 	 <li><a href="{{url('/downloadreport')}}">{{trans('messages.report')}}</a></li>
+					 <li><a href="{{url('/reportfunds')}}">{{trans('messages.reportfunds')}}</a></li>
+					 <li><a href="#">{{trans('messages.investment')}}</a></li>
+					 <li><a href="{{url('/calendar')}}">{{trans('messages.calendar')}}</a></li>
+					 <li><a href="{{url('/downloadform')}}">{{trans('messages.downloadform')}}</a></li>
+					 <li><a href="{{url('/statusupdate')}}">{{trans('messages.statusupdate')}}</a></li>
+					 <li><a href="{{url('/faq')}}">{{trans('messages.faq')}}</a></li>
 				 </ul>
 			 </div>
 		 </div>
@@ -195,23 +195,23 @@
 						 <h3 class="accordion-thumb">Site map</h3>
 						 <div class="accordion-panel">
 							 <ul class="listmenu-footer">
-								<li><a href="#">หน้าหลัก</a></li>
-					 <li><a href="{{url('mutualfunds')}}">กองทุนรวม</a></li>
-					 <li><a href="{{url('/privatefunds')}}">กองทุนส่วนบุคคล</a></li>
-					 <li><a href="{{url('/fundsprice')}}">มูลค่าหน่วยลงทุน</a></li>
-					 <li><a href="{{url('/funds_perf')}}">ผลการดำเนินงาน</a></li>
-					 <li><a href="{{url('/transaction')}}">ทำรายการ</a></li>
-					 <li><a href="{{url('/about')}}">เกี่ยวกับเรา</a></li>
-					 <li><a href="{{url('/contact')}}">ติดต่อเรา</a></li>
-					  <li><a href="{{url('/economic')}}">ข้อมูลเศรษฐกิจและภาวะตลาดการเงิน</a></li>
-					 <li><a href="{{url('/knowledge')}}">เรื่องน่ารู้เกี่ยวกับการลงทุน</a></li>
-					 <li><a href="{{url('/downloadreport')}}">เอกสารเผยแพร่และประกาศบริษัท</a></li>
-					 <li><a href="{{url('/reportfunds')}}">รายงานกองทุน</a></li>
-					 <li><a href="#">ธรรมาภิบาลการลงทุน (I-Code)</a></li>
-					 <li><a href="{{url('/calendar')}}">ปฏิทินกิจกรรม</a></li>
-					 <li><a href="{{url('/downloadform')}}">ดาวน์โหลดแบบฟอร์ม</a></li>
-					 <li><a href="{{url('/statusupdate')}}">ติดตามสถานะตราสารหนี้ผิดนัดชำระของกองทุน</a></li>
-					 <li><a href="{{url('/faq')}}">คำถามที่พบ-บ่อย</a></li>
+								<li><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+					 <li><a href="{{url('mutualfunds')}}">{{trans('messages.privatefunds')}}</a></li>
+					 <li><a href="{{url('/privatefunds')}}">{{trans('messages.mutualfunds')}}</a></li>
+					 <li><a href="{{url('/fundsprice')}}">{{trans('messages.nav')}}</a></li>
+					 <li><a href="{{url('/funds_perf')}}">{{trans('messages.performance')}}</a></li>
+					 <li><a href="{{url('/transaction')}}">{{trans('messages.tran')}}</a></li>
+					 <li><a href="{{url('/about')}}">{{trans('messages.about')}}</a></li>
+					 <li><a href="{{url('/contact')}}">{{trans('messages.contact')}}</a></li>
+					  <li><a href="{{url('/economic')}}">{{trans('messages.economic')}}</a></li>
+					 <li><a href="{{url('/knowledge')}}">{{trans('messages.knowledge')}}</a></li>
+					 <li><a href="{{url('/downloadreport')}}">{{trans('messages.report')}}</a></li>
+					 <li><a href="{{url('/reportfunds')}}">{{trans('messages.reportfunds')}}</a></li>
+					 <li><a href="#">{{trans('messages.investment')}}</a></li>
+					 <li><a href="{{url('/calendar')}}">{{trans('messages.calendar')}}</a></li>
+					 <li><a href="{{url('/downloadform')}}">{{trans('messages.downloadform')}}</a></li>
+					 <li><a href="{{url('/statusupdate')}}">{{trans('messages.statusupdate')}}</a></li>
+					 <li><a href="{{url('/faq')}}">{{trans('messages.faq')}}</a></li>
 							 </ul>
 						 </div>
 					 </li>
@@ -253,7 +253,7 @@
 
 	 <div class="row">
 	 
-		 <div class="col-lg-9 copyrighttext"> การลงทุนมีความเสี่ยง ผู้ลงทุนควรทำความเข้าใจลักษณะสินค้า เงื่อนไขผลตอบแทน ความเสี่ยง และคู่มือภาษีให้ดีก่อนการตัดสินใจลงทุน
+		 <div class="col-lg-9 copyrighttext">{{trans('messages.copyrighttext')}}
 			 <br> © 2019 INNOTECH ASSET MANAGEMENT COMPANY LIMITED ALL RIGHT RESERVED. </div>
 		 <div class="col-lg-3 logofooter"> <img src="{{asset('images/logo_footer.png')}}"> </div>
 	 </div>

@@ -23,13 +23,13 @@
                                     <thead>
                                         <tr>
                                         <th>#</th>
-                                        <th>name</th>
-                                        <th>file</th>
+                                        <th>ชื่อ</th>
+                                        <th>ไฟล์</th>
                                         {{-- <th>fund_type_id</th> --}}
-                                        <th>mouth_no</th>
-                                        <th>year_no</th>
-                                        <th>sort_id</th>
-                                        <th>status</th>
+                                        <th>เดือน</th>
+                                        <th>ปี</th>
+                                        <th>ลำดับ</th>
+                                        <th>สถานะ</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -56,12 +56,17 @@
                 <div class="modal-body">
                     
                 <div class="form-group">
-                    <label for="add_name">name</label>
-                    <input type="text" class="form-control" name="name" id="add_name" placeholder="name">
+                    <label for="add_name">ชือไฟล์(TH)</label>
+                    <input type="text" class="form-control" name="name_th" id="add_name_th" placeholder="name_th">
+                </div>
+
+                <div class="form-group">
+                        <label for="add_name">ชือไฟล์(EN)</label>
+                        <input type="text" class="form-control" name="name_en" id="add_name_en" placeholder="name_en">
                 </div>
         
                 <div class="form-group">
-                    <label for="add_file">file</label>
+                    <label for="add_file">ไฟล์</label>
                     <input type="file" class="upload_file" id="add_file">
                     <input type="text" class="value_name_file" name="file">
                     <div class="preview_file"></div>
@@ -78,7 +83,7 @@
                 </div> --}}
         
                 <div class="form-group">
-                    <label for="add_mouth_no">mouth_no</label>
+                    <label for="add_mouth_no">เดือน</label>
                     <select name="month_no" class="select2 form-control" tabindex="-1" data-placeholder="Select mouth_no" id="add_mouth_no"  >
                         <option value="">Select mouth_no</option>
                         @foreach($Mouths as $Mouth)
@@ -88,7 +93,7 @@
                 </div>
         
                 <div class="form-group">
-                    <label for="add_year_no">year_no</label>
+                    <label for="add_year_no">ปี</label>
                     <select name="year_no" class="select2 form-control" tabindex="-1" data-placeholder="Select year_no" id="add_year_no"  >
                         <option value="">Select year_no</option>
                         @foreach($Years as $Year)
@@ -98,13 +103,13 @@
                 </div>
 
                 <div class="form-group">
-                        <label for="add_sort_id">sort_id</label>
+                        <label for="add_sort_id">ลำดับ</label>
                         <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="sort_id">
                 </div>
             
                 <div class="form-check">
                         <label for="add_status" class="checkbox form-check-label">
-                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> status
+                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> เปิดใช้งาน
                         </label>
                 </div>
         
@@ -129,12 +134,17 @@
                 <div class="modal-body">
                     
                 <div class="form-group">
-                    <label for="edit_name">name</label>
-                    <input type="text" class="form-control" name="name" id="edit_name" placeholder="name">
+                    <label for="edit_name">ชือไฟล์(TH)</label>
+                    <input type="text" class="form-control" name="name_th" id="edit_name_th" placeholder="name_th">
+                </div>
+
+                <div class="form-group">
+                        <label for="edit_name">ชือไฟล์(EN)</label>
+                        <input type="text" class="form-control" name="name_en" id="edit_name_en" placeholder="name_en">
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_file">file</label>
+                    <label for="edit_file">ไฟล์</label>
                     <input type="file" class="upload_file" id="edit_file">
                     <input type="text" class="value_name_file edit_value_name_file_file" name="file">
                     <div class="preview_file preview_file_file"></div>
@@ -152,7 +162,7 @@
                 </div> --}}
         
                 <div class="form-group">
-                    <label for="edit_mouth_no">mouth_no</label>
+                    <label for="edit_mouth_no">เดือน</label>
                     <select name="month_no" data-placeholder="Select mouth_no" tabindex="-1" class="select2 form-control" id="edit_mouth_no"  >
                         <option value="">Select mouth_no</option>
                         @foreach($Mouths as $Mouth)
@@ -162,7 +172,7 @@
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_year_no">year_no</label>
+                    <label for="edit_year_no">ปี</label>
                     <select name="year_no" data-placeholder="Select year_no" tabindex="-1" class="select2 form-control" id="edit_year_no"  >
                         <option value="">Select year_no</option>
                         @foreach($Years as $Year)
@@ -173,13 +183,13 @@
 
                 
                 <div class="form-group">
-                        <label for="edit_sort_id">sort_id</label>
+                        <label for="edit_sort_id">ลำดับ</label>
                         <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="sort_id">
                 </div>
             
                 <div class="form-check">
                         <label for="edit_status" class="checkbox form-check-label">
-                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> status
+                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> เปิดใช้งาน
                         </label>
                 </div>
         
@@ -207,7 +217,7 @@
         },
         "columns": [
             {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-            {"data" : "name"},
+            {"data" : "name_th"},
             {"data" : "file"},
             // {"data" : "fund_type_id"},
             {"data" : "month_name","name" : "months.name"},
@@ -231,7 +241,8 @@
             url : url_gb+"/admin/FileReport/"+id,
             dataType : 'json'
         }).done(function(rec){
-            $('#edit_name').val(rec.name);
+            $('#edit_name_th').val(rec.name_th);
+            $('#edit_name_en').val(rec.name_en);
             $('.edit_value_name_file_file').val(rec.file);$('.preview_file_file').html('<img src="'+asset_gb+'uploads/'+rec.file+'" class="preview-file">');
             $('#edit_sort_id').val(rec.sort_id);
             $('.preview_file_file').html('<a href="'+asset_gb+'uploads/'+rec.file+'" target="_blank" class="preview-file">'+asset_gb+'uploads/'+rec.file+'</a>');

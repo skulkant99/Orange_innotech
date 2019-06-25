@@ -35,7 +35,12 @@
     <script src="{{asset('woocommerce-FlexSlider-0690ec2/jquery.flexslider.js')}}"></script>
 	<script src="{{asset('woocommerce-FlexSlider-0690ec2/demo/js/modernizr.js')}}"></script>
 	<script src="{{asset('OwlCarousel/dist/owl.carousel.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('WOW-master/dist/wow.js')}}"></script>
+	<script type="text/javascript" src="{{asset('WOW-master/dist/wow.js')}}"></script>
+	
+	<script src="{{asset('assets/admin/vendors/jquery.validate.min.js')}}"></script>
+	<script src="{{asset('assets/global/js/validate.js')}}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     
     <!-- Add mousewheel plugin (this is optional) -->
@@ -56,7 +61,6 @@
 	<!-- Add Media helper (this is optional) -->
 	<script type="text/javascript" src="{{asset('fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6')}}"></script>
 
-	
 	<script>
 		wow = new WOW({
 			animateClass: 'animated',

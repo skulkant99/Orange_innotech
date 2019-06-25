@@ -56,7 +56,7 @@
                     
                     <div class="form-group">
                         <label for="add_name">ชื่อ</label>
-                        <input id="add_name" name="name" class="form-control" placeholder="ชื่อ">
+                        <input id="add_name" name="name_th" class="form-control" placeholder="ชื่อ">
                     </div>
 
                     <div class="form-group">
@@ -107,7 +107,7 @@
                         
                         <div class="form-group">
                             <label for="edit_name">ชื่อ</label>
-                            <input id="edit_name" name="name" class="form-control" placeholder="ชื่อ">
+                            <input id="edit_name" name="name_th" class="form-control" placeholder="ชื่อ">
                         </div>
 
                         <input type="hidden" name="org_photo" id="org_photo">
@@ -162,7 +162,7 @@
             },
             "columns": [
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-                {"data" : "name"},
+                {"data" : "name_th"},
                 {"data" : "photo"},
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
@@ -218,7 +218,7 @@
                     }
                 });
 
-                $('#edit_name').val(rec.name);
+                $('#edit_name_th').val(rec.name_th);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('.select2').select2();
@@ -235,13 +235,13 @@
             focusInvalid: false,
             rules: {
 
-                name: {
+                name_th: {
                     required: true,
                 },
             },
             messages: {
 
-                name: {
+                name_th: {
                     required: "กรุณาระบุ",
                 },
             },
@@ -296,13 +296,13 @@
             focusInvalid: false,
             rules: {
 
-                name: {
+                name_th: {
                     required: true,
                 },
             },
             messages: {
 
-                name: {
+                name_th: {
                     required: "กรุณาระบุ",
                 },
             },

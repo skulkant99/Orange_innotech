@@ -145,6 +145,16 @@
 			align-items: center;
 		}
 	</style>
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
@@ -210,15 +220,21 @@
 							<div class="row">
 								<div class="col">
 									<div class="accordion accordion-01">
-										<div class="set"> <a>หากต้องการติดต่อสอบถามข้อมูลเกี่ยวกับกองทุน และบริการด้านการลงทุนของ บลจ. อินโนเทค จะติดต่อได้อย่างไร 
+										@foreach ($faq as $k_faq => $v_faq)
+											@if ($v_faq->status == 1)
+													<div class="set"> <a>{!!($faq[$k_faq]['question_'.$lang])!!}
 										
 										
-										<i class="fas fa-plus-circle"></i></a>
-											<div class="content">
-												<p> ติดต่อฝ่ายการตลาด เบอร์โทร. 02-624-6305 และ 02-624-6313 หรือศึกษาข้อมูลของกองทุนได้ที่เว็บไซต์ www.Solarisfunds.com และ www.thaimutualfund.com </p>
-											</div>
-										</div>
-										<div class="set"> <a>หากต้องการตรวจสอบราคา หรือมูลค่าหน่วยลงทุนของกองทุน จะตรวจสอบได้จากที่ใดบ้าง <i class="fas fa-plus-circle"></i></a>
+													<i class="fas fa-plus-circle"></i></a>
+														<div class="content">
+															<p>{!!($faq[$k_faq]['answer_'.$lang])!!}</p>
+														</div>
+													</div>
+											@endif
+												
+										@endforeach
+										
+										{{-- <div class="set"> <a>หากต้องการตรวจสอบราคา หรือมูลค่าหน่วยลงทุนของกองทุน จะตรวจสอบได้จากที่ใดบ้าง <i class="fas fa-plus-circle"></i></a>
 											<div class="content">
 												<p> 1) หน้าเว็บไซต์ของบริษัท ที่ www.innotechasset.com
 													<br> 2) ขอรับข้อมูล NAV ทางอีเมล์ โดยกรอกชื่ออีเมลส่วนตัวของท่านในหน้าเว็บไซต์ของบริษัท
@@ -244,7 +260,7 @@
 											<div class="content">
 												<p> หนังสือรับรองสิทธิ์ในหน่วยลงทุน (เอกสารแสดงสิทธิ์) โดยทางบริษัทจะจัดส่งให้ตามที่อยู่ที่แจ้งไว้ต่อไป </p>
 											</div>
-										</div>
+										</div> --}}
 									</div>
 									<!-- /.accordion-01 -->
 								</div>

@@ -39,7 +39,8 @@ class HomeController extends Controller
     	$data['sub_menu'] = 'premonition';
     	$data['title'] = 'premonition';
     	$data['title_page'] = 'premonition';
-    	$data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
+        $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
+        $data['warring'] = \App\Models\Introduction::where('type','=','W')->select()->first();
     	return view('Admin.premonition',$data);
     }
     public function store_intro(Request $request)
@@ -127,19 +128,15 @@ class HomeController extends Controller
         ->addIndexColumn()
         ->editColumn('status',function($rec){
             if($rec->status == 1){
-                return $status = '<span class="label label-success">เปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-success">เปิดใช้งาน</span>';
             }else {
-                return $status = '<span class="label label-danger">ปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-danger">ปิดใช้งาน</span>';
             }
         })
         ->addColumn('action',function($rec){
             $str='
-                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
-                    <i class="ace-icon fa fa-edit bigger-120"></i>
-                </button>
-                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
-                    <i class="ace-icon fa fa-trash bigger-120"></i>
-                </button>
+            <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+            <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
             ';
             return $str;
         })->make(true);
@@ -152,19 +149,15 @@ class HomeController extends Controller
         ->addIndexColumn()
         ->editColumn('status',function($rec){
             if($rec->status == 1){
-                return $status = '<span class="label label-success">เปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-success">เปิดใช้งาน</span>';
             }else {
-                return $status = '<span class="label label-danger">ปิดใช้งาน</span>';
+                return $status = '<span class="badge badge-danger">ปิดใช้งาน</span>';
             }
         })
         ->addColumn('action',function($rec){
             $str='
-                <button data-loading-text="<i class=\'fa fa-refresh fa-spin\'></i>" class="btn btn-xs btn-warning btn-condensed btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข">
-                    <i class="ace-icon fa fa-edit bigger-120"></i>
-                </button>
-                <button  class="btn btn-xs btn-danger btn-condensed btn-delete btn-tooltip" data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ">
-                    <i class="ace-icon fa fa-trash bigger-120"></i>
-                </button>
+            <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+            <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
             ';
             return $str;
         })->make(true);

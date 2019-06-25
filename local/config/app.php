@@ -79,8 +79,9 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
+  
 
-    'locale' => 'en',
+    'locales' => ['en' => 'English', 'th' => 'Thai'],
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +94,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'th',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +179,8 @@ return [
 
         Yajra\Datatables\DatatablesServiceProvider::class,
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -230,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Datatables' => Yajra\Datatables\Datatables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
        
     ],
 

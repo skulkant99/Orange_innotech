@@ -28,7 +28,7 @@
                                             <th>#</th>
                                             <th>รูปภาพ</th>
                                             <th>หัวเรื่อง</th>
-                                            <th>รายละเอียด</th>
+                                            {{-- <th>รายละเอียด</th> --}}
                                             <th>ลำดับ</th>
                                             <th>สถานะ</th>
                                             <th></th>
@@ -63,13 +63,22 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="add_title">หัวเรื่อง</label>
-                        <input id="add_title" name="title_th" class="form-control" placeholder="หัวเรื่อง">
+                        <label for="add_title">หัวเรื่อง(TH)</label>
+                        <input id="add_title_th" name="title_th" class="form-control" placeholder="หัวเรื่อง">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_title">หัวเรื่อง(EN)</label>
+                        <input id="add_title_en" name="title_en" class="form-control" placeholder="หัวเรื่อง">
                     </div>
                     
                     <div class="form-group">
-                            <label for="add_detail">รายละเอียด</label>
-                            <textarea id="add_detail" name="detail_th" class="form-control"></textarea>
+                            <label for="add_detail">รายละเอียด(TH)</label>
+                            <textarea id="add_detail_th" name="detail_th" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                            <label for="add_detail">รายละเอียด(EN)</label>
+                            <textarea id="add_detail_en" name="detail_en" class="form-control"></textarea>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -116,13 +125,23 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="edit_title">หัวเรื่อง</label>
-                            <input id="edit_title" name="title_th" class="form-control" placeholder="หัวเรื่อง">
+                            <label for="edit_title">หัวเรื่อง(TH)</label>
+                            <input id="edit_title_th" name="title_th" class="form-control" placeholder="หัวเรื่อง">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit_title">หัวเรื่อง(EN)</label>
+                            <input id="edit_title_en" name="title_en" class="form-control" placeholder="หัวเรื่อง">
                         </div>
                         
                         <div class="form-group">
-                                <label for="edit_detail">รายละเอียด</label>
-                                <textarea id="edit_detail" name="detail_th" class="form-control"></textarea>
+                            <label for="edit_detail">รายละเอียด(TH)</label>
+                            <textarea id="edit_detail_th" name="detail_th" class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit_detail">รายละเอียด(EN)</label>
+                            <textarea id="edit_detail_en" name="detail_en" class="form-control"></textarea>
                         </div>
                         
                         <div class="row">
@@ -168,7 +187,7 @@
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
                 {"data" : "photo","width": "20%"},
                 {"data" : "title_th"},
-                {"data" : "detail_th"},
+                // {"data" : "detail_th"},
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -193,19 +212,21 @@
                 $('#edit_photo').closest('#orak_edit_photo').html('<div id="edit_photo" orakuploader="on"></div>');
                 $('#org_photo').val(rec.photo);
                 if(rec.photo){
-                    var max_file = 0;
+                    var max_file = 100;
                     var file = [];
                         file[0] = rec.photo;
-                    var photo = rec.photo;
+                    var photo = $.parseJSON(rec.photo);
+                    photo.reverse();
                 }else{
-                    var max_file = 1;
+                    var max_file = 100;
                     var file = [];
-                    var photo = rec.photo;
-                }       
+                    var photo = $.parseJSON(rec.photo);
+                }  
                 $('#edit_photo').orakuploader({
                     orakuploader_path               : url_gb+'/',
                     orakuploader_ckeditor           : false,
                     orakuploader_use_dragndrop      : true,
+                    orakuploader_use_sortable       : true,
                     orakuploader_main_path          : 'uploads/temp/',
                     orakuploader_thumbnail_path     : 'uploads/temp/',
                     orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
@@ -216,15 +237,18 @@
                     orakuploader_use_rotation       : false,
                     orakuploader_maximum_uploads    : max_file,
                     orakuploader_hide_on_exceed     : true,
-                    orakuploader_attach_images      : file,
+                    orakuploader_attach_images      : photo,
                     orakuploader_field_name         : 'photo',
                     orakuploader_finished           : function(){
-
+                        $(".file").addClass("multi_file");
+                        centerModals();
                     }
                 });
 
-                $('#edit_title').val(rec.title_th);
-                CKEDITOR.instances['edit_detail'].setData(rec.detail_th);
+                $('#edit_title_th').val(rec.title_th);
+                $('#edit_title_en').val(rec.title_en);
+                CKEDITOR.instances['edit_detail_th'].setData(rec.detail_th);
+                CKEDITOR.instances['edit_detail_en'].setData(rec.detail_en);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('.select2').select2();
@@ -395,6 +419,7 @@
             orakuploader_path               : url_gb+'/',
             orakuploader_ckeditor           : false,
             orakuploader_use_dragndrop      : true,
+            orakuploader_use_sortable       : true,
             orakuploader_main_path          : 'uploads/temp/',
             orakuploader_thumbnail_path     : 'uploads/temp/',
             orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
@@ -403,15 +428,21 @@
             orakuploader_no_image           : asset_gb+'images/no-image.jpg',
             orakuploader_add_label          : 'เลือกรูปภาพ',
             orakuploader_use_rotation       : false,
-            orakuploader_maximum_uploads    : 1,
+            orakuploader_maximum_uploads    : 100,
             orakuploader_hide_on_exceed     : true,
             orakuploader_field_name         : 'photo',
             orakuploader_finished           : function(){
+                $(".file").addClass("multi_file");
+                centerModals();
 
             }
         });
-        CKEDITOR.replace('add_detail');
-        CKEDITOR.replace('edit_detail');
+        CKEDITOR.replace('add_detail_th');
+        CKEDITOR.replace('edit_detail_th');
+
+        CKEDITOR.replace('add_detail_en');
+        CKEDITOR.replace('edit_detail_en');
+
         $('#add_status').select2();
         $('#edit_status').select2();
     </script>

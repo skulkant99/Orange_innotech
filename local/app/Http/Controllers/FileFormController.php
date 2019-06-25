@@ -17,7 +17,7 @@ class FileFormController extends Controller
             ->select('contacts.*')
             ->get();
        
-        $data['file'] = \App\Models\FileForm::select()->paginate(3);
+        $data['file'] = \App\Models\FileForm::select()->paginate(4);
         return view('download_form',$data);
     }
   

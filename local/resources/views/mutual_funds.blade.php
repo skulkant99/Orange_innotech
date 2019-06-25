@@ -92,8 +92,8 @@
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-							<li class="breadcrumb-item active" aria-current="page">กองทุนรวม</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.mutualfunds')}}</li>
 						</ol>
 					</nav>
 				</div>
@@ -139,14 +139,14 @@
 									<div class="row">
 					<div class="col">
 						<div class="accordion accordion-01">
-										<div class="set"> <a>กองทุนรวมเพื่อการประหยัดภาษี <i class="fas fa-plus-circle"></i></a>
+										<div class="set"> <a>{{trans('messages.tax_save')}} <i class="fas fa-plus-circle"></i></a>
 											<div class="content">
 												<p> <img src="{{asset('images/mutual_funds_03.png')}}"> <a href="{{url('fundsepltf')}}">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF)</a> </p>
 											</div>
 										</div>
-										<div class="set"> <a>กองทุนรวมเพื่อการเลี้ยงชีพ <i class="fas fa-plus-circle"></i></a>
+										<div class="set"> <a>{{trans('messages.retirement')}} <i class="fas fa-plus-circle"></i></a>
 											<div class="content">
-												<p><img src="{{asset('images/mutual_funds_03.png')}}"> <a href="{{url('fundsseqrmf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</a> </p>
+												<p><img src="{{asset('images/mutual_funds_03.png')}}"> <a href="{{url('funds_seqrmf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</a> </p>
 											</div>
 										</div>
 										

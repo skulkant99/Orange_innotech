@@ -32,14 +32,24 @@
 			border: 1px solid #dee2e6;
 		}
 	</style>
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="{{url('/')}}">หน้าหลัก</a></li>
-							<li class="breadcrumb-item active" aria-current="page">เอกสารเผยแพร่และประกาศบริษัท</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.report')}}</li>
 						</ol>
 					</nav>
 				</div>
@@ -79,13 +89,13 @@
 				<div class="row">
 					<div class="col">
 						@for($i = 1; $i <= count($file_type); $i++)
-							@foreach ($file_type as $_file_type)
+							@foreach ($file_type as $k_file_type => $_file_type)
 								<div class="box_download_doc">
 									<div class="numberlist">
 										{{$i++}}
 									</div>
 									<div class="detail_doc">
-										{{$_file_type->name}}
+										{{$file_type[$k_file_type]['name_'.$lang]}}
 									</div>
 									<div class="btn_download">
 										<a href="{{url('downloadinside/'.$_file_type->id)}}" class="btn btn-primary">ดูรายละเอียด</a> 

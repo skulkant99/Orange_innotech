@@ -11,11 +11,50 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="content">
-                            <h4 class="title">
+                                
+                                <div class="header">
+                                    <h4 class="title"> {{$title_page}}
+                                    <button class="btn btn-danger btn-edit pull-right" data-id="{{$warring->id}}">
+                                            + แก้ไขข้อมูล
+                                    </button> 
+
+                                    </h4>
+                                </div>
+                                
+                                <div class="content">
+                                    <div class="nav-tabs-navigation">
+                                        
+                                            <div class="nav-tabs-wrapper">
+                                                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                                                    <li class="nav-item">
+                                                        <a href="#pill1" class="nav-link active" data-toggle="tab" aria-expanded="true">ไทย</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#pill2" class="nav-link" data-toggle="tab" aria-expanded="false">อังกฤษ</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="pill1" aria-expanded="true">
+                                                {!!($warring->name_th)!!}
+                                            </div>
+                                            <div class="tab-pane" id="pill2" aria-expanded="false">
+                                                {!!($warring->name_en)!!}
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                                    
+                            {{-- <h4 class="title">
                                 {{$title_page}}
-                                {{-- <button class="btn btn-success btn-add pull-right" >
+                                <button class="btn btn-success btn-add pull-right" >
                                     + เพิ่มข้อมูล
-                                </button> --}}
+                                </button> 
                             </h4>
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
@@ -35,7 +74,7 @@
                                         </thead>
                                     </table>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -111,7 +150,7 @@
                             <textarea id="edit_name_en" name="name_en" class="form-control"></textarea>
                         </div>
 
-                        <div class="row">
+                        {{-- <div class="row">
                               <div class="form-group col-md-6">
                                   <label for="add_sort_id">ลำดับ</label>
                                   <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="ลำดับ">
@@ -126,7 +165,7 @@
                                   </select>
                               </div>
         
-                        </div>
+                        </div> --}}
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">บันทึก</button>

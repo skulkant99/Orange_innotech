@@ -47,14 +47,24 @@
 			padding: 10px 30px;
 		}
 	</style>
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-							<li class="breadcrumb-item"><a href="#">มูลค่าหน่วยลงทุน</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/fundsepltf')}}">{{trans('messages.nav')}}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</li>
 						</ol>
 					</nav>
@@ -100,7 +110,12 @@
 				<div class="row">
 					<div class="col">
 						<div class="detail_content">
-							<h2>เหมาะสำหรับ</h2>
+							@foreach ($fund as $k_fund => $v_fund)
+								@if ($v_fund->sort_id == 1)
+									{!!($fund[$k_fund]['detail_'.$lang])!!}
+								@endif
+							@endforeach
+							{{-- <h2>เหมาะสำหรับ</h2>
 							<li><i class="far fa-arrow-alt-circle-right"></i> เหมาะสมกับเงินลงทุนของผู้ลงทุนที่ต้องการสร้างผลตอบแทนจากการลงทุนในหุ้น และยอมรับความเสี่ยงจากการลงทุนในหุ้นได้ </li>
 							<li><i class="far fa-arrow-alt-circle-right"></i> บุคคลธรรมดาที่ต้องการลงทุนระยะยาว โดยหากลงทุนตามเงื่อนไขที่กฎหมายกำหนดจะได้รับสิทธิประโยชน์ทางภาษี</li>
 							<br>
@@ -113,9 +128,14 @@
 							<h2>นโยบายการลงทุน</h2>
 							<li> ลงทุนในหุ้นของบริษัทจดทะเบียนในตลาดหลักทรัพย์และ/หรือตลาดหลักทรัพย์ใหม่ (MAI)โดยเฉลี่ยในรอบปีบัญชีไม่น้อยกว่าร้อยละ 65 ของมูลค่าทรัพย์สินสุทธิของกองทุนรวม อนึ่งกองทุนอาจลงทุนในตราสารที่มีลักษณะของสัญญาซื้อขายล่วงหน้าแฝง(Structured Note) เพื่อป้องกันความผันผวนของราคาตลาดหรือมีไว้ซึ่งสัญญาซื้อขายล่วงหน้าเพื่อการลดหรือป้องกันความเสี่ยงความผันผวน ของตลาดหรือเพื่อเพิ่มประสิทธิภาพการบริหารการลงทุน </li>
 							<br>
-							<br>
-							<h2><img src="images/funds_price_detail_08.png"> ระดับความเสี่ยง</h2>
-							<table class="table funds_table_perf table-bordered table-responsive-lg">
+							<br> --}}
+							<h2><img src="images/funds_price_detail_08.png">{{trans('messages.risk_level')}}</h2>
+							@foreach ($fund as $k_fund => $v_fund)
+								@if ($v_fund->sort_id == 2)
+									{!!($fund[$k_fund]['detail_'.$lang])!!}
+								@endif
+							@endforeach
+							{{-- <table class="table funds_table_perf table-bordered table-responsive-lg">
 								<thead>
 									<tr>
 										<th scope="col">1</th>
@@ -149,7 +169,7 @@
 										<td colspan="8" class="bgblue">ระดับความเสี่ยง</td>
 									</tr>
 								</tbody>
-							</table>
+							</table> --}}
 						</div>
 					</div>
 				</div>
@@ -161,12 +181,16 @@
 							<div class="container">
 								<div class="row">
 									<div class="col">
-										<table class="table funds_table table-bordered table-responsive-lg">
+										@foreach ($fund as $k_fund => $v_fund)
+											@if ($v_fund->sort_id == 3)
+												{!!($fund[$k_fund]['detail_'.$lang])!!}
+											@endif
+										@endforeach
+										{{-- <table class="table funds_table table-bordered table-responsive-lg">
 											<thead>
 												<tr>
 													<th scope="col">การซื้อขายหน่วยลงทุน</th>
-													<th scope="col">ค่าธรรมเนียมและค่าใช่จ่าย ที่เรียกเก็บจากผู้ถือหน่วย
- </th>
+													<th scope="col">ค่าธรรมเนียมและค่าใช่จ่าย ที่เรียกเก็บจากผู้ถือหน่วย</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -186,16 +210,14 @@
 														</div>
 														<div class="row">
 															<div class="col"> วันเวลาทำการ </div>
-															<div class="col"> ซื้อได้ทุกวันทำการภายใน 15:30 น. <br>
-ขายได้ทุกวันทำการภายใน 14:00 น. </div>
+															<div class="col"> ซื้อได้ทุกวันทำการภายใน 15:30 น. <br>ขายได้ทุกวันทำการภายใน 14:00 น. </div>
 														</div>
 													</td>
 													<td>
 														
 														<div class="row">
 															<div class="col"> ค่าธรรมเนียมการขาย		 </div>
-															<div class="col"> ไม่มี
-</div>
+															<div class="col"> ไม่มี</div>
 														</div>
 														<div class="row">
 															<div class="col"> ค่าธรรมเนียมการรับซื้อคืน	 </div>
@@ -203,15 +225,11 @@
 														</div>
 														<div class="row">
 															<div class="col"> ค่าธรรมเนียมการสับเปลี่ยนเข้า		 </div>
-															<div class="col"> ไม่มี
-
- </div>
+															<div class="col"> ไม่มี</div>
 														</div>
 														<div class="row">
 															<div class="col">ค่าธรรมเนียมการสับเปลี่ยนออก		 </div>
-															<div class="col"> ไม่มี
-
- </div>
+															<div class="col"> ไม่มี </div>
 														</div>
 													</td>
 												</tr>
@@ -220,11 +238,8 @@
 										<table class="table funds_table table-bordered table-responsive-lg">
 											<thead>
 												<tr>
-													<th scope="col">ค่าธรรมเนียมและค่าใช่จ่าย<br>ที่เรียกเก็บจากกองทุน (% ของมูลค่าทรัพย์สินสุทธิ)
-</th>
-													<th scope="col">ค่าใช่จ่ายในการโฆษณา <br>ประชาส้มพันธ์และส่งเสริมการขายที่เรียกเก็บจากกองทุน
-
- </th>
+													<th scope="col">ค่าธรรมเนียมและค่าใช่จ่าย<br>ที่เรียกเก็บจากกองทุน (% ของมูลค่าทรัพย์สินสุทธิ)</th>
+													<th scope="col">ค่าใช่จ่ายในการโฆษณา <br>ประชาส้มพันธ์และส่งเสริมการขายที่เรียกเก็บจากกองทุน</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -232,29 +247,25 @@
 													<td style="min-width:425px;">
 														<div class="row">
 															<div class="col"> ค่าธรรมเนียมการจัดการ	 </div>
-															<div class="col"> ไม่เกิน 1.25% ต่อปี
- </div>
+															<div class="col"> ไม่เกิน 1.25% ต่อปี</div>
 														</div>
 														<div class="row">
 															<div class="col"> ค่าธรรมเนียมผู้ดูแลผลประโยชน์	 </div>
-															<div class="col"> ไม่เกิน 0.04% ต่อปี
- </div>
+															<div class="col"> ไม่เกิน 0.04% ต่อปี</div>
 														</div>
 														<div class="row">
 															<div class="col"> ค่าธรรมเนียมนายทะเบียน		 </div>
-															<div class="col"> ไม่เกิน 0.07% ต่อปี
- </div>
+															<div class="col"> ไม่เกิน 0.07% ต่อปี</div>
 														</div>
 														<div class="row">
 															<div class="col"> ค่าใช้จ่ายอื่นๆ	 </div>
-															<div class="col"> ตามที่จ่ายจริง ไม่เกิน 0.25% ต่อปี
- </div>
+															<div class="col"> ตามที่จ่ายจริง ไม่เกิน 0.25% ต่อปี</div>
 														</div>
 													</td>
 													<td>
 														
 														<div class="row">
-															<div class="col"> ในช่วงเสนอขายหน่วยลงทุนครั้งแรก		 </div>
+															<div class="col"> ในช่วงเสนอขายหน่วยลงทุนครั้งแรก </div>
 															<div class="col"> ไม่มี </div>
 														</div>
 														<div class="row">
@@ -265,7 +276,7 @@
 													</td>
 												</tr>
 											</tbody>
-										</table>
+										</table> --}}
 							
 									</div>
 								</div>
@@ -279,7 +290,12 @@
 					<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 						<div class="detail_content">
 							<h2><img src="{{asset('images/funds_price_detail_12.png')}}"> เอกสารข้อมูลกองทุน (ดาวน์โหลด)</h2>
-							<div class="list_download_ep"> <a href="{{url('/downloadreport')}}" class="btn btn-primary">รายงานสถานะการลงทุนในแต่ละเดือน <i class="far fa-file-alt"></i></a> <a href="{{url('/downloadreport')}}" class="btn btn-primary">หนังสือชี้ชวนส่วนสรุป <i class="far fa-file-alt"></i></a> <a href="{{url('/downloadreport')}}" class="btn btn-primary">รายละเอียดโครงการจัดการ <i class="far fa-file-alt"></i></a> <a href="{{url('/downloadreport')}}" class="btn btn-primary">คู่มือภาษี <i class="far fa-file-alt"></i></a> </div>
+							<div class="list_download_ep"> 
+								<a href="{{url('/downloadreport')}}" class="btn btn-primary">รายงานสถานะการลงทุนในแต่ละเดือน <i class="far fa-file-alt"></i></a> 
+								<a href="{{url('/downloadreport')}}" class="btn btn-primary">หนังสือชี้ชวนส่วนสรุป <i class="far fa-file-alt"></i></a> 
+								<a href="{{url('/downloadform')}}" class="btn btn-primary">รายละเอียดโครงการจัดการ <i class="far fa-file-alt"></i></a> 
+								<a href="{{url('/downloadform')}}" class="btn btn-primary">คู่มือภาษี <i class="far fa-file-alt"></i></a> 
+							</div>
 						</div>
 					</div>
 				</div>

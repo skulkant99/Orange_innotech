@@ -6,15 +6,24 @@
 </head>
 
 <body>
-
+		@php
+			$lang = "";
+			if (session()->get('locale') == null){
+				$lang = "th";
+			}elseif (session()->get('locale') == "th") {
+				$lang = "th";
+			}elseif(session()->get('locale') == "en"){
+				$lang = "en";
+			}		
+		@endphp
 	@include('inc_topmenu')
 	<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-							<li class="breadcrumb-item active" aria-current="page">ทำรายการ</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.tran')}}</li>
 						</ol>
 					</nav>
 				</div>
@@ -48,11 +57,7 @@
 		<div class="row mt-5 mb-5">
 			<div class="col">
 				<div class="detail_acc">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor laoreet lectus eget scelerisque. Quisque euismod enim vitae congue porta. Fusce eget lacinia dui, ac venenatis purus. Curabitur vehicula augue at eros sodales, vestibulum tempus dolor cursus. Sed nec orci a felis egestas venenatis quis ut ante. Vestibulum et tincidunt nibh. Nunc eu nulla metus. Nam vitae accumsan sem. Integer magna elit, congue congue leo ac, feugiat egestas justo. Donec fermentum ultricies velit sit amet accumsan.
-<br><br>
-Aliquam ultricies sagittis nibh, a finibus elit vulputate et. Sed a hendrerit ex. Quisque dignissim eleifend lectus quis pulvinar. Mauris ultricies, turpis vel fringilla fringilla, mauris turpis mattis erat, in posuere dui ex eu risus. Proin blandit in quam nec aliquet. Donec tristique cursus nulla vitae finibus. Phasellus at dolor ac sapien hendrerit imperdiet non vitae mi. Morbi sed risus venenatis arcu iaculis vestibulum.
-<br><br>
-Sed facilisis consectetur urna, vitae egestas nisl pulvinar eget. Pellentesque non sapien volutpat, congue sem non, condimentum eros. Nullam et justo risus. Phasellus id justo nec tortor commodo scelerisque nec non metus. Curabitur pulvinar ultrices neque, quis pulvinar magna imperdiet sit amet. Nullam in sem vel leo tincidunt blandit. Vestibulum et vehicula augue. Curabitur commodo congue felis ac fringilla.
+					{!!($tran['detail_'.$lang])!!}
 			
 			<br><br>
 			<div class="btn_regis">

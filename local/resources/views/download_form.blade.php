@@ -32,14 +32,24 @@
 			border: 1px solid #dee2e6;
 		}
 	</style>
+		@php
+			$lang = "";
+			if (session()->get('locale') == null){
+				$lang = "th";
+			}elseif (session()->get('locale') == "th") {
+				$lang = "th";
+			}elseif(session()->get('locale') == "en"){
+				$lang = "en";
+			}		
+		@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-							<li class="breadcrumb-item active" aria-current="page">ดาวน์โหลดแบบฟอร์ม</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.downloadform')}}</li>
 						</ol>
 					</nav>
 				</div>
@@ -80,13 +90,13 @@
 				<div class="row">
 					<div class="col">
 						@for($i = 1; $i <= count($file); $i++)
-							@foreach ($file as $_file)
+							@foreach ($file as $k_file => $_file)
 								<div class="box_download_doc">
 								
 									<div class="numberlist"> {{$i++}} </div>
 								
-									<div class="detail_doc"> {{$_file->name}} </div>
-									<div class="btn_download"> <a href="{{asset('uploads/'.$_file->file)}}" target="_blank" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
+									<div class="detail_doc"> {{$file[$k_file]['name_'.$lang]}} </div>
+									<div class="btn_download"> <a href="{{asset('uploads/'.$_file->file)}}" target="_blank" class="btn btn-primary">{{trans('messages.download')}} <i class="fas fa-download"></i></a> </div>
 								</div>
 							@endforeach
 						@endfor

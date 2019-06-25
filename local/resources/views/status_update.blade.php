@@ -15,6 +15,22 @@
 			justify-content: center;
 			align-items: center;
 		}
+		.page-item.active .page-link {
+			z-index: 1;
+			color: #fff;
+			background-color: #379595;
+			border-color: #379595;
+		}
+		.page-link {
+			position: relative;
+			display: block;
+			padding: 0.4rem 0.75rem;
+			margin-left: -1px;
+			line-height: 1.25;
+			color: #007bff;
+			background-color: #fff;
+			border: 1px solid #dee2e6;
+		}
 	</style>
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
@@ -22,8 +38,8 @@
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-							<li class="breadcrumb-item active" aria-current="page">ติดตามสถานะตราสารหนี้ผิดชำระของกองทุน</li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.statusupdate')}}</li>
 						</ol>
 					</nav>
 				</div>
@@ -105,12 +121,17 @@
 					<div class="wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col">
-								<div class="box_download_doc">
-									<div class="numberlist"> 01 </div>
-									<div class="detail_doc"> รายงานตราสารหนี้ที่ผิดนัดชำระ (EARTH) ประจำเดือน มีนาคม 2562 </div>
-									<div class="btn_download"> <a href="download_doc_inside.php" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
-								</div>
-								<div class="box_download_doc">
+								@for ($i = 1 ; $i <= count($debt); $i++)
+									@foreach ($debt as $_debt)
+										<div class="box_download_doc">
+											<div class="numberlist"> {{$i++}} </div>
+											<div class="detail_doc"> {{$_debt->name_th}} </div>
+											<div class="btn_download"> <a href="{{asset('uploads/'.$_debt->file)}}" class="btn btn-primary" target="_blank">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
+										</div>
+									@endforeach
+								@endfor
+								
+								{{-- <div class="box_download_doc">
 									<div class="numberlist"> 02 </div>
 									<div class="detail_doc"> รายงานตราสารหนี้ที่ผิดนัดชำระ (EARTH) ประจำเดือน กุมภาพันธ์ 2562 </div>
 									<div class="btn_download"> <a href="download_doc_inside.php" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
@@ -124,7 +145,7 @@
 									<div class="numberlist"> 04 </div>
 									<div class="detail_doc"> รายงานตราสารหนี้ที่ผิดนัดชำระ (EARTH) ประจำเดือน ธันวาคม 2561 </div>
 									<div class="btn_download"> <a href="download_doc_inside.php" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -132,13 +153,14 @@
 						<div class="col">
 							<div class="pagination_bot">
 								<nav class="pagination-container">
-									<div class="pagination"> <a class="pagination-newer" href="#"><i class="fas fa-angle-left"></i></a> <span class="pagination-inner">
+										{{$debt->links()}}
+									{{-- <div class="pagination"> <a class="pagination-newer" href="#"><i class="fas fa-angle-left"></i></a> <span class="pagination-inner">
 											<a href="#">1</a>
 											<a class="pagination-active" href="#">2</a>
 											<a href="#">3</a>
 											<a href="#">4</a>
 											<a href="#">5</a>
-										</span> <a class="pagination-older" href="#"><i class="fas fa-angle-right"></i></a> </div>
+										</span> <a class="pagination-older" href="#"><i class="fas fa-angle-right"></i></a> </div> --}}
 								</nav>
 							</div>
 						</div>

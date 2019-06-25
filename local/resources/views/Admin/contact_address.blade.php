@@ -11,7 +11,48 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="content">
-                            <h4 class="title">
+                                <div class="header">
+                                        <h4 class="title"> {{$title_page}}
+                                       
+    
+                                        </h4>
+                                    </div>
+                                    
+                                    <div class="content">
+                                        <div class="nav-tabs-navigation">
+                                            
+                                                <div class="nav-tabs-wrapper">
+                                                    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                                                        <li class="nav-item">
+                                                            <a href="#pill1" class="nav-link active" data-toggle="tab" aria-expanded="true">address</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#pill2" class="nav-link" data-toggle="tab" aria-expanded="false">location</a>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            
+                                        </div>
+                                        
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="pill1" aria-expanded="true">
+                                                    {!!($address->name_th)!!}
+                                                    <button class="btn btn-danger btn-edit pull-right" data-id="{{$address->id}}">
+                                                                แก้ไขข้อมูล
+                                                    </button> 
+                                                </div>
+                                                <div class="tab-pane" id="pill2" aria-expanded="false">
+                                                        <iframe src="{{$location->name_th}}" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                        <button class="btn btn-danger btn-location pull-right" data-id="{{$location->id}}">
+                                                                แก้ไขข้อมูล
+                                                        </button> 
+                                                </div>
+                                            </div>
+                                        
+                                        
+                                    </div>
+                            {{-- <h4 class="title">
                                 {{$title_page}}
                                 
                             </h4>
@@ -57,7 +98,7 @@
                                         </div>
                                         <div class="col-md-2">
                                         </div>
-                                 </div>
+                                 </div> --}}
                        
                                  
                         </div>
@@ -70,8 +111,8 @@
 @section('modal')
 
 
-    <div class="modal" id="ModalEdit"  role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document"  style="max-width:40%;max-height:40%;">
+    <div class="modal" id="ModalEditAddress"  role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document"  style="max-width:70%;max-height:70%;">
                 <div class="modal-content">
                     <input type="hidden" name="edit_id" id="edit_id">
                     <form id="FormEdit">
@@ -80,8 +121,18 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
-                        
+
                         <div class="form-group">
+                                <label for="edit_name_th">รายละเอียด(th)</label>
+                                <textarea id="edit_name_th" name="name_th" class="form-control"></textarea>                                                       
+                        </div>
+
+                        <div class="form-group">
+                                <label for="edit_name_en">รายละเอียด(en)</label>
+                                <textarea id="edit_name_en" name="name_en" class="form-control"></textarea>                                                       
+                        </div>
+                        
+                        {{-- <div class="form-group">
                             <label for="edit_name">ชื่อ</label>
                             <input id="edit_name" name="name" class="form-control" placeholder="ชื่อ">
                         </div>
@@ -111,7 +162,7 @@
                                 <option value="1">ใช้งาน</option>
                                 <option value="2">ไม่ใช้งาน</option>
                             </select>
-                        </div>
+                        </div> --}}
 
                         </div>
                         <div class="modal-footer">
@@ -121,6 +172,30 @@
                 </div>
             </div>
         </div>
+        <div class="modal" id="ModalEditLocation"  role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document"  style="max-width:70%;max-height:70%;">
+                    <div class="modal-content">
+                        <input type="hidden" name="edit_id" id="edit_id">
+                        <form id="FormEditLocation">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">แก้ไข {{$title_page}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+    
+                            <div class="form-group">
+                                    <label for="edit_location">location</label>
+                                    <input id="edit_location" name="name_th" class="form-control">                                                  
+                            </div>
+    
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">บันทึก</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 @endsection
 @section('js_top')
 @endsection
@@ -173,33 +248,55 @@
                     var file = [];
                     var photo = rec.photo;
                 }       
-                $('#edit_photo').orakuploader({
-                    orakuploader_path               : url_gb+'/',
-                    orakuploader_ckeditor           : false,
-                    orakuploader_use_dragndrop      : true,
-                    orakuploader_main_path          : 'uploads/temp/',
-                    orakuploader_thumbnail_path     : 'uploads/temp/',
-                    orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
-                    orakuploader_add_image          : asset_gb+'images/add.png',
-                    orakuploader_loader_image       : asset_gb+'images/loader.gif',
-                    orakuploader_no_image           : asset_gb+'images/no-image.jpg',
-                    orakuploader_add_label          : 'เลือกรูปภาพ',
-                    orakuploader_use_rotation       : false,
-                    orakuploader_maximum_uploads    : max_file,
-                    orakuploader_hide_on_exceed     : true,
-                    orakuploader_attach_images      : file,
-                    orakuploader_field_name         : 'photo',
-                    orakuploader_finished           : function(){
+                // $('#edit_photo').orakuploader({
+                //     orakuploader_path               : url_gb+'/',
+                //     orakuploader_ckeditor           : false,
+                //     orakuploader_use_dragndrop      : true,
+                //     orakuploader_main_path          : 'uploads/temp/',
+                //     orakuploader_thumbnail_path     : 'uploads/temp/',
+                //     orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+                //     orakuploader_add_image          : asset_gb+'images/add.png',
+                //     orakuploader_loader_image       : asset_gb+'images/loader.gif',
+                //     orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+                //     orakuploader_add_label          : 'เลือกรูปภาพ',
+                //     orakuploader_use_rotation       : false,
+                //     orakuploader_maximum_uploads    : max_file,
+                //     orakuploader_hide_on_exceed     : true,
+                //     orakuploader_attach_images      : file,
+                //     orakuploader_field_name         : 'photo',
+                //     orakuploader_finished           : function(){
 
-                    }
-                });
+                //     }
+                // });
 
-                $('#edit_name').val(rec.name);
+                CKEDITOR.instances['edit_name_th'].setData(rec.name_th);
+                CKEDITOR.instances['edit_name_en'].setData(rec.name_en);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
                 $('.select2').select2();
                 btn.button("reset");
-                ShowModal('ModalEdit');
+                ShowModal('ModalEditAddress');
+            }).fail(function(){
+                swal("system.system_alert","system.system_error","error");
+                btn.button("reset");
+            });
+        });
+        $('body').on('click','.btn-location',function(data){
+            var btn = $(this);
+            btn.button('loading');
+            var id = $(this).data('id');
+            $('#edit_id').val(id);
+            $.ajax({
+                method : "GET",
+                url : url_gb+"/admin/contact/show/"+id,
+                dataType : 'json'
+            }).done(function(rec){
+                console.log(rec);
+
+                $('#edit_location').val(rec.name_th);
+        
+                btn.button("reset");
+                ShowModal('ModalEditLocation');
             }).fail(function(){
                 swal("system.system_alert","system.system_error","error");
                 btn.button("reset");
@@ -266,19 +363,19 @@
 
             }
         });
-        $('#FormAddAddres').validate({
+        $('#FormEdit').validate({
             errorElement: 'div',
             errorClass: 'invalid-feedback',
             focusInvalid: false,
             rules: {
 
-                name: {
+                name_th: {
                     required: true,
                 },
             },
             messages: {
 
-                name: {
+                name_th: {
                     required: "กรุณาระบุ",
                 },
             },
@@ -301,7 +398,77 @@
                 }
 
                 var btn = $(form).find('[type="submit"]');
-                var id = $('#id_address').val();
+                var id = $('#edit_id').val();
+                btn.button("loading");
+                $.ajax({
+                    method : "POST",
+                    url : url_gb+"/admin/contact/"+id,
+                    dataType : 'json',
+                    data : $(form).serialize()
+                }).done(function(rec){
+                    btn.button("reset");
+                    if(rec.status==1){
+                        TableList.api().ajax.reload();
+                        resetFormCustom(form);
+                       
+                        swal({
+                            text: rec.title,
+                            title: rec.content,
+                            type: "success",
+                            icon: "success",
+                        }).then(function() {
+                            // Redirect
+                            window.location.href =  "{{url('admin/address')}}";	
+                        });
+                        $('#ModalEditAddress').modal('hide');
+                    }else{
+                        swal(rec.title,rec.content,"error");
+                    }
+                }).fail(function(){
+                    swal("system.system_alert","system.system_error","error");
+                    btn.button("reset");
+                });
+            },
+            invalidHandler: function (form) {
+
+            }
+        });
+        $('#FormEditLocation').validate({
+            errorElement: 'div',
+            errorClass: 'invalid-feedback',
+            focusInvalid: false,
+            rules: {
+
+                name_th: {
+                    required: true,
+                },
+            },
+            messages: {
+
+                name_th: {
+                    required: "กรุณาระบุ",
+                },
+            },
+            highlight: function (e) {
+                validate_highlight(e);
+            },
+            success: function (e) {
+                validate_success(e);
+            },
+
+            errorPlacement: function (error, element) {
+                validate_errorplacement(error, element);
+            },
+            submitHandler: function (form) {
+
+                if(CKEDITOR!==undefined){
+                    for ( instance in CKEDITOR.instances ){
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+                }
+
+                var btn = $(form).find('[type="submit"]');
+                var id = $('#edit_id').val();
                 btn.button("loading");
                 $.ajax({
                     method : "POST",
@@ -314,7 +481,7 @@
                         TableList.api().ajax.reload();
                         resetFormCustom(form);
                         swal(rec.title,rec.content,"success");
-                        $('#ModalEdit').modal('hide');
+                        $('#ModalEditLocation').modal('hide');
                     }else{
                         swal(rec.title,rec.content,"error");
                     }
@@ -362,7 +529,8 @@
             });
         });
         
-        CKEDITOR.replace('add_detail');
+        CKEDITOR.replace('edit_name_th');
+        CKEDITOR.replace('edit_name_en');
         $('#add_status').select2();
         $('#edit_status').select2();
     </script>

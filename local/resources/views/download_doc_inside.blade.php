@@ -16,17 +16,27 @@
 			align-items: center;
 		}
 	</style>
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="{{url('/')}}">หน้าหลัก</a></li>
-							<li class="breadcrumb-item"><a href="#">เอกสารเผยแพร่และประกาศบริษัท</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item"><a href="{{url('downloadreport')}}">{{trans('messages.report')}}</a></li>
 							<li class="breadcrumb-item active" aria-current="page"> 
-								@foreach ($file_type as $_file_type)
-									{{$_file_type->name}}
+								@foreach ($file_type as $k_file_type => $_file_type)
+									{{$file_type[$k_file_type]['name_'.$lang]}}
 								@endforeach 
 							</li>
 							
@@ -64,8 +74,8 @@
 			<div class="row mt-5">
 				<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 					<div class="title_head1"> 
-						@foreach ($file_type as $_file_type)
-							{{$_file_type->name}}
+						@foreach ($file_type as $k_file_type => $_file_type)
+							{{$file_type[$k_file_type]['name_'.$lang]}}
 						@endforeach   
 					</div>
 				</div>
@@ -74,13 +84,13 @@
 				<div class="row">
 					<div class="col">
 						<div class="downloaddetail">
-							@foreach ($fund_type as $_fund_type)
-								<h2>{{$_fund_type->name}}</h2>
+							@foreach ($fund_type as $k_fund_type => $_fund_type)
+								<h2>{{$fund_type[$k_fund_type]['name_'.$lang]}}</h2>
 								@foreach ($_fund_type->FileReport as $data_file)
-									@if ($_file_type->list_type == 'L')
+									@if (is_null($data_file->month_no))
 										<div class="row">
 											<div class="col">
-												{{$data_file->years_name}}	{{$data_file->name}}
+												{{$data_file->years_name}}	{{$data_file->name_th}}
 											</div>
 											<div class="col">
 												<a href="{{asset('uploads/'.$data_file->file)}}" class="downloadbtn" target="_blank">ดาวน์โหลด <i class="fas fa-download"></i></a>
