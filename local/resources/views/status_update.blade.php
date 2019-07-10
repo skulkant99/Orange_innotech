@@ -30,7 +30,16 @@
 			color: #007bff;
 			background-color: #fff;
 			border: 1px solid #dee2e6;
+		}	
+		.title_head1 {
+			text-align: left;
 		}
+		p.warning-message {
+			text-align: center;
+			font-style: italic;
+			margin-bottom: 60px;
+		}
+
 	</style>
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
@@ -83,37 +92,43 @@
 					<div class="bggray alignfull mb-3">
 						<div class="container">
 							<div class="box_search">
-								<div class="row">
-									<div class="col-lg-5">
-										<div class="search_funds">
-											<label>เลือกตราสารหนี้</label>
-											<select id="selectbasic" name="selectbasic" class="form-control">
-												<option value="1">รายงานสถานะตราสารหนี้ EARTH</option>
-												<option value="2">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-											</select>
+								<form id="search" action="{{url('seachstatus')}}" method="get" >
+									<div class="row">
+										<div class="col-lg-5">
+											<div class="search_funds">
+												<label>เลือกตราสารหนี้</label>
+												<select id="selectbasic" name="type" class="form-control">
+													<option value="EARTH">รายงานสถานะตราสารหนี้ EARTH</option>
+													<option value="IFEC">รายงานสถานะตราสารหนี้ IFEC</option>
+													<option value="KC">รายงานสถานะตราสารหนี้ KC</option>
+													<option value="WCIH">รายงานสถานะตราสารหนี้ WCIH</option>
+												</select>
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-5">
-										<div class="search_funds">
-											<label>เลือกวันที่ต้องการแสดงข้อมูล</label>
-											<form action="example.php" method="post">
-												<input autocomplete="off" class="datepicker form-control boxbox" placeholder="DD/MM/YY" /> </form>
+										<div class="col-lg-5">
+											<div class="search_funds">
+												<label>เลือกวันที่ต้องการแสดงข้อมูล</label>
+												<form action="example.php" method="post">
+													<input autocomplete="off" class="datepicker form-control boxbox" name="date" id="date" placeholder="DD/MM/YY" /> </form>
+											</div>
 										</div>
+										<div class="col-lg-2"> <button type="submit" class="btn btn-success">{{trans('messages.submit')}}</button> </div>
 									</div>
-									<div class="col-lg-2"> <a href="#" class="btn btn-success">ตกลง</a> </div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	
+		@if (count($debt) > 0)
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="sec_title">
-						<h4>รายงานสถานะตราสารหนี้ <span class="bluetxt">EARTH</span>
-</h4> </div>
+						<h4>รายงานสถานะตราสารหนี้ <span class="bluetxt">{{$debt[0]->type}}</span>
+					</h4> </div>
 				</div>
 			</div>
 			<div class="row">
@@ -167,6 +182,13 @@
 					</div>
 				</div>
 			</div>
+			@else
+				<div class="row">
+						<div class="col"><br/>
+							<p class="warning-message">{{ trans('messages.data_not_found') }}</p>
+						</div>
+				</div>
+			@endif
 		</div>
 		<main> </main>
 		@include('inc_footer')

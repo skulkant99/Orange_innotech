@@ -680,8 +680,13 @@ input#search-bar:focus:-ms-placeholder {
 }
 
 .inno_details {
-	font-size: 1.4em;
-	padding: 20px;
+	    font-size: 1.2em;
+    padding: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+	
 }
 
 .readmore {
@@ -833,7 +838,7 @@ main {
 	color: white;
 	text-align: center;
 	width: 50%;
-	margin-top: 5em;
+	margin-top: 2.5em;
 }
 
 .bannertxt_top h5 {
@@ -942,7 +947,7 @@ main {
 }
 
 .news_detail_inside {
-	line-height: 40px;
+	line-height: 25px;
 }
 
 .bannertop_calendar {
@@ -1491,6 +1496,13 @@ main {
 	background-size: cover;
 	height: 300px;
 }
+.bannertop_trust {
+	background-image: url(../images/trust_banner.png);
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+}
 
 .detail_private h2 {
 	font-family: 'Kanit';
@@ -1716,6 +1728,24 @@ main {
 	}
 }
 
+@media (max-width: 1300px) {
+	.container {
+		max-width: 1170px;
+	}
+	.bannertxt_top h1{
+		font-size: 2em;
+	}
+	.bannertxt_top{
+		width: 70%;
+	}
+}
+@media (max-width: 1269px) {
+.mainmenu ul li {
+		padding-right: 10px;
+		font-size: 0.85em;
+	}
+}
+
 @media (max-width: 1199px) {
 	.langcrop {
 		padding-top: 10px;
@@ -1732,6 +1762,7 @@ main {
 	}
 	.mainmenu ul li {
 		padding-right: 10px;
+		font-size: 0.85em;
 	}
 	.head_nav,
 	.title_head1 {

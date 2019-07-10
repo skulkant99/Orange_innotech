@@ -67,6 +67,17 @@
                     <input type="text" class="value_name_file" name="file">
                     <div class="preview_file"></div>
                 </div>
+                
+                <div class="form-group">
+                    <label for="add_type">ประเภทตราสารหนี้</label>
+                    <select  class="form-control number-only" name="type" id="add_type" tabindex="-1" data-placeholder="เลือก ตราสารหนี้">
+                        <option value="" selected disabled>เลือก</option>
+                        <option value="EARTH">รายงานสถานะตราสารหนี้ EARTH</option>
+                        <option value="IFEC">รายงานสถานะตราสารหนี้ IFEC</option>
+                        <option value="KC">รายงานสถานะตราสารหนี้ KC</option>
+                        <option value="WCIH">รายงานสถานะตราสารหนี้ WCIH</option>
+                    </select>
+                </div>
         
                 <div class="form-group">
                     <label for="add_sort_id">ลำดับ</label>
@@ -114,6 +125,17 @@
                     <input type="file" class="upload_file" id="edit_file">
                     <input type="text" class="value_name_file edit_value_name_file_file" name="file">
                     <div class="preview_file preview_file_file"></div>
+                </div>
+
+                <div class="form-group">
+                        <label for="edit_type">ประเภทตราสารหนี้</label>
+                        <select  class="form-control number-only" name="type" id="edit_type" tabindex="-1" data-placeholder="เลือก ตราสารหนี้">
+                            <option value="" selected disabled>เลือก</option>
+                            <option value="EARTH">รายงานสถานะตราสารหนี้ EARTH</option>
+                            <option value="IFEC">รายงานสถานะตราสารหนี้ IFEC</option>
+                            <option value="KC">รายงานสถานะตราสารหนี้ KC</option>
+                            <option value="WCIH">รายงานสถานะตราสารหนี้ WCIH</option>
+                        </select>
                 </div>
         
                 <div class="form-group">

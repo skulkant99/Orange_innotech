@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{asset('assets/global/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/global/plugins/bootstrap-daterangepicker-master/daterangepicker.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/global/plugins/select2/css/select2.css')}}" />
+    
     {{-- <link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet"> --}}
    
  

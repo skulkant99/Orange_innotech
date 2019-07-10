@@ -104,12 +104,13 @@
 											<div class="col">
 												<a href="{{asset('uploads/'.$data_file->file)}}" class="downloadbtn" target="_blank">ดาวน์โหลด <i class="fas fa-download"></i></a>
 											</div>
-										</div>
+										</div>										
 									@endif
-									
 								@endforeach
+								<hr>
+								
 							@endforeach
-							
+						
 									{{-- @endforeach --}}
 							
 								
@@ -161,8 +162,8 @@
 								<div class="col">
 									<a href="#" class="downloadbtn">ดาวน์โหลด <i class="fas fa-download"></i></a>
 								</div>
-							</div> 
-							<hr>--}}
+							</div> --}}
+						
 						</div>
 					</div>
 				</div>

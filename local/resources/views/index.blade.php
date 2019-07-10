@@ -790,7 +790,7 @@
 					<div class="row">
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 								<div class="box_nav">
-								<div class="head_nav"> S-EQRMF </div>
+								<div class="head_nav"> {{$fund_S[0]->StrFundShortName}} </div>
 								<div class="pic_nav">
 									<div class="hov-menu-sty">
 										<figure>
@@ -799,22 +799,30 @@
 									</div>
 								</div>
 								<div class="detail_nav"> กองทุนรวมเพื่อการเลี้ยงชีพ (RMF)
-									<br> ณ วันที่ xx/xx/xxxx </div>
+									@php
+										$date = new DateTime($fund_S[0]->DTENAVDATE);
+										$newdate = $date->format('d/m/Y');												
+									@endphp
+									<br> ณ วันที่ {{$newdate}} </div>
 								<div class="table_nav">
 									<table class="table table-bordered tablenavstyle">
 										<thead>
 											<tr>
 												<td>มูลค่าหน่วยลงทุน</td>
-												<th>10.500</th>
+												<th>{{number_format($fund_S[0]->DECNAV_UNIT,2,'.','')}}</th>
 											</tr>
 										</thead>
 										<tbody>
+											@php
+												$bath_ep = $fund_S[0]->DACNAVLAST - $fund_S[0]->DACNAVBEFOR;
+												$percent_ep = ($bath_ep*100)/100;
+											@endphp
 											<tr>
 												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">+0.15</span></td>
+												<td><span class="greentext">+{{number_format($bath_ep,2,'.','')}}</span></td>
 											</tr>
 											<tr>
-												<td>+1.50%</td>
+												<td>+{{number_format($percent_ep,2,'.','')}}%</td>
 											</tr>
 										</tbody>
 									</table>
@@ -824,7 +832,7 @@
 					</div>
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
 							<div class="box_nav">
-								<div class="head_nav"> EP-LTF </div>
+								<div class="head_nav"> {{$fund_EP[0]->StrFundShortName}} </div>
 								<div class="pic_nav">
 									<div class="hov-menu-sty">
 										<figure>
@@ -833,22 +841,30 @@
 									</div>
 								</div>
 								<div class="detail_nav"> กองทุนรวมหุ้นระยะยาว (LTF)
-									<br> ณ วันที่ xx/xx/xxxx </div>
+									@php
+										$date = new DateTime($fund_EP[0]->DTENAVDATE);
+										$newdate = $date->format('d/m/Y');												
+									@endphp
+									<br> ณ วันที่ {{$newdate}} </div>
 								<div class="table_nav">
 									<table class="table table-bordered tablenavstyle">
 										<thead>
 											<tr>
 												<td>มูลค่าหน่วยลงทุน</td>
-												<th>10.500</th>
+												<th>{{number_format($fund_EP[0]->DECNAV_UNIT,2,'.','')}}</th>
 											</tr>
 										</thead>
 										<tbody>
+											@php
+												$bath_s = $fund_EP[0]->DACNAVLAST - $fund_EP[0]->DACNAVBEFOR;
+												$percent_s = ($bath_s*100)/100;
+											@endphp
 											<tr>
 												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">+0.15</span></td>
+												<td><span class="greentext">+{{number_format($bath_s,2,'.','')}}</span></td>
 											</tr>
 											<tr>
-												<td>+1.50%</td>
+												<td>+{{number_format($percent_s,2,'.','')}}%</td>
 											</tr>
 										</tbody>
 									</table>
@@ -997,7 +1013,7 @@
 					</div>
 					<div class="row wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.5s">
 						<div class="col">
-							<div class="btn_center"> <a href="#" class="btn btn-secondary">ดูทั้งหมด คลิก</a> </div>
+							<div class="btn_center"> <a href="{{url('mutualfunds')}}" class="btn btn-secondary">ดูทั้งหมด คลิก</a> </div>
 						</div>
 					</div>
 				</div>

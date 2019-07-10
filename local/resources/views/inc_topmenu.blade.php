@@ -227,7 +227,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="sideright_top">
-					<li><a href="#">{{trans('messages.register')}} | {{trans('messages.login')}}</a></li>
+					<li><a href="{{url('account')}}">{{trans('messages.register')}} | {{trans('messages.login')}}</a></li>
 					<li>
 						<div class="search-container d-none d-sm-none d-md-none d-lg-block d-xl-block">
 							<input type="text" id="search-bar" placeholder="{{trans('messages.search')}}.."> <a href="#"><i class="fa fa-search search-icon"></i></a> </div>
@@ -261,7 +261,7 @@
 									<ul class="dropdownmain">
 										<li><a href="{{url('/privatefunds')}}">{{trans('messages.privatefunds')}}</a></li>
 										<li><a href="{{url('/mutualfunds')}}">{{trans('messages.mutualfunds')}}</a></li>
-										
+										<li><a href="{{url('/trust')}}">{{trans('messages.trust')}}</a></li>
 									</ul>
 								</li>
 								<li data-page="fundsprice"><a href="{{url('/fundsprice')}}">{{trans('messages.nav')}}</a></li>
@@ -338,6 +338,7 @@
 				<ul class="menumobile">
 					<li><a href="{{url('/privatefunds')}}">{{trans('messages.privatefunds')}}</a></li>
 					<li><a href="{{url('/mutualfunds')}}">{{trans('messages.mutualfunds')}}</a></li>
+					<li><a href="{{url('/trust')}}">{{trans('messages.trust')}}</a></li>
 				</ul>
 			</div>
 		</nav>

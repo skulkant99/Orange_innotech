@@ -23,6 +23,9 @@ return [
     'fund' => 'Fund',
     'privatefunds' => 'Private Fund',
     'mutualfunds' => 'Mutual Fund',
+    'trust' => 'Real Estate Investment Trust (REIT)',
+    'reit' => 'Trust What is real estate investment (REIT) ?',
+    'reit_manager' => 'REIT Manager for Real Estate Investment',
     'nav' => 'NAV',
     'performance' => 'Performance',
     'tran' => 'Transaction',
@@ -54,6 +57,9 @@ return [
     'tax_save' => 'Mutual funds for tax savings',
     'retirement' => 'Retirement Mutual Fund',
     'risk_level' => 'Risk level',
+    'choose_fund' => 'Choose a fund',
+    'choose_date' => 'Choose a date',
+    'data_not_found' => 'Data not found. Please reselect transaction.',
 
     //footer
     'copyrighttext' => 'Investment is risky. Investors should understand the product characteristics. Conditions, returns, risks, and tax guides are good before investing.'

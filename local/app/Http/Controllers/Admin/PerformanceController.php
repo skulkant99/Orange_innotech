@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use DB;
+use Excel;
 use Storage;
-use App\Imports\PerformanceImport;
-use Maatwebsite\Excel\Facades\Excel;
+use Datatables;
+use File;
+use App\Http\Controllers\Controller;
+
+
 
 class PerformanceController extends Controller
 {
@@ -44,30 +48,54 @@ class PerformanceController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function store()
+    public function store(Request $request)
     {
-        Excel::import(new PerformanceImport,request()->file('file'));
-
-        $input_all = $request->all();
-        if( Excel::import('file') ) {
-            $path = $request->file('file')->getRealPath();
-            $data = Excel::import($path)->get();
-        } else {
-            return back()->withErrors('error');
-        }
-       
-
-        if($data->count()){
-            foreach ($data as $key => $value) {
-                $arr[] = ['title' => $value->title, 'description' => $value->description];
-            }
-           
-            if(!empty($arr)){
-                Item::insert($arr);
-            }
-        }
+        if($request->file != null)
+        {
+            $file = $request->file('file');
+            $real_name = $file->getClientOriginalName();
+            $type_file = File::extension($real_name);
          
-        
+            if($type_file == 'csv' || $type_file == 'jpg')
+            {
+                return  response()->json(['success' => false]);
+            }
+            
+            Excel::load($file, function($reader) {
+                $rows = $reader->toArray();
+               
+                $i = 1;
+                foreach ($rows as $key => $value) 
+                {
+    
+                    $name                =   isset($value['name']) ? (string)$value['name'] : '' ;
+                    $fund                =   isset($value['fund']) ? (string)$value['fund'] : '' ;
+                    $gain                =   isset($value['gain']) ? (string)$value['gain'] : '' ;
+                    $result              =   isset($value['result']) ? (string)$value['result'] : '' ;
+                    $indicator           =   isset($value['indicator']) ? (string)$value['indicator'] : '' ;
+                    $type                =   $_POST['type'];
+                    $date                =   $_POST['date'];
+                    $sort_id             =   $i++;
+                  
+                    \App\Models\Performance::insert([
+                        'name' => $name,
+                        'fund' => $fund,
+                        'gain' => $gain,
+                        'result' => $result,
+                        'indicator' => $indicator,
+                        'result' => $result,
+                        'type' => $type,
+                        'sort_id' => $sort_id, 
+                        'date' => $date,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                        
+                    ]);
+                }
+            })->get();
+            return redirect('admin/Performance');
+        }
+    
         $input_all['created_at'] = date('Y-m-d H:i:s');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 

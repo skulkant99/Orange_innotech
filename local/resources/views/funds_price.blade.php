@@ -2,9 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	@include('inc_header') <?php $pageName="fundsprice"; ?>
+	@include('inc_header') 
+	@include('connect')
+	<?php $pageName="fundsprice"; ?>
 </head>
-
+{{-- {{dd($result)}} --}}
 <body>
 	<style>
 		.wrap_parallax {
@@ -124,18 +126,27 @@
 											</div>
 											<div class="col-md-3">
 												<div class="select_nav">
-													<select id="selectbasic" name="selectbasic" class="form-control">
-														<option value="1">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-														<option value="2">Option two</option>
+													<select id="funds" name="selectbasic" class="form-control" onchange="getFund(this)">
+														@if ($result[0]->StrFundShortName == 'EP-LTF')
+															<option value="001" selected>กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+															<option value="016" >กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+														@else
+															<option value="001" >กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+															<option value="016" selected>กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+														@endif
 													</select>
 												</div>
 											</div>
 										</div>
-				<br>
+								<br>
 								<table class="table funds_table table-bordered table-responsive-lg">
 									<thead>
 										<tr class="bg_orange">
-											<th colspan="9" class="text-left"><a href="funds_epltf.php">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</a></th>
+											@if ($result[0]->StrFundShortName == 'EP-LTF')
+												<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</a></th>	
+											@else
+												<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</a></th>	
+											@endif
 										</tr>
 										<tr>
 											<th scope="col">ชื่อย่อ</th>
@@ -149,17 +160,41 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">EP-LTF</th>
-											<td>17-04-2019 </td>
-											<td>21,465,598.92 </td>
-											<td>18.7374 </td>
-											<td>18.7374 </td>
-											<td>19.0037 </td>
-											<td><span class="greentext"><b>0.48</b></span></td>
-											<td><span class="greentext"><b>0.48</b></span></td>
-										</tr>
-										<tr>
+										
+									@foreach ($result as $_result)
+								
+										@php
+											$date = new DateTime($_result->DTENAVDATE);
+											$newdate = $date->format('d/m/Y');												
+										@endphp
+											<tr>
+												<th scope="row">{{$_result->StrFundShortName}}</th>													
+													<td>{{$newdate}}</td>
+													<td>{{number_format($_result->DECNAV,2)}}</td>
+													<td>{{number_format($_result->DECNAV_UNIT,2,'.','')}} </td>
+												@if ($_result->DECPURCHASE == null)
+													<td>N/A</td>
+												@else
+													<td>{{number_format($_result->DECPURCHASE,2,'.','')}} </td>
+												@endif
+												
+												@if ($_result->DECREDEEM == null)
+													<td>N/A</td>
+												@else
+													<td>{{number_format($_result->DECREDEEM,2,'.','')}} </td>
+												@endif
+												@php
+													$bath = $_result->DACNAVLAST - $_result->DACNAVBEFOR;
+													$percent = ($bath*100)/100;
+												@endphp
+												
+												<td><span class="greentext"><b>{{number_format($percent,2,'.','')}}</b></span></td>
+												
+
+												<td><span class="greentext"><b>{{number_format($bath,2,'.','')}}</b></span></td>
+											</tr>
+									@endforeach
+										{{-- <tr>
 											<th scope="row">EP-LTF</th>
 											<td>17-04-2019 </td>
 											<td>21,465,598.92 </td>
@@ -289,53 +324,116 @@
 											<td>19.0037 </td>
 											<td><span class="greentext"><b>0.48</b></span></td>
 											<td><span class="greentext"><b>0.48</b></span></td>
-										</tr>
+										</tr> --}}
 									</tbody>
 								</table>
 							</div>
 							<div class="display-slide" rel="2">
-											<div class="row mt-5">
-					<div class="col">
-						<div class="title_head1">มูลค่าหน่วยลงทุนย้อนหลัง <span class="bluetxt">NAV</span> </div>
-					</div>
-					
-				</div>
-				<br>
+										<div class="row mt-5">
+									<div class="col">
+										<div class="title_head1">มูลค่าหน่วยลงทุนย้อนหลัง <span class="bluetxt">NAV</span> </div>
+									</div>
+								</div>
+								<br>
 								<div class="bggray alignfull mb-3">
 									<div class="container">
 										<div class="box_search">
-											<div class="row">
-												<div class="col-lg-5">
-													<div class="search_funds">
-														<label>เลือกกองทุน</label>
-														<select id="selectbasic" name="selectbasic" class="form-control">
-															<option value="1">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-															<option value="2">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-														</select>
+											<form id="search" action="{{url('fundsprice/seachfundprice')}}" method="get" >
+												<div class="row">
+													<div class="col-lg-5">
+														<div class="search_funds">
+															<label>เลือกกองทุน</label>
+															<select id="funds_all" name="type" name="selectbasic" class="form-control">
+																@if ($result[0]->StrFundShortName == 'EP-LTF')
+																	<option value="001" selected>กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+																	<option value="016" >กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+																@else
+																	<option value="001" >กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+																	<option value="016" selected>กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+																@endif
+																
+															</select>
+														</div>
 													</div>
-												</div>
-												<div class="col-lg-5">
-													<div class="search_funds">
-														<label>เลือกวันที่ต้องการแสดงข้อมูล</label>
-														<form action="example.php" method="post">
-															<input autocomplete="off" class="datepicker form-control boxbox" placeholder="DD/MM/YY" /> </form>
+													<div class="col-lg-5">
+														<div class="search_funds">
+															<label>เลือกวันที่ต้องการแสดงข้อมูล</label>
+															<form action="example.php" method="post">
+																<input autocomplete="off" class="datepicker form-control boxbox"  name="date" id="date" placeholder="DD/MM/YY" /> </form>
+														</div>
 													</div>
+													<div class="col-lg-2"> <button type="submit" class="btn btn-success">{{trans('messages.submit')}}</button> </div>
 												</div>
-												<div class="col-lg-2"> <a href="#" class="btn btn-success">ตกลง</a> </div>
-											</div>
+											</form>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col">
 										<div class="sec_title">
-											<h5>ข้อมูล ณ วันที่ 17 เมษายน 2562</h5> </div>
+											@php
+											
+												$date = new DateTime($result[0]->DTENAVDATE);
+											
+												$newdate = $date->format('Y/m/d');
+												$date_create_edit = explode('/', $newdate);												
+												$month = $date_create_edit[1];
+												$year   = $date_create_edit[0] + 543;
+												$day = $date_create_edit[2];
+
+												switch ($month) {
+													case '01':
+														$month = "มกราคม";
+														break;
+													case '02':
+														$month = "กุมภาพันธ์";
+														break;
+													case '03':
+														$month = "มีนาคม";
+														break;
+													case '04':
+														$month = "เมษายน";
+														break;
+													case '05':
+														$month = "พฤษภาคม";
+														break;
+													case '06':
+														$month = "มิถุนายน";
+														break;
+													case '07':
+														$month = "กรกฎาคม";
+														break;
+													case '08':
+														$month = "สิงหาคม";
+														break;
+													case '09':
+														$month = "กันยายน";
+														break;
+													case '10':
+														$month = "ตุลาคม";
+														break;
+													case '11':
+														$month = "พฤศจิกายน";
+														break;
+													case '12':
+														$month = "ธันวาคม";
+														break;
+													default:
+														# code...
+														break;
+												}
+											@endphp			
+											<h5>ข้อมูล ณ วันที่ {{$day}} {{$month}} {{$year}}</h5> </div>
 									</div>
 								</div>
 								<table class="table funds_table table-bordered table-responsive-lg">
 									<thead>
 										<tr class="bg_orange">
-											<th colspan="9" class="text-left">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</th>
+											@if ($result[0]->StrFundShortName == 'EP-LTF')
+												<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</a></th>	
+											@else
+												<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</a></th>	
+											@endif
 										</tr>
 										<tr>
 											<th scope="col">ชื่อย่อ</th>
@@ -346,22 +444,43 @@
 											<th scope="col">ราคารับซื้อคืน</th>
 											<th scope="col">เปลี่ยนแปลง (%)</th>
 											<th scope="col">เปลี่ยนแปลง (บาท)</th>
-											<th scope="col">ดาวน์โหลด</th>
+											{{-- <th scope="col">ดาวน์โหลด</th> --}}
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">EP-LTF</th>
-											<td>17-04-2019 </td>
-											<td>21,465,598.92 </td>
-											<td>18.7374 </td>
-											<td>18.7374 </td>
-											<td>19.0037 </td>
-											<td><span class="greentext"><b>0.48</b></span></td>
-											<td><span class="greentext"><b>0.48</b></span></td>
-											<td><a href="#"><i class="far fa-file-excel"></i></a></td>
-										</tr>
-										<tr>
+											@foreach ($result as $_result)
+												@php
+													$date = new DateTime($_result->DTENAVDATE);
+													$newdate = $date->format('d/m/Y');												
+												@endphp
+													<tr>
+														<th scope="row">{{$_result->StrFundShortName}}</th>													
+															<td>{{$newdate}}</td>
+															<td>{{number_format($_result->DECNAV,2)}}</td>
+															<td>{{number_format($_result->DECNAV_UNIT,2,'.','')}} </td>
+														@if ($_result->DECPURCHASE == null)
+															<td>N/A</td>
+														@else
+															<td>{{number_format($_result->DECPURCHASE,2,'.','')}} </td>
+														@endif
+														
+														@if ($_result->DECREDEEM == null)
+															<td>N/A</td>
+														@else
+															<td>{{number_format($_result->DECREDEEM,2,'.','')}} </td>
+														@endif
+														@php
+															$bath = $_result->DACNAVLAST - $_result->DACNAVBEFOR;
+															$percent = ($bath*100)/100;
+														@endphp
+														
+														<td><span class="greentext"><b>{{number_format($percent,2,'.','')}}</b></span></td>
+														
+
+														<td><span class="greentext"><b>{{number_format($bath,2,'.','')}}</b></span></td>
+													</tr>
+											@endforeach
+										{{-- <tr>
 											<th scope="row">EP-LTF</th>
 											<td>17-04-2019 </td>
 											<td>21,465,598.92 </td>
@@ -504,7 +623,7 @@
 											<td><span class="greentext"><b>0.48</b></span></td>
 											<td><span class="greentext"><b>0.48</b></span></td>
 											<td><a href="#"><i class="far fa-file-excel"></i></a></td>
-										</tr>
+										</tr> --}}
 									</tbody>
 								</table>
 							</div>
@@ -543,6 +662,16 @@
 						, opacity: 2 - a / b
 					});
 				});
+			</script>
+			<script>
+				function getFund(selectObject) {
+						var fund = selectObject.value;  
+						
+						if(fund){
+							window.location = "{{url("/fundsprice/selectfund/")}}/"+fund;
+						}
+						
+					}
 			</script>
 			<script>
 				$(document).ready(function () {

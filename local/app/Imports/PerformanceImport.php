@@ -15,11 +15,14 @@ class PerformanceImport implements ToModel
     public function model(array $row)
     {
         return new Performance([
+            //
             'name'      => $row[0],
-            'fund'      => $row[1],
-            'gain'      => $rew[2],
+            'fund'      => $row[1], 
+            'gain'      => $row[2],
             'result'    => $row[3],
             'Indicator' => $row[4],
+            'type'      => $row[5],
+
         ]);
     }
 }

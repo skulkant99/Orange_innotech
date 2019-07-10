@@ -10,10 +10,16 @@
 		.title_head1 {
 			text-align: left;
 		}
+		p.warning-message {
+			text-align: center;
+			font-style: italic;
+			margin-bottom: 60px;
+		}
 		
 		
 	</style>
 	@include('inc_topmenu')
+
 		<div class="container-fluid nopad">
 			<div class="row">
 				<div class="col">
@@ -61,195 +67,356 @@
 			<div class="bggray">
 				<div class="container">
 					<div class="box_search">
+					<form id="search" action="{{url('seachfunds')}}" method="get" >
 						<div class="row">
-							<div class="col-lg-5">
-								<div class="search_funds">
-									<label>เลือกกองทุน</label>
-									<select id="selectbasic" name="selectbasic" class="form-control">
-										<option value="1">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-										<option value="2">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-									</select>
-								</div>
+								<div class="col-lg-5">
+										<div class="search_funds">
+											<label>{{trans('messages.choose_fund')}}</label>
+											<select id="selectbasic" name="type" class="form-control">
+												<option value="EP-LTF">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+												<option value="S-EQRMF">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-5">
+										<div class="search_funds">
+											<label>{{trans('messages.choose_date')}}</label>
+											<form action="example.php" method="post">
+												<input autocomplete="off" class="datepicker form-control boxbox" name="date" id="date" placeholder="DD/MM/YY" /> </form>
+										</div>
+									</div>
+									<div class="col-lg-2"> <button type="submit" class="btn btn-success">{{trans('messages.submit')}}</button> </div>
 							</div>
-							<div class="col-lg-5">
-								<div class="search_funds">
-									<label>เลือกวันที่ต้องการแสดงข้อมูล</label>
-									<form action="example.php" method="post">
-										<input autocomplete="off" class="datepicker form-control boxbox" placeholder="DD/MM/YY" /> </form>
-								</div>
-							</div>
-							<div class="col-lg-2"> <a href="#" class="btn btn-success">ตกลง</a> </div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="sec_title">
-							<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง</h2>
-							<h5>ข้อมูล ณ วันที่ 30 เมษายน 2562</h5> </div>
+			@if (count($perfor) > 0)
+				
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="sec_title">
+								<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง</h2>
+									@php
+										$date_create = $perfor[0]->date;
+
+										$date_create_edit = explode('-', $date_create);
+										$month = $date_create_edit[1];
+										$year   = $date_create_edit[0] + 543;
+										$day  = $date_create_edit[2];
+
+					
+										switch ($month) {
+											case '01':
+												$month = "มกราคม";
+												break;
+											case '02':
+												$month = "กุมภาพันธ์";
+												break;
+											case '03':
+												$month = "มีนาคม";
+												break;
+											case '04':
+												$month = "เมษายน";
+												break;
+											case '05':
+												$month = "พฤษภาคม";
+												break;
+											case '06':
+												$month = "มิถุนายน";
+												break;
+											case '07':
+												$month = "กรกฎาคม";
+												break;
+											case '08':
+												$month = "สิงหาคม";
+												break;
+											case '09':
+												$month = "กันยายน";
+												break;
+											case '10':
+												$month = "ตุลาคม";
+												break;
+											case '11':
+												$month = "พฤศจิกายน";
+												break;
+											case '12':
+												$month = "ธันวาคม";
+												break;
+											default:
+												# code...
+												break;
+										}
+									@endphp
+								<h5>ข้อมูล ณ วันที่ {{$day}} {{$month}} {{$year}}</h5> </div>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<table class="table funds_table_perf table-bordered table-responsive-lg">
-							<thead>
-								<tr>
-									<th scope="col" class="text-left">กองทุน</th>
-									<th scope="col">Year to date</th>
-									<th scope="col">3 เดือน</th>
-									<th scope="col">6 เดือน</th>
-									<th scope="col">1 ปี</th>
-									<th scope="col">3 ปี</th>
-									<th scope="col">5 ปี</th>
-									<th scope="col">10 ปี</th>
-									<th scope="col">ตั้งแต่จัดตั้งกองทุน</th>
-								</tr>
-							</thead>
-							<tbody>
-							
-								<tr>
-									<th scope="row" class="text-left">กองทุน EP-LTF</th>
-									<td>4.35</td>
-									<td>2.17</td>
-									<td>2.58</td>
-									<td>-3.53</td>
-									<td>0.19</td>
-									<td>2.03</td>
-									<td>9.82</td>
-									<td>90.97</td>
-								</tr>
-								<tr>
-									<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
-									<td>8.10</td>
-									<td>4.10</td>
-									<td>4.00</td>
-									<td>-3.34</td>
-									<td>9.17</td>
-									<td>6.71</td>
-									<td>17.47</td>
-									<td>235.83</td>
-								</tr>
-								<tr>
-									<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน  </th>
-									<td>8.41</td>
-									<td>7.12</td>
-									<td>11.19</td>
-									<td>12.37</td>
-									<td>11.69</td>
-									<td>13.12</td>
-									<td>15.71</td>
-									<td>16.21</td>
-								</tr>
-								<tr>
-									<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด </th>
-									<td>7.85</td>
-									<td>7.44</td>
-									<td>10.03</td>
-									<td>11.43</td>
-									<td>10.49</td>
-									<td>11.68</td>
-									<td>16.21</td>
-									<td>18.89</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="sec_title">
-							<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง (% ต่อปี)</h2> </div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<table class="table funds_table_perf table-bordered  table-responsive-lg">
-							<thead>
-								<tr>
-									<th scope="col" class="text-left">ปี</th>
-									<th scope="col">2552</th>
-									<th scope="col">2553</th>
-									<th scope="col">2554</th>
-									<th scope="col">25555</th>
-									<th scope="col">2556</th>
-									<th scope="col">2557</th>
-									<th scope="col">2558</th>
-									<th scope="col">2559</th>
-									<th scope="col">2560</th>
-									<th scope="col">2561</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row" class="text-left">กองทุน EP-LTF</th>
-									<td>29.01</td>
-									<td>22.10</td>
-									<td>7.75</td>
-									<td>27.28</td>
-									<td>1.15</td>
-									<td>38.27</td>
-									<td>-17.29</td>
-									<td>-1.34</td>
-									<td>10.93</td>
-									<td>-10.70</td>
-								</tr>
-								<tr>
-									<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
-									<td>71.35</td>
-									<td>47.80</td>
-									<td>3.69</td>
-									<td>40.53</td>
-									<td>-3.63</td>
-									<td>19.12</td>
-									<td>-11.23</td>
-									<td>23.85</td>
-									<td>17.30</td>
-									<td>-8.08</td>
-								</tr>
-								<tr>
-									<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน</th>
-									<td>23.55</td>
-									<td>14.64</td>
-									<td>20.62</td>
-									<td>12.11</td>
-									<td>20.22</td>
-									<td>16.08</td>
-									<td>13.48</td>
-									<td>13.88</td>
-									<td>8.60</td>
-									<td>13.03</td>
-								</tr>
-								<tr>
-									<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด</th>
-									<td>25.11</td>
-									<td>17.66</td>
-									<td>22.49</td>
-									<td>12.69</td>
-									<td>20.88</td>
-									<td>13.03</td>
-									<td>13.67</td>
-									<td>14.19</td>
-									<td>6.42</td>
-									<td>12.04</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="list_warn">
-							<li><i class="fas fa-exclamation-triangle"></i> เกณฑ์มาตรฐาน : ผลตอบแทนรวมตลาดหลักทรัพย์แห่งประเทศไทย (SET TRI)</li>
-							<li><i class="fas fa-exclamation-triangle"></i> เอกสารการวัดผลการดําเนินงานของกองทุนรวมฉบับนี ;ได้จัดทําขึ ;นตามมาตรฐานการวัดและนําเสนอผลการดําเนินงานของกองทุนรวมของสมาคมบริษัทจัดการลงทุน</li>
-							<li><i class="fas fa-exclamation-triangle"></i> ผลการดําเนินงานในอดีตของกองทุนรวมมิได้เป็ นสิCงยืนยันถึงผลการดําเนินงานในอนาคต </li>
+					@if ($perfor[0]->type == 'EP-LTF')
+						<div class="row">
+								<div class="col">
+									
+									<table class="table funds_table_perf table-bordered table-responsive-lg">
+										<thead>
+											<tr>
+												<th scope="col" class="text-left">กองทุน</th>	
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id <= 8)
+													<th scope="col">{{$v_perfor->name}}</th>
+													@endif
+												@endforeach												
+												
+											</tr>
+										</thead>
+									
+										<tbody>
+										
+											<tr>
+												<th scope="row" class="text-left">กองทุน EP-LTF</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id <= 8)
+													<th>{{$v_perfor->fund}}</th>
+													@endif
+												@endforeach	
+												
+											
+											</tr>
+											<tr>
+												<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id <= 8)
+													<th>{{$v_perfor->gain}}</th>
+													@endif
+												@endforeach	
+											
+											</tr>
+											<tr>
+												<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน  </th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id <= 8)
+													<th>{{$v_perfor->result}}</th>
+													@endif
+												@endforeach	
+											
+											</tr>
+											<tr>
+												<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด </th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id <= 8)
+													<th>{{$v_perfor->Indicator}}</th>
+													@endif
+												@endforeach	
+												
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="sec_title">
+										<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง (% ต่อปี)</h2> </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<table class="table funds_table_perf table-bordered  table-responsive-lg">
+										<thead>
+											<tr>
+												<th scope="col" class="text-left">ปี</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id > 8)
+													<th scope="col">{{$v_perfor->name}}</th>
+													@endif
+												@endforeach		
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row" class="text-left">กองทุน EP-LTF</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id > 8)
+													<th scope="col">{{$v_perfor->fund}}</th>
+													@endif
+												@endforeach	
+												
+											</tr>
+											<tr>
+												<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id > 8)
+													<th scope="col">{{$v_perfor->gain}}</th>
+													@endif
+												@endforeach	
+											
+											</tr>
+											<tr>
+												<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id > 8)
+													<th scope="col">{{$v_perfor->result}}</th>
+													@endif
+												@endforeach	
+												
+											</tr>
+											<tr>
+												<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด</th>
+												@foreach ($perfor as $k_perfor => $v_perfor)
+													@if ($v_perfor->sort_id > 8)
+													<th scope="col">{{$v_perfor->Indicator}}</th>
+													@endif
+												@endforeach	
+												
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+					@elseif($perfor[0]->type == 'S-EQRMF')
+					<div class="row">
+							<div class="col">
+								
+								<table class="table funds_table_perf table-bordered table-responsive-lg">
+									<thead>
+										<tr>
+											<th scope="col" class="text-left">กองทุน</th>	
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id <= 8)
+												<th scope="col">{{$v_perfor->name}}</th>
+												@endif
+											@endforeach												
+											
+										</tr>
+									</thead>
+								
+									<tbody>
+									
+										<tr>
+											<th scope="row" class="text-left">กองทุน S-EQRMF</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id <= 8)
+												<th>{{$v_perfor->fund}}</th>
+												@endif
+											@endforeach	
+											
+										
+										</tr>
+										<tr>
+											<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id <= 8)
+												<th>{{$v_perfor->gain}}</th>
+												@endif
+											@endforeach	
+										
+										</tr>
+										<tr>
+											<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน  </th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id <= 8)
+												<th>{{$v_perfor->result}}</th>
+												@endif
+											@endforeach	
+										
+										</tr>
+										<tr>
+											<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด </th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id <= 8)
+												<th>{{$v_perfor->Indicator}}</th>
+												@endif
+											@endforeach	
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="sec_title">
+									<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง (% ต่อปี)</h2> </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<table class="table funds_table_perf table-bordered  table-responsive-lg">
+									<thead>
+										<tr>
+											<th scope="col" class="text-left">ปี</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id > 8)
+												<th scope="col">{{$v_perfor->name}}</th>
+												@endif
+											@endforeach		
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row" class="text-left">กองทุน S-EQRMF</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id > 8)
+												<th scope="col">{{$v_perfor->fund}}</th>
+												@endif
+											@endforeach	
+											
+										</tr>
+										<tr>
+											<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id > 8)
+												<th scope="col">{{$v_perfor->gain}}</th>
+												@endif
+											@endforeach	
+										
+										</tr>
+										<tr>
+											<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id > 8)
+												<th scope="col">{{$v_perfor->result}}</th>
+												@endif
+											@endforeach	
+											
+										</tr>
+										<tr>
+											<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด</th>
+											@foreach ($perfor as $k_perfor => $v_perfor)
+												@if ($v_perfor->sort_id > 8)
+												<th scope="col">{{$v_perfor->Indicator}}</th>
+												@endif
+											@endforeach	
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					@endif
+					
+					<div class="row">
+						<div class="col">
+							<div class="list_warn">
+								<li><i class="fas fa-exclamation-triangle"></i> เกณฑ์มาตรฐาน : ผลตอบแทนรวมตลาดหลักทรัพย์แห่งประเทศไทย (SET TRI)</li>
+								<li><i class="fas fa-exclamation-triangle"></i> เอกสารการวัดผลการดําเนินงานของกองทุนรวมฉบับนี ;ได้จัดทําขึ ;นตามมาตรฐานการวัดและนําเสนอผลการดําเนินงานของกองทุนรวมของสมาคมบริษัทจัดการลงทุน</li>
+								<li><i class="fas fa-exclamation-triangle"></i> ผลการดําเนินงานในอดีตของกองทุนรวมมิได้เป็นสิ่งยืนยันถึงผลการดําเนินงานในอนาคต </li>
+							</div>
 						</div>
 					</div>
 				</div>
+			@else
+			<div class="row">
+				<div class="col"><br/>
+					<p class="warning-message">{{ trans('messages.data_not_found') }}</p>
+				</div>
 			</div>
+			@endif
+			
 		</main>
 		@include('inc_footer')
+			
 			<script>
 				// for heading
 				$(window).scroll(function () {
@@ -268,7 +435,7 @@
 				$(document).ready(function () {
 					$(function () {
 						$('.datepicker').datepicker({
-							dateFormat: 'dd/mm/yy'
+							dateFormat: 'yy-mm-dd'
 							, showButtonPanel: false
 							, changeMonth: false
 							, changeYear: false

@@ -2,6 +2,7 @@
 @section('css_bottom')
 @endsection
 @section('body')
+<link href="{{asset('assets/admin/css/datepicker.css')}}" rel="stylesheet">
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -47,7 +48,8 @@
 <div class="modal" id="ModalAdd"  role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="FormAdd">
+            <form action="{{ url('admin/Performance') }}" method="POST" enctype="multipart/form-data" >
+                {{ csrf_field() }}
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">เพิ่ม {{$title_page}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -55,14 +57,33 @@
                 <div class="modal-body">
                         <div class="form-group">
                             <label for="add_file">ไฟล์</label>
-                            <input type="file" class="upload_file" id="add_file">
-                            <input type="text" class="value_name_file" name="file">
-                            <div class="preview_file"></div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" name="file" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview_file"></div>                                    
+                                </div>
+                            </div>
                         </div>
-                    
-                           
-                       
-                    
+                        <div class="form-group">
+                            <label for="add_file">ประเภทกองทุน</label>
+                            <select name="type" id="add_type"  class="form-control select2">
+                                <option value="">--กรุณาเลือกกองทุน--</option>
+                                <option value="EP-LTF">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF)</option>
+                                <option value="S-EQRMF"> กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_date">ข้อมูล ณ วันที่</label>
+                            <div class="input-group" >
+                                <input type="text" class="form-control" name="date" id="add_start_at"  placeholder="start_at">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+  
                 {{-- <div class="form-group">
                     <label for="add_name">name</label>
                     <input type="text" class="form-control" name="name" id="add_name"  placeholder="name">
@@ -107,6 +128,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal" id="ModalEdit"  role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -165,6 +187,7 @@
 @endsection
 @section('js_bottom')
 <script src="{{asset('assets/global/plugins/orakuploader/orakuploader.js')}}"></script>
+
 <script>
 
      var TableList = $('#TableList').dataTable({
@@ -252,6 +275,7 @@
                 method : "POST",
                 url : url_gb+"/admin/Performance",
                 dataType : 'json',
+                enctype: 'multipart/form-data',
                 data : $(form).serialize()
             }).done(function(rec){
                 btn.button("reset");
@@ -363,7 +387,23 @@
             //console.log(e);
         });
     });
-
+  
     
 </script>
+<script src="{{asset('assets/admin/js/jquery.datetimepicker.full.js')}}"></script>
+<script type="text/javascript">   
+    $(function(){
+         
+        $.datetimepicker.setLocale('th'); // ต้องกำหนดเสมอถ้าใช้ภาษาไทย และ เป็นปี พ.ศ.
+   
+        // กรณีใช้แบบ input
+        $("#add_start_at").datetimepicker({
+            timepicker:true,
+            format:'Y-m-d',  // กำหนดรูปแบบวันที่ ที่ใช้ เป็น 00-00-0000            
+            lang:'th',  // ต้องกำหนดเสมอถ้าใช้ภาษาไทย และ เป็นปี พ.ศ.
+          
+        });    
+    });
+</script>
+
 @endsection

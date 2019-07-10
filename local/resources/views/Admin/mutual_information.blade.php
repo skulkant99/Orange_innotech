@@ -163,7 +163,7 @@
                 <div class="card">
                         <div class="content">
                             <h4 class="title">
-                                กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว 
+                                กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ 
                             </h4>
                             @foreach ($fund_info_r as $K_fund_info_r => $V_fund_info_r)
                                         @switch($V_fund_info_r->sort_id)
@@ -263,38 +263,30 @@
                             @endforeach
                             <div class="detail_content">
                                     <h2><img src="http://localhost/innotech/images/funds_price_detail_12.png"> เอกสารข้อมูลกองทุน (ดาวน์โหลด)</h2>
+                                        <button class="btn btn-success btn-add pull-right" >
+                                            + เพิ่มข้อมูล
+                                        </button>
                                     <div class="list_download_ep">
-                                             <form id="">   
-                                                <div class="row">
-                                                
-                                                            <div class="form-group col-md-3">
-                                                                    <label for="add_file">รายงานสถานะการลงทุนในแต่ละเดือน</label>
-                                                                    <input type="file" class="upload_file" id="add_file">
-                                                                    <input type="text" class="value_name_file" name="file">
-                                                                    <div class="preview_file"></div>
-                                                            </div>  
-                                                            <div class="form-group col-md-3">
-                                                                    <label for="add_file">หนังสือชี้ชวนส่วนสรุป</label>
-                                                                    <input type="file" class="upload_file" id="add_file">
-                                                                    <input type="text" class="value_name_file" name="file">
-                                                                    <div class="preview_file"></div>
-                                                            </div> 
-                                                            <div class="form-group col-md-3">
-                                                                    <label for="add_file">รายละเอียดโครงการจัดการ</label>
-                                                                    <input type="file" class="upload_file" id="add_file">
-                                                                    <input type="text" class="value_name_file" name="file">
-                                                                    <div class="preview_file"></div>
-                                                            </div>   
-                                                            <div class="form-group col-md-3">
-                                                                    <label for="add_file">คู่มือภาษี</label>
-                                                                    <input type="file" class="upload_file" id="add_file">
-                                                                    <input type="text" class="value_name_file" name="file">
-                                                                    <div class="preview_file"></div>
-                                                            </div>  
-                                                </div> 
-                                        </form>
-                                       
-                                     
+                                            
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead class="text-primary">
+                                                        <tr>
+                                                            <th>ชื่อ</th>
+                                                            <th>ไฟล์</th>
+                                                            <th></th>
+                                                        
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                     </div>
                                 </div>
                         </div>
@@ -305,6 +297,32 @@
 </div>
 @endsection
 @section('modal')
+<div class="modal" id="ModalAddFile"  role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <form id="FormAddFile">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">เพิ่มไฟล์</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    <div class="form-group">
+                        <label for="add_file">ไฟล์</label>
+                        <input type="file" class="upload_file" id="add_file">
+                        <input type="text" class="value_name_file" name="file">
+                        <div class="preview_file"></div>
+                    </div>
+                    
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">บันทึก</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <div class="modal" id="ModalAdd"  role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document" style="max-width:70%;max-height:70%;">
         <div class="modal-content">
@@ -409,7 +427,7 @@
         ]
     });
     $('body').on('click','.btn-add',function(data){
-        ShowModal('ModalAdd');
+        ShowModal('ModalAddFile');
     });
     $('body').on('click','.btn-edit',function(data){
         var btn = $(this);
@@ -487,6 +505,57 @@
                     resetFormCustom(form);
                     swal(rec.title,rec.content,"success");
                     $('#ModalAdd').modal('hide');
+                }else{
+                    swal(rec.title,rec.content,"error");
+                }
+            }).fail(function(){
+                swal("system.system_alert","system.system_error","error");
+                btn.button("reset");
+            });
+        },
+        invalidHandler: function (form) {
+
+        }
+    });
+    $('#FormAddFile').validate({
+        errorElement: 'div',
+        errorClass: 'invalid-feedback',
+        focusInvalid: false,
+        rules: {
+            
+         
+        },
+        messages: {
+            
+          
+        },
+        highlight: function (e) {
+            validate_highlight(e);
+        },
+        success: function (e) {
+            validate_success(e);
+        },
+
+        errorPlacement: function (error, element) {
+            validate_errorplacement(error, element);
+        },
+        submitHandler: function (form) {
+
+            var btn = $(form).find('[type="submit"]');
+            var data_ar = removePriceFormat(form,$(form).serializeArray());
+            btn.button("loading");
+            $.ajax({
+                method : "POST",
+                url : url_gb+"/admin/File/Mutual",
+                dataType : 'json',
+                data : $(form).serialize()
+            }).done(function(rec){
+                btn.button("reset");
+                if(rec.status==1){
+                    TableList.api().ajax.reload();
+                    resetFormCustom(form);
+                    swal(rec.title,rec.content,"success");
+                    $('#ModalAddFile').modal('hide');
                 }else{
                     swal(rec.title,rec.content,"error");
                 }

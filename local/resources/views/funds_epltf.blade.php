@@ -64,7 +64,7 @@
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
-							<li class="breadcrumb-item"><a href="{{url('/fundsepltf')}}">{{trans('messages.nav')}}</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/fundsprice')}}">{{trans('messages.nav')}}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</li>
 						</ol>
 					</nav>

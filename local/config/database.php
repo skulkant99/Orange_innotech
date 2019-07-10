@@ -36,6 +36,7 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => env('DB_DATABASE_SQLSRV',database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
@@ -52,7 +53,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => env('DB_PREFIX', ''),
             'prefix_indexes' => true,
-            'strict' => true,
+            'strict' => false ,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
@@ -75,11 +76,11 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST_SQLSRV', '(local)'),
+            'port' => env('DB_PORT_SQLSRV', '1433'),
+            'database' => env('DB_DATABASE_SQLSRV', 'Zmico_Asset'),
+            'username' => env('DB_USERNAME_SQLSRV', ''),
+            'password' => env('DB_PASSWORD_SQLSRV', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
