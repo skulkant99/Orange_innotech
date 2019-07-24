@@ -45,6 +45,7 @@
     <div class="modal-dialog" role="document" style="max-width:50%;max-height:50%;">
         <div class="modal-content">
             <form id="FormAdd">
+                <input type="hidden" name="type_debt_id" value="{{$id}}" >
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">เพิ่ม {{$title_page}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -68,7 +69,7 @@
                     <div class="preview_file"></div>
                 </div>
                 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="add_type">ประเภทตราสารหนี้</label>
                     <select  class="form-control number-only" name="type" id="add_type" tabindex="-1" data-placeholder="เลือก ตราสารหนี้">
                         <option value="" selected disabled>เลือก</option>
@@ -77,7 +78,7 @@
                         <option value="KC">รายงานสถานะตราสารหนี้ KC</option>
                         <option value="WCIH">รายงานสถานะตราสารหนี้ WCIH</option>
                     </select>
-                </div>
+                </div> --}}
         
                 <div class="form-group">
                     <label for="add_sort_id">ลำดับ</label>
@@ -127,7 +128,7 @@
                     <div class="preview_file preview_file_file"></div>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                         <label for="edit_type">ประเภทตราสารหนี้</label>
                         <select  class="form-control number-only" name="type" id="edit_type" tabindex="-1" data-placeholder="เลือก ตราสารหนี้">
                             <option value="" selected disabled>เลือก</option>
@@ -136,7 +137,7 @@
                             <option value="KC">รายงานสถานะตราสารหนี้ KC</option>
                             <option value="WCIH">รายงานสถานะตราสารหนี้ WCIH</option>
                         </select>
-                </div>
+                </div> --}}
         
                 <div class="form-group">
                     <label for="edit_sort_id">ลำดับ</label>
@@ -166,7 +167,7 @@
         "ajax": {
             "url": url_gb+"/admin/Debt/Lists",
             "data": function ( d ) {
-                //d.myKey = "myValue";
+                d.type_debt_id = {{$id}}
                 // d.custom = $('#myInput').val();
                 // etc
             }

@@ -185,13 +185,24 @@ class FileTypeController extends Controller
         })
         
         ->addColumn('action',function($rec){
-            $str='
-                <a href="'.url('admin/FileType/FundType/'.$rec->id).'"  class="btn btn-simple btn-success btn-icon plus  btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="เพิ่มหัวข้อกองทุน">
-                    <i class="ti-plus"></i>
-                </a>
-                <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
-                <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
-            ';
+            if($rec->list_type == 'L'){
+                $str='
+                    <a href="'.url('admin/FileType/FundType/'.$rec->id).'"  class="btn btn-simple btn-success btn-icon plus  btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="เพิ่มหัวข้อกองทุน">
+                        <i class="ti-plus"></i>
+                    </a>
+                    <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+                    <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
+                ';
+            }else{
+                $str='
+                    <a href="'.url('admin/FileType/UploadFile/'.$rec->id).'"  class="btn btn-simple btn-success btn-icon plus  btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="เพิ่มหัวข้อกองทุน">
+                        <i class="ti-plus"></i>
+                    </a>
+                    <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+                    <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
+                ';
+            }
+          
             return $str;
         })->make(true);
     }

@@ -40,6 +40,16 @@
 		
 	
 	</style>
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
@@ -91,23 +101,27 @@
 					<div class="bggray alignfull mb-3">
 						<div class="container">
 							<div class="box_search">
-								<div class="row">
-									<div class="col-lg-5">
-										<div class="search_funds">
-											<label>{{trans('messages.search')}}</label>
-											<select id="selectbasic" name="selectbasic" class="form-control">
-												<option value="1">กองทุนตลาดเงิน</option>
-												<option value="2">กองทุน LTF</option>
-											</select>
+								<form id="search" action="{{url('economic/seacheconomic')}}" method="get" >
+									<div class="row">
+										<div class="col-lg-5">
+											<div class="search_funds">
+												<label>{{trans('messages.search')}}</label>
+												<select id="selectbasic" name="type" class="form-control">
+													@foreach ($fund as $k_fund => $v_fund)
+														<option value="{{$v_fund->fund_short_name}}">{{$fund[$k_fund]['name_'.$lang]}}</option>
+													@endforeach
+
+												</select>
+											</div>
 										</div>
+										<div class="col-lg-5">
+											<div class="search_funds">
+												<label>{{trans('messages.keyword')}}</label>
+												<input id="textinput" name="keyword" type="text" class="form-control input-md" placeholder="Keyword"> </div>
+										</div>
+										<div class="col-lg-2"> <button type="submit" class="btn btn-success">{{trans('messages.submit')}}</button> </div>
 									</div>
-									<div class="col-lg-5">
-										<div class="search_funds">
-											<label>{{trans('messages.keyword')}}</label>
-											<input id="textinput" name="textinput" type="text" class="form-control input-md" placeholder="Keyword"> </div>
-									</div>
-									<div class="col-lg-2"> <a href="#" class="btn btn-success">{{trans('messages.submit')}}</a> </div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>

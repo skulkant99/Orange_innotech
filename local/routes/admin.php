@@ -151,6 +151,7 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::post('/FundType/Delete/{id}', 'Admin\FundTypeController@destroy');
 
       Route::get('/FileType/FundType/FileReport/{id}', 'Admin\FileReportController@index');
+        Route::get('/FileType/UploadFile//{id}', 'Admin\FileReportController@uploadFile');
         Route::get('/FileReport/Lists', 'Admin\FileReportController@Lists');
         Route::post('/FileReport', 'Admin\FileReportController@store');
         Route::get('/FileReport/{id}', 'Admin\FileReportController@show');
@@ -172,7 +173,7 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::post('/News/{id}', 'Admin\NewsController@update');
         Route::post('/News/Delete/{id}', 'Admin\NewsController@destroy');
 
-      Route::get('/Debt', 'Admin\DebtController@index');
+      Route::get('/Debt/Uploade/{id}', 'Admin\DebtController@index');
         Route::get('/Debt/Lists', 'Admin\DebtController@Lists');
         Route::post('/Debt', 'Admin\DebtController@store');
         Route::get('/Debt/{id}', 'Admin\DebtController@show');
@@ -202,6 +203,8 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::get('/FundInformation/{id}', 'Admin\FundInformationController@show');
         Route::post('/FundInformation/{id}', 'Admin\FundInformationController@update');
         Route::post('/FundInformation/Delete/{id}', 'Admin\FundInformationController@destroy');
+
+        Route::post('/FileInformation', 'Admin\FileInformationController@store');
 
       Route::get('/Transaction', 'Admin\TransactionController@index');
         Route::get('/Transaction/Lists', 'Admin\TransactionController@Lists');
@@ -237,6 +240,48 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::get('/Performance/{id}', 'Admin\PerformanceController@show');
         Route::post('/Performance/{id}', 'Admin\PerformanceController@update');
         Route::post('/Performance/Delete/{id}', 'Admin\PerformanceController@destroy');
+
+      Route::get('/Fund', 'Admin\FundController@index');
+        Route::get('/Fund/Lists', 'Admin\FundController@Lists');
+        Route::post('/Fund', 'Admin\FundController@store');
+        Route::get('/Fund/{id}', 'Admin\FundController@show');
+        Route::post('/Fund/{id}', 'Admin\FundController@update');
+        Route::post('/Fund/Delete/{id}', 'Admin\FundController@destroy');
+
+      Route::get('/Fund/FundReport/{id}', 'Admin\FundReportController@index');
+        Route::get('/FundReport/Lists', 'Admin\FundReportController@Lists');
+        Route::post('/FundReport', 'Admin\FundReportController@store');
+        Route::get('/FundReport/{id}', 'Admin\FundReportController@show');
+        Route::post('/FundReport/{id}', 'Admin\FundReportController@update');
+        Route::post('/FundReport/Delete/{id}', 'Admin\FundReportController@destroy');
+
+      Route::get('/Personnel', 'Admin\PersonnelController@index');
+        Route::get('/Personnel/Lists', 'Admin\PersonnelController@Lists');
+        Route::post('/Personnel', 'Admin\PersonnelController@store');
+        Route::get('/Personnel/{id}', 'Admin\PersonnelController@show');
+        Route::post('/Personnel/{id}', 'Admin\PersonnelController@update');
+        Route::post('/Personnel/Delete/{id}', 'Admin\PersonnelController@destroy');
+
+      Route::get('/FileType/UploadFile/{id}', 'Admin\FileListReportController@index');
+        Route::get('/FileListReport/Lists', 'Admin\FileListReportController@Lists');
+        Route::post('/FileListReport', 'Admin\FileListReportController@store');
+        Route::get('/FileListReport/{id}', 'Admin\FileListReportController@show');
+        Route::post('/FileListReport/{id}', 'Admin\FileListReportController@update');
+        Route::post('/FileListReport/Delete/{id}', 'Admin\FileListReportController@destroy');
+
+      Route::get('/Governance', 'Admin\GovernanceController@index');
+        Route::get('/Governance/Lists', 'Admin\GovernanceController@Lists');
+        Route::post('/Governance', 'Admin\GovernanceController@store');
+        Route::get('/Governance/{id}', 'Admin\GovernanceController@show');
+        Route::post('/Governance/{id}', 'Admin\GovernanceController@update');
+        Route::post('/Governance/Delete/{id}', 'Admin\GovernanceController@destroy');
+
+      Route::get('/TypeDebt', 'Admin\TypeDebtController@index');
+        Route::get('/TypeDebt/Lists', 'Admin\TypeDebtController@Lists');
+        Route::post('/TypeDebt', 'Admin\TypeDebtController@store');
+        Route::get('/TypeDebt/{id}', 'Admin\TypeDebtController@show');
+        Route::post('/TypeDebt/{id}', 'Admin\TypeDebtController@update');
+        Route::post('/TypeDebt/Delete/{id}', 'Admin\TypeDebtController@destroy');
 
       ##ROUTEFORINSTALL##
 });

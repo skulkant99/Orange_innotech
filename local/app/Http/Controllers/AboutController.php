@@ -17,6 +17,9 @@ class AboutController extends Controller
             ->select('contacts.*')
             ->get();
         $data['about'] = \App\Models\FundInformation::where('type','=','A')->select()->get();
+        $data['personnel'] = \App\Models\Personnel::select()
+            ->orderBy('sort_id','ASC')
+            ->get();
         return view('about',$data);
     }
   

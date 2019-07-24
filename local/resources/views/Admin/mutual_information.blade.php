@@ -150,13 +150,13 @@
                                     @endswitch
                                     
                         @endforeach
-                        <div class="detail_content">
+                        {{-- <div class="detail_content">
                                 <h2><img src="http://localhost/innotech/images/funds_price_detail_12.png"> เอกสารข้อมูลกองทุน (ดาวน์โหลด)</h2>
                                 <div class="list_download_ep">
                                         
                                  
                                 </div>
-                            </div>
+                            </div> --}}
                    
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                                                 
                                         @endswitch
                             @endforeach
-                            <div class="detail_content">
+                            {{-- <div class="detail_content">
                                     <h2><img src="http://localhost/innotech/images/funds_price_detail_12.png"> เอกสารข้อมูลกองทุน (ดาวน์โหลด)</h2>
                                         <button class="btn btn-success btn-add pull-right" >
                                             + เพิ่มข้อมูล
@@ -288,7 +288,7 @@
                                                 </table>
                                             </div>
                                     </div>
-                                </div>
+                                </div> --}}
                         </div>
                     </div>
             </div>
@@ -306,6 +306,12 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
+                    
+                    <div class="form-group">
+                        <label for="add_name">ชื่อ</label>
+                        <input type="text" class="form-control" name="sort_id" id="add_name"  placeholder="name">
+                    </div>
+                        
                         
                     <div class="form-group">
                         <label for="add_file">ไฟล์</label>
@@ -314,6 +320,20 @@
                         <div class="preview_file"></div>
                     </div>
                     
+                    
+                    <div class="form-group">
+                        <label for="add_type">ประเภทกองทุน</label>
+                        <select  class="form-control number-only select2" name="type" id="add_type" tabindex="-1" data-placeholder="เลือก ประเภทกองทุน">
+                            <option value="">เลือก</option>
+                            <option value="EP-LTF">EP-LTF</option>
+                            <option value="S-EQRMF">S-EQRMF</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_sort_id">ลำดับ</label>
+                        <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="sort_id">
+                    </div>
 
                     </div>
                     <div class="modal-footer">
@@ -456,7 +476,7 @@
         });
     });
 
-    $('#FormAdd').validate({
+    $('#FormAddFile').validate({
         errorElement: 'div',
         errorClass: 'invalid-feedback',
         focusInvalid: false,
@@ -495,7 +515,7 @@
             btn.button("loading");
             $.ajax({
                 method : "POST",
-                url : url_gb+"/admin/FundInformation",
+                url : url_gb+"/admin/FileInformation",
                 dataType : 'json',
                 data : $(form).serialize()
             }).done(function(rec){

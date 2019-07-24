@@ -16,21 +16,49 @@ class FundPriceController extends Controller
         $data['contact'] = \App\Models\Contact::where('status','=','1')
             ->select('contacts.*')
             ->get();
-        $result = DB::connection('sqlsrv')->select('SELECT TOP(15) StrFundShortName,
-                    T_DAILY_NAV.DTENAVDATE,
-                    T_DAILY_NAV.DECNAV,
-                    T_DAILY_NAV.DECNAV_UNIT,
-                    T_DAILY_NAV.DECPURCHASE,
-                    T_DAILY_NAV.DECREDEEM ,
-                    (SELECT  T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVLAST,
+ 
 
-                    (SELECT  T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVBEFOR
+        // $data['result'] = DB::connection('sqlsrv')
+        //     ->table('M_FUND','T_DAILY_NAV')
+        //     ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+        //     ->select('M_FUND.StrFundShortName',
+        //             'T_DAILY_NAV.DTENAVDATE',
+        //             'T_DAILY_NAV.DECNAV',
+        //             'T_DAILY_NAV.DECNAV_UNIT',
+        //             'T_DAILY_NAV.DECPURCHASE',
+        //             'T_DAILY_NAV.DECREDEEM',
+        //                 DB::raw("(SELECT T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
+        //                 WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVLAST"),
+        //                 DB::raw("(SELECT T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
+        //                 WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVBEFOR")
+        //             )
+        //     ->where('M_FUND.StrFundREF','=',001)
+        //     ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+        //     ->paginate(15);
 
-                    from M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC ');
+        $data['result'] = DB::connection('sqlsrv')
+            ->table('M_FUND','T_DAILY_NAV')
+            ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+            ->select('M_FUND.StrFundShortName',
+                    'T_DAILY_NAV.DTENAVDATE',
+                    'T_DAILY_NAV.DECNAV',
+                    'T_DAILY_NAV.DECNAV_UNIT',
+                    'T_DAILY_NAV.DECPURCHASE',
+                    'T_DAILY_NAV.DECREDEEM'
+                    )
+            ->where('M_FUND.StrFundREF','=',001)
+            ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+            ->paginate(10);
 
+        $data['DACNAVLAST'] =  DB::connection('sqlsrv')
+            ->table('M_FUND','T_DAILY_NAV')
+            ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+            ->select('T_DAILY_NAV.DECNAV_UNIT')
+            ->where('M_FUND.StrFundREF','=', 001)
+            ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+            ->paginate(2);
+
+    
                 // $serverName = "(local)";  
                 // $connectionInfo = array( "Database"=>"Zmico_Asset",
                 //                         "ReturnDatesAsStrings"=> true,
@@ -62,49 +90,121 @@ class FundPriceController extends Controller
                 //             WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC ";   
                 // $stmt  = sqlsrv_query($conn, $sql);
                 // $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-
-        $data['result'] = $result;
+            $data['fund'] = \App\Models\Fund::select()->get();          
+                    
         return view('funds_price',$data);
     }
+    public function indexfundpriceall()
+    {
+        $data['banner'] = \App\Models\Banner::select('banners.*')->get();
+        $data['category'] = \App\Models\Category::where('status','=','1')
+            ->select('categories.*')
+            ->orderBy('sort_id','ASC')
+            ->get();
+     
+        $data['contact'] = \App\Models\Contact::where('status','=','1')
+            ->select('contacts.*')
+            ->get();
+ 
+
+        // $data['result'] = DB::connection('sqlsrv')
+        //     ->table('M_FUND','T_DAILY_NAV')
+        //     ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+        //     ->select('M_FUND.StrFundShortName',
+        //             'T_DAILY_NAV.DTENAVDATE',
+        //             'T_DAILY_NAV.DECNAV',
+        //             'T_DAILY_NAV.DECNAV_UNIT',
+        //             'T_DAILY_NAV.DECPURCHASE',
+        //             'T_DAILY_NAV.DECREDEEM',
+        //                 DB::raw("(SELECT T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
+        //                 WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVLAST"),
+        //                 DB::raw("(SELECT T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
+        //                 WHERE M_FUND.StrFundREF = 001 ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVBEFOR")
+        //             )
+        //     ->where('M_FUND.StrFundREF','=',001)
+        //     ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+        //     ->paginate(15);
+     $data['result'] = DB::connection('sqlsrv')
+            ->table('M_FUND','T_DAILY_NAV')
+            ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+            ->select('M_FUND.StrFundShortName',
+                    'T_DAILY_NAV.DTENAVDATE',
+                    'T_DAILY_NAV.DECNAV',
+                    'T_DAILY_NAV.DECNAV_UNIT',
+                    'T_DAILY_NAV.DECPURCHASE',
+                    'T_DAILY_NAV.DECREDEEM'
+                    )
+            ->where('M_FUND.StrFundREF','=',001)
+            ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+            ->paginate(10);
+
+        
+        $data['DACNAVLAST'] =  DB::connection('sqlsrv')
+            ->table('M_FUND','T_DAILY_NAV')
+            ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+            ->select('T_DAILY_NAV.DECNAV_UNIT')
+            ->where('M_FUND.StrFundREF','=', 001)
+            ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+            ->paginate(2);
+        return view('funds_price_all',$data);
+    }
     public function search_select($fund){
-        $result = DB::connection('sqlsrv')->select('SELECT TOP(15) StrFundShortName,
-                    T_DAILY_NAV.DTENAVDATE,
-                    T_DAILY_NAV.DECNAV,
-                    T_DAILY_NAV.DECNAV_UNIT,
-                    T_DAILY_NAV.DECPURCHASE,
-                    T_DAILY_NAV.DECREDEEM ,
-                    (SELECT  T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = '.$fund.' ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVLAST,
+        
+        $data['result'] = DB::connection('sqlsrv')
+            ->table('M_FUND','T_DAILY_NAV')
+            ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+            ->select('M_FUND.StrFundShortName',
+                    'T_DAILY_NAV.DTENAVDATE',
+                    'T_DAILY_NAV.DECNAV',
+                    'T_DAILY_NAV.DECNAV_UNIT',
+                    'T_DAILY_NAV.DECPURCHASE',
+                    'T_DAILY_NAV.DECREDEEM'
+                    )
+            ->where('M_FUND.StrFundREF','=',$fund)
+            ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+            ->paginate(15);
 
-                    (SELECT  T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = '.$fund.' ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVBEFOR
-
-                    from M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = '.$fund.' ORDER BY T_DAILY_NAV.DTENAVDATE DESC ');
-        $data['result'] = $result;
+        $data['DACNAVLAST'] =  DB::connection('sqlsrv')
+            ->table('M_FUND','T_DAILY_NAV')
+            ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+            ->select('T_DAILY_NAV.DECNAV_UNIT')
+            ->where('M_FUND.StrFundREF','=', $fund)
+            ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+            ->paginate(2);
         return view('funds_price',$data);
     }
     public function seachfundprice(Request $request){
-        $data['type'] = $request->input('type');
-        $data['date'] = $request->input('date');
-        $newdate = date('Y-d-m', strtotime($data['date']));
-        $convers = "'".$newdate."'";
+        $type = $request->input('type');
+        $date = $request->input('date');
        
-        $data['result'] = DB::connection('sqlsrv')->select('SELECT TOP(15) StrFundShortName,
-                    T_DAILY_NAV.DTENAVDATE,
-                    T_DAILY_NAV.DECNAV,
-                    T_DAILY_NAV.DECNAV_UNIT,
-                    T_DAILY_NAV.DECPURCHASE,
-                    T_DAILY_NAV.DECREDEEM ,
-                    (SELECT  T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = '.$data['type'].' ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVLAST,
-
-                    (SELECT  T_DAILY_NAV.DECNAV_UNIT FROM M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = '.$data['type'].' ORDER BY T_DAILY_NAV.DTENAVDATE DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS DACNAVBEFOR
-
-                    from M_FUND LEFT JOIN T_DAILY_NAV ON T_DAILY_NAV.STRFUNDREF = M_FUND.StrFundREF 
-                    WHERE M_FUND.StrFundREF = '.$data['type'].' AND T_DAILY_NAV.DTENAVDATE  = '.$convers.' ORDER BY T_DAILY_NAV.DTENAVDATE DESC ');
+        $datecon = str_replace('/', '-', $date );
+        $newDate = date("d-m-Y", strtotime($datecon));
        
-        return view('funds_price',$data);
+       
+        $data['result'] = DB::connection('sqlsrv')
+                ->table('M_FUND','T_DAILY_NAV')
+                ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+                ->select('M_FUND.StrFundShortName',
+                        'T_DAILY_NAV.DTENAVDATE',
+                        'T_DAILY_NAV.DECNAV',
+                        'T_DAILY_NAV.DECNAV_UNIT',
+                        'T_DAILY_NAV.DECPURCHASE',
+                        'T_DAILY_NAV.DECREDEEM'
+                        )
+                ->where('M_FUND.StrFundREF','=',$type)
+                ->where('T_DAILY_NAV.DTENAVDATE','=',$newDate)
+                ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+                ->paginate(15);
+
+        $data['DACNAVLAST'] =  DB::connection('sqlsrv')
+                ->table('M_FUND','T_DAILY_NAV')
+                ->leftJoin('T_DAILY_NAV','M_FUND.StrFundREF','=','T_DAILY_NAV.STRFUNDREF')
+                ->select('T_DAILY_NAV.DECNAV_UNIT')
+                ->where('M_FUND.StrFundREF','=', $type)
+                ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
+                ->paginate(2);
+        
+        return view('funds_price_all',$data);
+        // return response()->json($result);
     }
 }

@@ -23,11 +23,11 @@
                                     <thead>
                                         <tr>
                                         <th>#</th>
-                                        <th>name</th>
-                                        <th>fund</th>
-                                        <th>file</th>
-                                        <th>sort_id</th>
-                                        <th>status</th>
+                                        <th>ชื่อ</th>
+                                        <th>ประเภท</th>
+                                        <th>ไฟล์</th>
+                                        <th>ลำดับ</th>
+                                        <th>สถานะ</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -53,30 +53,34 @@
                 <div class="modal-body">
                     
                 <div class="form-group">
-                    <label for="add_name">name</label>
-                    <input type="text" class="form-control" name="name" id="add_name" required="" placeholder="name">
+                    <label for="add_name">ชื่อ</label>
+                    <input type="text" class="form-control" name="name" id="add_name" required="" placeholder="ชื่อ">
                 </div>
         
                 <div class="form-group">
-                    <label for="add_fund">fund</label>
-                    <input type="text" class="form-control" name="fund" id="add_fund"  placeholder="fund">
+                    <label for="add_fund">ประเภท</label>
+                    <select  class="form-control number-only select2" name="fund" id="add_fund" tabindex="-1" data-placeholder="เลือก ประเภทกองทุน">
+                        @foreach ($fund as $_fund)
+                            <option value="{{$_fund->fund_short_name}}">{{$_fund->name_th}}</option>
+                        @endforeach
+                    </select>
                 </div>
         
                 <div class="form-group">
-                    <label for="add_file">file</label>
+                    <label for="add_file">ไฟล์</label>
                     <input type="file" class="upload_file" id="add_file">
                     <input type="text" class="value_name_file" name="file">
                     <div class="preview_file"></div>
                 </div>
         
                 <div class="form-group">
-                    <label for="add_sort_id">sort_id</label>
-                    <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="sort_id">
+                    <label for="add_sort_id">ลำดับ</label>
+                    <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="ลำดับ">
                 </div>
         
                 <div class="form-check">
                     <label for="add_status" class="checkbox form-check-label">
-                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> status
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> เปิดใช้งาน
                     </label>
                 </div>
         
@@ -101,30 +105,34 @@
                 <div class="modal-body">
                     
                 <div class="form-group">
-                    <label for="edit_name">name</label>
-                    <input type="text" class="form-control" name="name" id="edit_name" required="" placeholder="name">
+                    <label for="edit_name">ชื่อ</label>
+                    <input type="text" class="form-control" name="name" id="edit_name" required="" placeholder="ชื่อ">
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_fund">fund</label>
-                    <input type="text" class="form-control" name="fund" id="edit_fund"  placeholder="fund">
+                    <label for="edit_fund">ประเภท</label>
+                    <select  class="form-control number-only select2" name="fund" id="edit_fund" tabindex="-1" data-placeholder="เลือก กองทุน">
+                        @foreach ($fund as $_fund)
+                            <option value="{{$_fund->fund_short_name}}">{{$_fund->name_th}}</option>
+                        @endforeach
+                    </select>
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_file">file</label>
+                    <label for="edit_file">ไฟล์</label>
                     <input type="file" class="upload_file" id="edit_file">
                     <input type="text" class="value_name_file edit_value_name_file_file" name="file">
                     <div class="preview_file preview_file_file"></div>
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_sort_id">sort_id</label>
-                    <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="sort_id">
+                    <label for="edit_sort_id">ลำดับ</label>
+                    <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="ลำดับ">
                 </div>
         
                 <div class="form-check">
                     <label for="edit_status" class="checkbox form-check-label">
-                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> status
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> เปิดใช้งาน
                     </label>
                 </div>
         

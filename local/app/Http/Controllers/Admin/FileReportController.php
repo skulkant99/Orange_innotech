@@ -16,7 +16,7 @@ class FileReportController extends Controller
     public function index($id)
     {
         $data['main_menu'] = 'GroupMenu';
-        $data['sub_menu'] = 'FileReport';
+        $data['sub_menu'] = 'FileType';
         $data['title'] = 'FileReport';
         $data['title_page'] = 'FileReport';
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
@@ -25,6 +25,10 @@ class FileReportController extends Controller
         $data['Years'] = \App\Models\Year::get();
         $data['id'] = $id;
         return view('Admin.file_report',$data);
+    }
+    public function uploadFile($id)
+    {
+
     }
 
     /**

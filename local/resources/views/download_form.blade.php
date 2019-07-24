@@ -89,17 +89,15 @@
 			<div class="wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.1s">
 				<div class="row">
 					<div class="col">
-						@for($i = 1; $i <= count($file); $i++)
 							@foreach ($file as $k_file => $_file)
 								<div class="box_download_doc">
 								
-									<div class="numberlist"> {{$i++}} </div>
+									<div class="numberlist"> {{$k_file+ $file->firstItem()}} </div>
 								
 									<div class="detail_doc"> {{$file[$k_file]['name_'.$lang]}} </div>
 									<div class="btn_download"> <a href="{{asset('uploads/'.$_file->file)}}" target="_blank" class="btn btn-primary">{{trans('messages.download')}} <i class="fas fa-download"></i></a> </div>
 								</div>
 							@endforeach
-						@endfor
 						
 						{{-- <div class="box_download_doc">
 							<div class="numberlist"> 02 </div>

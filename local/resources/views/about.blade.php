@@ -232,7 +232,8 @@
 								<option value="2">วิสัยทัศน์และพันธกิจ</option>
 								<option value="3">ค่านิยมหลักของบริษัท</option>
 								<option value="4">คณะกรรมการบริษัท</option>
-								<option value="5">ผู้จัดการกองทุน</option>
+								<option value="5">คณะผู้บริหาร</option>
+								<option value="6">ผู้จัดการกองทุน</option>
 								</select>
 							</div>
 							
@@ -249,7 +250,8 @@
 												<li> <a class="link" href="#content2">วิสัยทัศน์และพันธกิจ </a> </li>
 												<li> <a class="link" href="#content3">ค่านิยมหลักของบริษัท</a> </li>
 												<li> <a class="link" href="#content4">คณะกรรมการบริษัท</a> </li>
-												<li> <a class="link" href="#content5"> ผู้จัดการกองทุน</a> </li>
+												<li> <a class="link" href="#content5">คณะผู้บริหาร</a> </li>
+												<li> <a class="link" href="#content6"> ผู้จัดการกองทุน</a> </li>
 											</ul>
 										</div>
 									</div>
@@ -409,114 +411,18 @@
 											<div class="col">
 												<div class="content_abt">
 													<div class="accordion accordion-01">
-														<div class="set"> <a>นางพรรณี สถาวโรตม <br> <span class="orangetxt font-italic">ประธานคณะกรรมการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p>เศรษฐศาสตร์ (เกียรตินิยมดี) สาขาการเงินการธนาคาร มหาวิทยาลัย ธรรมศาสตร์
-																	<br> เศรษฐศาสตร์มหาบัณฑิต มหาวิทยาลัยธรรมศาสตร์
-																	<br> วิทยาลัยป้องกันราชอาณาจักร หลักสูตรการป้องกันราชอาณาจักร (วปอ.) รุ่นที่ 44 (2544-2545)</p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p> พ.ศ. 2556 – ปัจจุบัน ประธานคณะกรรมการที่ปรึกษาการบริหารการลงทุน สภากาชาดไทย
-																	<br> พ.ศ. 2549 – ปัจจุบัน กรรมการผู้ทรงคุณวุฒิ มูลนิธิสถาบันวิจัยนโยบายเศรษฐกิจการคลัง
-																	<br> พ.ศ. 2554 – ปัจจุบัน กรรมการผู้ทรงคุณวุฒิ สถาบันวิทยาการเศรษฐกิจการคลัง
-																	<br> พ.ศ. 2554 – ปัจจุบัน กรรมการผู้ทรงคุณวุฒิ มูลนิธิกองทุนพัฒนาระบบตลาดทุน
-																	<br> พ.ศ. 2556 – ปัจจุบัน ที่ปรึกษาประธานคณะกรรมการ บมจ.ทิพยประกันภัย
-																	<br> พ.ศ. 2559 – ปัจจุบัน ประธานคณะกรรมการจริยธรรมประจำสานักงานบริหารหนี้สาธารณะ
-																	<br> พ.ศ. 2549 – 2551 ผู้อำนวยการสำนักงานเศรษฐกิจการคลัง
-																	<br> พ.ศ. 2545 – 2549 ผู้อำนวยการสำนักงานบริหารหนี้สาธารณะ
-																	<br> พ.ศ. 2544 – 2545 รองผู้อำนวยการสำนักงานเศรษฐกิจการคลัง และผู้อำนวยการสำนักบริหารหนี้สาธารณะ
-																	<br> พ.ศ. 2543 – 2544 รองผู้อำนวยการสำนักงานเศรษฐกิจการคลัง </p>
-																<h3>ประวัติการอบรม</h3>
-																<p> นักบริหารระดับสูง รุ่นที่ 4 กระทรวงการคลัง
-																	<br> นักบริหารระดับสูง (นบส.1) รุ่นที่ 19 สานักงาน กพ.
-																	<br> Bond Markets : Fixed Income Analysis, Economic Development Institute of The World Bank
-																	<br> Advanced Executive Program, Kellogg School of Management, Northwestern University, U.S.A.
-																	<br> หลักสูตรผู้บริหารระดับสูง รุ่นที่ 5 สถาบันวิทยาการตลาดทุน (วตท.)
-																	<br> หลักสูตรสมาคมส่งเสริมสถาบันกรรมการบริษัทไทย (IOD)
-																	<br> - Director Accredited Program - DAP 42/2548
-																	<br> - Finance for Non-Finance Director – FND 22/2548
-																	<br> - Fostering a Board and Management Team (2548)
-																	<br> - Director Certification Program – DCP 72/2549
-																	<br> - Audit Committee Program-ACP 32/2553 </p>
-															</div>
-														</div>
-														<div class="set"> <a>นายชัยภัทร ศรีวิสารวาจา <br> <span class="orangetxt font-italic">กรรมการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p>บริหารธุรกิจมหาบัณฑิต (การเงิน) Illinois Benedictine College
-																	<br> วิทยาศาสตร์บัณฑิต (Metallurgy) Lehigh University</p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p> พ.ศ. 2550 – ปัจจุบัน รองประธานกรรมการ และประธานเจ้าหน้าที่บริหาร บริษัทหลักทรัพย์ ซีมิโก้ จำกัด (มหาชน)
-																	<br> พ.ศ. 2552 – ปัจจุบัน ประธานเจ้าหน้าที่บริหาร บริษัทหลักทรัพย์ เคที ซีมิโก้ จำกัด
-																	<br> พ.ศ. 2554 – ปัจจุบัน กรรมการ บริษัท พรีเชียส ชิพปิ้ง จำกัด (มหาชน)
-																	<br> พ.ศ. 2558 – ปัจจุบัน ประธานกรรมการ บริษัท ไทยฟู้ดส์ จำกัด (มหาชน)
-																	<br> พ.ศ. 2558 – ปัจจุบัน กรรมการ ตลาดหลักทรัพย์แห่งประเทศไทย
-																	<br> พ.ศ. 2559 – ปัจจุบัน กรรมการ บริษัท บริหารสินทรัพย์ ลุมพินี จำกัด
-																	<br> พ.ศ. 2559 – ปัจจุบัน กรรมการ บริษัทหลักทรัพย์ เพื่อธุรกิจหลักทรัพย์ จำกัด (มหาชน)
-																	<br> พ.ศ. 2560 – ปัจจุบัน ประธานกรรมการ บริษัท อินโนคอนเนควิสาหกิจเพื่อสังคม จำกัด
-																	<br> พ.ศ. 2560 – ปัจจุบัน กรรมการ บริษัท แอ๊บโซลูท โยคะ จำกัด
-																	<br> พ.ศ. 2561 – ปัจจุบัน กรรมการ บริษัท เอสอี ดิจิทัล จำกัด </p>
-																<h3>ประวัติการอบรม</h3>
-																<p> หลักสูตรสมาคมส่งเสริมสถาบันกรรมการบริษัทไทย (IOD)
-																	<br> - หลักสูตรประกาศนียบัตรสถาบันกรรมการบริษัทไทย (DCP), 2546
-																	<br> - หลักสูตรบทบาทของประธานกรรมการ 2000, 2548
-																	<br> - หลักสูตร Corporate Governance for Capital Market Intermediaries 3/2015, 2558
-																	<br> - หลักสูตร Advanced Audit Committee, Class 25/2017, มีนาคม 2560 </p>
-															</div>
-														</div>
-														<div class="set"> <a>นายพิชัย หยิ่มใจพูนทรัพย์ <br> <span class="orangetxt font-italic">กรรมการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p></p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p> </p>
-															</div>
-														</div>
-														<div class="set"> <a>นายวุฒิชัย ธรรมสาโรช <br> <span class="orangetxt font-italic">กรรมการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p></p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p> </p>
-															</div>
-														</div>
-														<div class="set"> <a>นายปีเตอร์ จอห์น เอ็มบลิน <br> <span class="orangetxt font-italic">กรรมการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p>บริหารธุรกิจบัณฑิต RMIT University ประเทศออสเตรเลีย
-																	<br> ประกาศนียบัตร Securities Institute of Australia</p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p>พ.ศ. 2553 – ปัจจุบัน กรรมการอิสระ บริษัทหลักทรัพย์ ซีมิโก้ จำกัด (มหาชน)
-																	<br> พ.ศ. 2560 – ปัจจุบัน กรรมการอิสระ บริษัท ดีไลท์ เมทัล จำกัด
-																	<br> พ.ศ. 2550 – 2556 ผู้จัดการกองทุน บริษัท ไทย สแตรทีจิค แคปปิตอล จำกัด </p>
-																<h3>ประวัติการอบรม</h3>
-																<p>หลักสูตรสมาคมส่งเสริมสถาบันกรรมการบริษัทไทย (IOD)
-																	<br> - หลักสูตรประกาศนียบัตรสถาบันกรรมการบริษัทไทย (DCP)
-																	<br> - หลักสูตร Corporate Governance for Capital Market Intermediaries </p>
-															</div>
-														</div>
-														<div class="set"> <a>นายสุรเชษฐ์ ศรีวัฒนกุลวงศ์ <br> <span class="orangetxt font-italic">กรรมการ และผู้จัดการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p>เศรษฐศาสตรมหาบัณฑิต (การเงิน) เกียรตินิยม สถาบันบัณฑิตพัฒนบริหารศาสตร์
-																	<br> บริหารธุรกิจบัณฑิต (การเงิน) มหาวิทยาลัยธรรมศาสตร์
-																	<br> ผ่านการทดสอบหลักสูตร Chartered Financial Analyst (CFA) ระดับ 1</p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p>พ.ศ. 2560 – 2561 หัวหน้าฝ่ายจัดการกองทุนส่วนบุคคล บริษัทหลักทรัพย์ เคที ซีมิโก้ จำกัด
-																	<br> พ.ศ. 2559 – 2560 หัวหน้าฝ่ายจัดการกองทุนส่วนบุคคล บริษัทหลักทรัพย์ เคทีบี (ประเทศไทย) จำกัด
-																	<br> พ.ศ. 2557 – 2559 ผู้จัดการกองทุนตราสารทุน บริษัทหลักทรัพย์จัดการกองทุน วรรณ จำกัด
-																	<br> พ.ศ. 2555 – 2557 ผู้จัดการกองทุนตราสารทุน บริษัทหลักทรัพย์จัดการกองทุน โซลาริส จำกัด
-																	<br> พ.ศ. 2553 – 2555 ผู้จัดการกองทุนตราสารทุน บริษัทหลักทรัพย์จัดการกองทุน วรรณ จำกัด </p>
-																<h3>ประวัติการอบรม</h3>
-																<p>หลักสูตรกฎหมายและจรรยาบรรณผู้จัดการกองทุน สมาคมบริษัทหลักทรัพย์จัดการลงทุน </p>
-															</div>
-														</div>
+														@foreach ($personnel as $k_personnel => $v_personnel)
+															@if ($v_personnel->type == 1)
+																<div class="set"> <a>{{$personnel[$k_personnel]['name_'.$lang]}} <br> <span class="orangetxt font-italic">{{$personnel[$k_personnel]['position_'.$lang]}}</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
+																	<div class="content">
+																		{!!($personnel[$k_personnel]['detail_'.$lang])!!}
+																	</div>
+																</div>
+															@endif
+															
+														@endforeach
+													
+														
 													</div>
 												</div>
 											</div>
@@ -535,6 +441,43 @@
 														<div class="number_bg">05</div>
 													</div>
 												</div>
+												<div class="title_head2 wow fadeInUp"> คณะผู้บริหาร <span class="bluetxt">INNOTECH </span></div>
+											</div>
+										</div>
+										<div class="row mt-5">
+											<div class="col">
+												<div class="content_abt">
+													<div class="accordion accordion-01">
+														@foreach ($personnel as $k_personnel => $v_personnel)
+															@if ($v_personnel->type == 2)
+																<div class="set"> <a>{{$personnel[$k_personnel]['name_'.$lang]}} <br> <span class="orangetxt font-italic">{{$personnel[$k_personnel]['position_'.$lang]}}</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
+																	<div class="content">
+																		{!!($personnel[$k_personnel]['detail_'.$lang])!!}
+																	</div>
+																</div>
+															@endif
+															
+														@endforeach
+													
+														
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+							<hr class="alignfull mt-5 mb-5">
+							<div class="row">
+								<div class="col">
+									<section id="content6" class="content6">
+										<div class="row">
+											<div class="col">
+												<div class="posre">
+													<div class="alignfull">
+														<div class="number_bg">06</div>
+													</div>
+												</div>
 												<div class="title_head2 wow fadeInUp"> ผู้จัดการกองทุน <span class="bluetxt">INNOTECH </span></div>
 											</div>
 										</div>
@@ -542,39 +485,16 @@
 											<div class="col">
 												<div class="content_abt">
 													<div class="accordion accordion-01">
-														<div class="set"> <a>นางสาวภัทรวรรณ ตริตานิภากุล <br> <span class="orangetxt font-italic">ผู้จัดการกองทุน</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p>วิทยาศาสตรมหาบัณฑิต (การเงิน) มหาวิทยาลัยธรรมศาสตร์
-																	<br> บริหารธุรกิจบัณฑิต (การเงิน) เกียรตินิยมอันดับสอง มหาวิทยาลัยธรรมศาสตร์
-																	<br> ผ่านการทดสอบหลักสูตร Chartered Financial Analyst (CFA) ระดับ 1</p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p> พ.ศ. 2560 – 2561 ผู้จัดการกองทุน บริษัทหลักทรัพย์ เคที ซีมิโก้ จำกัด
-																	<br> พ.ศ. 2559 – 2560 ผู้จัดการกองทุน บริษัทหลักทรัพย์จัดการกองทุน แอสเซท พลัส จำกัด
-																	<br> พ.ศ. 2558 – 2559 ผู้ช่วยผู้จัดการกองทุน บริษัทหลักทรัพย์จัดการกองทุน แอสเซท พลัส จำกัด
-																	<br> พ.ศ. 2555 – 2558 ผู้จัดการฝ่ายบริหารความเสี่ยง บริษัทหลักทรัพย์จัดการกองทุนแอสเซท พลัส จำกัด </p>
-																<h3>ประวัติการอบรม</h3>
-																<p> หลักสูตรกฎหมายและจรรยาบรรณผู้จัดการกองทุน สมาคมบริษัทหลักทรัพย์จัดการลงทุน</p>
-															</div>
-														</div>
-														<div class="set"> <a>นายสุรเชษฐ์ ศรีวัฒนกุลวงศ์ <br> <span class="orangetxt font-italic">กรรมการ และผู้จัดการ</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
-															<div class="content">
-																<h3>ประวัติการศึกษา</h3>
-																<p>เศรษฐศาสตรมหาบัณฑิต (การเงิน) เกียรตินิยม สถาบันบัณฑิตพัฒนบริหารศาสตร์
-																	<br> บริหารธุรกิจบัณฑิต (การเงิน) มหาวิทยาลัยธรรมศาสตร์
-																	<br> ผ่านการทดสอบหลักสูตร Chartered Financial Analyst (CFA) ระดับ 1</p>
-																<br>
-																<h3>ประวัติการทำงาน</h3>
-																<p>พ.ศ. 2560 – 2561 หัวหน้าฝ่ายจัดการกองทุนส่วนบุคคล บริษัทหลักทรัพย์ เคที ซีมิโก้ จำกัด
-																	<br> พ.ศ. 2559 – 2560 หัวหน้าฝ่ายจัดการกองทุนส่วนบุคคล บริษัทหลักทรัพย์ เคทีบี (ประเทศไทย) จำกัด
-																	<br> พ.ศ. 2557 – 2559 ผู้จัดการกองทุนตราสารทุน บริษัทหลักทรัพย์จัดการกองทุน วรรณ จำกัด
-																	<br> พ.ศ. 2555 – 2557 ผู้จัดการกองทุนตราสารทุน บริษัทหลักทรัพย์จัดการกองทุน โซลาริส จำกัด
-																	<br> พ.ศ. 2553 – 2555 ผู้จัดการกองทุนตราสารทุน บริษัทหลักทรัพย์จัดการกองทุน วรรณ จำกัด </p>
-																<h3>ประวัติการอบรม</h3>
-																<p>หลักสูตรกฎหมายและจรรยาบรรณผู้จัดการกองทุน สมาคมบริษัทหลักทรัพย์จัดการลงทุน </p>
-															</div>
-														</div>
+														@foreach ($personnel as $k_personnel => $v_personnel)
+															@if ($v_personnel->type == 3)
+																<div class="set"> <a>{{$personnel[$k_personnel]['name_'.$lang]}} <br> <span class="orangetxt font-italic">{{$personnel[$k_personnel]['position_'.$lang]}}</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
+																	<div class="content">
+																		{!!($personnel[$k_personnel]['detail_'.$lang])!!}
+																	</div>
+																</div>
+														@endif
+															
+														@endforeach
 														<br>
 														<br> </div>
 												</div>
@@ -623,6 +543,7 @@
 						var sec4 = $('.content3').offset().top - 200;
 						var sec5 = $('.content4').offset().top - 200;
 						var sec6 = $('.content5').offset().top - 200;
+						var sec7 = $('.content6').offset().top - 200;
 						if (scroll >= sec7) {
 							$('.link').removeClass('active');
 							$('.link[href="#content6"]').addClass('active');

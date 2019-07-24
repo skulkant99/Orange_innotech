@@ -106,8 +106,8 @@
                         <div class="modal-body">
                         
                         <div class="form-group">
-                            <label for="edit_name">ชื่อ</label>
-                            <input id="edit_name" name="name_th" class="form-control" placeholder="ชื่อ">
+                            <label for="edit_name_th">ชื่อ</label>
+                            <input id="edit_name_th" name="name_th" class="form-control" placeholder="ชื่อ">
                         </div>
 
                         <input type="hidden" name="org_photo" id="org_photo">
@@ -217,10 +217,12 @@
 
                     }
                 });
-
+            
+                
                 $('#edit_name_th').val(rec.name_th);
                 $('#edit_status').val(rec.status);
                 $('#edit_sort_id').val(rec.sort_id);
+                $('#edit_link').val(rec.link);
                 $('.select2').select2();
                 btn.button("reset");
                 ShowModal('ModalEdit');

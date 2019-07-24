@@ -88,21 +88,28 @@
 			<div class="wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.1s">
 				<div class="row">
 					<div class="col">
-						@for($i = 1; $i <= count($file_type); $i++)
+					
 							@foreach ($file_type as $k_file_type => $_file_type)
-								<div class="box_download_doc">
-									<div class="numberlist">
-										{{$i++}}
+								
+									<div class="box_download_doc">
+										<div class="numberlist">
+											{{$k_file_type+ $file_type->firstItem()}}
+										</div>
+										<div class="detail_doc">
+											{{$file_type[$k_file_type]['name_'.$lang]}}
+										</div>
+										<div class="btn_download">
+											@if ($_file_type->list_type == 'L')
+												<a href="{{url('download/detail/'.$_file_type->id)}}" class="btn btn-primary">{{ trans('messages.detail') }}</a> 
+											@else
+												<a href="{{url('download/listdetail/'.$_file_type->id)}}" class="btn btn-primary">{{ trans('messages.detail') }}</a> 
+											@endif
+										</div>
 									</div>
-									<div class="detail_doc">
-										{{$file_type[$k_file_type]['name_'.$lang]}}
-									</div>
-									<div class="btn_download">
-										<a href="{{url('downloadinside/'.$_file_type->id)}}" class="btn btn-primary">ดูรายละเอียด</a> 
-									</div>
-								</div>
+								
+							
 							@endforeach
-						@endfor
+					
 						
 						{{-- <div class="box_download_doc">
 							<div class="numberlist">

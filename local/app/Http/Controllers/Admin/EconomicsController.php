@@ -20,7 +20,7 @@ class EconomicsController extends Controller
         $data['title'] = 'ข้อมูลเศรษฐกิจและภาวะตลาดการเงิน';
         $data['title_page'] = 'ข้อมูลเศรษฐกิจและภาวะตลาดการเงิน';
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
-        
+        $data['fund'] = \App\Models\Fund::select()->get();
         return view('Admin.economic',$data);
     }
 

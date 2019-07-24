@@ -833,12 +833,18 @@ main {
 	background-size: cover;
 	height: 300px;
 }
-
+.bannertop_gov {
+    background-image: url(../images/Governance-Code-banner.png);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+}
 .bannertxt_top {
 	color: white;
 	text-align: center;
 	width: 50%;
-	margin-top: 2.5em;
+	margin-top: 5em;
 }
 
 .bannertxt_top h5 {
@@ -1404,7 +1410,7 @@ main {
 	background-size: cover;
 	height: 300px;
 }
-
+.detail_content h3,
 .detail_content h2 {
 	font-family: 'kanitbold';
 }

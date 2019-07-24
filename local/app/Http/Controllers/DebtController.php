@@ -15,7 +15,12 @@ class DebtController extends Controller
         $data['contact'] = \App\Models\Contact::where('status','=','1')
             ->select('contacts.*')
             ->get();
-        $data['debt'] = \App\Models\Debt::select()->paginate(4);
+        $data['debt'] = \App\Models\TypeDebt::select()
+            ->orderBy('type_debts.sort_id','ASC')
+            ->with(array('Debt' => function($q){
+                $q->orderBy('debts.created_at','DESC');
+            }))->first();
+        $data['debt_type'] = \App\Models\TypeDebt::select()->get();
         return view('status_update',$data);
     }
     public function search(Request $request)
@@ -81,6 +86,25 @@ class DebtController extends Controller
             ->where('name_th', 'like', '%' . $conversdate . '%')
             ->paginate(4);
    
+        return view('status_update',$data);
+    }
+    public function select_search($select){
+        $data['banner'] = \App\Models\Banner::select('banners.*')->get();
+        $data['category'] = \App\Models\Category::where('status','=','1')
+            ->select('categories.*')
+            ->orderBy('sort_id','ASC')
+            ->get();
+        $data['contact'] = \App\Models\Contact::where('status','=','1')
+            ->select('contacts.*')
+            ->get();
+            
+        $data['debt'] = \App\Models\TypeDebt::where('type_debts.sort_id',$select)
+            ->select()
+            ->orderBy('type_debts.sort_id','ASC')
+            ->with(array('Debt' => function($q){
+                $q->orderBy('debts.created_at','DESC');
+            }))->first();
+        $data['debt_type'] = \App\Models\TypeDebt::select()->get();
         return view('status_update',$data);
     }
 }

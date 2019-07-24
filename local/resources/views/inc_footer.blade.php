@@ -156,11 +156,17 @@
 				 </ul>
 			 </div>
 		 </div>
+		 @php
+			 $contect = \App\Models\Contact::where('type','=','S')->select()->get();
+		 @endphp
 		 <div class="col-lg-4  wow fadeInRight" data-wow-duration="1.1s" data-wow-delay="0.3s">
 			 <div class="footermenugroup2">
 				 <h1>Contact us</h1>
-				 <li><img src="{{asset('images/icon-tel.png')}}"> 02 624 6333</li>
-				 <li>
+				 @foreach ($contect as $_contect)
+					 <li><img src="{{asset('uploads/Contact/'.$_contect->photo)}}"> <a href="{{$_contect->link}}" target="_blank">{{$_contect->name_th}}</a></li>
+				 @endforeach
+				 
+				 {{-- <li>
 					 <a href="#"><img src="{{asset('images/icon-www.png')}}"> www.innotechasset.com</a>
 				 </li>
 				 <li>
@@ -171,7 +177,7 @@
 				 </li>
 				 <li>
 					 <a href="#"><img src="{{asset('images/icon-line.png')}}"> Innotechasset</a>
-				 </li>
+				 </li> --}}
 				 <br>
 				 <h1>Company Group</h1>
 				 <div class="companymenu">
@@ -219,19 +225,22 @@
 						 <h3 class="accordion-thumb">Contact info</h3>
 						 <div class="accordion-panel">
 							 <ul class="listmenu-footer">
-								<li><img src="{{asset('images/icon-tel.png')}}"> 02 624 6333</li>
-				 <li>
-					 <a href="#"><img src="{{asset('images/icon-www.png')}}"> www.innotechasset.com</a>
-				 </li>
-				 <li>
-					 <a href="#"><img src="{{asset('images/icon-mail.png')}}"> marketing@innotechasset.com</a>
-				 </li>
-				 <li>
-					 <a href="https://www.facebook.com/Innotechasset/" target="_blank"><img src="{{asset('images/icon-fb.png')}}"> Innotechasset</a>
-				 </li>
-				 <li>
-					 <a href="#"><img src="{{asset('images/icon-line.png')}}"> Innotechasset</a>
-				 </li>
+								@foreach ($contect as $_contect)
+									<li><img src="{{asset('uploads/Contact/'.$_contect->photo)}}"> <a href="{{$_contect->link}}">{{$_contect->name_th}}</a></li>
+								@endforeach
+								{{-- <li><img src="{{asset('images/icon-tel.png')}}"><a href="#">02 624 6333</a> </li>
+								<li>
+									<a href="#"><img src="{{asset('images/icon-www.png')}}"> www.innotechasset.com</a>
+								</li>
+								<li>
+									<a href="#"><img src="{{asset('images/icon-mail.png')}}"> marketing@innotechasset.com</a>
+								</li>
+								<li>
+									<a href="https://www.facebook.com/Innotechasset/" target="_blank"><img src="{{asset('images/icon-fb.png')}}"> Innotechasset</a>
+								</li>
+								<li>
+									<a href="#"><img src="{{asset('images/icon-line.png')}}"> Innotechasset</a>
+								</li> --}}
 							 </ul>
 						 </div>
 					 </li>

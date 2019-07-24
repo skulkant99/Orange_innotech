@@ -18,6 +18,16 @@
 		
 		
 	</style>
+		@php
+			$lang = "";
+			if (session()->get('locale') == null){
+				$lang = "th";
+			}elseif (session()->get('locale') == "th") {
+				$lang = "th";
+			}elseif(session()->get('locale') == "en"){
+				$lang = "en";
+			}		
+		@endphp
 	@include('inc_topmenu')
 
 		<div class="container-fluid nopad">
@@ -73,8 +83,16 @@
 										<div class="search_funds">
 											<label>{{trans('messages.choose_fund')}}</label>
 											<select id="selectbasic" name="type" class="form-control">
-												<option value="EP-LTF">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-												<option value="S-EQRMF">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+												{{-- @if (isset($perfor[0]->type) && $perfor[0]->type == "EP-LTF")
+													<option value="EP-LTF" selected>กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+													<option value="S-EQRMF">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+												@else
+													<option value="EP-LTF">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
+													<option value="S-EQRMF" selected>กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+												@endif --}}
+												@foreach ($fund as $k_fund => $v_fund)
+													<option value="{{$v_fund->fund_short_name}}" {{$v_fund->fund_short_name == $perfor[0]->type}} >{{$fund[$k_fund]['name_'.$lang]}}</option>
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -82,7 +100,7 @@
 										<div class="search_funds">
 											<label>{{trans('messages.choose_date')}}</label>
 											<form action="example.php" method="post">
-												<input autocomplete="off" class="datepicker form-control boxbox" name="date" id="date" placeholder="DD/MM/YY" /> </form>
+												<input autocomplete="off" class="datepicker form-control boxbox" name="date" id="date" placeholder="{{trans('messages.date_format')}}" /> </form>
 										</div>
 									</div>
 									<div class="col-lg-2"> <button type="submit" class="btn btn-success">{{trans('messages.submit')}}</button> </div>
@@ -95,9 +113,9 @@
 				
 				<div class="container">
 					<div class="row">
-						<div class="col">
+						<div class="col-lg-10">
 							<div class="sec_title">
-								<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง</h2>
+								<h2>{{ trans('messages.PC') }}</h2>
 									@php
 										$date_create = $perfor[0]->date;
 
@@ -151,6 +169,9 @@
 									@endphp
 								<h5>ข้อมูล ณ วันที่ {{$day}} {{$month}} {{$year}}</h5> </div>
 						</div>
+						<div class="col-lg-2">
+							<a href="{{url('performance/PDF/'.$perfor[0]->type.'/'.$perfor[0]->date)}}" target="_blank" class="btn btn-success">{{trans('messages.download')}}</a>
+						</div>
 					</div>
 					@if ($perfor[0]->type == 'EP-LTF')
 						<div class="row">
@@ -159,10 +180,10 @@
 									<table class="table funds_table_perf table-bordered table-responsive-lg">
 										<thead>
 											<tr>
-												<th scope="col" class="text-left">กองทุน</th>	
+												<th scope="col" class="text-left">{{ trans('messages.nav_as_of') }}</th>	
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id <= 8)
-													<th scope="col">{{$v_perfor->name}}</th>
+														<th scope="col">{{$v_perfor->name}}</th>
 													@endif
 												@endforeach												
 												
@@ -172,38 +193,53 @@
 										<tbody>
 										
 											<tr>
-												<th scope="row" class="text-left">กองทุน EP-LTF</th>
+												<th scope="row" class="text-left">{{ trans('messages.nav_as_of') }} EP-LTF</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id <= 8)
-													<th>{{$v_perfor->fund}}</th>
+														@if ($v_perfor->fund != 0)
+															<th>{{$v_perfor->fund}}</th>
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
-												@endforeach	
-												
+												@endforeach											
 											
 											</tr>
 											<tr>
-												<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+												<th scope="row" class="text-left">{{ trans('messages.THSETRI_Index') }}</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id <= 8)
-													<th>{{$v_perfor->gain}}</th>
+														@if ($v_perfor->gain != 0)
+															<th>{{$v_perfor->gain}}</th>
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 											
 											</tr>
 											<tr>
-												<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน  </th>
+												<th scope="row" class="text-left">{{ trans('messages.Sd_of') }}  </th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id <= 8)
-													<th>{{$v_perfor->result}}</th>
+														@if ($v_perfor->result != 0)
+															<th>{{$v_perfor->result}}</th>
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 											
 											</tr>
 											<tr>
-												<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด </th>
+												<th scope="row" class="text-left">{{ trans('messages.Sd_of_THSETRI') }} </th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id <= 8)
-													<th>{{$v_perfor->Indicator}}</th>
+														@if ($v_perfor->Indicator != 0)
+															<th>{{$v_perfor->Indicator}}</th>
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 												
@@ -215,7 +251,7 @@
 							<div class="row">
 								<div class="col">
 									<div class="sec_title">
-										<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง (% ต่อปี)</h2> </div>
+										<h2>{{ trans('messages.PCY') }}</h2> </div>
 								</div>
 							</div>
 							<div class="row">
@@ -223,10 +259,10 @@
 									<table class="table funds_table_perf table-bordered  table-responsive-lg">
 										<thead>
 											<tr>
-												<th scope="col" class="text-left">ปี</th>
+												<th scope="col" class="text-left">{{ trans('messages.year') }}</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id > 8)
-													<th scope="col">{{$v_perfor->name}}</th>
+														<th scope="col">{{$v_perfor->name}}</th>
 													@endif
 												@endforeach		
 												
@@ -234,37 +270,53 @@
 										</thead>
 										<tbody>
 											<tr>
-												<th scope="row" class="text-left">กองทุน EP-LTF</th>
+												<th scope="row" class="text-left">{{ trans('messages.nav_as_of') }} EP-LTF</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id > 8)
-													<th scope="col">{{$v_perfor->fund}}</th>
+														@if ($v_perfor->fund != 0)
+															<th scope="col">{{$v_perfor->fund}}</th>	
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 												
 											</tr>
 											<tr>
-												<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+												<th scope="row" class="text-left">{{ trans('messages.THSETRI_Index') }}</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id > 8)
-													<th scope="col">{{$v_perfor->gain}}</th>
+														@if ($v_perfor->gain != 0)
+															<th scope="col">{{$v_perfor->gain}}</th>	
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 											
 											</tr>
 											<tr>
-												<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน</th>
+												<th scope="row" class="text-left">{{ trans('messages.Sd_of') }}</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id > 8)
-													<th scope="col">{{$v_perfor->result}}</th>
+														@if ($v_perfor->result != 0)
+															<th scope="col">{{$v_perfor->result}}</th>	
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 												
 											</tr>
 											<tr>
-												<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด</th>
+												<th scope="row" class="text-left">{{ trans('messages.Sd_of_THSETRI') }}</th>
 												@foreach ($perfor as $k_perfor => $v_perfor)
 													@if ($v_perfor->sort_id > 8)
-													<th scope="col">{{$v_perfor->Indicator}}</th>
+														@if ($v_perfor->Indicator != 0)
+															<th scope="col">{{$v_perfor->Indicator}}</th>	
+														@else
+															<th>N/A</th>
+														@endif
 													@endif
 												@endforeach	
 												
@@ -280,10 +332,10 @@
 								<table class="table funds_table_perf table-bordered table-responsive-lg">
 									<thead>
 										<tr>
-											<th scope="col" class="text-left">กองทุน</th>	
+											<th scope="col" class="text-left">{{ trans('messages.nav_as_of') }}</th>	
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id <= 8)
-												<th scope="col">{{$v_perfor->name}}</th>
+													<th scope="col">{{$v_perfor->name}}</th>
 												@endif
 											@endforeach												
 											
@@ -293,38 +345,53 @@
 									<tbody>
 									
 										<tr>
-											<th scope="row" class="text-left">กองทุน S-EQRMF</th>
+											<th scope="row" class="text-left">{{ trans('messages.nav_as_of') }} S-EQRMF</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id <= 8)
-												<th>{{$v_perfor->fund}}</th>
+													@if ($v_perfor->fund != 0)
+														<th>{{$v_perfor->fund}}</th>
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
-											@endforeach	
-											
+											@endforeach											
 										
 										</tr>
 										<tr>
-											<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+											<th scope="row" class="text-left">{{ trans('messages.THSETRI_Index') }}</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id <= 8)
-												<th>{{$v_perfor->gain}}</th>
+													@if ($v_perfor->gain != 0)
+														<th>{{$v_perfor->gain}}</th>
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 										
 										</tr>
 										<tr>
-											<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน  </th>
+											<th scope="row" class="text-left">{{ trans('messages.Sd_of') }}  </th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id <= 8)
-												<th>{{$v_perfor->result}}</th>
+													@if ($v_perfor->result != 0)
+														<th>{{$v_perfor->result}}</th>
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 										
 										</tr>
 										<tr>
-											<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด </th>
+											<th scope="row" class="text-left">{{ trans('messages.Sd_of_THSETRI') }} </th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id <= 8)
-												<th>{{$v_perfor->Indicator}}</th>
+													@if ($v_perfor->Indicator != 0)
+														<th>{{$v_perfor->Indicator}}</th>
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 											
@@ -336,7 +403,7 @@
 						<div class="row">
 							<div class="col">
 								<div class="sec_title">
-									<h2>ผลการดำเนินงานตามปีปฎิทินย้อนหลัง (% ต่อปี)</h2> </div>
+									<h2>{{ trans('messages.PCY') }}</h2> </div>
 							</div>
 						</div>
 						<div class="row">
@@ -344,10 +411,10 @@
 								<table class="table funds_table_perf table-bordered  table-responsive-lg">
 									<thead>
 										<tr>
-											<th scope="col" class="text-left">ปี</th>
+											<th scope="col" class="text-left">{{ trans('messages.year') }}</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id > 8)
-												<th scope="col">{{$v_perfor->name}}</th>
+													<th scope="col">{{$v_perfor->name}}</th>
 												@endif
 											@endforeach		
 											
@@ -355,37 +422,53 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th scope="row" class="text-left">กองทุน S-EQRMF</th>
+											<th scope="row" class="text-left">{{ trans('messages.nav_as_of') }} S-EQRMF</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id > 8)
-												<th scope="col">{{$v_perfor->fund}}</th>
+													@if ($v_perfor->fund != 0)
+														<th scope="col">{{$v_perfor->fund}}</th>	
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 											
 										</tr>
 										<tr>
-											<th scope="row" class="text-left">เกณฑ์มาตรฐาน</th>
+											<th scope="row" class="text-left">{{ trans('messages.THSETRI_Index') }}</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id > 8)
-												<th scope="col">{{$v_perfor->gain}}</th>
+													@if ($v_perfor->gain != 0)
+														<th scope="col">{{$v_perfor->gain}}</th>	
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 										
 										</tr>
 										<tr>
-											<th scope="row" class="text-left">ความผันผวนของผลการดำเนินงาน</th>
+											<th scope="row" class="text-left">{{ trans('messages.Sd_of') }}</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id > 8)
-												<th scope="col">{{$v_perfor->result}}</th>
+													@if ($v_perfor->result != 0)
+														<th scope="col">{{$v_perfor->result}}</th>	
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 											
 										</tr>
 										<tr>
-											<th scope="row" class="text-left">ความผันผวนของตัวชี้วัด</th>
+											<th scope="row" class="text-left">{{ trans('messages.Sd_of_THSETRI') }}</th>
 											@foreach ($perfor as $k_perfor => $v_perfor)
 												@if ($v_perfor->sort_id > 8)
-												<th scope="col">{{$v_perfor->Indicator}}</th>
+													@if ($v_perfor->Indicator != 0)
+														<th scope="col">{{$v_perfor->Indicator}}</th>	
+													@else
+														<th>N/A</th>
+													@endif
 												@endif
 											@endforeach	
 											
@@ -399,9 +482,9 @@
 					<div class="row">
 						<div class="col">
 							<div class="list_warn">
-								<li><i class="fas fa-exclamation-triangle"></i> เกณฑ์มาตรฐาน : ผลตอบแทนรวมตลาดหลักทรัพย์แห่งประเทศไทย (SET TRI)</li>
-								<li><i class="fas fa-exclamation-triangle"></i> เอกสารการวัดผลการดําเนินงานของกองทุนรวมฉบับนี ;ได้จัดทําขึ ;นตามมาตรฐานการวัดและนําเสนอผลการดําเนินงานของกองทุนรวมของสมาคมบริษัทจัดการลงทุน</li>
-								<li><i class="fas fa-exclamation-triangle"></i> ผลการดําเนินงานในอดีตของกองทุนรวมมิได้เป็นสิ่งยืนยันถึงผลการดําเนินงานในอนาคต </li>
+								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war1') }} (SET TRI)</li>
+								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war2') }}</li>
+								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war3') }} </li>
 							</div>
 						</div>
 					</div>

@@ -28,9 +28,12 @@ Route::post('AddContact','ContactController@store');
 Route::get('/downloadform','FileFormController@index');
 
 Route::get('/downloadreport','FileReportController@report');
-Route::get('/downloadinside/{id}','FileReportController@detail');
+Route::get('/download/detail/{id}','FileReportController@file_detail');
+Route::get('download/listdetail/{id}','FileReportController@list_detail');
+Route::get('/downloadinside/{id}/{file_type_id}','FileReportController@detail');
 
 Route::get('/privatefunds', 'FundInformationController@index');
+
 
 Route::get('/mutualfunds', function () {
         $data['category'] = \App\Models\Category::where('status','=','1')
@@ -45,27 +48,28 @@ Route::get('/mutualfunds', function () {
 Route::get('/fundsepltf', 'FundInformationController@fundsepltf');
 Route::get('/fundsprice','FundPriceController@index');
 Route::get('/fundsprice/selectfund/{fund}','FundPriceController@search_select');
+Route::get('/fundsprice/all','FundPriceController@indexfundpriceall');
 Route::get('/fundsprice/seachfundprice','FundPriceController@seachfundprice');
+
+
 Route::get('/funds_perf', 'PerformanceController@index');
+Route::get('/selectperformance','PerformanceController@selectperformance');
+Route::get('performance/PDF/{type}/{date}','PerformanceController@printPDF');
+
 Route::get('/funds_seqrmf','FundInformationController@fundsseqrmf');
 Route::get('/transaction', 'TransactionController@index');
 Route::get('/economic','EconomicsController@index');
+Route::get('/economic/seacheconomic','EconomicsController@seacheconomic');
+Route::get('/governance','GovernanceController@index');
+
 Route::get('/knowledge','KnowledgeController@index');
 Route::get('/knowledge/inside/{id}','KnowledgeController@detail');
 Route::get('/about', 'AboutController@index');
-Route::get('/reportfunds', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('report_funds',$data);
-});
+Route::get('/reportfunds', 'FundReportController@index');
 Route::get('/calendar', 'CalendarController@index');
 Route::get('/statusupdate','DebtController@index');
 Route::get('/seachstatus','DebtController@search');
+Route::get('/status/select/{status}','DebtController@select_search');
 Route::get('/faq', 'QuestionController@index');
 
 Route::get('seachfunds','PerformanceController@search');

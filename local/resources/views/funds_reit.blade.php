@@ -200,7 +200,7 @@
 
                         <h2>โครงสร้างและขั้นตอนการจัดตั้ง REIT</h2>
 
-                        <img src="images/reit.jpg" class="img-fluid">
+                        <img src="{{asset('images/reit.jpg')}}" class="img-fluid">
 
                         <br>
                         <li><b>ผู้จัดการ REIT (REIT manager : RM) </b>จะเป็นผู้ยื่นคำ ขออนุญาตเสนอขายใบทรัสต์ต่อ สำ นักงาน ก.ล.ต.
@@ -1061,7 +1061,8 @@
                             สํานักงานคณะกรรมการกํากับหลักทรัพย์และตลาดหลักทรัพย์ <br>
                             โทร. 0-2033-9999
 
-                   </li>
+                        </li>
+                        <br><br>
                     </div>
                 </div>
             </div>

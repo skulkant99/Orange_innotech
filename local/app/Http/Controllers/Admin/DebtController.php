@@ -13,14 +13,15 @@ class DebtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
+        $debt = \App\Models\TypeDebt::where('id',$id)->select('name_th')->first();
         $data['main_menu'] = 'GroupMenu';
-        $data['sub_menu'] = 'Debt';
-        $data['title'] = 'ติดตามสถานะตราสารหนี้';
-        $data['title_page'] = 'ติดตามสถานะตราสารหนี้';
+        $data['sub_menu'] = 'TypeDebt';
+        $data['title'] = $debt->name_th;
+        $data['title_page'] = $debt->name_th;
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
-        
+        $data['id'] = $id;
         return view('Admin.debt',$data);
     }
 
@@ -165,8 +166,9 @@ class DebtController extends Controller
         return $return;
     }
 
-    public function Lists(){
-        $result = \App\Models\Debt::select();
+    public function Lists(Request $request){
+        $type_debt_id = $request->input('type_debt_id');
+        $result = \App\Models\Debt::where('type_debt_id',$type_debt_id)->select();
         return \Datatables::of($result)
         ->addIndexColumn()
         

@@ -18,6 +18,7 @@ return [
     'keyword' => 'Keyword',
     'submit' => 'Submit',
     'download' => 'Download',
+    'detail' => 'View profile',
     //menu
     'home' => 'Home',
     'fund' => 'Fund',
@@ -27,6 +28,7 @@ return [
     'reit' => 'Trust What is real estate investment (REIT) ?',
     'reit_manager' => 'REIT Manager for Real Estate Investment',
     'nav' => 'NAV',
+    'nav_h' => 'Historical NAV',
     'performance' => 'Performance',
     'tran' => 'Transaction',
     'news' => 'News',
@@ -35,7 +37,7 @@ return [
     //
     'read_more' => 'read more',
     'warning' => 'Warning',
-    
+    'date_format' => 'DD/MM/YY',
     //menugroup
     'economic' => 'Economic data and financial market conditions',
     'knowledge' => 'Knowledge about investment',
@@ -60,6 +62,28 @@ return [
     'choose_fund' => 'Choose a fund',
     'choose_date' => 'Choose a date',
     'data_not_found' => 'Data not found. Please reselect transaction.',
+
+    //perfarmance
+    'nav_as_of' => 'NAV as of',
+    'YTD' => 'YTD',
+    '3M' => '3M',
+    '6M' => '6M',
+    '1Y' => '1Y',
+    '3Y' => '3Y',
+    '5Y' => '5Y',
+    '10Y' => '10Y',
+    'since_snception' => 'Since Snception',
+
+    'THSETRI_Index' => 'THSETRI Index',
+    'Sd_of' => 'S.D. of ',
+    'Sd_of_THSETRI' => 'S.D. of THSETRI Index',
+
+    'year' => 'Year',
+    'PCY' => 'Performance according to the previous calendar year (% per year)',
+    'PC' => 'Performance according to the previous calendar year',
+    'war1' => 'Benchmark: Total return of the Stock Exchange of Thailand',
+    'war2' => 'Mutual fund performance measurement documents for management and supervision of legal operations',
+    'war3' => 'Past performance of the Fund is not a guarantee of future performance',
 
     //footer
     'copyrighttext' => 'Investment is risky. Investors should understand the product characteristics. Conditions, returns, risks, and tax guides are good before investing.'

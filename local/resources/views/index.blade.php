@@ -3,7 +3,7 @@
 <head>
      @include('inc_header') <?php $pageName="home"; ?>
 </head>
-
+{{-- {{dd($fund_EP)}} --}}
 <body>
 	<style>
 
@@ -392,13 +392,13 @@
 									<span class="text_icon">{{trans('messages.report')}}</span> </a>
 								</div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-									<a href={{url('reportfunds')}}><div class="listicon4  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<a href={{url('download/detail/1')}}><div class="listicon4  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
 									<div class="listicon4_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
 									<span class="text_icon">{{trans('messages.reportfunds')}}</span> </a>
 								</div>
 								<div class="w-100"></div>
 								<div class="col-6 col-md-3 col-lg-3 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-									<a href={{url('/')}}><div class="listicon5  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
+									<a href={{url('governance')}}><div class="listicon5  d-none d-sm-none d-md-none d-lg-block d-xl-block"></div>
 									<div class="listicon5_mobile d-block d-sm-block d-md-block d-lg-none d-xl-none"></div> 
 									<span class="text_icon">{{trans('messages.investment')}}</span> </a>
 								</div>
@@ -790,7 +790,7 @@
 					<div class="row">
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 								<div class="box_nav">
-								<div class="head_nav"> {{$fund_S[0]->StrFundShortName}} </div>
+								<div class="head_nav"> S-EQRMF </div>
 								<div class="pic_nav">
 									<div class="hov-menu-sty">
 										<figure>
@@ -799,30 +799,36 @@
 									</div>
 								</div>
 								<div class="detail_nav"> กองทุนรวมเพื่อการเลี้ยงชีพ (RMF)
+									{{-- {{dd($fund_EP)}} --}}
 									@php
-										$date = new DateTime($fund_S[0]->DTENAVDATE);
-										$newdate = $date->format('d/m/Y');												
+										$date = new DateTime($fund_EP->DTENAVDATE);
+										$newdate = $date->format('d/m/Y');
+											$date_create_edit = explode('/', $newdate);												
+											$month = $date_create_edit[1];
+											$year  = $date_create_edit[2] + 543;
+											$day = $date_create_edit[0];
+																					
 									@endphp
-									<br> ณ วันที่ {{$newdate}} </div>
+									<br> ณ วันที่ {{$day}}/{{$month}}/{{$year}} </div>
 								<div class="table_nav">
 									<table class="table table-bordered tablenavstyle">
 										<thead>
 											<tr>
 												<td>มูลค่าหน่วยลงทุน</td>
-												<th>{{number_format($fund_S[0]->DECNAV_UNIT,2,'.','')}}</th>
+												<th>{{number_format($fund_EP->DECNAV_UNIT,2)}}</th>
 											</tr>
 										</thead>
 										<tbody>
 											@php
-												$bath_ep = $fund_S[0]->DACNAVLAST - $fund_S[0]->DACNAVBEFOR;
-												$percent_ep = ($bath_ep*100)/100;
+												$bath = $fund_EP_sum[0]->DECNAV_UNIT - $fund_EP_sum[1]->DECNAV_UNIT;
+												$percent = ($bath*100)/100;
 											@endphp
 											<tr>
 												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">+{{number_format($bath_ep,2,'.','')}}</span></td>
+												<td><span class="greentext">{{number_format($bath,2)}}</span></td>
 											</tr>
 											<tr>
-												<td>+{{number_format($percent_ep,2,'.','')}}%</td>
+												<td>{{number_format($percent,2)}}%</td>
 											</tr>
 										</tbody>
 									</table>
@@ -832,7 +838,7 @@
 					</div>
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
 							<div class="box_nav">
-								<div class="head_nav"> {{$fund_EP[0]->StrFundShortName}} </div>
+								<div class="head_nav"> EP-LTF </div>
 								<div class="pic_nav">
 									<div class="hov-menu-sty">
 										<figure>
@@ -842,29 +848,34 @@
 								</div>
 								<div class="detail_nav"> กองทุนรวมหุ้นระยะยาว (LTF)
 									@php
-										$date = new DateTime($fund_EP[0]->DTENAVDATE);
-										$newdate = $date->format('d/m/Y');												
+										$date = new DateTime($fund_S->DTENAVDATE);
+										$newdate = $date->format('d/m/Y');
+											$date_create_edit = explode('/', $newdate);												
+											$month = $date_create_edit[1];
+											$year  = $date_create_edit[2] + 543;
+											$day = $date_create_edit[0];
+																					
 									@endphp
-									<br> ณ วันที่ {{$newdate}} </div>
+									<br> ณ วันที่ {{$day}}/{{$month}}/{{$year}} </div>
 								<div class="table_nav">
 									<table class="table table-bordered tablenavstyle">
 										<thead>
 											<tr>
 												<td>มูลค่าหน่วยลงทุน</td>
-												<th>{{number_format($fund_EP[0]->DECNAV_UNIT,2,'.','')}}</th>
+												<th>{{number_format($fund_S->DECNAV_UNIT,2)}}</th>
 											</tr>
 										</thead>
 										<tbody>
 											@php
-												$bath_s = $fund_EP[0]->DACNAVLAST - $fund_EP[0]->DACNAVBEFOR;
-												$percent_s = ($bath_s*100)/100;
+												$bath = $fund_S_sum[0]->DECNAV_UNIT - $fund_S_sum[1]->DECNAV_UNIT;
+												$percent = ($bath*100)/100;
 											@endphp
 											<tr>
 												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">+{{number_format($bath_s,2,'.','')}}</span></td>
+												<td><span class="greentext">{{number_format($bath,2)}}</span></td>
 											</tr>
 											<tr>
-												<td>+{{number_format($percent_s,2,'.','')}}%</td>
+												<td>{{number_format($percent,2)}}%</td>
 											</tr>
 										</tbody>
 									</table>
@@ -1035,46 +1046,15 @@
 					<div class="row  wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.3s">
 						<div class="col">
 						<label class="mt-3">เลือกกองทุน</label>
-						 <select id="selectbasic" name="selectbasic" class="form-control select_set">
-							<option value="1">Option one</option>
-							<option value="2">Option two</option>
-						</select>
-						<script src="//www.chartjs.org/dist/master/Chart.min.js"></script>
+							<select id="funds" name="selectbasic" class="form-control select_set" onchange="getFund(this)">
+								@foreach ($fund as $k_fund => $v_fund)
+									<option value="{{$v_fund->fund_short_name}}">{{$fund[$k_fund]['name_'.$lang]}}</option>
+								@endforeach
+							</select>
+
+						
 						<canvas id="myChart"  height="100"></canvas>
-						<script>
-								var ctx = document.getElementById('myChart').getContext('2d');
-								var myChart = new Chart(ctx, {
-									type: 'line',
-									data: {
-										labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-										datasets: [{
-											label: '# of Votes',
-											data: [5, 10, 9, 15, 13, 17],
-											backgroundColor: 'rgba(255, 159, 64, 0.2)',
-											borderColor: 'rgba(255, 159, 64,1 )',
-											borderWidth: 2,
-											lineTension :0.000001,
-										},{
-											label: '# of Votes',
-											data: [7, 13, 14, 17, 15, 22],
-											backgroundColor: 'rgba(255, 99, 132, 0.2)',
-											borderColor: 'rgba(255, 99, 132, 1)',
-											borderWidth: 2,
-											lineTension :0.000001,
-										}]
-									},
-									options: {
-										scales: {
-											yAxes: [{
-												ticks: {
-													beginAtZero: true
-												}
-											}]
-										}
-									}
-								});
-						</script>
-							
+						
 						</div>
 					</div>
 					<div class="row mt-3">
@@ -1082,95 +1062,67 @@
 							<table class="table table-responsive-lg">
 							<thead>
 								<tr>
-									<th scope="col">NAV as of</th>
-									<th scope="col">YTD</th>
-									<th scope="col">3M</th>
-									<th scope="col">6M</th>
-									<th scope="col">1Y</th>
-									<th scope="col">3Y</th>
-									<th scope="col">5Y</th>
-									<th scope="col">10Y</th>
-									<th scope="col">Since Inception</th>
+									<th scope="col">{{ trans('messages.nav_as_of') }}</th>
+									<th scope="col">{{ trans('messages.YTD') }}</th>
+									<th scope="col">{{ trans('messages.3M') }}</th>
+									<th scope="col">{{ trans('messages.6M') }}</th>
+									<th scope="col">{{ trans('messages.1Y') }}</th>
+									<th scope="col">{{ trans('messages.3Y') }}</th>
+									<th scope="col">{{ trans('messages.5Y') }}</th>
+									<th scope="col">{{ trans('messages.10Y') }}</th>
+									<th scope="col">{{ trans('messages.since_snception') }}</th>
 								</tr>
 							</thead>
-							<tbody>
-							<tr class="lightgreentxt">
+								<tbody id="performance">
+							<tr class="lightgreentxt" id="fund">
 								<th scope="col">EP-LTF</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
+								@foreach ($perfor as $k_perfor => $v_perfor)
+									@if ($v_perfor->sort_id <= 8)
+										@if ($v_perfor->fund != 0)
+											<td>{{$v_perfor->fund}}</td>	
+										@else
+											<td>N/A</td>
+										@endif
+									@endif
+								@endforeach	
 							</tr>
-							<tr class="lightgreentxt">
-								<th scope="col">SET Index (SET)</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
+							<tr class="lightgreentxt" id="gain">
+								<th scope="col">{{ trans('messages.THSETRI_Index') }}</th>
+								@foreach ($perfor as $k_perfor => $v_perfor)
+									@if ($v_perfor->sort_id <= 8)
+										@if ($v_perfor->gain != 0)
+											<td>{{$v_perfor->gain}}</td>	
+										@else
+											<td>N/A</td>
+										@endif
+									@endif
+								@endforeach	
 							</tr>
-							<tr class="lightgreentxt">
-								<th scope="col">SET Total Return Index (SET TRI)</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
+							<tr class="lightgreentxt" id="result">
+								<th scope="col">{{ trans('messages.Sd_of') }} EP-LTF </th>
+								@foreach ($perfor as $k_perfor => $v_perfor)
+									@if ($v_perfor->sort_id <= 8)
+										@if ($v_perfor->result != 0)
+											<td>{{$v_perfor->result}}</td>	
+										@else
+											<td>N/A</td>
+										@endif
+									@endif
+								@endforeach	
 							</tr>
-							<tr class="lightgreentxt">
-								<th scope="col">SET EP-LTF</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
+							<tr class="lightgreentxt" id="Indicator">
+								<th scope="col">{{ trans('messages.Sd_of_THSETRI') }}</th>
+								@foreach ($perfor as $k_perfor => $v_perfor)
+									@if ($v_perfor->sort_id <= 8)
+										@if ($v_perfor->Indicator != 0)
+											<td>{{$v_perfor->Indicator}}</td>	
+										@else
+											<td>N/A</td>
+										@endif
+									@endif
+								@endforeach		
 							</tr>
-							<tr class="lightgreentxt">
-								<th scope="col">SD SET</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-							</tr>
-							<tr class="lightgreentxt">
-								<th scope="col">SD SET TRI</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-							</tr>
-							<tr class="lightgreentxt">
-								<th scope="col">INformation Ratio (Vs SET)</th>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-								<td>2.22%</td>
-							</tr>
+							
 								</tbody>
 							</table>
 						</div>
@@ -1343,6 +1295,216 @@
 						});
 					}
 				});
+			});
+		</script>
+			<script src="//www.chartjs.org/dist/master/Chart.min.js"></script>
+		
+		<script>
+			
+			function getFund(selectObject) {
+					var fund = selectObject.value;  
+					$.ajax({
+						method: "GET",
+						url: "{{url('selectperformance')}}",
+						data: { fund: fund }
+					}).done(function( res ) {
+						$('#fund').html('');
+						$('#gain').html('');
+						$('#result').html('');
+						$('#Indicator').html('');
+						if(res[0].type == 'EP-LTF'){
+							var fund_per = `<th scope="col">EP-LTF</th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.fund != 0){
+																fund_per += `<td>`+v.fund+`</td>`;
+															}else{
+																fund_per += `<td>N/A</td>`;
+															}
+															
+														}								
+												});	
+							var	gain = `<th scope="col">{{ trans('messages.THSETRI_Index') }}</th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.gain != 0){
+																gain += `<td>`+v.gain+`</td>`;
+															}else{
+																gain += `<td>N/A</td>`;
+															}
+														}								
+												});	
+							var	result = `<th scope="col">{{ trans('messages.Sd_of') }} EP-LTF </th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.result != 0){
+																result += `<td>`+v.result+`</td>`;
+															}else{
+																result += `<td>N/A</td>`;
+															}
+														}								
+												});	
+							var	Indicator = `<th scope="col">{{ trans('messages.Sd_of_THSETRI') }}</th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.Indicator != 0){
+																Indicator += `<td>`+v.Indicator+`</td>`;
+															}else{
+																Indicator += `<td>N/A</td>`;
+															}
+														}								
+												});
+						}else{
+							var fund_per = `<th scope="col">S-EQRMF</th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.fund != 0){
+																fund_per += `<td>`+v.fund+`</td>`;
+															}else{
+																fund_per += `<td>N/A</td>`;
+															}
+														}								
+												});	
+							var	gain = `<th scope="col">{{ trans('messages.THSETRI_Index') }}</th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.gain != 0){
+																gain += `<td>`+v.gain+`</td>`;
+															}else{
+																gain += `<td>N/A</td>`;
+															}
+														}								
+												});	
+							var	result = `<th scope="col">{{ trans('messages.Sd_of') }} S-EQRMFF </th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.result != 0){
+																result += `<td>`+v.result+`</td>`;
+															}else{
+																result += `<td>N/A</td>`;
+															}
+														}								
+												});	
+							var	Indicator = `<th scope="col">{{ trans('messages.Sd_of_THSETRI') }}</th>`;
+												$.each(res,function(k,v){
+														if(v.sort_id <= 8){
+															if(v.Indicator != 0){
+																Indicator += `<td>`+v.Indicator+`</td>`;
+															}else{
+																Indicator += `<td>N/A</td>`;
+															}
+														}								
+												});
+						}
+					
+						
+					console.log(fund_per);
+					$('#fund').append(fund_per);
+					$('#gain').append(gain);
+					$('#result').append(result);
+					$('#Indicator').append(Indicator);	
+					var year = [];
+      				var fund_select = [];
+					var gain_select = [];
+					var fund_type = res[0].type;
+					for(var i in res) {
+						if(res[i].sort_id > 8){
+							year.push(res[i].name);
+							fund_select.push(res[i].fund);
+							gain_select.push(res[i].gain);
+						}
+						
+					}
+					
+					var ctx = document.getElementById('myChart').getContext('2d');
+					var myChart = new Chart(ctx, {
+					type: 'line',
+					data: {
+						labels: year,
+						datasets: [{
+							label: fund_type,
+							data: fund_select,
+							backgroundColor: 'rgba(255, 159, 64, 0.2)',
+							borderColor: 'rgba(255, 159, 64,1 )',
+							borderWidth: 2,
+							lineTension :0.000001,
+						},{
+							label: 'Benchmark',
+							data: gain_select,
+							backgroundColor: 'rgba(55, 148, 148, 0.2)',
+							borderColor: 'rgba(55, 148, 148, 1)',
+							borderWidth: 2,
+							lineTension :0.000001,
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});				
+					});
+					
+					
+				}
+		</script>
+			<script>
+			$( document ).ready(function() {
+				$.ajax({
+						method: "GET",
+						url: "{{url('selectperformance')}}",
+						data: { fund: 'EP-LTF' }
+					}).done(function( res ) {
+						var year = [];
+						var fund_select = [];
+						var gain_select = [];
+						var fund_type = res[0].type;
+						for(var i in res) {
+							if(res[i].sort_id > 8){
+								year.push(res[i].name);
+								fund_select.push(res[i].fund);
+								gain_select.push(res[i].gain);
+							}
+							
+						}
+						
+						var ctx = document.getElementById('myChart').getContext('2d');
+						var myChart = new Chart(ctx, {
+						type: 'line',
+						data: {
+							labels: year,
+							datasets: [{
+								label: fund_type,
+								data: fund_select,
+								backgroundColor: 'rgba(255, 159, 64, 0.2)',
+								borderColor: 'rgba(255, 159, 64,1 )',
+								borderWidth: 2,
+								lineTension :0.000001,
+							},{
+								label: 'Benchmark',
+								data: gain_select,
+								backgroundColor: 'rgba(55, 148, 148, 0.2)',
+								borderColor: 'rgba(55, 148, 148, 1)',
+								borderWidth: 2,
+								lineTension :0.000001,
+							}]
+						},
+						options: {
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							}
+						}
+					});				
+					});
+				
 			});
 		</script>
 		<script>

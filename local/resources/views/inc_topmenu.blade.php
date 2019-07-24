@@ -289,7 +289,7 @@
 	<div class="mobilemenu d-block d-sm-block d-md-block d-sm-none d-xl-none d-lg-none d-xl-none">
 		<header>
 			<div id="logo">
-				<a href="{{url('/')}}"><img src="images/logo.png"></a>
+				<a href="{{url('/')}}"><img src="{{asset('images/logo.png')}}"></a>
 			</div>
 			<div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
 			<li><a class="cd-search-trigger" href="javascript:void(0)"><span></span></a></li>

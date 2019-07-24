@@ -61,18 +61,15 @@
                         <input type="text" class="form-control" name="name_en" id="add_name_en" placeholder="name_en">
                 </div>
 
-                {{-- <div class="form-group">
-                    <label for="add_status">list type</label>
-                    <select  class="form-control number-only select2" name="list_type" id="add_list_type" tabindex="-1" data-placeholder="select list type">
-                        <option value="">select</option>
-                        <option value="I">Inline</option>
-                        <option value="L">Line</option>
-                    </select>
-                </div> --}}
-        
                 <div class="form-group">
                     <label for="add_sort_id">ลำดับ</label>
                     <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="sort_id">
+                </div>
+
+                <div class="form-check">
+                    <label for="add_list_type" class="checkbox form-check-label">
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="list_type" id="add_list_type"  value="L" checked="checked"> เพิ่มกองทุน
+                    </label>
                 </div>
         
                 <div class="form-check">
@@ -111,18 +108,15 @@
                         <input type="text" class="form-control" name="name_en" id="edit_name_en" placeholder="name_en">
                 </div>
 
-                {{-- <div class="form-group">
-                    <label for="add_status">list type</label>
-                    <select  class="form-control number-only select2" name="list_type" id="edit_list_type" tabindex="-1" data-placeholder="select list type">
-                        <option value="">select</option>
-                        <option value="I">Inline</option>
-                        <option value="L">Line</option>
-                    </select>
-                </div>
-         --}}
                 <div class="form-group">
                     <label for="edit_sort_id">ลำดับ</label>
                     <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="sort_id">
+                </div>
+
+                <div class="form-check">
+                    <label for="edit_list_type" class="checkbox form-check-label">
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="list_type" id="edit_list_type"  value="L" checked="checked"> เพิ่มกองทุน
+                    </label>
                 </div>
         
                 <div class="form-check">
@@ -183,7 +177,11 @@
             }else{
                 $('#edit_status').removeAttr('checked').closest('label').removeClass('checked');
             }
-            $('#edit_list_type').val(rec.list_type);
+            if(rec.list_type=='L'){
+                $('#edit_list_type').prop('checked','checked').closest('label').addClass('checked');
+            }else{
+                $('#edit_list_type').removeAttr('checked').closest('label').removeClass('checked');
+            }
             $('.select2').select2();                     
             btn.button("reset");
             ShowModal('ModalEdit');
