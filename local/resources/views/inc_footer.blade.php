@@ -65,6 +65,7 @@
  .bordertopwhite {
 	 border-bottom: 1px solid white;
  }
+
  
  .copyrighttext {
 	 padding: 20px 60px;
@@ -136,6 +137,7 @@
 				 	 <li><a href="{{url('/fundsprice')}}">{{trans('messages.nav')}}</a></li>
 				 	 <li><a href="{{url('/funds_perf')}}">{{trans('messages.performance')}}</a></li>
 					 <li><a href="{{url('/transaction')}}">{{trans('messages.tran')}} </a></li>
+					 <li><a href="{{url('/news')}}">{{trans('messages.news')}}</a></li>
 					 <li><a href="{{url('/about')}}">{{trans('messages.about')}}</a></li>
 				 	 <li><a href="{{url('/contact')}}">{{trans('messages.contact')}}</a></li>
 				 </ul>
@@ -147,8 +149,8 @@
 				 	<li><a href="{{url('/economic')}}">{{trans('messages.economic')}}</a></li>
 					 <li><a href="{{url('/knowledge')}}">{{trans('messages.knowledge')}}</a></li>
 				 	 <li><a href="{{url('/downloadreport')}}">{{trans('messages.report')}}</a></li>
-					 <li><a href="{{url('/reportfunds')}}">{{trans('messages.reportfunds')}}</a></li>
-					 <li><a href="#">{{trans('messages.investment')}}</a></li>
+					 <li><a href="{{url('/download/detail/1')}}">{{trans('messages.reportfunds')}}</a></li>
+					 <li><a href="{{url('/governance')}}">{{trans('messages.investment')}}</a></li>
 					 <li><a href="{{url('/calendar')}}">{{trans('messages.calendar')}}</a></li>
 					 <li><a href="{{url('/downloadform')}}">{{trans('messages.downloadform')}}</a></li>
 					 <li><a href="{{url('/statusupdate')}}">{{trans('messages.statusupdate')}}</a></li>
@@ -190,8 +192,8 @@
 		 </div>
 	 </div>
 	 <div class="row mt-3 mb-2">
-		 <div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-			 <div class="bordertopwhite"></div>
+		 <div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" >
+			 <div class="bordertopwhite" ></div>
 		 </div>
 	 </div>
 	 </div>
@@ -212,7 +214,7 @@
 					  <li><a href="{{url('/economic')}}">{{trans('messages.economic')}}</a></li>
 					 <li><a href="{{url('/knowledge')}}">{{trans('messages.knowledge')}}</a></li>
 					 <li><a href="{{url('/downloadreport')}}">{{trans('messages.report')}}</a></li>
-					 <li><a href="{{url('/reportfunds')}}">{{trans('messages.reportfunds')}}</a></li>
+					 <li><a href="{{url('/download/detail/1')}}">{{trans('messages.reportfunds')}}</a></li>
 					 <li><a href="#">{{trans('messages.investment')}}</a></li>
 					 <li><a href="{{url('/calendar')}}">{{trans('messages.calendar')}}</a></li>
 					 <li><a href="{{url('/downloadform')}}">{{trans('messages.downloadform')}}</a></li>

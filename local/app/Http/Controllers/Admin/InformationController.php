@@ -42,6 +42,7 @@ class InformationController extends Controller
     public function store(Request $request)
     {
         $input_all = $request->all();  
+    
         $file_name = [];
 
         if(isset($input_all['photo'])){
@@ -55,7 +56,9 @@ class InformationController extends Controller
             }
         }
         $input_all['photo'] = json_encode($file_name);
-
+        $input_all['status_pdf'] = $request->input('status_pdf','2');
+        $input_all['status'] = $request->input('status','2');
+        $input_all['active'] = $request->input('active','2');
         $input_all['created_at'] = date('Y-m-d H:i:s');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
@@ -151,7 +154,9 @@ class InformationController extends Controller
         }
         unset($input_all['org_photo']);
         $input_all['photo'] = json_encode($file_name);
-
+        $input_all['status_pdf'] = $request->input('status_pdf','2');
+        $input_all['status'] = $request->input('status','2');
+        $input_all['active'] = $request->input('active','2');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
@@ -201,7 +206,8 @@ class InformationController extends Controller
     }
     public function Lists()
     {
-        $result = \App\Models\Information::select();
+        $result = \App\Models\Information::orderBy('sort_id','ASC')
+            ->select();
         return \Datatables::of($result)
         ->addIndexColumn()
         ->editColumn('status',function($rec){
@@ -222,6 +228,16 @@ class InformationController extends Controller
                 }
             }
         }) 
+        ->editColumn('file',function($rec){
+            if($rec->file != null){
+                return $file = '<a href="'.asset('uploads/'.$rec->file).'" target="_blank"><span class="label label-info">ดาวน์โหลดไฟล์ใช้งาน</span></a>';
+            }
+        })
+        ->editColumn('active',function($rec){
+            if($rec->active == 1){
+                return $active = '<span class="badge badge-danger">New</span>';
+            }
+        })
         ->addColumn('action',function($rec){
             $str='
             <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>

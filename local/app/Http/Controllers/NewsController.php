@@ -16,6 +16,7 @@ class NewsController extends Controller
             ->select('contacts.*')
             ->get();
         $data['information'] = \App\Models\Information::where('status','=','1')
+            ->orderBy('sort_id','ASC')
             ->select('informations.*')
             ->paginate(8);
       

@@ -168,7 +168,7 @@ class DebtController extends Controller
 
     public function Lists(Request $request){
         $type_debt_id = $request->input('type_debt_id');
-        $result = \App\Models\Debt::where('type_debt_id',$type_debt_id)->select();
+        $result = \App\Models\Debt::where('type_debt_id',$type_debt_id)->orderBy('sort_id','ASC')->select();
         return \Datatables::of($result)
         ->addIndexColumn()
         

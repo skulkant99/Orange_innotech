@@ -43,10 +43,17 @@ class PersonnelController extends Controller
     public function store(Request $request)
     {
         $input_all = $request->all();
-        $input_all['type'] = $request->input('type','2');
-            if(isset($input_all['sort_id'])){
-                $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
+        if(isset($input_all['photo'])&&isset($input_all['photo'][0])){
+            $input_all['photo'] = $input_all['photo'][0];
+            if(Storage::disk("uploads")->exists("temp/".$input_all['photo'])&&!Storage::disk("uploads")->exists("Personnel/".$input_all['photo'])){
+                Storage::disk("uploads")->copy("temp/".$input_all['photo'],"Personnel/".$input_all['photo']);
+                Storage::disk("uploads")->delete("temp/".$input_all['photo']);
             }
+        }
+        $input_all['type'] = $request->input('type','2');
+        if(isset($input_all['sort_id'])){
+            $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
+        }
         $input_all['status'] = $request->input('status','2');
         $input_all['created_at'] = date('Y-m-d H:i:s');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
@@ -84,6 +91,16 @@ class PersonnelController extends Controller
     public function show($id)
     {
         $result = \App\Models\Personnel::find($id);
+        if($result){
+            if($result->photo){
+                if(Storage::disk("uploads")->exists("Personnel/".$result->photo)){
+                    if(Storage::disk("uploads")->exists("temp/".$result->photo)){
+                        Storage::disk("uploads")->delete("temp/".$result->photo);
+                    }
+                    Storage::disk("uploads")->copy("Personnel/".$result->photo,"temp/".$result->photo);
+                }
+            }
+        }
         
         return json_encode($result);
     }
@@ -109,6 +126,22 @@ class PersonnelController extends Controller
     public function update(Request $request, $id)
     {
         $input_all = $request->all();
+        if(isset($input_all['photo'])&&isset($input_all['photo'][0])){
+            $input_all['photo'] = $input_all['photo'][0];
+            if(Storage::disk("uploads")->exists("temp/".$input_all['photo'])){
+                if(Storage::disk("uploads")->exists("Personnel/".$input_all['photo'])){
+                    Storage::disk("uploads")->delete("Personnel/".$input_all['photo']);
+                }
+                Storage::disk("uploads")->copy("temp/".$input_all['photo'],"Personnel/".$input_all['photo']);
+
+            }
+        }else{
+            $input_all['photo'] = null;
+        }
+        if(isset($input_all['org_photo'])){
+            Storage::disk("uploads")->delete("temp/".$input_all['org_photo']);
+        }
+        unset($input_all['org_photo']);
         $input_all['type'] = $request->input('type','2');
             if(isset($input_all['sort_id'])){
                 $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);

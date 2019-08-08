@@ -15,8 +15,15 @@
 //     return view('index');
 // });
 
-Route::get('/','HomeController@index');
+// if(is_null(session()->get('locale'))){
+       
+//         Route::get('/','HomeController@landing');
+        
+// }else{
+//         Route::get('/','HomeController@index');
+// }
 
+Route::get('/','HomeController@index');
 Route::get('lang/{locale}', 'LocaleController@lang');
 
 Route::get('/news','NewsController@index');
@@ -34,27 +41,20 @@ Route::get('/downloadinside/{id}/{file_type_id}','FileReportController@detail');
 
 Route::get('/privatefunds', 'FundInformationController@index');
 
+Route::get('/mutualfunds','MutualFundController@index');
+Route::get('/mutualfunds/detail/{id}','MutualFundController@detail');
 
-Route::get('/mutualfunds', function () {
-        $data['category'] = \App\Models\Category::where('status','=','1')
-                ->select('categories.*')
-                ->orderBy('sort_id','ASC')
-                ->get();
-        $data['contact'] = \App\Models\Contact::where('status','=','1')
-                ->select('contacts.*')
-                ->get();
-        return view('mutual_funds',$data);
-});
 Route::get('/fundsepltf', 'FundInformationController@fundsepltf');
 Route::get('/fundsprice','FundPriceController@index');
 Route::get('/fundsprice/selectfund/{fund}','FundPriceController@search_select');
 Route::get('/fundsprice/all','FundPriceController@indexfundpriceall');
-Route::get('/fundsprice/seachfundprice','FundPriceController@seachfundprice');
+Route::get('/fundsprice/seachfundprice','FundPriceController@select');
 
 
 Route::get('/funds_perf', 'PerformanceController@index');
 Route::get('/selectperformance','PerformanceController@selectperformance');
 Route::get('performance/PDF/{type}/{date}','PerformanceController@printPDF');
+Route::get('select/performance/{fund}','PerformanceController@select');
 
 Route::get('/funds_seqrmf','FundInformationController@fundsseqrmf');
 Route::get('/transaction', 'TransactionController@index');
@@ -71,20 +71,17 @@ Route::get('/statusupdate','DebtController@index');
 Route::get('/seachstatus','DebtController@search');
 Route::get('/status/select/{status}','DebtController@select_search');
 Route::get('/faq', 'QuestionController@index');
+Route::get('faq/search','QuestionController@search');
 
 Route::get('seachfunds','PerformanceController@search');
-Route::get('connect',function () {
-        return view('connect');
-});
+
 Route::get('account',function () {
         return view('account');
 });
-Route::get('trust',function () {
-        return view('trust');
-});
-Route::get('funds/reit/manager',function () {
-        return view('funds_reit_manager');
-});
-Route::get('funds/reit',function () {
-        return view('funds_reit');
-});
+Route::get('trust','TrustController@index');
+Route::get('funds/reit/manager','TrustController@reit_manager');
+Route::get('funds/reit','TrustController@reit');
+Route::get('trust/detail/{id}','TrustController@detail');
+
+Route::get('search','SearchController@index');
+

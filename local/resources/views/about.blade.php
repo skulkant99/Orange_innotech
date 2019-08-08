@@ -78,7 +78,7 @@
 		
 
 		.link.active {
-			color: #b40303;
+			color: #ffffff;
 		}
 		
 		.text-title-top h3 {
@@ -146,6 +146,10 @@
 			margin-right: 10px;
 			margin-left: 10px;
 			font-family: 'Kanit';
+		}
+		.img_manager{
+			padding-left: 18px;
+			
 		}
 
 		@media (max-width: 767px) {
@@ -227,13 +231,13 @@
 									</div>
 -->
 						  <div class="mt-3">
-							  <select id="selectbasic" name="selectbasic" class="form-control">
-								<option value="1">ข้อมูลบริษัท</option>
-								<option value="2">วิสัยทัศน์และพันธกิจ</option>
-								<option value="3">ค่านิยมหลักของบริษัท</option>
-								<option value="4">คณะกรรมการบริษัท</option>
-								<option value="5">คณะผู้บริหาร</option>
-								<option value="6">ผู้จัดการกองทุน</option>
+							  <select id="about" name="selectbasic" class="form-control" onchange="getFund(this)">
+								<option value="1">{{ trans('messages.com_in') }}</option>
+								<option value="2">{{ trans('messages.vision_and_mission') }}</option>
+								<option value="3">{{ trans('messages.company_core_values') }}</option>
+								<option value="4">{{ trans('messages.directors') }}</option>
+								<option value="5">{{ trans('messages.manager') }}</option>
+								<option value="6">{{ trans('messages.fund_manager') }}</option>
 								</select>
 							</div>
 							
@@ -246,12 +250,12 @@
 									<div class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
 										<div class="topbar-menu">
 											<ul>
-												<li> <a class="link" href="#content1">ข้อมูลบริษัท </a> </li>
-												<li> <a class="link" href="#content2">วิสัยทัศน์และพันธกิจ </a> </li>
-												<li> <a class="link" href="#content3">ค่านิยมหลักของบริษัท</a> </li>
-												<li> <a class="link" href="#content4">คณะกรรมการบริษัท</a> </li>
-												<li> <a class="link" href="#content5">คณะผู้บริหาร</a> </li>
-												<li> <a class="link" href="#content6"> ผู้จัดการกองทุน</a> </li>
+												<li> <a class="link" href="#content1">{{ trans('messages.com_in') }} </a> </li>
+												<li> <a class="link" href="#content2">{{ trans('messages.vision_and_mission') }} </a> </li>
+												<li> <a class="link" href="#content3">{{ trans('messages.company_core_values') }}</a> </li>
+												<li> <a class="link" href="#content4">{{ trans('messages.directors') }}</a> </li>
+												<li> <a class="link" href="#content5">{{ trans('messages.manager') }}</a> </li>
+												<li> <a class="link" href="#content6">{{ trans('messages.fund_manager') }}</a> </li>
 											</ul>
 										</div>
 									</div>
@@ -267,7 +271,7 @@
 														<div class="number_bg">01</div>
 													</div>
 												</div>
-												<div class="title_head2 wow fadeInUp"> ข้อมูลบริษัท <span class="bluetxt">INNOTECH </span></div>
+												<div class="title_head2 wow fadeInUp"> {{ trans('messages.com_in') }}  <span class="bluetxt">INNOTECH </span></div>
 											</div>
 										</div>
 										<div class="row mt-5">
@@ -327,7 +331,7 @@
 														<div class="number_bg">02</div>
 													</div>
 												</div>
-												<div class="title_head2 wow fadeInUp"> วิสัยทัศน์และพันธกิจ <span class="bluetxt">VISION MISSION </span></div>
+												<div class="title_head2 wow fadeInUp"> {{ trans('messages.vision_and_mission') }} <span class="bluetxt">VISION MISSION </span></div>
 											</div>
 										</div>
 										<div class="row mt-5">
@@ -366,7 +370,7 @@
 														<div class="number_bg">03</div>
 													</div>
 												</div>
-												<div class="title_head2 wow fadeInUp"> ค่านิยมหลักของบริษัท <span class="bluetxt">INNOTECH </span></div>
+												<div class="title_head2 wow fadeInUp"> {{ trans('messages.company_core_values') }} <span class="bluetxt">INNOTECH </span></div>
 											</div>
 										</div>
 										<div class="row mt-5">
@@ -404,7 +408,7 @@
 														<div class="number_bg">04</div>
 													</div>
 												</div>
-												<div class="title_head2 wow fadeInUp"> คณะกรรมการบริษัท <span class="bluetxt">INNOTECH </span></div>
+												<div class="title_head2 wow fadeInUp"> {{ trans('messages.directors') }} <span class="bluetxt">INNOTECH </span></div>
 											</div>
 										</div>
 										<div class="row mt-5">
@@ -414,7 +418,15 @@
 														@foreach ($personnel as $k_personnel => $v_personnel)
 															@if ($v_personnel->type == 1)
 																<div class="set"> <a>{{$personnel[$k_personnel]['name_'.$lang]}} <br> <span class="orangetxt font-italic">{{$personnel[$k_personnel]['position_'.$lang]}}</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
+																	
 																	<div class="content">
+																		<div class="img_manager">
+																			@if (isset($v_personnel->photo))
+																				<img src="{{asset('uploads/Personnel/'.$v_personnel->photo)}}" class="img-fluid">
+																			@else
+																				<img src="{{asset('uploads/Personnel/nophoto.jpg')}}" class="img-fluid">
+																			@endif
+																		</div>
 																		{!!($personnel[$k_personnel]['detail_'.$lang])!!}
 																	</div>
 																</div>
@@ -441,7 +453,7 @@
 														<div class="number_bg">05</div>
 													</div>
 												</div>
-												<div class="title_head2 wow fadeInUp"> คณะผู้บริหาร <span class="bluetxt">INNOTECH </span></div>
+												<div class="title_head2 wow fadeInUp"> {{ trans('messages.manager') }} <span class="bluetxt">INNOTECH </span></div>
 											</div>
 										</div>
 										<div class="row mt-5">
@@ -452,6 +464,13 @@
 															@if ($v_personnel->type == 2)
 																<div class="set"> <a>{{$personnel[$k_personnel]['name_'.$lang]}} <br> <span class="orangetxt font-italic">{{$personnel[$k_personnel]['position_'.$lang]}}</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
 																	<div class="content">
+																		<div class="img_manager">
+																			@if (isset($v_personnel->photo))
+																				<img src="{{asset('uploads/Personnel/'.$v_personnel->photo)}}" class="img-fluid">
+																			@else
+																				<img src="{{asset('uploads/Personnel/nophoto.jpg')}}" class="img-fluid">
+																			@endif
+																		</div>
 																		{!!($personnel[$k_personnel]['detail_'.$lang])!!}
 																	</div>
 																</div>
@@ -478,7 +497,7 @@
 														<div class="number_bg">06</div>
 													</div>
 												</div>
-												<div class="title_head2 wow fadeInUp"> ผู้จัดการกองทุน <span class="bluetxt">INNOTECH </span></div>
+												<div class="title_head2 wow fadeInUp"> {{ trans('messages.fund_manager') }} <span class="bluetxt">INNOTECH </span></div>
 											</div>
 										</div>
 										<div class="row mt-5">
@@ -489,6 +508,13 @@
 															@if ($v_personnel->type == 3)
 																<div class="set"> <a>{{$personnel[$k_personnel]['name_'.$lang]}} <br> <span class="orangetxt font-italic">{{$personnel[$k_personnel]['position_'.$lang]}}</span> <span class="clickviewmore">คลิกเพื่อดูข้อมูลเพิ่มเติม</span><i class="fas fa-plus-circle"></i></a>
 																	<div class="content">
+																		<div class="img_manager">
+																			@if (isset($v_personnel->photo))
+																				<img src="{{asset('uploads/Personnel/'.$v_personnel->photo)}}" class="img-fluid">
+																			@else
+																				<img src="{{asset('uploads/Personnel/nophoto.jpg')}}" class="img-fluid">
+																			@endif
+																		</div>
 																		{!!($personnel[$k_personnel]['detail_'.$lang])!!}
 																	</div>
 																</div>
@@ -569,6 +595,38 @@
 						}
 					});
 				});
+			</script>
+			<script>
+					function getFund(selectObject) {
+						var about = selectObject.value;  
+						
+						if (about == "6") {
+							$('.link').removeClass('active');
+							$('.link[href="#content6"]').addClass('active');
+						}
+						else if (about == "5") {
+							$('.link').removeClass('active');
+							$('.link[href="#content4"]').addClass('active');
+						}
+						else if (about == "4") {
+							$('.link').removeClass('active');
+							$('.link[href="#content3"]').addClass('active');
+						}
+						else if (about == "3") {
+							$('.link').removeClass('active');
+							$('.link[href="#content2"]').addClass('active');
+						}
+						else if (about == "2") {
+							$('.link').removeClass('active');
+							$('.link[href="#content1"]').addClass('active');
+						}
+						else {
+							$('.link').removeClass('active');
+						}
+					
+					
+						
+					}
 			</script>
 			<script>
 				// accordion-01

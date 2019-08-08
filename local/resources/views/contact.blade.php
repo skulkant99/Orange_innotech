@@ -19,9 +19,7 @@
 		.btn_first {
 			padding-right: 0px;
 		}
-		#divToPrint{
-			display:none;
-		}
+	
 		
 	</style>
 	@php
@@ -95,27 +93,30 @@
 					<div class="row">
 						<div class="col-12 col-md-6"> 
 							<div class="title_head2 wow fadeInUp"> <span class="bluetxt">INNOTECH </span> CONTACT</div>
+							@php
+								$contect = \App\Models\Contact::where('sort_id','=',3)->select()->first();
+							@endphp
 							<div class="contact_info">
-								<li><img src="{{asset('images/tel.png')}}"> โทรศัพท์ 0-2624-6333</li>
-								<li><img src="{{asset('images/fax.png')}}"> โทรสาร 0-2624-6330</li>
-								<li><img src="{{asset('images/mail.png')}}"> Email marketing@innotechasset.com</li>
+								<li><img src="{{asset('images/tel.png')}}"> {{ trans('messages.phone') }} 0-2624-6333</li>
+								<li><img src="{{asset('images/fax.png')}}"> {{ trans('messages.fax') }} 0-2624-6330</li>
+								<li><img src="{{asset('images/mail.png')}}"> {{ $contect->name_th}}</li>
 							</div>
 						</div>
 						<div class="col-12 col-md-6"> 
 							<div class="title_head2 wow fadeInUp"> <span class="bluetxt">INFORM</span> แจ้งเบาะแส </div>
 							<form id="add_contact">
 								<div class="contactform">
-									<label>ชื่อ-นามสกุล</label>
+									<label>{{ trans('messages.name') }}</label>
 										<input id="name" name="name" type="text" class="form-control input-md">
-									<label>อีเมล</label>
+									<label>{{ trans('messages.email') }}</label>
 										<input id="email" name="email" type="text" class="form-control input-md">
-									<label>หัวข้อ</label>
+									<label>{{ trans('messages.topic') }}</label>
 										<input id="title" name="title" type="text" class="form-control input-md">
-									<label>ข้อความ</label>
+									<label>{{ trans('messages.message') }}</label>
 										<textarea class="form-control" id="detail" name="detail" rows="6"></textarea>
 									<div class="btn_first"> 
 										<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
-										<button type="submit"  class="btn btn-primary">ส่งข้อมูล</button>
+										<button type="submit"  class="btn btn-primary">{{ trans('messages.send') }}</button>
 									</div>
 								</div>
 							</form>
@@ -184,35 +185,49 @@
 			
 			
 					@foreach ($career as $k_career => $v_career)
-					<div id="divToPrint">
+					
+							<div style="display:none;">
 								<div id="{{$v_career->sort_id}}" >
 										<div class="jobdetail_box_title ">
-											<h2>รายละเอียดตำแหน่งงาน </h2>
-									</div>
+											<h2>{{ trans('messages.job_t') }} </h2>
+										</div>
 										<div class="jobdetail_box">
 											<h2>{{$career[$k_career]['name_'.$lang]}}</h2>
 											<div class="row">
 												<div class="col">
-												<h4><img src="images/icon_job_03.png"> คุณสมบัติ</h4>
+												<h4><img src="images/icon_job_03.png"> {{ trans('messages.property') }}</h4>
 													{!!($career[$k_career]['properties_'.$lang])!!}
 												</div>
 												<div class="col">
-													<h4><img src="images/icon_job_05.png"> รายละเอียดของงาน</h4>
+													<h4><img src="images/icon_job_05.png"> {{ trans('messages.detail_of_work') }}</h4>
 													{!!($career[$k_career]['detail_'.$lang])!!}
 												</div>
 											</div>
 											<hr>
 											<div class="row">
 												<div class="col">
-													<h4><img src="images/icon_job_10.png"> สวัสดิการ</h4>
+													<h4><img src="images/icon_job_10.png"> {{ trans('messages.benefits') }}</h4>
 													{!!($career[$k_career]['benefit_'.$lang])!!}
-													<a href="#" class="btn btn-primary"  onclick='printDiv();'>Print <i class="fas fa-print"></i></a> 
+													<a href="#" class="btn btn-primary"  onclick="printDiv()">Print <i class="fas fa-print"></i></a> 
 												
 												</div>
 											</div>
 									</div>	
 								</div>	
 							</div>
+							<script type="text/javascript">     
+								function printDiv() {    
+										var divToPrint = document.getElementById('{{$v_career->sort_id}}')
+
+										$(".fancybox-placeholder").css("display", "block");
+										console.log(divToPrint.innerHTML);
+										
+										var popupWin = window.open('', '_blank', 'width=800,height=900');
+										popupWin.document.open();
+										popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
+										popupWin.document.close();
+									}
+							 </script>
 					@endforeach
 				
 			
@@ -327,24 +342,7 @@
 						}
 				});
 			</script>
-			<script type="text/javascript">  
-				
-				function printDiv() 
-				{
-
-					var Print=document.getElementsById("divToPrint");
-
-					var newWin=window.open('','Print-Window');
-
-					newWin.document.open();
-					newWin.document.write('<html><body onload="window.print()">'+Print.innerHTML+'</body></html>');
-
-					newWin.document.close();
-
-					setTimeout(function(){newWin.close();},1);
-
-				}
-			 </script>
+			
 		
 			<script>
 				// for heading

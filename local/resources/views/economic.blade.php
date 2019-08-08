@@ -37,8 +37,38 @@
 			background-color: #fff;
 			border: 1px solid #dee2e6;
 		}
-		
-	
+		.detail_doc {
+				width: 70%;
+				font-size: 1.2em;
+				display: inline-block;
+				font-family: 'Kanit';
+				margin-left: 2%;
+			}
+        .docimg{
+            display: inline-block;
+            width: 15%;
+        }
+         @media (max-width: 991px){
+             .docimg{
+                 width: 25%;
+             }
+            .detail_doc {
+				width: 55%;
+                font-size: 1em;
+            }
+           
+        }
+        @media (max-width: 767px){
+            .docimg,
+            .detail_doc {
+				width: 100%;
+                font-size: 1em;
+            }
+            .btn_download{
+                margin-top: 0px;
+                text-align: left;
+            }
+        }
 	</style>
 	@php
 		$lang = "";
@@ -95,64 +125,33 @@
 		</div>
 		<br>
 		<br>
-		<div class="container-fluid nopad">
-			<div class="row">
-				<div class="col">
-					<div class="bggray alignfull mb-3">
-						<div class="container">
-							<div class="box_search">
-								<form id="search" action="{{url('economic/seacheconomic')}}" method="get" >
-									<div class="row">
-										<div class="col-lg-5">
-											<div class="search_funds">
-												<label>{{trans('messages.search')}}</label>
-												<select id="selectbasic" name="type" class="form-control">
-													@foreach ($fund as $k_fund => $v_fund)
-														<option value="{{$v_fund->fund_short_name}}">{{$fund[$k_fund]['name_'.$lang]}}</option>
-													@endforeach
-
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-5">
-											<div class="search_funds">
-												<label>{{trans('messages.keyword')}}</label>
-												<input id="textinput" name="keyword" type="text" class="form-control input-md" placeholder="Keyword"> </div>
-										</div>
-										<div class="col-lg-2"> <button type="submit" class="btn btn-success">{{trans('messages.submit')}}</button> </div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col">
-								@foreach ($economics as $_economics)
+								@foreach ($economics as $k_economics => $v_economics)
 									<div class="box_download_doc">
-										<div class="detail_doc"> {{$_economics->name}} </div>
-										<div class="btn_download"> <a href="{{url('uploads/'.$_economics->file)}}" target="_blank" class="btn btn-primary">{{trans('messages.download')}} <i class="fas fa-download"></i></a> </div>
+									<div class="docimg">
+			
+										@if(isset($v_economics->photo) && $v_economics->photo)
+											
+											<img src="{{asset('uploads/Economic/'.$v_economics->photo)}}" class="img-fluid"> 
+											</div>
+
+										@endif
+										<div class="detail_doc"> {{$v_economics['name_'.$lang]}} </div>
+										@if ($v_economics->type == "P")
+											<div class="btn_download"> <a href="{{url('uploads/'.$v_economics->file)}}" target="_blank" class="btn btn-primary">{{trans('messages.download')}} <i class="fas fa-download"></i></a> </div>
+										@else
+											<div class="btn_download"> <a href="{{$v_economics->link}}" class="btn btn-primary">{{ trans('messages.detail') }}</a> </div>
+										@endif
 									</div>
 								@endforeach
 								
-								{{-- <div class="box_download_doc">
-									<div class="detail_doc"> กองทุน </div>
-									<div class="btn_download"> <a href="download_doc_inside.php" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
-								</div>
-								<div class="box_download_doc">
-									<div class="detail_doc"> กองทุน </div>
-									<div class="btn_download"> <a href="download_doc_inside.php" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
-								</div>
-								<div class="box_download_doc">
-									<div class="detail_doc"> กองทุน </div>
-									<div class="btn_download"> <a href="download_doc_inside.php" class="btn btn-primary">ดาวน์โหลด <i class="fas fa-download"></i></a> </div>
-								</div> --}}
+							
 							</div>
 						</div>
 					</div>

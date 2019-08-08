@@ -166,7 +166,7 @@ class FileFormController extends Controller
     }
 
     public function Lists(){
-        $result = \App\Models\FileForm::select();
+        $result = \App\Models\FileForm::select()->orderBy('sort_id','ASC');
         return \Datatables::of($result)
         ->addIndexColumn()
         ->addColumn('sort_id',function($rec){

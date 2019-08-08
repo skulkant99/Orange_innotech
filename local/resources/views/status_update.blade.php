@@ -76,7 +76,7 @@
 											<div class="col">
 												<div class="bannertxt_top">
 													<h5>INNOTECH</h5>
-													<h1>ติดตามสถานะตราสารหนี้ผิดนัดชำระ <br>ของกองทุน</h1> </div>
+													<h1>{{ trans('messages.statusupdate') }} <br>{{ trans('messages.of_funds') }}</h1> </div>
 											</div>
 										</div>
 									</div>
@@ -90,7 +90,7 @@
 		<div class="container">
 			<div class="row mt-5">
 				<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-					<div class="title_head1"> ติดตามสถานะตราสารหนี้ผิดนัดชำระ <span class="bluetxt">ของกองทุน</span> </div>
+					<div class="title_head1"> {{ trans('messages.statusupdate') }} <span class="bluetxt">{{ trans('messages.of_funds') }}</span> </div>
 				</div>
 			</div>
 		</div>
@@ -108,7 +108,7 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="search_funds">
-												<label>เลือกตราสารหนี้</label>
+												<label>{{ trans('messages.choose_debt') }}</label>
 												<select id="status" name="type" class="form-control" onchange="getFund(this)">
 													@foreach ($debt_type as $_debt_type)
 														@if ($_debt_type->sort_id == $debt['sort_id'])

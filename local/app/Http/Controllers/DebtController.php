@@ -18,7 +18,7 @@ class DebtController extends Controller
         $data['debt'] = \App\Models\TypeDebt::select()
             ->orderBy('type_debts.sort_id','ASC')
             ->with(array('Debt' => function($q){
-                $q->orderBy('debts.created_at','DESC');
+                $q->orderBy('sort_id','ASC');
             }))->first();
         $data['debt_type'] = \App\Models\TypeDebt::select()->get();
         return view('status_update',$data);
@@ -102,7 +102,7 @@ class DebtController extends Controller
             ->select()
             ->orderBy('type_debts.sort_id','ASC')
             ->with(array('Debt' => function($q){
-                $q->orderBy('debts.created_at','DESC');
+                $q->orderBy('sort_id','ASC');
             }))->first();
         $data['debt_type'] = \App\Models\TypeDebt::select()->get();
         return view('status_update',$data);

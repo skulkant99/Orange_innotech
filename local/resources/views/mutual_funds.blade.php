@@ -85,7 +85,16 @@
 	}
 </style>
 <body>
-	
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
@@ -136,24 +145,29 @@
 				<div class="row">
 					<div class="col">
 						<div class="container">
-									<div class="row">
-					<div class="col">
-						<div class="accordion accordion-01">
-										<div class="set"> <a>{{trans('messages.tax_save')}} <i class="fas fa-plus-circle"></i></a>
-											<div class="content">
-												<p> <img src="{{asset('images/mutual_funds_03.png')}}"> <a href="{{url('fundsepltf')}}">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF)</a> </p>
-											</div>
-										</div>
-										<div class="set"> <a>{{trans('messages.retirement')}} <i class="fas fa-plus-circle"></i></a>
+							<div class="row">
+								<div class="col">
+									<div class="accordion accordion-01">
+										@foreach ($sub_fund as $k_sub_fund => $v_sub_fund)
+											@foreach ($v_sub_fund->SubFundTitle as $k_sub_fund_title => $v_sub_fund_title)
+												<div class="set"> <a>{{$v_sub_fund['name_'.$lang]}} <i class="fas fa-plus-circle"></i></a>
+													<div class="content">
+														<p> <img src="{{asset('images/mutual_funds_03.png')}}"> <a href="{{url('mutualfunds/detail/'.$v_sub_fund_title->id)}}">{{$v_sub_fund_title['name_'.$lang]}}</a> </p>
+													</div>
+												</div>
+											@endforeach
+										@endforeach
+									
+										{{-- <div class="set"> <a>{{trans('messages.retirement')}} <i class="fas fa-plus-circle"></i></a>
 											<div class="content">
 												<p><img src="{{asset('images/mutual_funds_03.png')}}"> <a href="{{url('funds_seqrmf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</a> </p>
 											</div>
-										</div>
+										</div> --}}
 										
-									</div>
-									<!-- /.accordion-01 -->
 								</div>
-				</div>
+								<!-- /.accordion-01 -->
+								</div>
+							</div>
 		
 						</div>
 					</div>

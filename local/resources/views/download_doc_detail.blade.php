@@ -79,7 +79,7 @@
 											<div class="col">
 												<div class="bannertxt_top">
 													<h5>INNOTECH</h5>
-													<h1>เอกสารเผยแพร่<span class="boldtext"> DOWNLOAD</span></h1> </div>
+													<h1>{{ trans('messages.publication') }}<span class="boldtext"> DOWNLOAD</span></h1> </div>
 											</div>
 										</div>
 									</div>

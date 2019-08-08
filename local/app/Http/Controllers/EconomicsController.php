@@ -15,8 +15,8 @@ class EconomicsController extends Controller
         $data['contact'] = \App\Models\Contact::where('status','=','1')
             ->select('contacts.*')
             ->get();
-        $data['economics'] = \App\Models\Economic::select()->paginate(4);
-        $data['fund'] = \App\Models\Fund::select()->get();
+        $data['economics'] = \App\Models\Economic::select()->paginate(10);
+  
         return view('economic',$data);
     }
     public function seacheconomic(Request $request)

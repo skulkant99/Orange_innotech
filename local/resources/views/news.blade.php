@@ -47,6 +47,22 @@
 			background-color: #fff;
 			border: 1px solid #dee2e6;
 		}
+		.tagnew{
+            background-color: #eb6b2f;
+            display: inline-block;
+            color: white;
+            padding: 4px 20px;
+            letter-spacing: 1px;
+            font-size: 0.8em;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            }
+        .box_nav{
+            position: relative;
+        }
 
 	</style>
 	@php
@@ -139,7 +155,7 @@
 
 					<div class="title_head1"><span class="bluetxt">INNOTECH</span> UPDATE
 
-						<p>ข่าวสารความเคลื่อนไหวต่างๆ ของเรา</p>
+						<p>{{ trans('messages.news_head') }}</p>
 
 					</div>
 
@@ -158,6 +174,9 @@
 								<div class="box_nav">
 
 									<div class="pic_nav">
+										@if ($value_information->active == 1)
+											<div class="tagnew">NEW</div>	
+										@endif
 
 										<div class="hov-menu-sty2">
 
@@ -176,7 +195,12 @@
 									</div>
 									
 									<div class="inno_details">{{($information[$_information]['title_'.$lang])}}</div> 
-									<a href="{{url('newsinside/'.$value_information->id)}}" class="readmore">{{trans('messages.read_more')}}</a> 
+									
+									@if ($value_information->status_pdf != 1)
+										<a href="{{url('newsinside/'.$value_information->id)}}" class="readmore">{{trans('messages.read_more')}}</a> 
+									@else
+										<a href="{{url('uploads/'.$value_information->file)}}" target="_blank" class="readmore">{{trans('messages.read_more')}}</a> 												
+									@endif
 								</div>
 
 							</div>
@@ -383,7 +407,7 @@
 
 					</div>
 
-		</div>
+			</div>
 
 		<main> </main>
 

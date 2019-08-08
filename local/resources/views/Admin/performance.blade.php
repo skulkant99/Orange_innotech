@@ -66,14 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="add_file">ประเภทกองทุน</label>
-                            <select name="type" id="add_type"  class="form-control select2">
-                                <option value="">--กรุณาเลือกกองทุน--</option>
-                                <option value="EP-LTF">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF)</option>
-                                <option value="S-EQRMF"> กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</option>
-                            </select>
-                        </div>
+                        <input type="hidden" name="type" id="type" value="{{$fund_short_name}}"> 
                         <div class="form-group">
                             <label for="add_date">ข้อมูล ณ วันที่</label>
                             <div class="input-group" >
@@ -194,7 +187,7 @@
         "ajax": {
             "url": url_gb+"/admin/Performance/Lists",
             "data": function ( d ) {
-                //d.myKey = "myValue";
+                d.type = $('#type').val();
                 // d.custom = $('#myInput').val();
                 // etc
             }

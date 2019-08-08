@@ -289,6 +289,22 @@ input#search-bar:focus:-ms-placeholder {
 
 .graphset {
 	border: 1px solid #eeeeee;
+    background-image: url(../images/set_bg.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 5px solid #379494;
+}
+.graphset h3 {
+    text-align: center;
+    margin: 20px 0px;
+    color: #379494;
+    font-family: 'kanit_mediumregular';
+
+
+}
+.boldertext {
+	font-family: 'kanit_lightregular';
 }
 
 .text_icon {
@@ -528,7 +544,7 @@ input#search-bar:focus:-ms-placeholder {
 	background-color: #379494;
 	color: #ffffff;
 	padding: 10px;
-	font-size: 2em;
+	font-size: 1em;
 	font-family: 'kanit_mediumregular';
 }
 
@@ -594,6 +610,12 @@ input#search-bar:focus:-ms-placeholder {
 	margin: 0 auto;
 	display: table;
 	margin-top: 30px;
+}
+.btn-warning {
+    background-color: #e66b2f;
+    border-radius: 50px;
+    color: white;
+	margin-bottom: 20px;
 }
 
 .btn-secondary:hover,

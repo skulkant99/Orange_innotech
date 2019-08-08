@@ -48,7 +48,7 @@ class FundPriceController extends Controller
                     )
             ->where('M_FUND.StrFundREF','=',001)
             ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
-            ->paginate(10);
+            ->paginate(25);
 
         $data['DACNAVLAST'] =  DB::connection('sqlsrv')
             ->table('M_FUND','T_DAILY_NAV')
@@ -136,7 +136,7 @@ class FundPriceController extends Controller
                     )
             ->where('M_FUND.StrFundREF','=',001)
             ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
-            ->paginate(10);
+            ->paginate(25);
 
         
         $data['DACNAVLAST'] =  DB::connection('sqlsrv')
@@ -162,7 +162,7 @@ class FundPriceController extends Controller
                     )
             ->where('M_FUND.StrFundREF','=',$fund)
             ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
-            ->paginate(15);
+            ->paginate(25);
 
         $data['DACNAVLAST'] =  DB::connection('sqlsrv')
             ->table('M_FUND','T_DAILY_NAV')
@@ -178,8 +178,7 @@ class FundPriceController extends Controller
         $date = $request->input('date');
        
         $datecon = str_replace('/', '-', $date );
-        $newDate = date("d-m-Y", strtotime($datecon));
-       
+        $newDate = date("Y-m-d", strtotime($datecon));
        
         $data['result'] = DB::connection('sqlsrv')
                 ->table('M_FUND','T_DAILY_NAV')
@@ -194,7 +193,8 @@ class FundPriceController extends Controller
                 ->where('M_FUND.StrFundREF','=',$type)
                 ->where('T_DAILY_NAV.DTENAVDATE','=',$newDate)
                 ->orderBy('T_DAILY_NAV.DTENAVDATE','DESC')
-                ->paginate(15);
+                ->paginate(25);
+   
 
         $data['DACNAVLAST'] =  DB::connection('sqlsrv')
                 ->table('M_FUND','T_DAILY_NAV')

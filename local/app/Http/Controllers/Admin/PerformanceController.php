@@ -20,15 +20,27 @@ class PerformanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($fund_short_name)
     {
+        $fund = \App\Models\Fund::where('fund_short_name',$fund_short_name)->select()->first();
         $data['main_menu'] = 'Performance';
         $data['sub_menu'] = 'Performance';
-        $data['title'] = 'Performance';
-        $data['title_page'] = 'Performance';
+        $data['title'] = $fund->name_th;
+        $data['title_page'] = $fund->name_th;
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
+        $data['fund_short_name'] = $fund_short_name;
         
         return view('Admin.performance',$data);
+    }
+    public function fund()
+    {
+        $data['main_menu'] = 'FundPerformance';
+        $data['sub_menu'] = 'FundPerformance';
+        $data['title'] = 'ผลการดำเนินงาน';
+        $data['title_page'] = 'ผลการดำเนินงาน';
+        $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
+        
+        return view('Admin.fund_performance',$data);
     }
 
     /**
@@ -67,7 +79,7 @@ class PerformanceController extends Controller
                 $i = 1;
                 foreach ($rows as $key => $value) 
                 {
-    
+                    
                     $name                =   isset($value['name']) ? (string)$value['name'] : '' ;
                     $fund                =   isset($value['fund']) ? (string)$value['fund'] : '' ;
                     $gain                =   isset($value['gain']) ? (string)$value['gain'] : '' ;
@@ -76,6 +88,10 @@ class PerformanceController extends Controller
                     $type                =   $_POST['type'];
                     $date                =   $_POST['date'];
                     $sort_id             =   $i++;
+
+                    if($name  == null || $name == ''){
+                        break;
+                    }
                   
                     \App\Models\Performance::insert([
                         'name' => $name,
@@ -91,9 +107,11 @@ class PerformanceController extends Controller
                         'updated_at' => date('Y-m-d H:i:s'),
                         
                     ]);
+                   
                 }
             })->get();
-            return redirect('admin/Performance');
+            $fund_short_name = $request->input('type');
+            return redirect('admin/Performance/import/{fund_short_name}');
         }
     
         $input_all['created_at'] = date('Y-m-d H:i:s');
@@ -224,9 +242,40 @@ class PerformanceController extends Controller
         $return['title'] = 'ลบข้อมูล';
         return $return;
     }
-
-    public function Lists(){
-        $result = \App\Models\Performance::select();
+    public function FundLists(){
+        $result = \App\Models\Fund::select();
+        return \Datatables::of($result)
+        ->addIndexColumn()
+        
+        ->addColumn('sort_id',function($rec){
+            if(is_numeric($rec->sort_id)){
+                return number_format($rec->sort_id);
+            }else{
+                return $rec->sort_id;
+            }
+        })
+        ->editColumn('status',function($rec){
+            if($rec->status == 1){
+                return $status = '<span class="badge badge-success">เปิดใช้งาน</span>';
+            }else {
+                return $status = '<span class="badge badge-danger">ปิดใช้งาน</span>';
+            }
+        })
+        
+        ->addColumn('action',function($rec){
+            $str='
+                    <a href="'.url('admin/Performance/import/'.$rec->fund_short_name).'"  class="btn btn-simple btn-success btn-icon plus  btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="Import Excel">
+                        <i class="ti-plus"></i>
+                    </a>
+                  <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
+                  <a href="#" class="btn btn-simple btn-danger btn-icon remove  btn-delete btn-tooltip"  data-id="'.$rec->id.'" data-rel="tooltip" title="ลบ"><i class="ti-close"></i></a>
+            ';
+            return $str;
+        })->make(true);
+    }
+    public function Lists(Request $request){
+        $type = $request->input('type');
+        $result = \App\Models\Performance::where('type',$type)->orderBy('id','DESC')->select();
         return \Datatables::of($result)
         ->addIndexColumn()
         
@@ -269,7 +318,6 @@ class PerformanceController extends Controller
                 return $rec->type;
             }
         })
-        
         ->addColumn('action',function($rec){
             $str='
                   <a href="#" class="btn btn-simple btn-warning btn-icon edit btn-edit btn-tooltip" data-rel="tooltip" data-id="'.$rec->id.'" title="แก้ไข"><i class="ti-pencil-alt"></i></a>
@@ -278,5 +326,6 @@ class PerformanceController extends Controller
             return $str;
         })->make(true);
     }
+    
 
 }

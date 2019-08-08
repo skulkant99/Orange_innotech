@@ -32,7 +32,7 @@
                 <p>If you have any questions or need more information</p>
                 <ul>
                     <li>T: +66 (0) 76 370 200</li>
-                    <li>E-mail: marketing@innotechasset.com</li>
+                    <li>E-mail: customercare@innotechasset.com</li>
                 </ul>
             </section>
         

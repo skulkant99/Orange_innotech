@@ -16,7 +16,9 @@ class FileReportController extends Controller
         $data['contact'] = \App\Models\Contact::where('status','=','1')
             ->select('contacts.*')
             ->get();
-        $data['file_type'] = \App\Models\FileType::select('file_types.*')->paginate(20);
+        $data['file_type'] = \App\Models\FileType::select('file_types.*')
+            ->orderBy('sort_id','ASC')
+            ->paginate(20);
     
         return view('download_doc',$data);
     }
@@ -51,7 +53,8 @@ class FileReportController extends Controller
             ->leftJoin('months','months.month_no','file_list_reports.month_no')
             ->select('file_list_reports.*','years.name as years_name','months.name as months_name')
             ->orderBy('year_no','DESC')
-            ->orderBy('month_no','ASC')
+            ->orderBy('month_no','DESC')
+            ->orderBy('date_no','DESC')
             ->get();
         $data['file_type'] = \App\Models\FileType::where('id','=',$id)->select()->get();
         $data['contact'] = \App\Models\Contact::where('status','=','1')

@@ -24,8 +24,9 @@
                                         <tr>
                                         <th>#</th>
                                         <th>ชื่อ</th>
-                                        <th>ประเภท</th>
+                                        <th>รูปแบบ</th>
                                         <th>ไฟล์</th>
+                                        <th>ลิงค์</th>
                                         <th>ลำดับ</th>
                                         <th>สถานะ</th>
                                         <th></th>
@@ -43,7 +44,7 @@
 @endsection
 @section('modal')
 <div class="modal" id="ModalAdd"  role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"  style="max-width:70%;max-height:70%;">
         <div class="modal-content">
             <form id="FormAdd">
                 <div class="modal-header">
@@ -51,26 +52,45 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="add_photo">รูปภาพ</label>
+                    <div id="orak_add_photo">
+                        <div id="add_photo" orakuploader="on"></div>
+                    </div>
+                </div>
                     
                 <div class="form-group">
-                    <label for="add_name">ชื่อ</label>
-                    <input type="text" class="form-control" name="name" id="add_name" required="" placeholder="ชื่อ">
+                    <label for="add_name_th">ชื่อ(TH)</label>
+                    <input type="text" class="form-control" name="name_th" id="add_name_th" required="" placeholder="ชื่อ(TH)">
                 </div>
         
                 <div class="form-group">
-                    <label for="add_fund">ประเภท</label>
-                    <select  class="form-control number-only select2" name="fund" id="add_fund" tabindex="-1" data-placeholder="เลือก ประเภทกองทุน">
-                        @foreach ($fund as $_fund)
-                            <option value="{{$_fund->fund_short_name}}">{{$_fund->name_th}}</option>
-                        @endforeach
+                    <label for="add_name_en">ชื่อ(EN)</label>
+                    <input type="text" class="form-control" name="name_en" id="add_name_en"  placeholder="ชื่อ(EN)">
+                </div>
+
+                <div class="form-group">
+                    <label for="add_type">รูแปบบ</label>
+                    <select  class="form-control number-only select2" name="type" id="add_type" tabindex="-1" data-placeholder="เลือก รูแปบบ">
+                        <option value="">เลือก</option>
+                        <option value="P">PDF</option>
+                        <option value="L">LINK</option>
                     </select>
                 </div>
+                
         
                 <div class="form-group">
                     <label for="add_file">ไฟล์</label>
                     <input type="file" class="upload_file" id="add_file">
                     <input type="text" class="value_name_file" name="file">
                     <div class="preview_file"></div>
+                </div>
+                
+        
+                <div class="form-group">
+                    <label for="add_link">ลิงค์</label>
+                    <input type="text" class="form-control" name="link" id="add_link"  placeholder="ลิงค์">
                 </div>
         
                 <div class="form-group">
@@ -94,7 +114,7 @@
 </div>
 
 <div class="modal" id="ModalEdit"  role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"  style="max-width:70%;max-height:70%;">
         <div class="modal-content">
             <input type="hidden" name="edit_id" id="edit_id">
             <form id="FormEdit">
@@ -103,18 +123,31 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
+
+                <input type="hidden" name="org_photo" id="org_photo">
+                <div class="form-group">
+                    <label for="edit_photo">รูปภาพ</label>
+                    <div id="orak_edit_photo">
+                        <div id="edit_photo" orakuploader="on"></div>
+                    </div>
+                </div>
                     
                 <div class="form-group">
-                    <label for="edit_name">ชื่อ</label>
-                    <input type="text" class="form-control" name="name" id="edit_name" required="" placeholder="ชื่อ">
+                    <label for="edit_name_th">ชื่อ(TH)</label>
+                    <input type="text" class="form-control" name="name_th" id="edit_name_th" required="" placeholder="ชื่อ(TH)">
                 </div>
         
                 <div class="form-group">
-                    <label for="edit_fund">ประเภท</label>
-                    <select  class="form-control number-only select2" name="fund" id="edit_fund" tabindex="-1" data-placeholder="เลือก กองทุน">
-                        @foreach ($fund as $_fund)
-                            <option value="{{$_fund->fund_short_name}}">{{$_fund->name_th}}</option>
-                        @endforeach
+                    <label for="edit_name_en">ชื่อ(EN)</label>
+                    <input type="text" class="form-control" name="name_en" id="edit_name_en"  placeholder="ชื่อ(EN)">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit_type">รูแปบบ</label>
+                    <select  class="form-control number-only select2" name="type" id="edit_type" tabindex="-1" data-placeholder="เลือก รูแปบบ">
+                        <option value="">เลือก</option>
+                        <option value="P">PDF</option>
+                        <option value="L">LINK</option>
                     </select>
                 </div>
         
@@ -123,6 +156,11 @@
                     <input type="file" class="upload_file" id="edit_file">
                     <input type="text" class="value_name_file edit_value_name_file_file" name="file">
                     <div class="preview_file preview_file_file"></div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="edit_link">ลิงค์</label>
+                    <input type="text" class="form-control" name="link" id="edit_link"  placeholder="ลิงค์">
                 </div>
         
                 <div class="form-group">
@@ -151,7 +189,7 @@
 
      var TableList = $('#TableList').dataTable({
         "ajax": {
-            "url": url_gb+"/admin/Economics/Lists",
+            "url": url_gb+"/admin/Economic/Lists",
             "data": function ( d ) {
                 //d.myKey = "myValue";
                 // d.custom = $('#myInput').val();
@@ -160,9 +198,10 @@
         },
         "columns": [
             {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
-            {"data" : "name"},
-            {"data" : "fund"},
+            {"data" : "name_th"},
+            {"data" : "type"},
             {"data" : "file"},
+            {"data" : "link"},
             {"data" : "sort_id"},
             {"data" : "status"},
             { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -178,20 +217,59 @@
         $('#edit_id').val(id);
         $.ajax({
             method : "GET",
-            url : url_gb+"/admin/Economics/"+id,
+            url : url_gb+"/admin/Economic/"+id,
             dataType : 'json'
         }).done(function(rec){
-            $('#edit_name').val(rec.name);
-            $('#edit_fund').val(rec.fund);
+            $('#edit_name_th').val(rec.name_th);
+            $('#edit_name_en').val(rec.name_en);
+            $('#edit_type').val(rec.edit_type).trigger('change');
+            if(rec.type == "L"){
+               $('#edit_type option[value=L]').attr('selected','selected');
+            }else{
+               $('#edit_type option[value=P]').attr('selected','selected');
+            }
             $('.edit_value_name_file_file').val(rec.file);
-            $('.preview_file_file').html('<a href="'+asset_gb+'uploads/'+rec.file+'" target="_blank" class="preview-file">'+asset_gb+'uploads/'+rec.file+'</a>');
+            $('.preview_file_file').html('<img src="'+asset_gb+'uploads/pdf.png" class="preview-file">');
+            $('#edit_link').val(rec.link);
             $('#edit_sort_id').val(rec.sort_id);
             if(rec.status=='1'){
                 $('#edit_status').prop('checked','checked').closest('label').addClass('checked');
             }else{
                 $('#edit_status').removeAttr('checked').closest('label').removeClass('checked');
             }
-                                        
+            $('#edit_photo').closest('#orak_edit_photo').html('<div id="edit_photo" orakuploader="on"></div>');
+            $('#org_photo').val(rec.photo);
+                if(rec.photo){
+                    var max_file = 0;
+                    var file = [];
+                        file[0] = rec.photo;
+                    var photo = rec.photo;
+                }else{
+                    var max_file = 1;
+                    var file = [];
+                    var photo = rec.photo;
+                }
+                $('#edit_photo').orakuploader({
+                    orakuploader_path               : url_gb+'/',
+                    orakuploader_ckeditor           : false,
+                    orakuploader_use_dragndrop      : true,
+                    orakuploader_main_path          : 'uploads/temp/',
+                    orakuploader_thumbnail_path     : 'uploads/temp/',
+                    orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+                    orakuploader_add_image          : asset_gb+'images/add.png',
+                    orakuploader_loader_image       : asset_gb+'images/loader.gif',
+                    orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+                    orakuploader_add_label          : 'เลือกรูปภาพ',
+                    orakuploader_use_rotation       : false,
+                    orakuploader_maximum_uploads    : max_file,
+                    orakuploader_hide_on_exceed     : true,
+                    orakuploader_attach_images      : file,
+                    orakuploader_field_name         : 'photo',
+                    orakuploader_finished           : function(){
+
+                    }
+                });
+                        
             btn.button("reset");
             ShowModal('ModalEdit');
         }).fail(function(){
@@ -206,19 +284,13 @@
         focusInvalid: false,
         rules: {
             
-            name: {
-                required: true,
-            },
-            'file[]': {
+            name_th: {
                 required: true,
             },
         },
         messages: {
             
-            name: {
-                required: "กรุณาระบุ",
-            },
-            'file[]': {
+            name_th: {
                 required: "กรุณาระบุ",
             },
         },
@@ -245,7 +317,7 @@
             btn.button("loading");
             $.ajax({
                 method : "POST",
-                url : url_gb+"/admin/Economics",
+                url : url_gb+"/admin/Economic",
                 dataType : 'json',
                 data : $(form).serialize()
             }).done(function(rec){
@@ -274,19 +346,13 @@
         focusInvalid: false,
         rules: {
             
-            name: {
-                required: true,
-            },
-            'file[]': {
+            name_th: {
                 required: true,
             },
         },
         messages: {
             
-            name: {
-                required: "กรุณาระบุ",
-            },
-            'file[]': {
+            name_th: {
                 required: "กรุณาระบุ",
             },
         },
@@ -313,7 +379,7 @@
             btn.button("loading");
             $.ajax({
                 method : "POST",
-                url : url_gb+"/admin/Economics/"+id,
+                url : url_gb+"/admin/Economic/"+id,
                 dataType : 'json',
                 data : $(form).serialize()
             }).done(function(rec){
@@ -354,7 +420,7 @@
         }).then(function() {
             $.ajax({
                 method : "POST",
-                url : url_gb+"/admin/Economics/Delete/"+id,
+                url : url_gb+"/admin/Economic/Delete/"+id,
                 data : {ID : id}
             }).done(function(rec){
                 if(rec.status==1){
@@ -371,8 +437,26 @@
         });
     });
 
-    
+    $('#add_photo').orakuploader({
+            orakuploader_path               : url_gb+'/',
+            orakuploader_ckeditor           : false,
+            orakuploader_use_dragndrop      : true,
+            orakuploader_main_path          : 'uploads/temp/',
+            orakuploader_thumbnail_path     : 'uploads/temp/',
+            orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+            orakuploader_add_image          : asset_gb+'images/add.png',
+            orakuploader_loader_image       : asset_gb+'images/loader.gif',
+            orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+            orakuploader_add_label          : 'เลือกรูปภาพ',
+            orakuploader_use_rotation       : false,
+            orakuploader_maximum_uploads    : 1,
+            orakuploader_hide_on_exceed     : true,
+            orakuploader_field_name         : 'photo',
+            orakuploader_finished           : function(){
 
+            }
+        });
+ 
         
 </script>
 @endsection

@@ -85,7 +85,16 @@
 	}
 </style>
 <body>
-	
+	@php
+		$lang = "";
+		if (session()->get('locale') == null){
+			$lang = "th";
+		}elseif (session()->get('locale') == "th") {
+			$lang = "th";
+		}elseif(session()->get('locale') == "en"){
+			$lang = "en";
+		}		
+	@endphp
 	@include('inc_topmenu')
 		<div class="container-fluid nopad">
 			<div class="row">
@@ -139,24 +148,22 @@
 									<div class="row">
 					<div class="col">
 						<div class="accordion accordion-01">
-										<div class="set"> <a>ทรัสต์เพื่อการลงทุนในอสังหาริมทรัพย์(Real Estate Investment Trust : REIT) <i class="fas fa-plus-circle"></i></a>
+										<div class="set"> <a>{{ trans('messages.trus1') }}<i class="fas fa-plus-circle"></i></a>
 											<div class="content">
-												<p> <img src="images/mutual_funds_03.png"> <a href="{{url('funds/reit')}}"> ทรัสต์เพื่อการลงทุนในอสังหาริมทรัพย์ (REIT) คืออะไร ?</a> </p>
+												<p> <img src="images/mutual_funds_03.png"> <a href="{{url('funds/reit')}}"> {{ trans('messages.trus_sub1') }}</a> </p>
 											</div>
 										</div>
-										<div class="set"> <a>ผู้จัดการกองทรัสต์เพื่อการลงทุนในอสังหาริมทรัพย์ (REIT Manager) <i class="fas fa-plus-circle"></i></a>
+										<div class="set"> <a>{{ trans('messages.trus2') }} <i class="fas fa-plus-circle"></i></a>
 											<div class="content">
-												<p><img src="images/mutual_funds_03.png"> <a href="{{url('funds/reit/manager')}}">ผู้เกี่ยวข้องหลักของ REITผู้จัดการ REIT (REIT manager : RM)</a> </p>
+												<p><img src="images/mutual_funds_03.png"> <a href="{{url('funds/reit/manager')}}">{{ trans('messages.trus_sub2') }}</a> </p>
 											</div>
 										</div>
-										<div class="set">
-										<a href="#">ทรัสต์เพื่อการลงทุนในอสังหาริมทรัพย์ XXX01 </a>
+										@foreach ($trust as $v_trust)
+											<div class="set">
+												<a href="{{url('trust/detail/'.$v_trust->id)}}">{{$v_trust['name_'.$lang]}}</a>
+											</div>
+										@endforeach
 											
-                            			</div>
-										
-										<div class="set">
-										 <a href="#">ทรัสต์เพื่อการลงทุนในอสังหาริมทรัพย์ XXX02</a>
-                            			</div>
 										
 										
 									</div>

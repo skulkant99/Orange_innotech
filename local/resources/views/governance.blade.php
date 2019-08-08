@@ -127,7 +127,7 @@
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('messages.home')}}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.investment')}}</li>
 						</ol>
 					</nav>

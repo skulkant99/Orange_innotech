@@ -65,6 +65,7 @@
 				</div>
 			</div>
 		</section>
+	
 		<main>
 			<div class="container">
 				<div class="row mt-5">
@@ -82,7 +83,7 @@
 								<div class="col-lg-5">
 										<div class="search_funds">
 											<label>{{trans('messages.choose_fund')}}</label>
-											<select id="selectbasic" name="type" class="form-control">
+											<select id="fund" name="type" class="form-control" onchange="getFund(this)">
 												{{-- @if (isset($perfor[0]->type) && $perfor[0]->type == "EP-LTF")
 													<option value="EP-LTF" selected>กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
 													<option value="S-EQRMF">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
@@ -90,8 +91,13 @@
 													<option value="EP-LTF">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
 													<option value="S-EQRMF" selected>กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
 												@endif --}}
+												
 												@foreach ($fund as $k_fund => $v_fund)
-													<option value="{{$v_fund->fund_short_name}}" {{$v_fund->fund_short_name == $perfor[0]->type}} >{{$fund[$k_fund]['name_'.$lang]}}</option>
+													@if (count($perfor) > 0)		
+														<option value="{{$v_fund->fund_short_name}}" {{($v_fund->fund_short_name == $perfor[0]->type?'selected':'')}} >{{$fund[$k_fund]['name_'.$lang]}}</option>
+													@else				
+														<option value="{{$v_fund->fund_short_name}}">{{$fund[$k_fund]['name_'.$lang]}}</option>
+													@endif
 												@endforeach
 											</select>
 										</div>
@@ -109,13 +115,27 @@
 					</div>
 				</div>
 			</div>
+			
+			
 			@if (count($perfor) > 0)
 				
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-10">
 							<div class="sec_title">
-								<h2>{{ trans('messages.PC') }}</h2>
+									<div class="row">
+											<div class="col-lg-5">
+												<h2>{{ trans('messages.PC') }}</h2>
+												
+											</div>
+											<div class="col-lg-5">
+												@foreach ($fund as $k_fund => $v_fund)
+													<span class="bluetxt">{{($v_fund->fund_short_name == $perfor[0]->type?$v_fund['name_'.$lang]:'')}}</span>
+												@endforeach
+											</div>
+									</div>
+									
+								
 									@php
 										$date_create = $perfor[0]->date;
 
@@ -485,6 +505,7 @@
 								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war1') }} (SET TRI)</li>
 								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war2') }}</li>
 								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war3') }} </li>
+								<li><i class="fas fa-exclamation-triangle"></i> {{ trans('messages.war4') }} </li>
 							</div>
 						</div>
 					</div>
@@ -496,7 +517,7 @@
 				</div>
 			</div>
 			@endif
-			
+		
 		</main>
 		@include('inc_footer')
 			
@@ -513,6 +534,16 @@
 						, opacity: 2 - a / b
 					});
 				});
+			</script>
+			<script>
+				function getFund(selectObject) {
+						var fund = selectObject.value;  
+						
+						if(fund){
+							window.location = "{{url("select/performance")}}/"+fund;
+						}
+						
+					}
 			</script>
 			<script>
 				$(document).ready(function () {

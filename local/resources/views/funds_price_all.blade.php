@@ -3,7 +3,7 @@
 
 <head>
 	@include('inc_header') 
-	@include('connect')
+
 	<?php $pageName="fundsprice"; ?>
 </head>
 {{-- {{dd($result)}} --}}
@@ -244,9 +244,9 @@
 										<thead>
 											<tr class="bg_orange">
 												@if ($result[0]->StrFundShortName == 'EP-LTF')
-													<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</a></th>	
+													<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF)</a></th>	
 												@else
-													<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</a></th>	
+													<th colspan="9" class="text-left"><a href="{{url('fundsepltf')}}">กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</a></th>	
 												@endif
 											</tr>
 											<tr>
@@ -275,27 +275,39 @@
 															<th scope="row">{{$_result->StrFundShortName}}</th>													
 																<td>{{$day.'/'.$month.'/'.$year}}</td>
 																<td>{{number_format($_result->DECNAV,2)}}</td>
-																<td>{{number_format($_result->DECNAV_UNIT,2,'.','')}} </td>
+																<td>{{number_format($_result->DECNAV_UNIT,4,'.','')}} </td>
 															@if ($_result->DECPURCHASE == null)
 																<td>N/A</td>
 															@else
-																<td>{{number_format($_result->DECPURCHASE,2,'.','')}} </td>
+																<td>{{number_format($_result->DECPURCHASE,4,'.','')}} </td>
 															@endif
 															
 															@if ($_result->DECREDEEM == null)
 																<td>N/A</td>
 															@else
-																<td>{{number_format($_result->DECREDEEM,2,'.','')}} </td>
+																<td>{{number_format($_result->DECREDEEM,4,'.','')}} </td>
 															@endif
 															@php
 																$bath = $DACNAVLAST[0]->DECNAV_UNIT - $DACNAVLAST[1]->DECNAV_UNIT;
-																$percent = ($bath*100)/100;
+																$percent = ($bath*100)/$DACNAVLAST[1]->DECNAV_UNIT;
 															@endphp
 															
-															<td><span class="greentext"><b>{{number_format($percent,2,'.','')}}</b></span></td>
-															
-	
-															<td><span class="greentext"><b>{{number_format($bath,2,'.','')}}</b></span></td>
+															<td>
+																@if ($percent > 0)
+																	<span class="greentext"><b>+{{number_format($percent,2,'.','')}}</b></span>	
+																@else
+																	<span class="redtext"><b>{{number_format($percent,2,'.','')}}</b></span>	
+																@endif
+															</td>
+																
+				
+															<td>
+																@if ($bath > 0)
+																	<span class="greentext"><b>+{{number_format($bath,2,'.','')}}</b></span>
+																@else
+																	<span class="redtext"><b>{{number_format($bath,2,'.','')}}</b></span>	
+																@endif
+															</td>
 														</tr>
 												@endforeach
 										

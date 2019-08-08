@@ -21,7 +21,34 @@
 			margin-bottom: 0px;
 			margin-right: 0px;
 		}
+		.btn-secondary, .btn-primary {
+			background-color: #379595;
+			border: none;
+			
+		}
+		.btn-primary.disabled, .btn-primary:disabled {
+			color: #fff;
+			background-color: #54545447;
+			border-color: #54545447;
+		}
+		.page-item.active .page-link {
+				z-index: 1;
+				color: #fff;
+				background-color: #379595;
+				border-color: #379595;
+			}
+			.page-link {
+				position: relative;
+				display: block;
+				padding: 0.4rem 0.75rem;
+				margin-left: -1px;
+				line-height: 1.25;
+				color: #007bff;
+				background-color: #fff;
+				border: 1px solid #dee2e6;
+			}	
 	</style>
+
 	@php
 		$lang = "";
 		if (session()->get('locale') == null){
@@ -38,7 +65,7 @@
 				<div class="col">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">{{trans('messages.home')}}</a></li>
+							<li class="breadcrumb-item"><a href={{url('/')}}>{{trans('messages.home')}}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{trans('messages.calendar')}}</li>
 						</ol>
 					</nav>
@@ -57,7 +84,7 @@
 											<div class="col">
 												<div class="bannertxt_top">
 													<h5>INNOTECH</h5>
-													<h1>ปฎิทินกิจกรรม</h1> </div>
+													<h1>{{ trans('messages.calendar') }}</h1> </div>
 											</div>
 										</div>
 									</div>
@@ -71,7 +98,7 @@
 		<div class="container">
 			<div class="row mt-5">
 				<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-					<div class="title_head1"> ปฎิทินกิจกรรม <span class="bluetxt">INNOTECH</span> </div>
+					<div class="title_head1"> {{ trans('messages.calendar') }} <span class="bluetxt">INNOTECH</span> </div>
 				</div>
 			</div>
 		</div>
@@ -159,16 +186,27 @@
 												</div>
 												<div class="row">
 													<div class="col">
+															<img src="{{asset('uploads/Calendar/'.$v_calendar->photo)}}" class="img-fluid">
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
 														<div class="box_right_calen">
 															<h3>{{($calendar[$k_calendar]['name_'.$lang])}}</h3>
 															<p><i class="fas fa-clock"></i> {{$time_start}} - {{$time_end}}
 																<br><i class="fas fa-map-marker-alt"></i> {{($calendar[$k_calendar]['location_'.$lang])}}
 																<br><i class="fas fa-user-friends"></i> จำนวนที่นั่ง : {{$v_calendar->seat}} ที่นั่ง </p>
+																@if ($v_calendar->register_type == 'T')
+																	<br><a href="{{$v_calendar->link}}" class="btn btn-primary"  target="_blank">{{trans('messages.register')}}</a>		
+																@else
+																	<br><a href="{{$v_calendar->link}}" class="btn btn-primary disabled"  target="_blank">{{trans('messages.register')}}</a>	
+																@endif
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
+										
 										@else
 										@endif
 								@endforeach		
@@ -177,6 +215,18 @@
 					</div>
 				</div>
 				<br><br>
+				<div class="row mt-5 mb-5 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay="0.1s">
+						<div class="col">
+							<div class="pagination_bot">
+								<nav class="pagination-container">
+									<div class="pagination">
+										{{($calendar->links())}}
+										
+									</div>
+								</nav>
+							</div>
+						</div>
+					</div>
 			</div>
 		</main>
 		@include('inc_footer')

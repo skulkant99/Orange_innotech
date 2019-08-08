@@ -59,7 +59,7 @@
 											<div class="col">
 											<div class="bannertxt_top">
 												<h5>INNOTECH</h5>
-												<h1>เรื่องน่ารู้เกี่ยวกับการลงทุน <span class="boldtext">Knowledge</span></h1> </div>
+												<h1>{{ trans('messages.knowledge') }} <span class="boldtext">Knowledge</span></h1> </div>
 												</div>
 										</div>
 									</div>
@@ -74,7 +74,7 @@
 			<div class="row mt-5">
 				<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 					<div class="title_head1"><span class="bluetxt">INNOTECH</span> KNOWLEDGE
-						<p>เรื่องน่ารู้เกี่ยวกับการลงทุน</p>
+						<p>{{ trans('messages.knowledge') }}</p>
 					</div>
 				</div>
 			</div>

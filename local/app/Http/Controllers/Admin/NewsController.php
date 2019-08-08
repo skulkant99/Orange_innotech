@@ -215,7 +215,7 @@ class NewsController extends Controller
     }
 
     public function Lists(){
-        $result = \App\Models\News::select();
+        $result = \App\Models\News::select()->orderBy('sort_id','ASC');
         return \Datatables::of($result)
         ->addIndexColumn()
         

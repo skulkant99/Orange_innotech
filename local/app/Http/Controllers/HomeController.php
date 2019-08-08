@@ -17,6 +17,7 @@ class HomeController extends Controller
             ->select('introductions.*')
             ->get();
         $data['information'] = \App\Models\Information::where('status','=','1')
+            ->orderBy('sort_id','ASC')
             ->select('informations.*')
             ->get();
         $data['contact'] = \App\Models\Contact::where('status','=','1')
@@ -26,6 +27,7 @@ class HomeController extends Controller
             ->where('type','=','W')
             ->select('introductions.*')
             ->get();
+        $data['popup'] = \App\Models\Popup::select()->first();
         $data['fund'] = \App\Models\Fund::select()->get();
         // $test =  DB::connection('sqlsrv')->table('M_FUND');
         // dd($test);
@@ -116,5 +118,9 @@ class HomeController extends Controller
             ->where('date','=',$data['date']->date)
             ->get();
         return view('index',$data);
+    }
+    public function landing()
+    {
+        return view('landing_page');
     }
 }

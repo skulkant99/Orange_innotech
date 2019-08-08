@@ -153,11 +153,11 @@
 												<div class="select_nav">
 													<select id="funds" name="selectbasic" class="form-control" onchange="getFund(this)">
 														@if ($result[0]->StrFundShortName == 'EP-LTF')
-															<option value="001" selected>กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-															<option value="016" >กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+															<option value="001" selected>กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF) </option>
+															<option value="016" >กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</option>
 														@else
-															<option value="001" >กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว</option>
-															<option value="016" selected>กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ</option>
+															<option value="001" >กองทุนเปิดเอคควิตี้โปร หุ้นระยะยาว (EP-LTF)</option>
+															<option value="016" selected>กองทุนเปิดโซลาริสตราสารทุนเพื่อการเลี้ยงชีพ (S-EQRMF)</option>
 														@endif
 													</select>
 												</div>
@@ -200,27 +200,39 @@
 												<th scope="row">{{$_result->StrFundShortName}}</th>													
 													<td>{{$day.'/'.$month.'/'.$year }}</td>
 													<td>{{number_format($_result->DECNAV,2)}}</td>
-													<td>{{number_format($_result->DECNAV_UNIT,2,'.','')}} </td>
+													<td>{{number_format($_result->DECNAV_UNIT,4,'.','')}} </td>
 												@if ($_result->DECPURCHASE == null)
 													<td>N/A</td>
 												@else
-													<td>{{number_format($_result->DECPURCHASE,2,'.','')}} </td>
+													<td>{{number_format($_result->DECPURCHASE,4,'.','')}} </td>
 												@endif
 												
 												@if ($_result->DECREDEEM == null)
 													<td>N/A</td>
 												@else
-													<td>{{number_format($_result->DECREDEEM,2,'.','')}} </td>
+													<td>{{number_format($_result->DECREDEEM,4,'.','')}} </td>
 												@endif
 												@php
 													$bath = $DACNAVLAST[0]->DECNAV_UNIT - $DACNAVLAST[1]->DECNAV_UNIT;
-													$percent = ($bath*100)/100;
+													$percent = ($bath*100)/$DACNAVLAST[1]->DECNAV_UNIT;
 												@endphp
 												
-												<td><span class="greentext"><b>{{number_format($percent,2,'.','')}}</b></span></td>
+												<td>
+													@if ($percent > 0)
+														<span class="greentext"><b>+{{number_format($percent,2,'.','')}}</b></span>	
+													@else
+														<span class="redtext"><b>{{number_format($percent,2,'.','')}}</b></span>	
+													@endif
+												</td>
 												
 
-												<td><span class="greentext"><b>{{number_format($bath,2,'.','')}}</b></span></td>
+												<td>
+													@if ($bath > 0)
+														<span class="greentext"><b>+{{number_format($bath,2,'.','')}}</b></span>
+													@else
+														<span class="redtext"><b>{{number_format($bath,2,'.','')}}</b></span>	
+													@endif
+												</td>
 											</tr>
 									@endforeach
 										

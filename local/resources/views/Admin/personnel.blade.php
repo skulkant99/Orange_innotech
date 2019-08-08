@@ -51,6 +51,13 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
+                
+                <div class="form-group">
+                    <label for="add_photo">โปรไฟล์</label>
+                    <div id="orak_add_photo">
+                        <div id="add_photo" orakuploader="on"></div>
+                    </div>
+                </div>
                     
                 <div class="form-group">
                     <label for="add_name_th">ชื่อ(ไทย)</label>
@@ -124,6 +131,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
+                
+                <input type="hidden" name="org_photo" id="org_photo">
+                <div class="form-group">
+                    <label for="edit_photo">โปรไฟล์</label>
+                    <div id="orak_edit_photo">
+                        <div id="edit_photo" orakuploader="on"></div>
+                    </div>
+                </div>
                     
                 <div class="form-group">
                     <label for="edit_name_th">ชื่อ(ไทย)</label>
@@ -224,6 +239,38 @@
             url : url_gb+"/admin/Personnel/"+id,
             dataType : 'json'
         }).done(function(rec){
+            $('#edit_photo').closest('#orak_edit_photo').html('<div id="edit_photo" orakuploader="on"></div>');
+            $('#org_photo').val(rec.photo);
+            if(rec.photo){
+                var max_file = 0;
+                var file = [];
+                    file[0] = rec.photo;
+                var photo = rec.photo;
+            }else{
+                var max_file = 1;
+                var file = [];
+                var photo = rec.photo;
+            }
+            $('#edit_photo').orakuploader({
+                orakuploader_path               : url_gb+'/',
+                orakuploader_ckeditor           : false,
+                orakuploader_use_dragndrop      : true,
+                orakuploader_main_path          : 'uploads/temp/',
+                orakuploader_thumbnail_path     : 'uploads/temp/',
+                orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+                orakuploader_add_image          : asset_gb+'images/add.png',
+                orakuploader_loader_image       : asset_gb+'images/loader.gif',
+                orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+                orakuploader_add_label          : 'เลือกรูปภาพ',
+                orakuploader_use_rotation       : false,
+                orakuploader_maximum_uploads    : max_file,
+                orakuploader_hide_on_exceed     : true,
+                orakuploader_attach_images      : file,
+                orakuploader_field_name         : 'photo',
+                orakuploader_finished           : function(){
+
+                }
+            });
             $('#edit_name_th').val(rec.name_th);
             $('#edit_name_en').val(rec.name_en);
             $('#edit_position_th').val(rec.position_th);
@@ -406,6 +453,26 @@
     });
     $('#add_type').select2();
     $('#edit_type').select2();
+
+    $('#add_photo').orakuploader({
+        orakuploader_path               : url_gb+'/',
+        orakuploader_ckeditor           : false,
+        orakuploader_use_dragndrop      : true,
+        orakuploader_main_path          : 'uploads/temp/',
+        orakuploader_thumbnail_path     : 'uploads/temp/',
+        orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+        orakuploader_add_image          : asset_gb+'images/add.png',
+        orakuploader_loader_image       : asset_gb+'images/loader.gif',
+        orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+        orakuploader_add_label          : 'เลือกรูปภาพ',
+        orakuploader_use_rotation       : false,
+        orakuploader_maximum_uploads    : 1,
+        orakuploader_hide_on_exceed     : true,
+        orakuploader_field_name         : 'photo',
+        orakuploader_finished           : function(){
+
+        }
+    });
 
     CKEDITOR.replace('add_detail_th');
     CKEDITOR.replace('edit_detail_th');

@@ -50,11 +50,18 @@ class CalendarController extends Controller
 
         $input_all['type'] = $request->input('type','D');
         $input_all['status'] = $request->input('status','2');
+        $input_all['register_type'] = $request->input('register_type','T');
 
         if(isset($input_all['sort_id'])){
             $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
         }
-        
+        if(isset($input_all['photo'])&&isset($input_all['photo'][0])){
+            $input_all['photo'] = $input_all['photo'][0];
+            if(Storage::disk("uploads")->exists("temp/".$input_all['photo'])&&!Storage::disk("uploads")->exists("Calendar/".$input_all['photo'])){
+                Storage::disk("uploads")->copy("temp/".$input_all['photo'],"Calendar/".$input_all['photo']);
+                Storage::disk("uploads")->delete("temp/".$input_all['photo']);
+            }
+        }
         $input_all['created_at'] = date('Y-m-d H:i:s');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
@@ -90,6 +97,14 @@ class CalendarController extends Controller
     public function show($id)
     {
         $result = \App\Models\Calendar::find($id);
+        if($result->photo){
+                if(Storage::disk("uploads")->exists("Calendar/".$result->photo)){
+                    if(Storage::disk("uploads")->exists("temp/".$result->photo)){
+                        Storage::disk("uploads")->delete("temp/".$result->photo);
+                    }
+                    Storage::disk("uploads")->copy("Calendar/".$result->photo,"temp/".$result->photo);
+                }
+        }
         
         return json_encode($result);
     }
@@ -121,10 +136,27 @@ class CalendarController extends Controller
         }
         $input_all['type'] = $request->input('type','D');
         $input_all['status'] = $request->input('status','2');
+        $input_all['register_type'] = $request->input('register_type','T');
 
         if(isset($input_all['sort_id'])){
             $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
         }
+        if(isset($input_all['photo'])&&isset($input_all['photo'][0])){
+            $input_all['photo'] = $input_all['photo'][0];
+            if(Storage::disk("uploads")->exists("temp/".$input_all['photo'])){
+                if(Storage::disk("uploads")->exists("Calendar/".$input_all['photo'])){
+                    Storage::disk("uploads")->delete("Calendar/".$input_all['photo']);
+                }
+                Storage::disk("uploads")->copy("temp/".$input_all['photo'],"Calendar/".$input_all['photo']);
+
+            }
+        }else{
+            $input_all['photo'] = null;
+        }
+        if(isset($input_all['org_photo'])){
+            Storage::disk("uploads")->delete("temp/".$input_all['org_photo']);
+        }
+        unset($input_all['org_photo']);
         
         $input_all['updated_at'] = date('Y-m-d H:i:s');
      
@@ -176,7 +208,7 @@ class CalendarController extends Controller
     }
 
     public function Lists(){
-        $result = \App\Models\Calendar::select();
+        $result = \App\Models\Calendar::orderBy('sort_id','ASC')->select();
         return \Datatables::of($result)
         ->addIndexColumn()
         

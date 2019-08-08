@@ -106,14 +106,46 @@
 					<div class="col">
 						
 						<div class="downloaddetail">
+							
 								{{-- @foreach ($file_type as $k_file_type => $_file_type)
-									{{$file_type[$k_file_type]['name_'.$lang]}}
+									<h2>{{$file_type[$k_file_type]['name_'.$lang]}}</h2>
 								@endforeach    --}}
+								@if (isset($file_list[0]) && $file_list[0]->month_no != null && $file_list[0]->month_no != null && $file_list[0]->year_no != null)
+									<h2>{{$file_list[0]['name_'.$lang]}}</h2>
+									
+								@endif
 									
 									@foreach ($file_list as $k_file_list => $v_file_list)
 										{{-- {{dd($file_list[$k_file_list + 3]['years_name'])}} --}}
+										@if (is_null($v_file_list->month_no) && is_null($v_file_list->month_no) && is_null($v_file_list->year_no))
+											<div class="row">
+												<div class="col">
+													<div class="box_download_doc">
 
-										@if (is_null($v_file_list->month_no))
+														@if ($k_file_list > 0)												
+															@if ($file_list[$k_file_list]['years_name'] != $file_list[$k_file_list-1]['years_name'])
+																<div class="numberlist"> {{$k_file_list+1}} </div>
+																<div class="detail_doc">{{$v_file_list->name_th}}	</div>														
+															@else
+																<div class="numberlist"> {{$k_file_list+1}} </div>
+																<div class="detail_doc">{{$v_file_list->name_th}}	</div>	
+															@endif
+														@else
+															{{-- {{dd(isset($file_list[$k_file_list + 1]['years_name']))}} --}}
+															@if (isset($file_list[$k_file_list + 1]['years_name']) && $file_list[$k_file_list]['years_name'] != $file_list[$k_file_list + 1]['years_name'])
+																<div class="numberlist"> {{$k_file_list+ 1}} </div>
+																<div class="detail_doc">{{$v_file_list->name_th}}	</div>																
+															@else
+																<div class="numberlist"> {{$k_file_list+1}} </div>
+																<div class="detail_doc">{{$v_file_list->name_th}}	</div>	
+															@endif	
+														@endif
+														
+														<div class="btn_download"><a href="{{asset('uploads/'.$v_file_list->file)}}" class="btn btn-primary" target="_blank">{{trans('messages.download')}} <i class="fas fa-download"></i></a></div>
+													</div>		
+												</div>
+											</div>
+										@elseif (is_null($v_file_list->month_no))
 											<div class="row">
 												{{-- <div class="col">
 													{{$v_file_list->years_name}}	{{$v_file_list->name_th}}
@@ -143,12 +175,41 @@
 															
 													</div>
 											</div>
-											
-										@else
-											<div class="row">
+										
+										@elseif($v_file_list->date_no != null)
+										<div class="row">
 												
 												<div class="col">
 													@if ($k_file_list > 0)												
+														@if ($file_list[$k_file_list]['years_name'] != $file_list[$k_file_list-1]['years_name'])
+															<hr>
+														   	{{$v_file_list->date_no}}    {{$v_file_list->months_name}}	 {{$v_file_list->years_name}}														
+														@else
+															{{$v_file_list->date_no}}    {{$v_file_list->months_name}}	 {{$v_file_list->years_name}}
+														@endif
+													@else
+														@if (isset($file_list[$k_file_list + 1]['years_name']) && $file_list[$k_file_list]['years_name'] != $file_list[$k_file_list + 1]['years_name'])
+															<hr>
+															{{$v_file_list->date_no}}    {{$v_file_list->months_name}}	 {{$v_file_list->years_name}}														
+														@else
+															{{$v_file_list->date_no}}    {{$v_file_list->months_name}}	 {{$v_file_list->years_name}}
+														@endif	
+													@endif
+													
+														<a href="{{asset('uploads/'.$v_file_list->file)}}" class="downloadbtn" target="_blank">ดาวน์โหลด <i class="fas fa-download"></i></a>
+														
+												</div>
+												
+											</div>	
+										@else
+											
+										
+											<div class="row">
+											
+												<div class="col">
+													
+													@if ($k_file_list > 0)
+																								
 														@if ($file_list[$k_file_list]['years_name'] != $file_list[$k_file_list-1]['years_name'])
 															<hr>
 															{{$v_file_list->years_name}}	{{$v_file_list->months_name}}															

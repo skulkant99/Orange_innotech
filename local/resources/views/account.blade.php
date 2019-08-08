@@ -40,7 +40,16 @@
 </style>
 
 <body>
-
+    @php
+        $lang = "";
+        if (session()->get('locale') == null){
+            $lang = "th";
+        }elseif (session()->get('locale') == "th") {
+            $lang = "th";
+        }elseif(session()->get('locale') == "en"){
+            $lang = "en";
+        }		
+    @endphp
     @include('inc_topmenu')
     <div class="container-fluid nopad">
         <div class="row">
@@ -86,23 +95,15 @@
                         <img src="{{asset('images/openning.png')}}" class="img-fluid">
                     </div>
                     <div class="detail_acc">
-                        1. เข้าสู่ระบบการเปิดบัญชี <br>
-                        2. กรอกข้อมูลส่วนตัว <br>
-                        3. ถ่ายรูปคู่กับบัตรประชาชนพร้อมแนบเอกสาร <br>
-							<li style="list-style:disc;">บัตรประชาชน </li> 
-							<li style="list-style:disc;"> สำเนาหน้าบัญชีธนาคาร</li> 
-							<li style="list-style:disc;"> ตัวอย่างลายเซ็น </li>
-                        4. ยืนยันการเปิดบัญชี <br>
-                        5. รอผลอนุมัติเปิดบัญชี
+                        {!! trans('messages.account1') !!}
                         <br>
                         
-                        <br>*หมายเหตุ กรุณาใช้อุปกรณ์ที่สามารถถ่ายภาพได้ เพื่อยืนยันตัวตน อาทิ โทรศัพท์มือถือ แท๊ปเล็ต
-และคอมพิวเตอร์ที่มีกล้องถ่ายภาพ
+                        <br>*{{ trans('messages.account_footer') }}
                         <div class="btn_regis">
-                            <a href="#" class="btn btn-danger">เปิดบัญชี</a>
+                            <a href="#" class="btn btn-danger">{{ trans('messages.account_open') }}</a>
 
                         </div>
-                        <div class="login_next">หากกรอกข้อมูลไว้อยู่แล้ว <a href="#" class="greentext_link">เข้าสู่ระบบ</a></div>
+                        <div class="login_next">{{ trans('messages.account_open2') }} <a href="#" class="greentext_link">{{ trans('messages.login') }}</a></div>
                     </div>
                 </div>
             </div>

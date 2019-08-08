@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-     @include('inc_header') <?php $pageName="home"; ?>
+	 @include('inc_header') <?php $pageName="home"; ?>
+	 
 </head>
-{{-- {{dd($fund_EP)}} --}}
+
 <body>
 	<style>
 
@@ -144,6 +145,67 @@
 			animation-delay: 0.3s;
 		}
 		
+		
+		.container .btnth {
+		  position: absolute;
+		  top: 100%;
+		  left: 35%;
+		  transform: translate(-50%, -50%);
+		  -ms-transform: translate(-50%, -50%);
+		 
+		  color: white;
+		  font-size: 16px;
+		  padding: 12px 24px;
+		  border: none;
+		  cursor: pointer;
+		  border-radius: 5px;
+		  text-align: center;
+		}
+		.container .btnen {
+		  position: absolute;
+		  top: 100%;
+		  left: 65%;
+		  transform: translate(-50%, -50%);
+		  -ms-transform: translate(-50%, -50%);
+		 
+		  color: white;
+		  font-size: 16px;
+		  padding: 12px 24px;
+		  border: none;
+		  cursor: pointer;
+		  border-radius: 5px;
+		  text-align: center;
+		}
+		.tagnew{
+            background-color: #eb6b2f;
+            display: inline-block;
+            color: white;
+            padding: 4px 20px;
+            letter-spacing: 1px;
+            font-size: 0.8em;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            }
+        .box_nav{
+            position: relative;
+		}
+		.graphset h3 {
+			text-align: center;
+			margin: 3px 0px;
+			color: #379494;
+			font-family: 'kanit_mediumregular';
+
+		}
+		.btn_center {
+			margin: 0 auto;
+			display: table;
+			margin-top: 8px;
+		}
+		
+	
 		@-webkit-keyframes slideInLeft {
 			0% {
 				left: -10%;
@@ -265,7 +327,7 @@
 				font-size: 1.2em;
 			}
 			.wrap_parallax {
-				height: 60vh;
+				height: 34vh;
 			}
 			.wrap_slidecaption {
 				width: 60%;
@@ -274,7 +336,7 @@
 		
 		@media (max-width: 991px) {
 			.wrap_parallax {
-				height: 50vh;
+				height: 54vh;
 				z-index: 1;
 			}
 			.wrap_slidecaption h2 {
@@ -289,11 +351,11 @@
 		}
 		
 		@media (max-width: 767px) {
-/*
+
 			.wrap_parallax {
 				height: 30vh;
 			}
-*/
+
 			.wrap_slidecaption {
 				width: 100%;
 				top: 25%;
@@ -308,6 +370,22 @@
 			}
 			
 		}
+         @media (max-width: 414px) {
+            .wrap_parallax {
+				height:40vh;
+			}
+        }
+        
+        @media (max-width: 375px) {
+            .wrap_parallax {
+				height:37vh;
+			}
+        }
+        @media (max-width: 320px) {
+            .wrap_parallax {
+				height:28vh;
+			}
+        }
 	</style>
 		@php
 			$lang = "";
@@ -420,358 +498,19 @@
 							</div>
 						</div>
 						<div class="col-lg-3 wow fadeInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
-								<iframe frameborder=0 scrolling=no width="200" height="260" src="https://weblink.settrade.com/banner/banner3.jsp"></iframe>
-							{{-- <div class="graphset">
-								<div class="row">
-									<div class="col">
-										<div class="set_list select-display-slide">
-											<li class="active" rel="1"> <a href="javascript:void(0)">SET</a> </li>
-											<li rel="2" style="margin-left:-7px;"> <a href="javascript:void(0)">  MAI</a> </li>
-											<li rel="3" style="margin-left:-7px;"> <a href="javascript:void(0)">  TFEX</a> </li>
+								<div class="graphset">
+										<div class="head_nav text-center" style="font-size:20px"> SET | ThaiBMA </div>
+										<h3 style="font-size:15px">หลักทรัพย์วันนี้ <br>
+											<span class="boldertext" style="font-size:15px">ข้อมูลจาก Settarde.com</span>
+										</h3> 
+										<div class="text-center">
+											<iframe frameborder=0 scrolling=no width="200" height="260"  src="https://weblink.settrade.com/banner/banner3.jsp"></iframe>  
 										</div>
-									</div>
-								</div>
-								<div class="display-slide" rel="1" style="display:block;">
-									<div class="row">
-										<div class="col">
-											<div class="timeset"> 04/04/62 | 12:35:21 </div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<ul class="listset_tab1">
-												<li><a href="#" class="active">สรุปภาวะตลาด</a></li>
-												<li><a href="#">สรุปการซื้อขายสิ้นวัน</a></li>
-												<li><a href="#">ข้อมูลสถิติ</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<ul class="listset_tab">
-												<li><a href="#" class="active">SET</a></li>
-												<li><a href="#">SET50</a></li>
-												<li><a href="#">SET100</a></li>
-												<li><a href="#">sSET</a></li>
-												<li><a href="#">SETHD</a></li>
-												<li><a href="#">SETCLMV</a></li>
-												<li><a href="#">SETTHSI</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="graphset_inc">
-									<canvas id="graph" width="250" height="170"> </canvas> 
-									  </div>
-									<div class="graphset_inc2">
-									<div class="table-wrapper-scroll-y my-custom-scrollbar">
-										<table class="table set_table">
-											<thead>
-												<tr>
-													<th scope="col"></th>
-													<th scope="col">Last</th>
-													<th scope="col">Change</th>
-												</tr>
-											</thead>
-											<tbody>
-											<tr>
-												<th scope="col">SET</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SET50</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SET100</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">sSET</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETHD</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETCLMV</th>
-												<td><span class="redtext">1,333.65</span></td>
-												<td><span class="redtext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETTHSI</th>
-												<td><span class="redtext">1,333.65</span></td>
-												<td><span class="redtext">+0.43</span></td>
-											</tr>
-										  <tr>
-										  	<td  colspan="2">Mkt Status</td>
-										  	<td>Open(I)</td>
-										  </tr>
-										    <tr>
-										  	<td  colspan="2">Volumn(000)</td>
-										  	<td>5,445,434</td>
-										  </tr>
-										    <tr>
-										  	<td  colspan="2">Value (M)</td>
-										  	<td>12,444,12</td>
-										  </tr>
-										  <tr class="threelevels">
-										  	<td class="redtext"><i class="fas fa-sort-down"></i><br> 587 <br> Losers</td>
-										  	<td class="yellowtext"><i class="fas fa-sort fa-rotate-90"> </i><br> 553 <br> Unchanges</td>
-										  	<td class="greentext"><i class="fas fa-sort-up"></i> <br> 587 <br> Gainers</td>
-										  </tr>
-										  <tr class="threelevels">
-										  	<td colspan="3">ราคาดัชนีผลตอบแทนรวม (TRI)</td>
-										  </tr>
-										  <tr>
-										  	<td colspan="3">
-										  	<span style="color:dimgray;">07/04/2019</span>
-										  	</td>
-										  </tr>
-										  <tr>
-										  <th scope="col">SET TRI</th>
-										  	<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-										  </tr>
-											  </tbody>
-										</table>
-										</div>
-									</div>
-								</div>
-								<div class="display-slide" rel="2">
-									<div class="row">
-										<div class="col">
-											<div class="timeset"> 04/04/62 | 12:35:21 </div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<ul class="listset_tab1">
-												<li><a href="#" class="active">สรุปภาวะตลาด</a></li>
-												<li><a href="#">สรุปการซื้อขายสิ้นวัน</a></li>
-												<li><a href="#">ข้อมูลสถิติ</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<ul class="listset_tab">
-												<li><a href="#" class="active">SET</a></li>
-												<li><a href="#">SET50</a></li>
-												<li><a href="#">SET100</a></li>
-												<li><a href="#">sSET</a></li>
-												<li><a href="#">SETHD</a></li>
-												<li><a href="#">SETCLMV</a></li>
-												<li><a href="#">SETTHSI</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="graphset_inc">
-									<canvas id="graph" width="250" height="170"> </canvas> 
+										
 									
-									  </div>
-									<div class="graphset_inc2">
-									<div class="table-wrapper-scroll-y my-custom-scrollbar">
-										<table class="table set_table">
-											<thead>
-												<tr>
-													<th scope="col"></th>
-													<th scope="col">Last</th>
-													<th scope="col">Change</th>
-												</tr>
-											</thead>
-											<tbody>
-											<tr>
-												<th scope="col">SET</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SET50</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SET100</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">sSET</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETHD</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETCLMV</th>
-												<td><span class="redtext">1,333.65</span></td>
-												<td><span class="redtext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETTHSI</th>
-												<td><span class="redtext">1,333.65</span></td>
-												<td><span class="redtext">+0.43</span></td>
-											</tr>
-										  <tr>
-										  	<td  colspan="2">Mkt Status</td>
-										  	<td>Open(I)</td>
-										  </tr>
-										    <tr>
-										  	<td  colspan="2">Volumn(000)</td>
-										  	<td>5,445,434</td>
-										  </tr>
-										    <tr>
-										  	<td  colspan="2">Value (M)</td>
-										  	<td>12,444,12</td>
-										  </tr>
-										  <tr class="threelevels">
-										  	<td class="redtext"><i class="fas fa-sort-down"></i><br> 587 <br> Losers</td>
-										  	<td class="yellowtext"><i class="fas fa-sort fa-rotate-90"> </i><br> 553 <br> Unchanges</td>
-										  	<td class="greentext"><i class="fas fa-sort-up"></i> <br> 587 <br> Gainers</td>
-										  </tr>
-										  <tr class="threelevels">
-										  	<td colspan="3">ราคาดัชนีผลตอบแทนรวม (TRI)</td>
-										  </tr>
-										  <tr>
-										  	<td colspan="3">
-										  	<span style="color:dimgray;">07/04/2019</span>
-										  	</td>
-										  </tr>
-										  <tr>
-										  <th scope="col">SET TRI</th>
-										  	<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-										  </tr>
-											  </tbody>
-										</table>
-										</div>
-									</div>
+									<div class="btn_center"> <a href="#" class="btn btn-warning">ดูข้อมูล Thai Bond Market</a> </div>
+								
 								</div>
-								<div class="display-slide" rel="3">
-									<div class="row">
-										<div class="col">
-											<div class="timeset"> 04/04/62 | 12:35:21 </div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<ul class="listset_tab1">
-												<li><a href="#" class="active">สรุปภาวะตลาด</a></li>
-												<li><a href="#">สรุปการซื้อขายสิ้นวัน</a></li>
-												<li><a href="#">ข้อมูลสถิติ</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<ul class="listset_tab">
-												<li><a href="#" class="active">SET</a></li>
-												<li><a href="#">SET50</a></li>
-												<li><a href="#">SET100</a></li>
-												<li><a href="#">sSET</a></li>
-												<li><a href="#">SETHD</a></li>
-												<li><a href="#">SETCLMV</a></li>
-												<li><a href="#">SETTHSI</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="graphset_inc">
-									<canvas id="graph" width="250" height="170"> 
-</canvas> 
-									
-									  </div>
-									<div class="graphset_inc2">
-									<div class="table-wrapper-scroll-y my-custom-scrollbar">
-										<table class="table set_table">
-											<thead>
-												<tr>
-													<th scope="col"></th>
-													<th scope="col">Last</th>
-													<th scope="col">Change</th>
-												</tr>
-											</thead>
-											<tbody>
-											<tr>
-												<th scope="col">SET</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SET50</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SET100</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">sSET</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETHD</th>
-												<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETCLMV</th>
-												<td><span class="redtext">1,333.65</span></td>
-												<td><span class="redtext">+0.43</span></td>
-											</tr>
-										  <tr>
-												<th scope="col">SETTHSI</th>
-												<td><span class="redtext">1,333.65</span></td>
-												<td><span class="redtext">+0.43</span></td>
-											</tr>
-										  <tr>
-										  	<td  colspan="2">Mkt Status</td>
-										  	<td>Open(I)</td>
-										  </tr>
-										    <tr>
-										  	<td  colspan="2">Volumn(000)</td>
-										  	<td>5,445,434</td>
-										  </tr>
-										    <tr>
-										  	<td  colspan="2">Value (M)</td>
-										  	<td>12,444,12</td>
-										  </tr>
-										  <tr class="threelevels">
-										  	<td class="redtext"><i class="fas fa-sort-down"></i><br> 587 <br> Losers</td>
-										  	<td class="yellowtext"><i class="fas fa-sort fa-rotate-90"> </i><br> 553 <br> Unchanges</td>
-										  	<td class="greentext"><i class="fas fa-sort-up"></i> <br> 587 <br> Gainers</td>
-										  </tr>
-										  <tr class="threelevels">
-										  	<td colspan="3">ราคาดัชนีผลตอบแทนรวม (TRI)</td>
-										  </tr>
-										  <tr>
-										  	<td colspan="3">
-										  	<span style="color:dimgray;">07/04/2019</span>
-										  	</td>
-										  </tr>
-										  <tr>
-										  <th scope="col">SET TRI</th>
-										  	<td><span class="greentext">1,333.65</span></td>
-												<td><span class="greentext">+0.43</span></td>
-										  </tr>
-											  </tbody>
-										</table>
-										</div>
-									</div>
-								</div>
-						
-							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -801,53 +540,6 @@
 								<div class="detail_nav"> กองทุนรวมเพื่อการเลี้ยงชีพ (RMF)
 									{{-- {{dd($fund_EP)}} --}}
 									@php
-										$date = new DateTime($fund_EP->DTENAVDATE);
-										$newdate = $date->format('d/m/Y');
-											$date_create_edit = explode('/', $newdate);												
-											$month = $date_create_edit[1];
-											$year  = $date_create_edit[2] + 543;
-											$day = $date_create_edit[0];
-																					
-									@endphp
-									<br> ณ วันที่ {{$day}}/{{$month}}/{{$year}} </div>
-								<div class="table_nav">
-									<table class="table table-bordered tablenavstyle">
-										<thead>
-											<tr>
-												<td>มูลค่าหน่วยลงทุน</td>
-												<th>{{number_format($fund_EP->DECNAV_UNIT,2)}}</th>
-											</tr>
-										</thead>
-										<tbody>
-											@php
-												$bath = $fund_EP_sum[0]->DECNAV_UNIT - $fund_EP_sum[1]->DECNAV_UNIT;
-												$percent = ($bath*100)/100;
-											@endphp
-											<tr>
-												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">{{number_format($bath,2)}}</span></td>
-											</tr>
-											<tr>
-												<td>{{number_format($percent,2)}}%</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="btn_first"> <a href="{{url('/funds_seqrmf')}}" target="_blank" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
-							</div>
-					</div>
-						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-							<div class="box_nav">
-								<div class="head_nav"> EP-LTF </div>
-								<div class="pic_nav">
-									<div class="hov-menu-sty">
-										<figure>
-											<a href="#"><img src="{{asset('images/EP_LTF.png')}}" class="img-fluid"> </a>
-										</figure>
-									</div>
-								</div>
-								<div class="detail_nav"> กองทุนรวมหุ้นระยะยาว (LTF)
-									@php
 										$date = new DateTime($fund_S->DTENAVDATE);
 										$newdate = $date->format('d/m/Y');
 											$date_create_edit = explode('/', $newdate);												
@@ -862,25 +554,99 @@
 										<thead>
 											<tr>
 												<td>มูลค่าหน่วยลงทุน</td>
-												<th>{{number_format($fund_S->DECNAV_UNIT,2)}}</th>
+												<th>{{number_format($fund_S->DECNAV_UNIT,4)}}</th>
 											</tr>
 										</thead>
 										<tbody>
 											@php
+												
 												$bath = $fund_S_sum[0]->DECNAV_UNIT - $fund_S_sum[1]->DECNAV_UNIT;
-												$percent = ($bath*100)/100;
+												$percent = ($bath*100)/$fund_S_sum[1]->DECNAV_UNIT;
 											@endphp
 											<tr>
 												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
-												<td><span class="greentext">{{number_format($bath,2)}}</span></td>
+												<td>
+													@if ($bath > 0)
+														<span class="greentext">+{{number_format($bath,2)}}</span>
+													@else
+														<span class="redtext">{{number_format($bath,2)}}</span>
+													@endif
+												</td>
 											</tr>
 											<tr>
-												<td>{{number_format($percent,2)}}%</td>
+												<td>
+													@if ($percent > 0)
+														+{{number_format($percent,2)}}%	
+													@else
+														{{number_format($percent,2)}}%	
+													@endif
+												</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
-								<div class="btn_first"> <a href="{{url('/funds_seqrmf')}}" class="btn btn-primary" target="_blank">ดูข้อมูลเพิ่มเติม</a> </div>
+								<div class="btn_first"> <a href="{{url('/fundsprice')}}"  class="btn btn-primary">{{ trans('messages.read_more') }}</a> </div>
+							</div>
+					</div>
+						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+							<div class="box_nav">
+								<div class="head_nav"> EP-LTF </div>
+								<div class="pic_nav">
+									<div class="hov-menu-sty">
+										<figure>
+											<a href="#"><img src="{{asset('images/EP_LTF.png')}}" class="img-fluid"> </a>
+										</figure>
+									</div>
+								</div>
+								<div class="detail_nav"> กองทุนรวมหุ้นระยะยาว (LTF)
+									
+									@php
+										$date = new DateTime($fund_EP->DTENAVDATE);
+										$newdate = $date->format('d/m/Y');
+											$date_create_edit = explode('/', $newdate);												
+											$month = $date_create_edit[1];
+											$year  = $date_create_edit[2] + 543;
+											$day = $date_create_edit[0];
+																				
+									@endphp
+									<br> ณ วันที่ {{$day}}/{{$month}}/{{$year}} </div>
+								<div class="table_nav">
+									<table class="table table-bordered tablenavstyle">
+										<thead>
+											<tr>
+												<td>มูลค่าหน่วยลงทุน</td>
+												<th>{{number_format($fund_EP->DECNAV_UNIT,4)}}</th>
+											</tr>
+										</thead>
+										<tbody>
+											@php
+												$bath = $fund_EP_sum[0]->DECNAV_UNIT - $fund_EP_sum[1]->DECNAV_UNIT;
+												$percent = ($bath*100)/$fund_EP_sum[1]->DECNAV_UNIT;
+											@endphp
+											<tr>
+												<td rowspan="2" style="vertical-align:middle;">เปลี่ยนแปลง</td>
+												<td>
+													@if ($bath > 0)
+														<span class="greentext">+{{number_format($bath,2)}}</span>	
+													@else
+														<span class="redtext">{{number_format($bath,2)}}</span>	
+													@endif
+												</td>
+											</tr>
+											<tr>
+												<td>
+													@if ($percent > 0)
+														+{{number_format($percent,2)}}%	
+													@else
+														{{number_format($percent,2)}}%	
+													@endif
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+								<div class="btn_first"> <a href="{{url('/fundsprice')}}" class="btn btn-primary" >{{ trans('messages.read_more') }}</a> </div>
 							</div>
 						</div>
 						<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
@@ -913,7 +679,7 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="btn_first"> <a href="{{url('/funds_seqrmf')}}" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a> </div>
+								<div class="btn_first"> <a href="#" class="btn btn-primary">{{ trans('messages.read_more') }}</a> </div>
 							</div>
 						</div>
 <!--
@@ -1024,7 +790,7 @@
 					</div>
 					<div class="row wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.5s">
 						<div class="col">
-							<div class="btn_center"> <a href="{{url('mutualfunds')}}" class="btn btn-secondary">ดูทั้งหมด คลิก</a> </div>
+							<div class="btn_center"> <a href="{{url('/fundsprice')}}" class="btn btn-secondary">{{ trans('messages.view_all') }}</a> </div>
 						</div>
 					</div>
 				</div>
@@ -1045,14 +811,64 @@
 				
 					<div class="row  wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.3s">
 						<div class="col">
-						<label class="mt-3">เลือกกองทุน</label>
+						<label class="mt-3">{{ trans('messages.choose_fund') }}</label>
 							<select id="funds" name="selectbasic" class="form-control select_set" onchange="getFund(this)">
 								@foreach ($fund as $k_fund => $v_fund)
 									<option value="{{$v_fund->fund_short_name}}">{{$fund[$k_fund]['name_'.$lang]}}</option>
 								@endforeach
 							</select>
+							@php
+										$date_create = $perfor[0]->date;
 
-						
+										$date_create_edit = explode('-', $date_create);
+										$month = $date_create_edit[1];
+										$year   = $date_create_edit[0] + 543;
+										$day  = $date_create_edit[2];
+
+					
+										switch ($month) {
+											case '01':
+												$month = "มกราคม";
+												break;
+											case '02':
+												$month = "กุมภาพันธ์";
+												break;
+											case '03':
+												$month = "มีนาคม";
+												break;
+											case '04':
+												$month = "เมษายน";
+												break;
+											case '05':
+												$month = "พฤษภาคม";
+												break;
+											case '06':
+												$month = "มิถุนายน";
+												break;
+											case '07':
+												$month = "กรกฎาคม";
+												break;
+											case '08':
+												$month = "สิงหาคม";
+												break;
+											case '09':
+												$month = "กันยายน";
+												break;
+											case '10':
+												$month = "ตุลาคม";
+												break;
+											case '11':
+												$month = "พฤศจิกายน";
+												break;
+											case '12':
+												$month = "ธันวาคม";
+												break;
+											default:
+												# code...
+												break;
+										}
+									@endphp
+						<p style="float:right;" id="date">ข้อมูล ณ วันที่ {{ $day}} {{$month}} {{$year}}</p>
 						<canvas id="myChart"  height="100"></canvas>
 						
 						</div>
@@ -1143,7 +959,7 @@
 				<div class="row">
 					<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
 						<div class="title_head1"><span class="bluetxt">INNOTECH</span> UPDATE
-							<p>ข่าวสารความเคลื่อนไหวต่างๆ ของเรา</p>
+							<p>{{ trans('messages.news_head') }}</p>
 						</div>
 					</div>
 				</div>
@@ -1155,6 +971,9 @@
 									<div class="item">
 										<div class="box_nav">
 											<div class="pic_nav">
+												@if ($value_information->active == 1)
+													<div class="tagnew">NEW</div>	
+												@endif
 												<div class="hov-menu-sty2">
 													<figure>
 														@php
@@ -1168,7 +987,11 @@
 											</div>
 									
 											<div class="inno_details">{{($information[$_information]['title_'.$lang])}}</div> 
-											<a href="{{url('newsinside/'.$value_information->id)}}" class="readmore">{{trans('messages.read_more')}}</a> 
+											@if ($value_information->status_pdf != 1)
+												<a href="{{url('newsinside/'.$value_information->id)}}" class="readmore">{{trans('messages.read_more')}}</a> 	
+											@else
+												<a href="{{url('uploads/'.$value_information->file)}}" target="_blank" class="readmore">{{trans('messages.read_more')}}</a> 												
+											@endif
 										</div>
 									</div>
 								
@@ -1225,16 +1048,42 @@
 		</main>
 		
 		
-				<!--POPUP-FIRSTPAGE-->
+		 <!--POPUP-FIRSTPAGE-->
+			
+				{{-- <a data-fancybox="popupdesktop" href="{{asset('uploads/Popup/'.$popup->photo_desktop)}}" class="popupdesktop"></a>
+				<a data-fancybox="popuipad" href="{{asset('uploads/Popup/'.$popup->photo_ipad)}}" class="popuipad"></a>
+				<a data-fancybox="popupxs" href="{{asset('uploads/Popup/'.$popup->photo_mobile)}}" class="popupxs"></a>   --}}
 
-
+				<a data-fancybox="popupdesktop" href="#desktop" class="popupdesktop"></a>
+				<a data-fancybox="popuipad" href="#ipad" class="popuipad"></a>
+				<a data-fancybox="popupxs" href="#iphone" class="popupxs"></a>
+			   
+			   <div style="display:none;">
+				   <div id="desktop"><a href="{{$popup->link}}" target="_blank"><img src="{{asset('uploads/Popup/'.$popup->photo_desktop)}}" class="d-none d-sm-none d-md-none d-lg-block d-xl-block img-fluid">
+				   	<img src="{{asset('uploads/Popup/'.$popup->photo_desktop)}}" class="d-block d-sm-block d-md-block d-lg-none d-xl-none img-fluid">
+				   </a></div>
+			   </div>
+			   <div style="display:none;">
+					<div id="ipad"><a href="{{$popup->link}}" target="_blank"><img src="{{asset('uploads/Popup/'.$popup->photo_ipad)}}" class="d-none d-sm-none d-md-none d-lg-block d-xl-block img-fluid">
+					<img src="{{asset('uploads/Popup/'.$popup->photo_ipad)}}" class="d-block d-sm-block d-md-block d-lg-none d-xl-none img-fluid">
+					</a></div>
+				</div>
+				<div style="display:none;">
+					<div id="iphone"><a href="{{$popup->link}}" target="_blank"><img src="{{asset('uploads/Popup/'.$popup->photo_mobile)}}" class="d-none d-sm-none d-md-none d-lg-block d-xl-block img-fluid">
+					<img src="{{asset('uploads/Popup/'.$popup->photo_mobile)}}" class="d-block d-sm-block d-md-block d-lg-none d-xl-none img-fluid">
+					</a></div>
+				</div>
+			
+				
+			
+		
 		<div class="modal fade bd-example-modal-lg" id="modal-subscribe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle"><img src="images/logo_popup.png" class="img-fluid"></h5>
-       
-      </div>
+						<h5 class="modal-title" id="exampleModalCenterTitle"><img src="images/logo_popup.png" class="img-fluid"></h5>
+						
+					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="col">
@@ -1253,7 +1102,7 @@
 						</div>
 					    <div class="btn_popup">
 					    
-						    <button type="button" class="btn btn-info" data-dismiss="modal">ปฎิเสธ</button>
+						    <button type="button" class="btn btn-info" onclick="closeWin()" data-dismiss="modal">ปฎิเสธ</button>
         					<button type="button" class="btn btn-info" data-dismiss="modal">ยอมรับ</button>
 			
 					    </div>
@@ -1261,12 +1110,48 @@
     		</div>
 			</div>
 		</div>
-	
-		
+
 
 
 		
 		@include('inc_footer')
+		<script>
+			function closeWin() {
+					
+					window.open("https://www.google.com/", "_self");
+					window.close();
+				}
+		</script>	
+		<script type="text/javascript">
+			$(document).ready(function(){
+					  $('[data-fancybox="popupdesktop"]').fancybox({
+						   //toolbar : false
+					  });
+					  $('[data-fancybox="popupxs"]').fancybox({
+						   //toolbar : false
+					  });
+					  $('[data-fancybox="popuipad"]').fancybox({
+						   //toolbar : false
+					  });
+					  
+		  
+					  if (Modernizr.mq('(max-width: 375px)')) {
+						 $( ".popupxs" ).trigger( "click" );
+					  }
+					  else if (Modernizr.mq('(max-width: 767px)')){
+						
+						 $( ".popuipad" ).trigger( "click" );
+					  } 
+					  else{
+
+						$( ".popupdesktop" ).trigger( "click" );
+					  }
+				  });
+			
+				
+								
+		   </script>
+		 
 		<script type="text/javascript">
 			$(window).load(function () {
 				$('.flexslider-caption').flexslider({
@@ -1312,6 +1197,53 @@
 						$('#gain').html('');
 						$('#result').html('');
 						$('#Indicator').html('');
+						$('#date').html('');
+						var date_create = res[0].date;
+
+						var date_create_edit = date_create.split('-');
+						var month = date_create_edit[1];
+						var year   = parseInt(date_create_edit[0]) + 543;
+						var day  = date_create_edit[2];
+									switch (month) {
+											case '01':
+												month = "มกราคม";
+												break;
+											case '02':
+												month = "กุมภาพันธ์";
+												break;
+											case '03':
+												month = "มีนาคม";
+												break;
+											case '04':
+												month = "เมษายน";
+												break;
+											case '05':
+												month = "พฤษภาคม";
+												break;
+											case '06':
+												month = "มิถุนายน";
+												break;
+											case '07':
+												month = "กรกฎาคม";
+												break;
+											case '08':
+												month = "สิงหาคม";
+												break;
+											case '09':
+												month = "กันยายน";
+												break;
+											case '10':
+												month = "ตุลาคม";
+												break;
+											case '11':
+												month = "พฤศจิกายน";
+												break;
+											case '12':
+												month = "ธันวาคม";
+												break;
+											
+										}
+				
 						if(res[0].type == 'EP-LTF'){
 							var fund_per = `<th scope="col">EP-LTF</th>`;
 												$.each(res,function(k,v){
@@ -1354,6 +1286,8 @@
 															}
 														}								
 												});
+							var date = `ข้อมูล ณ วันที่ `+day+` `+month+` `+year ;
+							 
 						}else{
 							var fund_per = `<th scope="col">S-EQRMF</th>`;
 												$.each(res,function(k,v){
@@ -1395,6 +1329,7 @@
 															}
 														}								
 												});
+							var date = `ข้อมูล ณ วันที่ `+day+` `+month+` `+year ;
 						}
 					
 						
@@ -1403,6 +1338,7 @@
 					$('#gain').append(gain);
 					$('#result').append(result);
 					$('#Indicator').append(Indicator);	
+					$('#date').append(date);
 					var year = [];
       				var fund_select = [];
 					var gain_select = [];
@@ -1559,11 +1495,18 @@
 			});
 		</script>
 		<script>
+		
 			$(window).ready(function () {
-				setTimeout(function () {
-					$('#modal-subscribe').modal("show")
-				}, 2500)
+				
+					setTimeout(function () {
+							
+							$('#modal-subscribe').modal("show")
+
+					}, 2500)
 			})
+			$( ".btn" ).click(function() {
+				// $('#ModalEdit').modal('hide');
+			});
 		</script>
 		<script type="text/javascript">
 			$(document).ready(function () {
@@ -1658,6 +1601,7 @@
 							}
 					});
 </script>
+
 </body>
 
 </html>

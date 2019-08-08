@@ -55,6 +55,13 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
+                
+                <div class="form-group">
+                    <label for="add_photo">แบนเนอร์</label>
+                    <div id="orak_add_photo">
+                        <div id="add_photo" orakuploader="on"></div>
+                    </div>
+                </div>
                     
                 <div class="form-group">
                     <label for="add_name_th">หัวเรื่อง(TH)</label>
@@ -105,10 +112,20 @@
                 </div>
 
                 <div class="form-group">
-                        <label for="add_sort_id">ลำดับ</label>
-                        <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="sort_id">
+                    <label for="add_link">ลิงค์</label>
+                    <input type="text" class="form-control number-only" name="link" id="add_link"  placeholder="ลิงค์">
                 </div>
-            
+
+                <div class="form-group">
+                        <label for="add_sort_id">ลำดับ</label>
+                        <input type="text" class="form-control" name="sort_id" id="add_sort_id"  placeholder="sort_id">
+                </div>
+                
+                <div class="form-check">
+                    <label for="add_register_type" class="checkbox form-check-label">
+                        <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="register_type" id="add_register_type"  value="F" checked="checked"> ปิดลงทะเบียน
+                    </label>
+                </div>
         
                 <div class="form-check">
                     <label for="add_type" class="checkbox form-check-label">
@@ -142,7 +159,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    
+                
+                <input type="hidden" name="org_photo" id="org_photo">
+                <div class="form-group">
+                    <label for="edit_photo">แบนเนอร์(desktop)</label>
+                    <div id="orak_edit_photo">
+                        <div id="edit_photo" orakuploader="on"></div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="edit_name_th">หัวเรื่อง(TH)</label>
                     <input type="text" class="form-control" name="name_th" id="edit_name_th"  placeholder="name_th">
@@ -189,8 +214,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="edit_link">ลิงค์</label>
+                    <input type="text" class="form-control" name="link" id="edit_link"  placeholder="ลิงค์">
+                </div>
+
+                <div class="form-group">
                         <label for="edit_sort_id">ลำดับ</label>
-                        <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="sort_id">
+                        <input type="text" class="form-control" name="sort_id" id="edit_sort_id"  placeholder="sort_id">
+                </div>
+
+                <div class="form-check">
+                        <label for="edit_register_type" class="checkbox form-check-label">
+                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="register_type" id="edit_register_type"  value="F" checked="checked"> ปิดลงทะเบียน
+                        </label>
                 </div>
 
                 <div class="form-check">
@@ -260,6 +296,7 @@
             $('#edit_location_th').val(rec.location_th);
             $('#edit_location_en').val(rec.location_en);
             $('#edit_seat').val(rec.seat);
+            $('#edit_link').val(rec.link);
             if(rec.type=='M'){
                 $('#edit_type').prop('checked','checked').closest('label').addClass('checked');
             }else{
@@ -270,7 +307,44 @@
             }else{
                 $('#edit_status').removeAttr('checked').closest('label').removeClass('checked');
             }
+            if(rec.register_type=='F'){
+                $('#edit_register_type').prop('checked','checked').closest('label').addClass('checked');
+            }else{
+                $('#edit_register_type').removeAttr('checked').closest('label').removeClass('checked');
+            }
             $('#edit_sort_id').val(rec.sort_id);
+            $('#edit_photo').closest('#orak_edit_photo').html('<div id="edit_photo" orakuploader="on"></div>');
+                $('#org_photo').val(rec.photo);
+                if(rec.photo){
+                    var max_file = 0;
+                    var file = [];
+                        file[0] = rec.photo;
+                    var photo = rec.photo;
+                }else{
+                    var max_file = 1;
+                    var file = [];
+                    var photo = rec.photo;
+                }       
+                $('#edit_photo').orakuploader({
+                    orakuploader_path               : url_gb+'/',
+                    orakuploader_ckeditor           : false,
+                    orakuploader_use_dragndrop      : true,
+                    orakuploader_main_path          : 'uploads/temp/',
+                    orakuploader_thumbnail_path     : 'uploads/temp/',
+                    orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+                    orakuploader_add_image          : asset_gb+'images/add.png',
+                    orakuploader_loader_image       : asset_gb+'images/loader.gif',
+                    orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+                    orakuploader_add_label          : 'เลือกรูปภาพ',
+                    orakuploader_use_rotation       : false,
+                    orakuploader_maximum_uploads    : max_file,
+                    orakuploader_hide_on_exceed     : true,
+                    orakuploader_attach_images      : file,
+                    orakuploader_field_name         : 'photo',
+                    orakuploader_finished           : function(){
+
+                    }
+                });
             
             btn.button("reset");
             ShowModal('ModalEdit');
@@ -426,6 +500,25 @@
             //console.log(e);
         });
     });
+    $('#add_photo').orakuploader({
+            orakuploader_path               : url_gb+'/',
+            orakuploader_ckeditor           : false,
+            orakuploader_use_dragndrop      : true,
+            orakuploader_main_path          : 'uploads/temp/',
+            orakuploader_thumbnail_path     : 'uploads/temp/',
+            orakuploader_thumbnail_real_path: asset_gb+'uploads/temp/',
+            orakuploader_add_image          : asset_gb+'images/add.png',
+            orakuploader_loader_image       : asset_gb+'images/loader.gif',
+            orakuploader_no_image           : asset_gb+'images/no-image.jpg',
+            orakuploader_add_label          : 'เลือกรูปภาพ',
+            orakuploader_use_rotation       : false,
+            orakuploader_maximum_uploads    : 1,
+            orakuploader_hide_on_exceed     : true,
+            orakuploader_field_name         : 'photo',
+            orakuploader_finished           : function(){
+
+            }
+        });
 
     
 </script>

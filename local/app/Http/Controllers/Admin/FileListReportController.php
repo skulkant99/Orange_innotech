@@ -23,6 +23,8 @@ class FileListReportController extends Controller
         $data['menus'] = \App\Models\AdminMenu::ActiveMenu()->get();
         $data['Years'] = \App\Models\Year::get();
         $data['Months'] = \App\Models\Month::get();
+        $data['Date'] = \App\Models\Date::get();
+
         $data['id'] = $id;
         return view('Admin.file_list_report',$data);
     }
@@ -47,15 +49,15 @@ class FileListReportController extends Controller
     {
         $input_all = $request->all();
         
-            if(isset($input_all['sort_id'])){
-                $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
-            }
+        if(isset($input_all['sort_id'])){
+            $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
+        }
         $input_all['status'] = $request->input('status','2');
         $input_all['created_at'] = date('Y-m-d H:i:s');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
-            'name_th' => 'required',
+          
              
         ]);
         if (!$validator->fails()) {
@@ -120,7 +122,7 @@ class FileListReportController extends Controller
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
         $validator = Validator::make($request->all(), [
-            'name_th' => 'required',
+           
              
         ]);
         if (!$validator->fails()) {
@@ -171,7 +173,8 @@ class FileListReportController extends Controller
         $result = \App\Models\FileListReport::where('file_type_id',$file_type_id)
             ->leftJoin('years','years.year_no','file_list_reports.year_no')
             ->leftJoin('months','months.month_no','file_list_reports.month_no')
-            ->select('file_list_reports.*','years.name as years_name','months.name as months_name');
+            ->select('file_list_reports.*','years.name as years_name','months.name as months_name')
+            ->orderBy('file_list_reports.sort_id','ASC');
         return \Datatables::of($result)
         ->addIndexColumn()
         

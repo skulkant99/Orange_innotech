@@ -164,7 +164,7 @@ class TypeDebtController extends Controller
     }
 
     public function Lists(){
-        $result = \App\Models\TypeDebt::select();
+        $result = \App\Models\TypeDebt::select()->orderBy('sort_id','ASC');
         return \Datatables::of($result)
         ->addIndexColumn()
         

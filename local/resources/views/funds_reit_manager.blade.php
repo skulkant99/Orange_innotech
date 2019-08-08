@@ -145,68 +145,24 @@
             <br>
             <br>
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="box_manager">
-                        <div class="img_manager">
-                            <img src="{{asset('images/no-profile-image.gif')}}" class="img-fluid">
-                        </div>
-                        <br>
-                        <div class="manager_details">
-                            <h2><b>พิชัย ชัยณรงค์โลกา</b></h2>
-                            <p>การศึกษา <br>
-                                ประสบการณ์ในธุรกิจอสังหาริมทรัพย์: <br>
-                                ประสบการณ์ทำงานย้อนหลัง <br>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-3">
-                    <div class="box_manager">
-                        <div class="img_manager">
-                            <img src="{{asset('images/no-profile-image.gif')}}" class="img-fluid">
-                        </div>
-                        <br>
-                        <div class="manager_details">
-                            <h2><b>บุญฤทธิ์ เรารุ่งโรจน์</b></h2>
-                            <p>การศึกษา <br>
-                                ประสบการณ์ในธุรกิจอสังหาริมทรัพย์: <br>
-                                ประสบการณ์ทำงานย้อนหลัง <br>
-                            </p>
+                @foreach ($manager as $k_manager => $v_manager)
+                    <div class="col-lg-3">
+                        <div class="box_manager">
+                            <div class="img_manager">
+                                <img src="{{asset('uploads/TrustPersonnel/'.$v_manager->photo)}}" class="img-fluid">
+                            </div>
+                            <br>
+                            <div class="manager_details">
+                                <h2><b>{{$v_manager['name_'.$lang]}}</b></h2>
+                                {!!($v_manager['detail_'.$lang])!!}
+                            </div>
                         </div>
                     </div>
-                </div>
-                 <div class="col-lg-3">
-                    <div class="box_manager">
-                        <div class="img_manager">
-                            <img src="{{asset('images/no-profile-image.gif')}}" class="img-fluid">
-                        </div>
-                        <br>
-                        <div class="manager_details">
-                            <h2><b>พงษ์เดช ไกรวิทย์วัฒนา
-                            </b></h2>
-                                                        <p>การศึกษา <br>
-                                ประสบการณ์ในธุรกิจอสังหาริมทรัพย์: <br>
-                                ประสบการณ์ทำงานย้อนหลัง <br>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-3">
-                    <div class="box_manager">
-                        <div class="img_manager">
-                            <img src="{{asset('images/no-profile-image.gif')}}" class="img-fluid">
-                        </div>
-                        <br>
-                        <div class="manager_details">
-                            <h2><b>ญาสุภัสสร ธนเจริญยงฐิติ
-                            </b></h2>
-                                 <p>การศึกษา <br>
-                                ประสบการณ์ในธุรกิจอสังหาริมทรัพย์: <br>
-                                ประสบการณ์ทำงานย้อนหลัง <br>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+               
+               
+              
+               
             </div>
       </div>
     </main>

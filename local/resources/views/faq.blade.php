@@ -208,7 +208,10 @@
 							<div class="row">
 								<div class="col">
 									<div class="search-container">
-										<input type="text" id="search-faq" placeholder="ค้นหา"> <a href="#"><i class="fa fa-search search-icon"></i></a> </div>
+										<form  action="{{url('faq/search')}}" method="GET" id="search_all" >
+												<input type="text" id="search-faq" name="keyword" placeholder="{{trans('messages.search')}}.."> <a href="#"><i class="fa fa-search search-icon"></i></a> 	
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>

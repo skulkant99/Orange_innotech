@@ -59,9 +59,14 @@
 						@php
 							$photo = json_decode($v_information_detail->photo, true)
 						@endphp
+					
 						@if (isset($photo) && $photo)
-							<img src="{{asset('uploads/Information/'.$photo[1])}}" class="img-fluid">	
-						@endif
+										@foreach ($photo as $k_photo => $v_photo)
+											
+												<img src="{{asset('uploads/Information/'.$v_photo)}}" class="img-fluid"><br>			
+										
+										@endforeach
+									@endif
 						<br><br>
 						<p>{!!($information_detail[$k_information_detail]['detail_'.$lang])!!}</p>
 					</div>

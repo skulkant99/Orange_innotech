@@ -229,14 +229,20 @@
 				<div class="sideright_top">
 					<li><a href="{{url('account')}}">{{trans('messages.register')}} | {{trans('messages.login')}}</a></li>
 					<li>
-						<div class="search-container d-none d-sm-none d-md-none d-lg-block d-xl-block">
-							<input type="text" id="search-bar" placeholder="{{trans('messages.search')}}.."> <a href="#"><i class="fa fa-search search-icon"></i></a> </div>
+						
+							<div class="search-container d-none d-sm-none d-md-none d-lg-block d-xl-block">
+									<form  action="{{url('search')}}" method="GET" id="search_all" >
+										<input type="text" id="search-bar" name="keyword" placeholder="{{trans('messages.search')}}.."> <a href="#"><i class="fa fa-search search-icon"></i></a> 	
+									</form>
+							</div>
+						
+						
 					</li>
 					<li><div class="langselect d-block d-sm-block d-md-block d-lg-none d-xl-none">
-								<a href="{{url('/')}}"><img src="{{asset('images/icon_home.png')}}"></a>
-								<a href="{{url('lang/th')}}"><img src="{{asset('images/th.png')}}"></a>
-								<a href="{{url('lang/en')}}"><img src="{{asset('images/en.png')}}"></a>
-							</div></li>
+							<a href="{{url('/')}}"><img src="{{asset('images/icon_home.png')}}"></a>
+							<a href="{{url('lang/th')}}"><img src="{{asset('images/th.png')}}"></a>
+							<a href="{{url('lang/en')}}"><img src="{{asset('images/en.png')}}"></a>
+						</div></li>
 				</div>
 			</div>
 		</div>
@@ -292,10 +298,11 @@
 				<a href="{{url('/')}}"><img src="{{asset('images/logo.png')}}"></a>
 			</div>
 			<div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
-			<li><a class="cd-search-trigger" href="javascript:void(0)"><span></span></a></li>
+			<li><a class="cd-search-trigger" href="javascript:void(0)"><span></span></a></li> 
 			<div id="cd-search" class="cd-search">
-				<form>
-					<input type="search" placeholder="Search..."> </form>
+				<form  action="{{url('search')}}" method="GET" id="search_all" >
+					<input type="search" name="keyword" placeholder="{{trans('messages.search')}}.."> 
+				</form>
 			</div>
 		</header>
 		<nav id="main-nav">
@@ -305,8 +312,8 @@
 						<div class="mmmbg-0"><a href="{{url('/')}}"> {{trans('messages.home')}}</a></div>
 					</li>
 					<li class="click_second_nav" rel="1">
-						<div class="mmmbg-1"><a href="#"> {{trans('messages.fund')}}
-               </a></div> <span class="arrr"><i class="fas fa-angle-right"></i></span> </li>
+						<div class="mmmbg-1"><a href="#"> {{trans('messages.fund')}}</a>
+                   	</div> <span class="arrr"><i class="fas fa-angle-right"></i></span> </li>
 					<li>
 						<div class="mmmbg-0"><a href="{{url('/fundsprice')}}"> {{trans('messages.nav')}}</a></div>
 					</li>

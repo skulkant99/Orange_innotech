@@ -15,7 +15,10 @@ class KnowledgeController extends Controller
         $data['contact'] = \App\Models\Contact::where('status','=','1')
             ->select('contacts.*')
             ->get();
-        $data['knowledge'] = \App\Models\News::paginate(8);
+        $data['knowledge'] = \App\Models\News::where('status',1)
+            ->orderBy('sort_id','ASC')
+            ->select()
+            ->paginate(8);
         return view('knowledge',$data);
     }
     public function detail($id){

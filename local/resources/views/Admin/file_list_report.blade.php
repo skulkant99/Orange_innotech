@@ -24,8 +24,9 @@
                                         <tr>
                                         <th>#</th>
                                         <th>ชื่อ</th>
-                                        <th>เดือน</th>
                                         <th>ปี</th>
+                                        <th>เดือน</th>
+                                        
                                         <th>ไฟล์</th>
                                         <th>ลำดับ</th>
                                         <th>สถานะ</th>
@@ -56,7 +57,7 @@
                     
                 <div class="form-group">
                     <label for="add_name_th">ชื่อ(TH)</label>
-                    <input type="text" class="form-control" name="name_th" id="add_name_th" required="" placeholder="ชื่อ(TH)">
+                    <input type="text" class="form-control" name="name_th" id="add_name_th" placeholder="ชื่อ(TH)">
                 </div>
         
                 <div class="form-group">
@@ -70,26 +71,36 @@
                     <input type="text" class="value_name_file" name="file">
                     <div class="preview_file"></div>
                 </div>
-        
-                <div class="form-group">
-                    <label for="add_year_no">ปี</label>
-                    <select name="year_no" class="select2 form-control" tabindex="-1" data-placeholder="Select year_no" id="add_year_no"  >
-                        <option value="">Select ปี</option>
-                        @foreach($Years as $Year)
-                        <option value="{{$Year->year_no}}">{{$Year->name}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                            <label for="add_date_no">วัน</label>
+                            <select name="date_no" class="select2 form-control" tabindex="-1" data-placeholder="เลือก วัน" id="add_date_no"  >
+                                <option value="">เลือก วัน</option>
+                                @foreach($Date as $_date)
+                                <option value="{{$_date->date}}">{{$_date->date}}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                            <label for="add_month_no">เดือน</label>
+                            <select name="month_no" class="select2 form-control" tabindex="-1" data-placeholder="เลือก เดือน" id="add_month_no"  >
+                                <option value="">เลือก เดือน</option>
+                                @foreach($Months as $Month)
+                                <option value="{{$Month->month_no}}">{{$Month->name}}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                            <label for="add_year_no">ปี</label>
+                            <select name="year_no" class="select2 form-control" tabindex="-1" data-placeholder="เลือก ปี" id="add_year_no"  >
+                                <option value="">เลือก ปี</option>
+                                @foreach($Years as $Year)
+                                <option value="{{$Year->year_no}}">{{$Year->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                 </div>
-
-                <div class="form-group">
-                        <label for="add_month_no">เดือน</label>
-                        <select name="month_no" class="select2 form-control" tabindex="-1" data-placeholder="Select month_no" id="add_month_no"  >
-                            <option value="">Select เดือน</option>
-                            @foreach($Months as $Month)
-                            <option value="{{$Month->month_no}}">{{$Month->name}}</option>
-                            @endforeach
-                        </select>
-                </div>
+                
         
                 <div class="form-group">
                     <label for="add_sort_id">ลำดับ</label>
@@ -124,7 +135,7 @@
                     
                 <div class="form-group">
                     <label for="edit_name_th">ชื่อ(TH)</label>
-                    <input type="text" class="form-control" name="name_th" id="edit_name_th" required="" placeholder="ชื่อ(TH)">
+                    <input type="text" class="form-control" name="name_th" id="edit_name_th"  placeholder="ชื่อ(TH)">
                 </div>
         
                 <div class="form-group">
@@ -138,26 +149,36 @@
                     <input type="text" class="value_name_file edit_value_name_file_file" name="file">
                     <div class="preview_file preview_file_file"></div>
                 </div>
-        
-                <div class="form-group">
-                    <label for="edit_year_no">ปี</label>
-                    <select name="year_no" data-placeholder="Select year_no" tabindex="-1" class="select2 form-control" id="edit_year_no"  >
-                        <option value="">Select year_no</option>
-                        @foreach($Years as $Year)
-                        <option value="{{$Year->year_no}}">{{$Year->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="edit_month_no">เดือน</label>
-                    <select name="month_no" class="select2 form-control" tabindex="-1" data-placeholder="Select month_no" id="edit_month_no"  >
-                        <option value="">Select เดือน</option>
-                        @foreach($Months as $Month)
-                        <option value="{{$Month->month_no}}">{{$Month->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <div class="row">
+                        <div class="form-group col-md-4">
+                                <label for="edit_date_no">วัน</label>
+                                <select name="date_no" class="select2 form-control" tabindex="-1" data-placeholder="เลือก วัน" id="edit_date_no"  >
+                                    <option value="">เลือก วัน</option>
+                                    @foreach($Date as $_date)
+                                    <option value="{{$_date->date}}">{{$_date->date}}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                                <label for="edit_month_no">เดือน</label>
+                                <select name="month_no" class="select2 form-control" tabindex="-1" data-placeholder="เลือก เดือน" id="edit_month_no"  >
+                                    <option value="">เลือก เดือน</option>
+                                    @foreach($Months as $Month)
+                                    <option value="{{$Month->month_no}}">{{$Month->name}}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                                <label for="edit_year_no">ปี</label>
+                                <select name="year_no" class="select2 form-control" tabindex="-1" data-placeholder="เลือก ปี" id="edit_year_no"  >
+                                    <option value="">เลือก ปี</option>
+                                    @foreach($Years as $Year)
+                                    <option value="{{$Year->year_no}}">{{$Year->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                    </div>
                 
                 <div class="form-group">
                     <label for="edit_sort_id">ลำดับ</label>
@@ -195,8 +216,8 @@
         "columns": [
             {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
             {"data" : "name_th"},
-            {"data" : "years_name"},
-            {"data" : "months_name"},
+            {"data" : "years_name","name":"years.name"},
+            {"data" : "months_name","name":"months.name"},
             {"data" : "file"},
             {"data" : "sort_id"},
             {"data" : "status"},
@@ -218,7 +239,11 @@
         }).done(function(rec){
             $('#edit_name_th').val(rec.name_th);
             $('#edit_name_en').val(rec.name_en);
-            $('.edit_value_name_file_file').val(rec.file);$('.preview_file_file').html('<img src="'+asset_gb+'uploads/'+rec.file+'" class="preview-file">');$('#edit_year_no').val(rec.year_no).trigger('change');
+            $('.edit_value_name_file_file').val(rec.file);
+            $('.preview_file_file').html('<img src="'+asset_gb+'uploads/pdf.png" class="preview-file">');
+            $('#edit_year_no').val(rec.year_no).trigger('change');
+            $('#edit_month_no').val(rec.month_no).trigger('change');
+            $('#edit_date_no').val(rec.date_no).trigger('change');
             $('#edit_sort_id').val(rec.sort_id);
             if(rec.status=='1'){
                 $('#edit_status').prop('checked','checked').closest('label').addClass('checked');
@@ -240,15 +265,11 @@
         focusInvalid: false,
         rules: {
             
-            name_th: {
-                required: true,
-            },
+           
         },
         messages: {
             
-            name_th: {
-                required: "กรุณาระบุ",
-            },
+         
         },
         highlight: function (e) {
             validate_highlight(e);
@@ -302,15 +323,11 @@
         focusInvalid: false,
         rules: {
             
-            name_th: {
-                required: true,
-            },
+           
         },
         messages: {
             
-            name_th: {
-                required: "กรุณาระบุ",
-            },
+           
         },
         highlight: function (e) {
             validate_highlight(e);
@@ -399,6 +416,9 @@
         $('#edit_year_no').select2();
         $('#add_month_no').select2();
         $('#edit_month_no').select2()
+        $('#add_date_no').select2()
+        $('#edit_date_no').select2()
+
 
 </script>
 @endsection

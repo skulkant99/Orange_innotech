@@ -158,14 +158,6 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::post('/FileReport/{id}', 'Admin\FileReportController@update');
         Route::post('/FileReport/Delete/{id}', 'Admin\FileReportController@destroy');
 
-      Route::get('/Economics', 'Admin\EconomicsController@index');
-        Route::get('/Economics/Lists', 'Admin\EconomicsController@Lists');
-        Route::post('/Economics', 'Admin\EconomicsController@store');
-        Route::get('/Economics/{id}', 'Admin\EconomicsController@show');
-        Route::post('/Economics/{id}', 'Admin\EconomicsController@update');
-        Route::post('/Economics/Delete/{id}', 'Admin\EconomicsController@destroy');
-
-
       Route::get('/News', 'Admin\NewsController@index');
         Route::get('/News/Lists', 'Admin\NewsController@Lists');
         Route::post('/News', 'Admin\NewsController@store');
@@ -234,8 +226,10 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::post('/Career/{id}', 'Admin\CareerController@update');
         Route::post('/Career/Delete/{id}', 'Admin\CareerController@destroy');
 
-      Route::get('/Performance', 'Admin\PerformanceController@index');
+      Route::get('/FundPerformance','Admin\PerformanceController@fund');
+      Route::get('/Performance/import/{fund_short_name}', 'Admin\PerformanceController@index');
         Route::get('/Performance/Lists', 'Admin\PerformanceController@Lists');
+        Route::get('/FundPerformance/Lists','Admin\PerformanceController@FundLists');
         Route::post('/Performance', 'Admin\PerformanceController@store');
         Route::get('/Performance/{id}', 'Admin\PerformanceController@show');
         Route::post('/Performance/{id}', 'Admin\PerformanceController@update');
@@ -282,6 +276,62 @@ Route::group(['middleware' => 'admin_auth', 'prefix' => 'admin'], function() {
         Route::get('/TypeDebt/{id}', 'Admin\TypeDebtController@show');
         Route::post('/TypeDebt/{id}', 'Admin\TypeDebtController@update');
         Route::post('/TypeDebt/Delete/{id}', 'Admin\TypeDebtController@destroy');
+
+      Route::get('/TypeFund', 'Admin\TypeFundController@index');
+        Route::get('/TypeFund/Lists', 'Admin\TypeFundController@Lists');
+        Route::post('/TypeFund', 'Admin\TypeFundController@store');
+        Route::get('/TypeFund/{id}', 'Admin\TypeFundController@show');
+        Route::post('/TypeFund/{id}', 'Admin\TypeFundController@update');
+        Route::post('/TypeFund/Delete/{id}', 'Admin\TypeFundController@destroy');
+
+      Route::get('/SubFund', 'Admin\SubFundController@index');
+        Route::get('/SubFund/Lists', 'Admin\SubFundController@Lists');
+        Route::post('/SubFund', 'Admin\SubFundController@store');
+        Route::get('/SubFund/{id}', 'Admin\SubFundController@show');
+        Route::post('/SubFund/{id}', 'Admin\SubFundController@update');
+        Route::post('/SubFund/Delete/{id}', 'Admin\SubFundController@destroy');
+
+      Route::get('Fund/SubFundTitile/{id}', 'Admin\SubFundTitileController@index');
+        Route::get('/SubFundTitile/Lists', 'Admin\SubFundTitileController@Lists');
+        Route::post('/SubFundTitile', 'Admin\SubFundTitileController@store');
+        Route::get('/SubFundTitile/{id}', 'Admin\SubFundTitileController@show');
+        Route::post('/SubFundTitile/{id}', 'Admin\SubFundTitileController@update');
+        Route::post('/SubFundTitile/Delete/{id}', 'Admin\SubFundTitileController@destroy');
+
+      Route::get('/Fund/SubFundDetail/{id}', 'Admin\SubFundDetailController@index');
+        Route::get('/SubFundDetail/Lists', 'Admin\SubFundDetailController@Lists');
+        Route::post('/SubFundDetail', 'Admin\SubFundDetailController@store');
+        Route::get('/SubFundDetail/{id}', 'Admin\SubFundDetailController@show');
+        Route::post('/SubFundDetail/{id}', 'Admin\SubFundDetailController@update');
+        Route::post('/SubFundDetail/Delete/{id}', 'Admin\SubFundDetailController@destroy');
+
+      Route::get('/Trust', 'Admin\TrustController@index');
+        Route::get('/Trust/Lists', 'Admin\TrustController@Lists');
+        Route::post('/Trust', 'Admin\TrustController@store');
+        Route::get('/Trust/{id}', 'Admin\TrustController@show');
+        Route::post('/Trust/{id}', 'Admin\TrustController@update');
+        Route::post('/Trust/Delete/{id}', 'Admin\TrustController@destroy');
+
+      Route::get('/TrustPersonnel', 'Admin\TrustPersonnelController@index');
+        Route::get('/TrustPersonnel/Lists', 'Admin\TrustPersonnelController@Lists');
+        Route::post('/TrustPersonnel', 'Admin\TrustPersonnelController@store');
+        Route::get('/TrustPersonnel/{id}', 'Admin\TrustPersonnelController@show');
+        Route::post('/TrustPersonnel/{id}', 'Admin\TrustPersonnelController@update');
+        Route::post('/TrustPersonnel/Delete/{id}', 'Admin\TrustPersonnelController@destroy');
+
+      Route::get('/Economic', 'Admin\EconomicController@index');
+        Route::get('/Economic/Lists', 'Admin\EconomicController@Lists');
+        Route::post('/Economic', 'Admin\EconomicController@store');
+        Route::get('/Economic/{id}', 'Admin\EconomicController@show');
+        Route::post('/Economic/{id}', 'Admin\EconomicController@update');
+        Route::post('/Economic/Delete/{id}', 'Admin\EconomicController@destroy');
+
+      Route::get('/Popup', 'Admin\PopupController@index');
+        Route::get('/Popup/Lists', 'Admin\PopupController@Lists');
+        Route::post('/Popup', 'Admin\PopupController@store');
+        Route::get('/Popup/{id}', 'Admin\PopupController@show');
+        Route::post('/Popup/{id}', 'Admin\PopupController@update');
+        Route::post('/Popup/Delete/{id}', 'Admin\PopupController@destroy');
 
       ##ROUTEFORINSTALL##
 });

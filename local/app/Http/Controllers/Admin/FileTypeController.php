@@ -110,10 +110,10 @@ class FileTypeController extends Controller
     public function update(Request $request, $id)
     {
         $input_all = $request->all();
-        
-            if(isset($input_all['sort_id'])){
-                $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
-            }
+        if(isset($input_all['sort_id'])){
+            $input_all['sort_id'] = str_replace(',', '', $input_all['sort_id']);
+        }
+        $input_all['list_type'] = $request->input('list_type','I');
         $input_all['status'] = $request->input('status','2');
         $input_all['updated_at'] = date('Y-m-d H:i:s');
 
@@ -165,7 +165,7 @@ class FileTypeController extends Controller
     }
 
     public function Lists(){
-        $result = \App\Models\FileType::select();
+        $result = \App\Models\FileType::select()->orderBy('sort_id','ASC');
         return \Datatables::of($result)
         ->addIndexColumn()
         

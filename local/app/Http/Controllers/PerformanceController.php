@@ -27,6 +27,7 @@ class PerformanceController extends Controller
             ->where('type','=','EP-LTF')   
             ->where('date','=',$data['date']->date)
             ->get();
+           
         $data['fund'] = \App\Models\Fund::select()->get();
     
         return view('funds_performance',$data);
@@ -35,10 +36,46 @@ class PerformanceController extends Controller
     {
         $data['type'] = $request->input('type');
         $data['date'] = $request->input('date');
-        $data['perfor'] = \App\Models\Performance::select('performances.*')
+        $month = substr( $data['date'],-5,-3);
+        $year = substr( $data['date'],0,4);
+        
+        $check_date = \App\Models\Performance::select('date')
+            ->where('type','=',$data['type'])  
+            ->where('date','=',$data['date'])  
+            ->first();
+       
+        $date_last = \App\Models\Performance::select('date')
             ->where('type','=',$data['type'])   
-            ->where('date','=',$data['date'])
-            ->get();
+            ->whereMonth('date','=',$month)
+            ->whereYear('date','=', $year)
+            ->orderBy('date','DESC')
+            ->first();
+        
+            
+        if($check_date == null){
+            if($date_last == null){
+                $data['perfor'] = \App\Models\Performance::select('performances.*')
+                ->where('type','=',$data['type'])  
+                ->whereMonth('date','=',$month)
+                ->whereYear('date','=', $year)
+                ->get();
+            }else{
+                $data['perfor'] = \App\Models\Performance::select('performances.*')
+                ->where('type','=',$data['type']) 
+                ->where('date','=',$date_last->date)  
+                ->whereMonth('date','=',$month)
+                ->whereYear('date','=', $year)
+                ->get();
+            }
+           
+        }else{
+            $data['perfor'] = \App\Models\Performance::select('performances.*')
+                ->where('type','=',$data['type']) 
+                ->where('date','=',$check_date->date)  
+                ->get();
+        }
+       
+          
         $data['fund'] = \App\Models\Fund::select()->get();
         return view('funds_performance',$data);
     }
@@ -57,6 +94,25 @@ class PerformanceController extends Controller
             ->get();
 
         return response()->json($perfor);
+    }
+    public function select($fund)
+    {
+    
+        $data['date']  = \App\Models\Performance::select('performances.date')
+            ->where('type','=',$fund)   
+            ->groupBy('date')
+            ->orderBy('date','DESC')
+            ->first();
+
+        $data['perfor']  = \App\Models\Performance::select('performances.*')
+            ->where('type','=',$fund)  
+            ->where('date','=',$data['date']->date)
+            ->get();
+
+            $data['fund'] = \App\Models\Fund::select()->get();
+
+        return view('funds_performance',$data);
+
     }
     public function printPDF($type,$date)
     {

@@ -55,7 +55,7 @@ class ContactController extends Controller
                 $token = base64_encode($email.'#'.\Hash::make(20));
                 \Mail::send('emails.contact_email', $input_all, function ($m) use($token , $input_all){
                     $m->from($input_all['email'], 'contact');
-                    $m->to('skulkant5256@gmail.com', $input_all['name'])->subject('contact innotech');
+                    $m->to('customercare@innotechasset.com', $input_all['name'])->subject('contact innotech');
                 });
                 \DB::commit();
                 $return['status'] = 1;

@@ -18,6 +18,5 @@ class CalendarController extends Controller
         $data['calendar'] = \App\Models\Calendar::select()
             ->orderBy('sort_id','ASC')
             ->paginate(8);
-        return view('calendar',$data);
     }
 }

@@ -67,7 +67,7 @@
 											<div class="col">
 												<div class="bannertxt_top">
 													<h5>INNOTECH</h5>
-													<h1>ดาวน์โหลดแบบฟอร์ม<span class="boldtext"> INNOTECH FORM</span></h1> </div>
+													<h1>{{ trans('messages.downloadform') }}<span class="boldtext"> INNOTECH FORM</span></h1> </div>
 											</div>
 										</div>
 									</div>
@@ -81,7 +81,7 @@
 		<div class="container">
 			<div class="row mt-5">
 				<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-					<div class="title_head1"> ดาวน์โหลดแบบฟอร์ม <span class="bluetxt">INNOTECH FORM</span> </div>
+					<div class="title_head1"> {{ trans('messages.downloadform') }} <span class="bluetxt">INNOTECH FORM</span> </div>
 				</div>
 			</div>
 			<br>

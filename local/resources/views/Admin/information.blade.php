@@ -28,7 +28,8 @@
                                             <th>#</th>
                                             <th>รูปภาพ</th>
                                             <th>หัวเรื่อง</th>
-                                            {{-- <th>รายละเอียด</th> --}}
+                                            <th>ไฟล์</th>
+                                            <th>New</th>
                                             <th>ลำดับ</th>
                                             <th>สถานะ</th>
                                             <th></th>
@@ -71,6 +72,20 @@
                         <label for="add_title">หัวเรื่อง(EN)</label>
                         <input id="add_title_en" name="title_en" class="form-control" placeholder="หัวเรื่อง">
                     </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="add_file">ไฟล์</label>
+                            <input type="file" class="upload_file" id="add_file">
+                            <input type="text" class="value_name_file" name="file">
+                            <div class="preview_file"></div>
+                        </div>
+                        <div class="form-check col-md-6">
+                            <label for="add_status_pdf" class="checkbox form-check-label">
+                                <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status_pdf" id="add_status_pdf"  value="1" checked="checked"> เปิดใช้งานไฟล์
+                            </label>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                             <label for="add_detail">รายละเอียด(TH)</label>
@@ -80,20 +95,22 @@
                             <label for="add_detail">รายละเอียด(EN)</label>
                             <textarea id="add_detail_en" name="detail_en" class="form-control"></textarea>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
+            
+                    <div class="form-group">
                             <label for="add_sort_id">ลำดับ</label>
                             <input type="text" class="form-control number-only" name="sort_id" id="add_sort_id"  placeholder="ลำดับ">
-                        </div>
+                    </div>
                     
-                        <div class="form-group col-md-6">
-                            <label for="add_status">สถานะ</label>
-                            <select  class="form-control number-only select2" name="status" id="add_status" tabindex="-1" data-placeholder="เลือก สถานะ">
-                                <option value="">เลือก</option>
-                                <option value="1">ใช้งาน</option>
-                                <option value="2">ไม่ใช้งาน</option>
-                            </select>
-                        </div>
+                    <div class="form-check">
+                        <label for="add_active" class="checkbox form-check-label">
+                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="active" id="add_active"  value="1" checked="checked"> NEW
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label for="add_status" class="checkbox form-check-label">
+                            <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="add_status"  value="1" checked="checked"> เปิดใช้งาน
+                        </label>
                     </div>
                  
                     </div>
@@ -133,6 +150,20 @@
                             <label for="edit_title">หัวเรื่อง(EN)</label>
                             <input id="edit_title_en" name="title_en" class="form-control" placeholder="หัวเรื่อง">
                         </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="edit_file">ไฟล์</label>
+                                <input type="file" class="upload_file" id="edit_file">
+                                <input type="text" class="value_name_file edit_value_name_file_file" name="file">
+                                <div class="preview_file preview_file_file"></div>
+                            </div>
+                            <div class="form-check col-md-6">
+                                <label for="edit_status_pdf" class="checkbox form-check-label">
+                                    <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status_pdf" id="edit_status_pdf"  value="1"> เปิดใช้งานไฟล์
+                                </label>
+                            </div>
+                        </div>
                         
                         <div class="form-group">
                             <label for="edit_detail">รายละเอียด(TH)</label>
@@ -144,21 +175,23 @@
                             <textarea id="edit_detail_en" name="detail_en" class="form-control"></textarea>
                         </div>
                         
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="add_sort_id">ลำดับ</label>
-                                <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="ลำดับ">
-                            </div>
+            
+                        <div class="form-group">
+                            <label for="add_sort_id">ลำดับ</label>
+                            <input type="text" class="form-control number-only" name="sort_id" id="edit_sort_id"  placeholder="ลำดับ">
+                        </div>
 
-                            <div class="form-group col-md-6">
-                                <label for="add_status">สถานะ</label>
-                                <select  class="form-control number-only select2" name="status" id="edit_status" tabindex="-1" data-placeholder="เลือก สถานะ">
-                                    <option value="">เลือก</option>
-                                    <option value="1">ใช้งาน</option>
-                                    <option value="2">ไม่ใช้งาน</option>
-                                </select>
-                            </div>
-                        </div>   
+                        <div class="form-check">
+                            <label for="edit_active" class="checkbox form-check-label">
+                                <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="active" id="edit_active"  value="1"> NEW
+                            </label>
+                        </div>
+                      
+                        <div class="form-check">
+                            <label for="edit_status" class="checkbox form-check-label">
+                                <input type="checkbox" class="form-check-input" data-toggle="checkbox" name="status" id="edit_status"  value="1"> เปิดใช้งาน
+                            </label>
+                        </div>
                       
                         </div>
                         <div class="modal-footer">
@@ -187,7 +220,8 @@
                 {"data" : "DT_RowIndex" , "className": "text-center", "searchable": false, "orderable": false},
                 {"data" : "photo","width": "20%"},
                 {"data" : "title_th"},
-                // {"data" : "detail_th"},
+                {"data" : "file"},
+                {"data" : "active"},
                 {"data" : "sort_id","className": "text-center"},
                 {"data" : "status"},
                 { "data": "action","className":"action text-center","searchable" : false , "orderable" : false }
@@ -247,11 +281,33 @@
 
                 $('#edit_title_th').val(rec.title_th);
                 $('#edit_title_en').val(rec.title_en);
+                $('.edit_value_name_file_file').val(rec.file);
+                $('.preview_file_file').html('<img src="'+asset_gb+'uploads/pdf.png" class="preview-file">');
                 CKEDITOR.instances['edit_detail_th'].setData(rec.detail_th);
                 CKEDITOR.instances['edit_detail_en'].setData(rec.detail_en);
-                $('#edit_status').val(rec.status);
+               ;
+
+                if(rec.status_pdf=='1'){
+                    $('#edit_status_pdf').prop('checked','checked').closest('label').addClass('checked');
+                }else{
+                    $('#edit_status_pdf').removeAttr('checked').closest('label').removeClass('checked');
+                }
+
+                if(rec.status=='1'){
+                    $('#edit_status').prop('checked','checked').closest('label').addClass('checked');
+                }else{
+                    $('#edit_status').removeAttr('checked').closest('label').removeClass('checked');
+                }
+
+                if(rec.active=='1'){
+                    $('#edit_active').prop('checked','checked').closest('label').addClass('checked');
+                }else{
+                    $('#edit_active').removeAttr('checked').closest('label').removeClass('checked');
+                }
+
                 $('#edit_sort_id').val(rec.sort_id);
-                $('.select2').select2();
+
+         
                 btn.button("reset");
                 ShowModal('ModalEdit');
             }).fail(function(){
@@ -443,7 +499,6 @@
         CKEDITOR.replace('add_detail_en');
         CKEDITOR.replace('edit_detail_en');
 
-        $('#add_status').select2();
-        $('#edit_status').select2();
+ 
     </script>
 @endsection

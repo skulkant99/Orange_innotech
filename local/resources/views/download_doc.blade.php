@@ -67,7 +67,7 @@
 											<div class="col">
 												<div class="bannertxt_top">
 													<h5>INNOTECH</h5>
-													<h1>เอกสารเผยแพร่<span class="boldtext"> DOWNLOAD</span></h1> </div>
+													<h1>{{ trans('messages.publication') }}<span class="boldtext"> DOWNLOAD</span></h1> </div>
 											</div>
 										</div>
 									</div>
@@ -81,7 +81,7 @@
 		<div class="container">
 			<div class="row mt-5">
 				<div class="col  wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-					<div class="title_head1"> เอกสารเผยแพร่ <span class="bluetxt">และประกาศบริษัท</span> </div>
+					<div class="title_head1"> {{ trans('messages.publication') }} <span class="bluetxt">{{ trans('messages.announcements') }}</span> </div>
 				</div>
 			</div>
 			<br><br>
